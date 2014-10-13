@@ -6,6 +6,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "medium-editor": "^1.9.4",
     "react": "^0.11.2"
   },
   "devDependencies": {
@@ -13,4 +14,3 @@
     "webpack": "^1.3.0-beta5"
   }
 }
-

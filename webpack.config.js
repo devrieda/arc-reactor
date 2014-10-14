@@ -5,7 +5,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.js$/, loader: 'jsx-loader'}
+      { test: /\.js$/,  loader: 'jsx-loader' },
+      { test: /\.css$/, loader: "style!css!sass?outputStyle=expanded" }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.css'] 
   }
 };
+
+
+

@@ -23,13 +23,14 @@ var Editor = React.createClass({
     this.setState({content: this.props.content});
   },
 
-  sectionChanged: function(section) {
+  sectionChanged: function(json) {
+    // handle when section content changes
   },
 
   render: function() {
     var sections = this.state.content.sections.map(function(sect) {
       return <EditorSection onChange={this.sectionChanged} content={sect} />
-    });
+    }.bind(this));
 
     return (
       <div className="ReactEditor" contentEditable="true">

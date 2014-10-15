@@ -23,6 +23,10 @@ var EditorBlock = React.createClass({
     }
   },
 
+  blockChanged: function(json) {
+    // handle when block changes
+  },
+
   componentWillMount: function() {
     this.setState({content: this.props.content});
   },

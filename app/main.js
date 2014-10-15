@@ -15,13 +15,13 @@ var App = React.createClass({
     this.setState({content: ContentStore.find()});
   },
 
-  editorChanged: function(json) {
-    console.log(json);
+  contentChanged: function(json) {
+    // handle when content changes
   },
 
   render: function() {
     return (
-      <ReactEditor onChange={this.editorChanged} content={this.state.content} />
+      <ReactEditor onChange={this.contentChanged} content={this.state.content} />
     );
   }
 });

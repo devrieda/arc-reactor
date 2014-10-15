@@ -1,6 +1,7 @@
 var Section = require("./Section");
 
-var Content = function() {
+var Content = function(content) {
+  this.json = content;
   this.sections = [];
 }
 

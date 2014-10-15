@@ -19,10 +19,14 @@ var EditorSection = React.createClass({
     }
   },
 
+  blockChanged: function(json) {
+    // handle when block changes
+  },
+
   render: function() {
     var blocks = this.props.content.blocks.map(function(block) {
-      return <EditorBlock content={block} />
-    });
+      return <EditorBlock onChange={this.blockChanged} content={block} />
+    }.bind(this));
 
     return (
       <section className="ReactEditor_Section">

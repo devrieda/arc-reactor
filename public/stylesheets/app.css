@@ -1,7 +1,5 @@
 body {
   font-family: "proxima-nova", "Helvetica Neue", arial, helvetica, sans-serif;
   font-weight: 200;
-}
-#editor {
-  width: 700px;
+  color: rgba(0,0,0,0.8);
 }

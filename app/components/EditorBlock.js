@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-require('./EditorBlock.css');
-
+var addons = require('react/addons');
 var k = function(){};
+require('./EditorBlock.css');
 
 var EditorBlock = React.createClass({
   propTypes: {
@@ -16,6 +16,7 @@ var EditorBlock = React.createClass({
       content: {
         type: "p",
         text: "",
+        meta: {},
         blocks: [],
         inlines: []
       },
@@ -33,37 +34,56 @@ var EditorBlock = React.createClass({
 
   htmlTag: function() {
     var tag = this.state.content.type;
-    if (tag == 'pullquote') {
-      tag = 'blockquote';
-    } else if (tag == 'h1') {
-      tag = 'h2';
-    } else if (tag == 'h2') {
-      tag = 'h3';
-    } else if (tag == 'h3') {
-      tag = 'h4';
-    }
+    if (tag == 'pullquote') { tag = 'blockquote'; }
     return tag;
   },
+
   htmlContent: function() {
     var type = this.state.content.type;
     if (type == "ul" || type == "ol") {
       return this.state.content.blocks.map(function(li) {
-        return <EditorBlock content={li} />
+        return <EditorBlock data-id={li.id} key={li.id} content={li} />
       });
     } else {
       return this.buildText();
     }
   },
   buildText: function() {
+    var origText = this.state.content.text;
+    var inlines  = this.state.content.inlines || [];
+    inlines.forEach(function(inline) {
+      console.log(inline)
+    });
+
     return this.state.content.text;
   },
 
+  buildClassNames: function() {
+    var type = this.state.content.type;
+    var classes = {
+      'ic-EditorBlock': true,
+      'ic-EditorBlock--list': type == 'ol' || type == 'ul',
+      'ic-EditorBlock--first': this.props.first,
+    };
+    classes['ic-EditorBlock--' + type] = true;
+
+    return React.addons.classSet(classes)
+  },
+  buildAttr: function() {
+    var attr = {
+      "className": this.buildClassNames()
+    }
+    var meta = this.state.content.meta || {};
+    for (var property in meta) {
+      if (meta.hasOwnProperty(property)) {
+        attr["data-" + property] = meta[property];
+      }
+    }
+    return attr;
+  },
+
   render: function() {
-    return React.DOM[this.htmlTag()]({
-        className: "ReactEditor_Block"
-      },
-      this.htmlContent()
-    )
+    return React.DOM[this.htmlTag()](this.buildAttr(), this.htmlContent())
   }
 });
 

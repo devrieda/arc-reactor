@@ -7,7 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "medium-editor": "^1.9.4",
-    "react": "^0.11.2"
+    "react": "^0.11.2",
+    "react-addons": "^0.9.0"
   },
   "devDependencies": {
     "jsx-loader": "^0.11.2",

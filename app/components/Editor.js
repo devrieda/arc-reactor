@@ -2,9 +2,9 @@
 
 var React = require('react');
 var EditorSection = require('./EditorSection');
+var k = function(){};
 require('./Editor.css');
 
-var k = function(){};
 
 var Editor = React.createClass({
   propTypes: {
@@ -28,12 +28,14 @@ var Editor = React.createClass({
   },
 
   render: function() {
-    var sections = this.state.content.sections.map(function(sect) {
-      return <EditorSection onChange={this.sectionChanged} content={sect} />
+    var sections = this.state.content.sections.map(function(sect, i) {
+      sect.meta = sect.meta || {};
+      if (i == 0) { sect.meta.first = true; }
+      return <EditorSection data-id={sect.id} key={sect.id} onChange={this.sectionChanged} content={sect} />
     }.bind(this));
 
     return (
-      <div className="ReactEditor" contentEditable="true">
+      <div className="ic-Editor" onChange={this.onChange} contentEditable="true">
         {sections}
       </div>
     )

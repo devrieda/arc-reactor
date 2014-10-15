@@ -1,2 +1,41 @@
-.EditorSection {
+.ic-Editor {
+
+  .ic-EditorSection {
+    position: relative;
+    clear: both;
+  }
+  .ic-EditorSection--first {
+    padding-top: 100px;
+  }
+
+  .ic-EditorSection__divider {
+    width: 700px;
+    margin: 0 auto;
+  }
+  .ic-EditorSection--first .ic-EditorSection__divider {
+    display: none;
+  }
+
+  .ic-EditorSection__hr {
+    display: block;
+    width: 100px;
+    margin: 51px auto 41px auto;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .ic-EditorSection__content {
+    letter-spacing: 0.01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 1.5;
+  }
+  .ic-EditorSection__inner {
+    width: 700px;
+    position: relative;
+    right: 0%;
+    margin: 0 auto;
+  }
+
 }

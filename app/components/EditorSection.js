@@ -3,41 +3,30 @@
 var React = require('react');
 var addons = require('react/addons');
 var EditorBlock = require('./EditorBlock');
-var k = function(){};
 require('./EditorSection.css');
 
 
 var EditorSection = React.createClass({
   propTypes: {
-    content: React.PropTypes.object,
-    onChange: React.PropTypes.func
+    content: React.PropTypes.object
   },
 
   getDefaultProps: function() {
     return {
-      content: {blocks: [], meta: {}},
-      onChange: k
+      content: {blocks: [], meta: {}}
     }
-  },
-
-  componentWillMount: function() {
-    this.setState({content: this.props.content});
-  },
-
-  blockChanged: function(json) {
-    // handle when block changes
   },
 
   buildClassName: function() {
     return React.addons.classSet({
       'ic-EditorSection': true,
-      'ic-EditorSection--first': this.state.content.meta.first
+      'ic-EditorSection--first': this.props.content.meta.first
     });
   },
 
   render: function() {
-    var blocks = this.state.content.blocks.map(function(block) {
-      return <EditorBlock data-id={block.id} key={block.id} onChange={this.blockChanged} content={block} />
+    var blocks = this.props.content.blocks.map(function(block) {
+      return <EditorBlock key={block.id} content={block} />
     }.bind(this));
 
     return (

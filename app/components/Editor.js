@@ -23,7 +23,7 @@ var Editor = React.createClass({
     this.setState({content: this.props.content});
   },
 
-  sectionChanged: function(json) {
+  contentChanged: function(json) {
     // handle when section content changes
   },
 
@@ -31,11 +31,11 @@ var Editor = React.createClass({
     var sections = this.state.content.sections.map(function(sect, i) {
       sect.meta = sect.meta || {};
       if (i == 0) { sect.meta.first = true; }
-      return <EditorSection data-id={sect.id} key={sect.id} onChange={this.sectionChanged} content={sect} />
+      return <EditorSection key={sect.id} content={sect} />
     }.bind(this));
 
     return (
-      <div className="ic-Editor" onChange={this.onChange} contentEditable="true">
+      <div className="ic-Editor" onChange={this.contentChanged} contentEditable="true">
         {sections}
       </div>
     )

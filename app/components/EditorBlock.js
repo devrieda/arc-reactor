@@ -2,64 +2,48 @@
 
 var React = require('react');
 var addons = require('react/addons');
-var k = function(){};
 require('./EditorBlock.css');
 
 var EditorBlock = React.createClass({
   propTypes: {
-    content: React.PropTypes.object,
-    onChange: React.PropTypes.func
+    content: React.PropTypes.object
   },
 
   getDefaultProps: function() {
     return {
-      content: {
-        type: "p",
-        text: "",
-        meta: {},
-        blocks: [],
-        inlines: []
-      },
-      onChange: k
+      content: { type: "p", text: "", meta: {}, blocks: [], inlines: [] }
     }
   },
 
-  blockChanged: function(json) {
-    // handle when block changes
-  },
-
-  componentWillMount: function() {
-    this.setState({content: this.props.content});
-  },
-
   htmlTag: function() {
-    var tag = this.state.content.type;
+    var tag = this.props.content.type;
     if (tag == 'pullquote') { tag = 'blockquote'; }
     return tag;
   },
 
   htmlContent: function() {
-    var type = this.state.content.type;
+    var type = this.props.content.type;
     if (type == "ul" || type == "ol") {
-      return this.state.content.blocks.map(function(li) {
-        return <EditorBlock data-id={li.id} key={li.id} content={li} />
+      return this.props.content.blocks.map(function(li) {
+        return <EditorBlock key={li.id} content={li} />
       });
     } else {
       return this.buildText();
     }
   },
   buildText: function() {
-    var origText = this.state.content.text;
-    var inlines  = this.state.content.inlines || [];
-    inlines.forEach(function(inline) {
-      console.log(inline)
-    });
+    var origText = this.props.content.text;
+    var inlines  = this.props.content.inlines || [];
 
-    return this.state.content.text;
+    var a  = inlines.filter(function(inline) { inline.type == "a"; });
+    var st = inlines.filter(function(inline) { inline.type == "strong"; });
+    var em = inlines.filter(function(inline) { inline.type == "em"; });
+
+    return this.props.content.text;
   },
 
   buildClassNames: function() {
-    var type = this.state.content.type;
+    var type = this.props.content.type;
     var classes = {
       'ic-EditorBlock': true,
       'ic-EditorBlock--list': type == 'ol' || type == 'ul',
@@ -73,7 +57,7 @@ var EditorBlock = React.createClass({
     var attr = {
       "className": this.buildClassNames()
     }
-    var meta = this.state.content.meta || {};
+    var meta = this.props.content.meta || {};
     for (var property in meta) {
       if (meta.hasOwnProperty(property)) {
         attr["data-" + property] = meta[property];

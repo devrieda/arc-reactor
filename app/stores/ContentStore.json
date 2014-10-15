@@ -1,0 +1,117 @@
+var ContentStore = function() {
+}
+
+ContentStore.find = function() {
+  return (
+    {"sections": [
+      {
+        "blocks": [
+          {
+            "type": "h2",
+            "text": "History of Photography"
+          },
+          {
+            "type": "p",
+            "text": "Photography is a word derived from the Greek words photos (“light”) and graphein (“to draw”) The word was first used by the scientist Sir John F.W. Herschel in 1839."
+          },
+          {
+            "type": "h3",
+            "text": "Pinhole Camera"
+          },
+          {
+            "type": "p",
+            "text": "Alhazen (Ibn Al-Haytham), a great authority on optics in the Middle Ages who lived around 1000AD, invented the first pinhole camera, (also called the Camera Obscura and was able to explain why the images were upside down."
+          },
+          {
+            "type": "h4",
+            "text": "The First Photograph"
+          },
+          {
+            "type": "ul",
+            "blocks": [
+              {
+                "type": "li",
+                "text": "Joseph Nicephore Niepce"
+              },
+              {
+                "type": "li",
+                "text": "List 2"
+              }
+            ]
+          },
+          {
+            "type": "h4",
+            "text": "Louis Daguerre"
+          },
+          {
+            "type": "ol",
+            "blocks": [
+              {
+                "type": "li",
+                "text": "Numbered"
+              },
+              {
+                "type": "li",
+                "text": "Again"
+              }
+            ]
+          }
+        ]
+      }, 
+      {
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Something Else Here That is Centered",
+            "meta": {
+              "align": "center"
+            }
+          },
+          {
+            "type": "p",
+            "text": "Something here that has a link in it",
+            "inlines": [
+              {
+                "type": "a",
+                "href": "http://google.com",
+
+                "at": 26,
+                "length": 4
+              }
+            ]
+          },
+          {
+            "type": "p",
+            "text": "And something here bold and italic words.",
+            "inlines": [
+              {
+                "type": "strong",
+                "at": 19,
+                "length": 4
+              },
+              {
+                "type": "em",
+                "at": 28,
+                "length": 6
+              },
+            ],
+          },
+          {
+            "type": "blockquote",
+            "text": "And more here with something else"
+          },
+          {
+            "type": "pullquote",
+            "text": "Quoted two"
+          },
+          {
+            "type": "p",
+            "text": "And more paragraphs of text"
+          }
+        ]
+      }
+    ]}
+  )
+}
+
+module.exports = ContentStore;

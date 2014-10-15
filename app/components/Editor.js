@@ -1,17 +1,40 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-require('./Editor.css')
+var EditorSection = require('./EditorSection');
 
-var ReactEditor = React.createClass({
+require('./Editor.css');
+
+var Editor = React.createClass({
+  propTypes: {
+    content: React.PropTypes.object,
+    onChange: React.PropTypes.func
+  },
+
+  getDefaultProps: function() {
+    return {
+      content: {sections: []}
+    };
+  },
+
+  componentWillMount: function() {
+    this.setState({content: this.props.content});
+  },
+
+  sectionChanged: function(section) {
+  },
+
   render: function() {
+    var sections = this.state.content.sections.map(function(sect) {
+      return <EditorSection onChange={this.sectionChanged} content={sect} />
+    });
+
     return (
-      <div contentEditable="true">
-        {this.props.children}
+      <div className="ReactEditor" contentEditable="true">
+        {sections}
       </div>
     )
   }
 });
 
-module.exports = ReactEditor;
-
+module.exports = Editor;

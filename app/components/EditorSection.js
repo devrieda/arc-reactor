@@ -2,14 +2,21 @@
 
 var React = require('react');
 var EditorBlock = require('./EditorBlock');
-
 require('./EditorSection.css');
 
+var k = function(){};
+
 var EditorSection = React.createClass({
+  propTypes: {
+    content: React.PropTypes.object,
+    onChange: React.PropTypes.func
+  },
+
   getDefaultProps: function() {
     return {
-      content: {blocks: []}
-    };
+      content: {blocks: []},
+      onChange: k
+    }
   },
 
   render: function() {

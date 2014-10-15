@@ -1,10 +1,16 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-
 require('./EditorBlock.css');
 
+var k = function(){};
+
 var EditorBlock = React.createClass({
+  propTypes: {
+    content: React.PropTypes.object,
+    onChange: React.PropTypes.func
+  },
+
   getDefaultProps: function() {
     return {
       content: {
@@ -12,13 +18,47 @@ var EditorBlock = React.createClass({
         text: "",
         blocks: [],
         inlines: []
-      }
-    };
+      },
+      onChange: k
+    }
+  },
+
+  componentWillMount: function() {
+    this.setState({content: this.props.content});
+  },
+
+  htmlTag: function() {
+    var tag = this.state.content.type;
+    if (tag == 'pullquote') {
+      tag = 'blockquote';
+    } else if (tag == 'h1') {
+      tag = 'h2';
+    } else if (tag == 'h2') {
+      tag = 'h3';
+    } else if (tag == 'h3') {
+      tag = 'h4';
+    }
+    return tag;
+  },
+  htmlContent: function() {
+    var type = this.state.content.type;
+    if (type == "ul" || type == "ol") {
+      return this.state.content.blocks.map(function(li) {
+        return <EditorBlock content={li} />
+      });
+    } else {
+      return this.buildText();
+    }
+  },
+  buildText: function() {
+    return this.state.content.text;
   },
 
   render: function() {
-    return (
-      <p className="ReactEditor_Block">{this.props.content.text}</p>
+    return React.DOM[this.htmlTag()]({
+        className: "ReactEditor_Block"
+      },
+      this.htmlContent()
     )
   }
 });

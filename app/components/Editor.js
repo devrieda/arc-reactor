@@ -2,8 +2,9 @@
 
 var React = require('react');
 var EditorSection = require('./EditorSection');
-
 require('./Editor.css');
+
+var k = function(){};
 
 var Editor = React.createClass({
   propTypes: {
@@ -13,8 +14,9 @@ var Editor = React.createClass({
 
   getDefaultProps: function() {
     return {
-      content: {sections: []}
-    };
+      content: {sections: []},
+      onChange: k
+    }
   },
 
   componentWillMount: function() {

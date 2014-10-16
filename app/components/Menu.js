@@ -71,7 +71,8 @@ var Menu = React.createClass({
           <div className={linkClasses}>
             <input className="ic-Editor-Menu__linkinput-field" type="text" placeholder="Paste or type a link" />
             <button className="ic-Editor-MenuItem__button" data-action="cancelLink">
-              <span className="ic-Editor-MenuItem__icon">x</span>
+              <i className="ic-Editor-MenuItem__icon fa fa-close"></i>
+              <span className="ic-Editor-MenuItem__icon-text screenreader-only">Close</span>
             </button>
           </div>
         </div>

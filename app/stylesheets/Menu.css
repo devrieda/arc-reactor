@@ -73,7 +73,7 @@
 
   .ic-Editor-Menu__arrow-clip {
     position: absolute;
-    bottom: -11px;
+    bottom: -12px;
     left: 50%;
     clip: rect(12px 24px 24px 0);
     margin-left: -12px;
@@ -90,5 +90,22 @@
     -ms-transform: rotate(45deg) scale(.5);
     -o-transform: rotate(45deg) scale(.5);
     transform: rotate(45deg) scale(.5);
+  }
+  .ic-Editor-Menu:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    margin-left: -4px;
+    width: 8px;
+    height: 8px;
+    background: #262625;
+    box-shadow: 0 0 2px #262625;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
   }
 }

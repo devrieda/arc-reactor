@@ -17,6 +17,11 @@ var Editor = React.createClass({
       onChange: function() {}
     }
   },
+  getInitialState: function() {
+    return {
+      active: false
+    }
+  },
 
   componentWillMount: function() {
     this.setState({content: this.props.content});
@@ -26,7 +31,7 @@ var Editor = React.createClass({
     return (
       <div className="ic-Editor">
         <Content content={this.state.content} onChange={this.props.onChange} />
-        <Menu active={true} />
+        <Menu active={this.state.active} />
       </div>
     )
   }

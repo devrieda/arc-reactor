@@ -1,18 +1,18 @@
 /** @jsx React.DOM */
 
-jest.dontMock('../../app/components/EditorSection.js');
+jest.dontMock('../../app/components/Block.js');
 
-describe('Editor', function() {
+describe('Block', function() {
   it('changes the text after click', function() {
     var React = require('react/addons');
-    var EditorSection = require('../../app/components/EditorSection.js');
+    var Block = require('../../app/components/Block.js');
     var TestUtils = React.addons.TestUtils;
 
-    var content = { blocks: [] };
+    var content = {type: "p"};
 
-    // Render a section
-    var section = TestUtils.renderIntoDocument(
-      <EditorSection content={content} />
+    // Render an block
+    var block = TestUtils.renderIntoDocument(
+      <Block content={content} />
     );
 
     // Simulate a click and verify that it is now On
@@ -21,4 +21,3 @@ describe('Editor', function() {
     // expect(label.getDOMNode().textContent).toEqual('On');
   });
 });
-

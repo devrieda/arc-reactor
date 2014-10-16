@@ -16,12 +16,12 @@ var Menu = React.createClass({
   },
 
   buttonTypes: function() {
-    var buttonTypes = ['h2', 'h3', 'h4', 'center', 'blockquote', 'link'];
-    if (['h2', 'h3', 'h4'].indexOf(this.props.selection.type) != -1) {
-      buttonTypes.push('bold', 'italic');
-    }
+    var isHeader = ['h2', 'h3', 'h4'].indexOf(this.props.selection.type) != -1;
+    var buttonTypes = !isHeader ? ['bold', 'italic'] : [];
+    buttonTypes.push('h2', 'h3', 'h4', 'center', 'blockquote', 'link');
     return buttonTypes;
   },
+
   buttons: function() {
     var selectedType = this.props.selection.type;
 
@@ -32,9 +32,7 @@ var Menu = React.createClass({
       }
       itemClass['ic-Editor-Menu__item--'+type] = true;
 
-      var iconClass = {
-        'ic-Editor-Menu__icon': true
-      }
+      var iconClass = { 'ic-Editor-Menu__icon': true }
       itemClass['ic-Editor-Menu__icon--'+type] = true;
 
       return (

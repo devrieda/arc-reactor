@@ -1,18 +1,16 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var ReactEditor = require('./components/Editor.js');
-var ContentStore = require('./stores/ContentStore.json');
+var Editor = require('./components/Editor.js');
+var Store = require('./stores/ContentStore.json');
 
 var App = React.createClass({
   getInitialState: function() {
-    return {
-      content: {}
-    }
+    return { content: {} }
   },
 
   componentWillMount: function() {
-    this.setState({content: ContentStore.find()});
+    this.setState({content: Store.find()});
   },
 
   contentChanged: function(json) {
@@ -21,7 +19,7 @@ var App = React.createClass({
 
   render: function() {
     return (
-      <ReactEditor onChange={this.contentChanged} content={this.state.content} />
+      <Editor content={this.state.content} onChange={this.contentChanged} />
     );
   }
 });

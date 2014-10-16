@@ -2,9 +2,9 @@
 
 var React = require('react/addons');
 var Formatter = require('../modules/Formatter');
-require('./EditorBlock.css');
+require('../stylesheets/Block.css');
 
-var EditorBlock = React.createClass({
+var Block = React.createClass({
   propTypes: {
     content: React.PropTypes.object
   },
@@ -28,7 +28,7 @@ var EditorBlock = React.createClass({
     if (type == "ul" || type == "ol") {
       var blocks = this.props.content.blocks || [];
       return blocks.map(function(block) {
-        return <EditorBlock key={block.id} content={block} />
+        return <Block key={block.id} content={block} />
       });
     } else {
       return this.buildText();
@@ -49,11 +49,11 @@ var EditorBlock = React.createClass({
   buildClassNames: function() {
     var type = this.props.content.type;
     var classes = {
-      'ic-EditorBlock': true,
-      'ic-EditorBlock--list': type == 'ol' || type == 'ul',
-      'ic-EditorBlock--first': this.props.first,
+      'ic-Editor-Block': true,
+      'ic-Editor-Block--list': type == 'ol' || type == 'ul',
+      'ic-Editor-Block--first': this.props.first,
     };
-    classes['ic-EditorBlock--' + type] = true;
+    classes['ic-Editor-Block--' + type] = true;
 
     return React.addons.classSet(classes)
   },
@@ -77,5 +77,5 @@ var EditorBlock = React.createClass({
   }
 });
 
-module.exports = EditorBlock;
+module.exports = Block;
 

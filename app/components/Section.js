@@ -2,10 +2,10 @@
 
 var React = require('react');
 var addons = require('react/addons');
-var EditorBlock = require('./EditorBlock');
-require('./EditorSection.css');
+var Block = require('./Block');
+require('../stylesheets/Section.css');
 
-var EditorSection = React.createClass({
+var Section = React.createClass({
   propTypes: {
     content: React.PropTypes.object
   },
@@ -20,24 +20,24 @@ var EditorSection = React.createClass({
   buildClassName: function() {
     var meta = this.props.content.meta;
     return React.addons.classSet({
-      'ic-EditorSection': true,
-      'ic-EditorSection--first': meta && meta.first
+      'ic-Editor-Section': true,
+      'ic-Editor-Section--first': meta && meta.first
     });
   },
 
   render: function() {
     var blocks = this.props.content.blocks.map(function(block) {
-      return <EditorBlock key={block.id} content={block} />
+      return <Block key={block.id} content={block} />
     });
 
     return (
       <section className={this.buildClassName()}>
-        <div className="ic-EditorSection__divider">
-          <hr className="ic-EditorSection__hr" />
+        <div className="ic-Editor-Section__divider">
+          <hr className="ic-Editor-Section__hr" />
         </div>
 
-        <div className="ic-EditorSection__content">
-          <div className="ic-EditorSection__inner">
+        <div className="ic-Editor-Section__content">
+          <div className="ic-Editor-Section__inner">
             {blocks}
           </div>
         </div>
@@ -46,4 +46,4 @@ var EditorSection = React.createClass({
   }
 });
 
-module.exports = EditorSection;
+module.exports = Section;

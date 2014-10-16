@@ -26,7 +26,7 @@ var Editor = React.createClass({
     return (
       <div className="ic-Editor">
         <Content content={this.state.content} onChange={this.props.onChange} />
-        <Menu />
+        <Menu active={true} />
       </div>
     )
   }

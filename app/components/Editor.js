@@ -2,9 +2,8 @@
 
 var React = require('react');
 var EditorSection = require('./EditorSection');
-var k = function(){};
+var Guid = require('../modules/Guid');
 require('./Editor.css');
-
 
 var Editor = React.createClass({
   propTypes: {
@@ -14,8 +13,8 @@ var Editor = React.createClass({
 
   getDefaultProps: function() {
     return {
-      content: {sections: []},
-      onChange: k
+      content: { sections: [] }, 
+      onChange: function() {}
     }
   },
 
@@ -23,8 +22,22 @@ var Editor = React.createClass({
     this.setState({content: this.props.content});
   },
 
-  contentChanged: function(json) {
-    // handle when section content changes
+  getElement: function() {
+    return this.refs.editor.getDOMNode()
+  },
+
+  // handle changes
+  onChange: function() {
+  },
+  onInput: function() {
+  },
+  onBlur: function() {
+  },
+  onPaste: function() {
+  },
+  onKeyUp: function() {
+  },
+  onKeyDown: function() {
   },
 
   render: function() {
@@ -32,10 +45,16 @@ var Editor = React.createClass({
       sect.meta = sect.meta || {};
       if (i == 0) { sect.meta.first = true; }
       return <EditorSection key={sect.id} content={sect} />
-    }.bind(this));
+    });
 
     return (
-      <div className="ic-Editor" onChange={this.contentChanged} contentEditable="true">
+      <div className="ic-Editor" ref="editor"
+           onInput={this.onInput}
+           onBlur={this.onBlur}
+           onPaste={this.onPaste}
+           onKeyUp={this.onKeyUp}
+           onKeyDown={this.onKeyDown}
+           contentEditable="true">
         {sections}
       </div>
     )

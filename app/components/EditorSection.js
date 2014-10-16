@@ -5,7 +5,6 @@ var addons = require('react/addons');
 var EditorBlock = require('./EditorBlock');
 require('./EditorSection.css');
 
-
 var EditorSection = React.createClass({
   propTypes: {
     content: React.PropTypes.object
@@ -13,21 +12,23 @@ var EditorSection = React.createClass({
 
   getDefaultProps: function() {
     return {
-      content: {blocks: [], meta: {}}
+      content: { blocks: [], meta: {} }
     }
   },
 
+  // add class modifiers
   buildClassName: function() {
+    var meta = this.props.content.meta;
     return React.addons.classSet({
       'ic-EditorSection': true,
-      'ic-EditorSection--first': this.props.content.meta.first
+      'ic-EditorSection--first': meta && meta.first
     });
   },
 
   render: function() {
     var blocks = this.props.content.blocks.map(function(block) {
       return <EditorBlock key={block.id} content={block} />
-    }.bind(this));
+    });
 
     return (
       <section className={this.buildClassName()}>

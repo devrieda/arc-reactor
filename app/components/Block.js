@@ -6,15 +6,16 @@ require('../stylesheets/Block.css');
 
 var Block = React.createClass({
   propTypes: {
-    content: React.PropTypes.object,
-    selected: React.PropTypes.bool
+    content: React.PropTypes.object
   },
 
   getDefaultProps: function() {
     return {
-      content: { type: "p", text: "", meta: {}, blocks: [], inlines: [] },
-      selected: false
+      content: { type: "p", text: "", meta: {}, blocks: [], inlines: [] }
     }
+  },
+  getInitialState: function() {
+    return { selected: false }
   },
 
   // not all block types match 1-1 with html

@@ -35,6 +35,11 @@ var MenuItem = React.createClass({
     }
     itemClass['ic-Editor-MenuItem--'+this.props.type] = true;
 
+    var buttonClass = {
+      'ic-Editor-MenuItem__button': true,
+      'ic-Editor-MenuItem__button--active': this.props.active
+    }
+
     // icon
     var iconClass = { 'ic-Editor-MenuItem__icon': true, 'fa': true }
     iconClass[this.props.icon] = true;
@@ -47,7 +52,7 @@ var MenuItem = React.createClass({
 
     return (
       <li className={classSet(itemClass)} key={this.props.type}>
-        <button className="ic-Editor-MenuItem__button" data-action={this.props.type}>
+        <button className={classSet(buttonClass)} data-action={this.props.type}>
           <i className={classSet(iconClass)}></i>
           <span className={classSet(textClass)}>{this.props.text}</span>
         </button>

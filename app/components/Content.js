@@ -2,8 +2,10 @@
 
 var React = require('react');
 var Section = require('./Section');
+
 var Guid = require('../modules/Guid');
 var Selection = require('../modules/Selection');
+var KeyIntent = require('../modules/KeyIntent');
 
 require('../stylesheets/Content.css');
 
@@ -15,7 +17,7 @@ var Content = React.createClass({
 
   getDefaultProps: function() {
     return {
-      content: { sections: [] }, 
+      content: { sections: [] },
       onChange: function() {}
     }
   },
@@ -52,7 +54,6 @@ var Content = React.createClass({
     setTimeout(function() {
       var sel = new Selection(document.getSelection())
       var attr = sel.attr();
-
       this.setState({selection: attr});
       this.props.onChange(this.state.content, attr);
     }.bind(this), 1);
@@ -71,15 +72,24 @@ var Content = React.createClass({
   },
   onKeyUp: function(e) {
     this.checkSelection();
-    // - carriage return (enter, ctrl-m, etc.)
-    //   13, ctrl+77,
-    //
-    // - delete (delete, backspace, etc.)
-    //   8, 46
-    //
-    // - type-over (select-text-and-type)
-    //
+
+    if (e.keyCode == 91) {
+      this.metaKey = false;
+    }
   },
+  onKeyDown: function(e) {
+    if (e.keyCode == 91) {
+      this.metaKey = true;
+    }
+    e.metaKey = this.metaKey;
+
+    var keyIntent = new KeyIntent(e);
+    var intent = keyIntent.getIntent();
+    if (intent) {
+      e.preventDefault();
+    }
+  },
+
   onMouseUp: function(e) {
     this.checkSelection();
   },
@@ -96,9 +106,11 @@ var Content = React.createClass({
            onInput={this.onChange}
            onBlur={this.onBlur}
            onPaste={this.onPaste}
+           onKeyDown={this.onKeyDown}
            onKeyUp={this.onKeyUp}
            onMouseUp={this.onMouseUp}
-           contentEditable="true">
+           contentEditable="true"
+           role="textbox" aria-multiline="true" aria-label="Editable Content">
         {sections}
       </div>
     )
@@ -106,4 +118,3 @@ var Content = React.createClass({
 });
 
 module.exports = Content;
-

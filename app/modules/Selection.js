@@ -12,7 +12,15 @@ Selection.prototype.text = function() {
 }
 
 Selection.prototype.type = function() {
-  return this.getStartNode().tagName.toLowerCase();
+  var tag = this.getStartNode().tagName.toLowerCase();
+  if (tag == 'blockquote') {
+  } else if (tag == 'p') {
+    return tag;
+  }
+}
+
+Selection.prototype.isCenter = function() {
+  this.getStartNode()
 }
 
 Selection.prototype.bounds = function() {
@@ -24,6 +32,7 @@ Selection.prototype.isValid = function() {
   var node = this.getStartNode()
   if (!node) { return false; }
 
+  // the selection is within the content
   while (node.tagName && !node.getAttribute('contenteditable')) {
     node = node.parentNode;
   }
@@ -32,12 +41,12 @@ Selection.prototype.isValid = function() {
 
 Selection.prototype.attr = function() {
   var obj = {};
-
   if (this.isValid() && this.text()) {
     var bounds = this.bounds();
     obj = {
       text: this.text(),
       type: this.type(), 
+      centered: this.isCenter(),
       top: bounds.top,
       left: bounds.left,
       width: bounds.width,

@@ -64,7 +64,8 @@ var Block = React.createClass({
   // add meta info to custom attributes
   buildAttr: function() {
     var attr = {
-      "className": this.buildClassNames()
+      "className": this.buildClassNames(),
+      "name": this.props.content.id
     }
     var meta = this.props.content.meta || {};
     for (var property in meta) {

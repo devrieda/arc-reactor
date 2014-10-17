@@ -31,7 +31,7 @@ var Section = React.createClass({
     });
 
     return (
-      <section className={this.buildClassName()}>
+      <section className={this.buildClassName()} name={this.props.content.id}>
         <div className="ic-Editor-Section__divider">
           <hr className="ic-Editor-Section__hr" />
         </div>

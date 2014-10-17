@@ -1,3 +1,5 @@
+var mixInto = require('react/lib/mixInto');
+
 var CODES = {
   'b': 66,      // meta+b  = bold
   'i': 73,      // meta+i  = italic 
@@ -8,7 +10,7 @@ var CODES = {
   'meta': 91,   // meta 
   'return': 13, // return 
   'delete': 8,  // delete
-  'bspace': 46  // delete
+  'bspace': 46  // backspace 
 }
 
 var KeyIntent = function(e) {
@@ -20,45 +22,47 @@ var KeyIntent = function(e) {
   this.checkDelete(e);
 }
 
-// determine intent
-KeyIntent.prototype.checkMarkupHotkey = function(e) {
-  if (!e.metaKey && !e.ctrlKey) { return; }
+mixInto(KeyIntent, {
+  // determine intent
+  checkMarkupHotkey: function(e) {
+    if (!e.metaKey && !e.ctrlKey) { return; }
 
-  if (e.keyCode == CODES['b']) {
-    this.intent = 'bold';
+    if (e.keyCode == CODES['b']) {
+      this.intent = 'boldText';
 
-  } else if (e.keyCode == CODES['i']) {
-    this.intent = 'italic';
+    } else if (e.keyCode == CODES['i']) {
+      this.intent = 'italicText';
 
-  } else if (e.keyCode == CODES['u']) {
-    this.intent = 'underline';
+    } else if (e.keyCode == CODES['u']) {
+      this.intent = 'underlineText';
 
-  } else if (e.keyCode == CODES['e']) {
-    this.intent = 'center';
+    } else if (e.keyCode == CODES['e']) {
+      this.intent = 'centerText';
+    }
+  },
+
+  checkAltHotkey: function(e) {
+    if (!this.altKey) { return; }
+
+    if (e.keyCode == CODES['f10']) {
+      this.intent = 'focusToolbar';
+    }
+  },
+  checkReturn: function(e) {
+    if (e.keyCode == CODES['return'] || (e.keyCode == CODES['m'] && e.ctrlKey)) {
+      this.intent = 'pressReturn';
+    }
+  },
+  checkDelete: function(e) {
+    if (e.keyCode == CODES['delete'] || e.keyCode == CODES['bspace']) {
+      this.intent = 'pressDelete';
+    }
+  },
+
+  // check intent
+  getIntent: function() {
+    return this.intent;
   }
-}
-
-KeyIntent.prototype.checkAltHotkey = function(e) {
-  if (!this.altKey) { return; }
-
-  if (e.keyCode == CODES['f10']) {
-    this.intent = 'toolbar';
-  }
-}
-KeyIntent.prototype.checkReturn = function(e) {
-  if (e.keyCode == CODES['enter'] || (e.keyCode == CODES['m'] && e.ctrlKey)) {
-    this.intent = 'return';
-  }
-}
-KeyIntent.prototype.checkDelete = function(e) {
-  if (e.keyCode == CODES['delete'] || e.keyCode == CODES['bspace']) {
-    this.intent = 'delete';
-  }
-}
-
-// check intent
-KeyIntent.prototype.getIntent = function() {
-  return this.intent;
-}
+});
 
 module.exports = KeyIntent;

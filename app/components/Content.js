@@ -63,35 +63,31 @@ var Content = React.createClass({
   onChange: function(e) {
     // console.log('changed')
   },
+  onMouseUp: function(e) {
+    this.checkSelection();
+  },
   onBlur: function(e) {
     this.checkSelection();
     this.onChange();
   },
-  onPaste: function(e) {
-    // console.log('paste')
-  },
-  onKeyUp: function(e) {
-    this.checkSelection();
 
-    if (e.keyCode == 91) {
-      this.metaKey = false;
-    }
-  },
   onKeyDown: function(e) {
-    if (e.keyCode == 91) {
-      this.metaKey = true;
-    }
+    if (e.keyCode == 91) { this.metaKey = true; }
     e.metaKey = this.metaKey;
 
     var keyIntent = new KeyIntent(e);
-    var intent = keyIntent.getIntent();
-    if (intent) {
+    if (intent = keyIntent.getIntent()) {
       e.preventDefault();
+      this[intent]();
     }
   },
 
-  onMouseUp: function(e) {
-    this.checkSelection();
+  pressReturn: function() {
+    var sel = new Selection(document.getSelection());
+    var node = sel.getStartNode();
+  },
+  pressDelete: function() {
+    console.log('hit delete')
   },
 
   render: function() {
@@ -105,7 +101,6 @@ var Content = React.createClass({
       <div className="ic-Editor-Content" ref="editor"
            onInput={this.onChange}
            onBlur={this.onBlur}
-           onPaste={this.onPaste}
            onKeyDown={this.onKeyDown}
            onKeyUp={this.onKeyUp}
            onMouseUp={this.onMouseUp}

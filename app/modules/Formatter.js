@@ -1,7 +1,6 @@
 function escape(string) {
-  var entityMap = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;' };
-  return String(string).replace(/[&<>"'\/]/g, function (s) {
-    return entityMap[s];
+  return String(string).replace(/[&<>"]/g, function(s) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;' }[s];
   });
 }
 
@@ -9,7 +8,14 @@ var Formatter = function(text) {
   this.text = text;
 }
 Formatter.prototype.applyMarkup = function(markups) {
-  if (markups.length == 0) { return; }
+  if (markups.length == 0) { return this.text; }
+
+  var markups = markups.map(function(markup) {
+    markup.text = this.text.slice(markup.offsetStart, markup.offsetEnd);
+    return markup;
+  }.bind(this));
+
+  this.text = escape(this.text);
 
   this.applyAction('a', markups);
   this.applyAction('strong', markups);
@@ -18,13 +24,24 @@ Formatter.prototype.applyMarkup = function(markups) {
   return this.text;
 }
 
-Formatter.prototype.applyAction = function(action, markups) {
+Formatter.prototype.applyAction = function(type, markups) {
   var markups = markups.forEach(function(markup) {
-    if (markup.action != action) { return; }
+    if (markup.type != type) { return; }
 
-    var text = this.text.slice(markup.offsetStart, markup.offsetEnd);
-    console.log(text)
+    // SUPER-HACK - just regexp in the markup. This will fail pretty quick
+    var re = new RegExp("("+markup.text+")");
+    if (type == 'a') {
+      this.text = this.text.replace(re, 
+        "<a class=\"ic-Editor-Block__a\" href=\"" + markup.value + "\">$1</a>");
 
+    } else if (type == 'strong') {
+      this.text = this.text.replace(re,
+        "<strong class=\"ic-Editor-Block__strong\">$1</strong>");
+
+    } else if (type == 'em') {
+      this.text = this.text.replace(re,
+        "<em class=\"ic-Editor-Block__em\">$1</em>");
+    }
   }.bind(this));
 }
 

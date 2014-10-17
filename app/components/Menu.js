@@ -23,7 +23,7 @@ var Menu = React.createClass({
   buttonTypes: function() {
     var buttons = [
       {type: 'strong',     icon: 'fa-bold',         text: 'Bold'},
-      {type: 'italic',     icon: 'fa-italic',       text: 'Italic'},
+      {type: 'em',         icon: 'fa-italic',       text: 'Italic'},
       {type: 'h2',         icon: null,              text: 'H1'},
       {type: 'h3',         icon: null,              text: 'H2'},
       {type: 'h4',         icon: null,              text: 'H3'},

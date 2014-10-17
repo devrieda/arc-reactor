@@ -113,9 +113,13 @@
 
   /* inline */
   .ic-Editor-Block__strong {
+    font-weight: bold;
   }
   .ic-Editor-Block__em {
+    font-style: italic;
   }
-  .ic-Editor-Block__a {
+  .ic-Editor-Block__a,
+  .ic-Editor-Block__a:visited {
+    color: #333;
   }
 }

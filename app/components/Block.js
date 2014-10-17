@@ -18,40 +18,15 @@ var Block = React.createClass({
     return { selected: false }
   },
 
-  // build the block list-items for lists
-  htmlContent: function() {
-    var type = this.props.content.type;
-    if (type == "ul" || type == "ol") {
-      var blocks = this.props.content.blocks || [];
-      return blocks.map(function(block) {
-        return <Block key={block.id} content={block} />
-      });
-    } else {
-      return this.props.content.text;
-    }
-  },
-
-  componentDidMount: function() {
-    var node    = this.getDOMNode();
+  formattedText: function() {
     var text    = this.props.content.text;
     var inlines = this.props.content.inlines || [];
     if (!text) { return text; }
 
-    // var formatter = new Formatter(node);
-    // return formatter.applyMarkup(inlines);
-  },
+    var formatter = new Formatter(text);
+    var formatted = formatter.applyMarkup(inlines);
 
-  // add class modifiers
-  blockClasses: function() {
-    var type = this.props.content.type;
-    var classes = {
-      'ic-Editor-Block': true,
-      'ic-Editor-Block--list': type == 'ol' || type == 'ul',
-      'ic-Editor-Block--first': this.props.first,
-    };
-    classes['ic-Editor-Block--' + type] = true;
-
-    return React.addons.classSet(classes)
+    return formatted;
   },
 
   // add meta info to custom attributes
@@ -69,8 +44,44 @@ var Block = React.createClass({
     return attr;
   },
 
+  // add class modifiers
+  blockClasses: function() {
+    var type = this.props.content.type;
+    var classes = {
+      'ic-Editor-Block': true,
+      'ic-Editor-Block--list': type == 'ol' || type == 'ul',
+      'ic-Editor-Block--first': this.props.first,
+    };
+    classes['ic-Editor-Block--' + type] = true;
+
+    return React.addons.classSet(classes)
+  },
+
+  // build the block list-items for lists
+  children: function() {
+    var type = this.props.content.type;
+    if (type == "ul" || type == "ol") {
+      var blocks = this.props.content.blocks || [];
+      return blocks.map(function(block) {
+        return <Block key={block.id} content={block} />
+      });
+    } else {
+      return this.props.content.text;
+    }
+  },
+
   render: function() {
-    return React.DOM[this.props.content.type](this.buildAttr(), this.htmlContent())
+    var attr = this.buildAttr();
+    var node = React.DOM[this.props.content.type];
+    var inlines = this.props.content.inlines || [];
+
+    if (inlines.length > 0) {
+      attr.dangerouslySetInnerHTML = { __html: this.formattedText() }
+      return node(attr)
+
+    } else {
+      return node(attr, this.children())
+    }
   }
 });
 

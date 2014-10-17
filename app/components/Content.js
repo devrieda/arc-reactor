@@ -3,9 +3,9 @@
 var React = require('react');
 var Section = require('./Section');
 
-var Guid = require('../modules/Guid');
 var Selection = require('../modules/Selection');
 var KeyIntent = require('../modules/KeyIntent');
+var ContentEditor = require('../modules/ContentEditor');
 
 require('../stylesheets/Content.css');
 
@@ -32,36 +32,19 @@ var Content = React.createClass({
     this.setState({content: this.props.content});
   },
 
-  getElement: function() {
-    return this.refs.editor.getDOMNode()
-  },
-
-
-  insertBlock: function() {
-  },
-  removeBlock: function() {
-  },
-  updateBlock: function() {
-  },
-  insertSection: function() {
-  },
-  removeSection: function() {
-  },
-  updateSection: function() {
-  },
-
   checkSelection: function() {
     setTimeout(function() {
       var sel = new Selection(document.getSelection())
-      var attr = sel.attr();
-      this.setState({selection: attr});
-      this.props.onChange(this.state.content, attr);
+      this.setState({selection: sel});
+
+      this.props.onChange(this.state.content, sel.attr());
     }.bind(this), 1);
   },
 
   // handle changes
   onChange: function(e) {
     // console.log('changed')
+    this.checkSelection();
   },
   onMouseUp: function(e) {
     this.checkSelection();
@@ -76,18 +59,31 @@ var Content = React.createClass({
     e.metaKey = this.metaKey;
 
     var keyIntent = new KeyIntent(e);
-    if (intent = keyIntent.getIntent()) {
-      e.preventDefault();
-      this[intent]();
+    var intent = keyIntent.getIntent();
+    if (intent) {
+      var ce = new ContentEditor(this.state.content, this.state.selection);
+
+      var prevent = ce[intent](e);
+      if (prevent) { e.preventDefault(); }
+
+      this.setState({ content: ce.getContent() });
     }
   },
 
-  pressReturn: function() {
-    var sel = new Selection(document.getSelection());
-    var node = sel.getStartNode();
+  pressReturn: function(e) {
+    e.preventDefault();
+
+        ce.pressReturn();
+    this.setState({content: ce.getContent()});
   },
   pressDelete: function() {
-    console.log('hit delete')
+    var ce = new ContentEditor(this.state.content, this.state.selection);
+    ce.pressDelete();
+  },
+  pressBspace: function() {
+    var ce = new ContentEditor(this.state.content, this.state.selection);
+    ce.pressBspace();
+    this.setState({content: ce.getContent()});
   },
 
   render: function() {

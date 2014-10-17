@@ -18,8 +18,10 @@ var KeyIntent = function(e) {
 
   this.checkMarkupHotkey(e);
   this.checkAltHotkey(e);
+
   this.checkReturn(e);
   this.checkDelete(e);
+  this.checkBspace(e);
 }
 
 mixInto(KeyIntent, {
@@ -53,9 +55,16 @@ mixInto(KeyIntent, {
       this.intent = 'pressReturn';
     }
   },
+
   checkDelete: function(e) {
-    if (e.keyCode == CODES['delete'] || e.keyCode == CODES['bspace']) {
+    if (e.keyCode == CODES['delete']) {
       this.intent = 'pressDelete';
+    }
+  },
+
+  checkBspace: function(e) {
+    if (e.keyCode == CODES['bspace']) {
+      this.intent = 'pressBspace';
     }
   },
 

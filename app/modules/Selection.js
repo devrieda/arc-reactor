@@ -5,44 +5,45 @@ var Selection = function(selection) {
 }
 
 mixInto(Selection, {
-  getStartNode: function() {
+  beginNode: function() {
     var node = this.selection.anchorNode;
     return node && node.nodeType === 3 ? node.parentNode : node;
   },
-  getFinishNode: function() {
+  endNode: function() {
     var node = this.selection.extentNode;
     return node && node.nodeType === 3 ? node.parentNode : node;
   },
 
-  getNames: function() {
-    var start  = this.getStartNode();
-    var finish = this.getFinishNode();
+  // which blocks does this range begin/end at
+  guidRange: function() {
+    return [this.beginNode().getAttribute('name'),
+            this.endNode().getAttribute('name')];
   },
 
-  text: function() {
-    return this.selection.toString().trim();
-  },
-
-  type: function() {
-    return this.getStartNode().tagName.toLowerCase();
-  },
-
-  isCenter: function() {
-    var node = this.getStartNode();
-    return node.getAttribute('data-align') == "center";
+  // does this selection affect multiple blocks
+  crossBlock: function() {
+    var range = this.guidRange();
+    return range[0] != range[1];
   },
 
   isRange: function() {
     return this.selection.type == "Range";
   },
-
-  bounds: function() {
-    var range = this.selection.getRangeAt(0);
-    return range.getBoundingClientRect();
+  endOfBlock: function() {
+    var blockNode = this.beginNode();
+    var textNode  = this.selection.anchorNode;
+    var offset = this.selection.anchorOffset;
+    return textNode == blockNode.lastChild && textNode.length == offset;
+  },
+  begOfBlock: function() {
+    var blockNode = this.beginNode();
+    var textNode  = this.selection.anchorNode;
+    var offset = this.selection.anchorOffset;
+    return textNode == blockNode.firstChild && offset == 0;
   },
 
   isValid: function() {
-    var node = this.getStartNode()
+    var node = this.beginNode()
     if (!node) { return false; }
 
     // the selection is within the content
@@ -50,6 +51,25 @@ mixInto(Selection, {
       node = node.parentNode;
     }
     return node !== document;
+  },
+
+
+  text: function() {
+    return this.selection.toString().trim();
+  },
+
+  type: function() {
+    return this.beginNode().tagName.toLowerCase();
+  },
+
+  isCenter: function() {
+    var node = this.beginNode();
+    return node.getAttribute('data-align') == "center";
+  },
+
+  bounds: function() {
+    var range = this.selection.getRangeAt(0);
+    return range.getBoundingClientRect();
   },
 
   attr: function() {

@@ -14,11 +14,10 @@ var Block = React.createClass({
       content: { type: "p", text: "", meta: {}, blocks: [], inlines: [] }
     }
   },
-  getInitialState: function() {
-    return { selected: false }
-  },
 
   formattedText: function() {
+    if (this.isEmpty()) { return '<br />'; }
+
     var text    = this.props.content.text;
     var inlines = this.props.content.inlines || [];
     if (!text) { return text; }
@@ -44,11 +43,18 @@ var Block = React.createClass({
     return attr;
   },
 
+  isEmpty: function() {
+    var text   = this.props.content.text   || "";
+    var blocks = this.props.content.blocks || [];
+    return text.length == 0 && blocks.length == 0
+  },
+
   // add class modifiers
   blockClasses: function() {
     var type = this.props.content.type;
     var classes = {
       'ic-Editor-Block': true,
+      'ic-Editor-Block--empty': this.isEmpty(),
       'ic-Editor-Block--list': type == 'ol' || type == 'ul',
       'ic-Editor-Block--first': this.props.first,
     };
@@ -75,7 +81,7 @@ var Block = React.createClass({
     var node = React.DOM[this.props.content.type];
     var inlines = this.props.content.inlines || [];
 
-    if (inlines.length > 0) {
+    if (inlines.length > 0 || this.isEmpty()) {
       attr.dangerouslySetInnerHTML = { __html: this.formattedText() }
       return node(attr)
 

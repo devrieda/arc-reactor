@@ -32,7 +32,7 @@ var Editor = React.createClass({
     this.props.onChange(content);
   },
   clickMenu: function(type, state) {
-    console.log(type + ':' + state);
+    // console.log(type + ':' + state);
   },
 
   componentWillMount: function() {

@@ -3,6 +3,8 @@
 var React = require('react');
 var Section = require('./Section');
 var Guid = require('../modules/Guid');
+var Selection = require('../modules/Selection');
+
 require('../stylesheets/Content.css');
 
 var Content = React.createClass({
@@ -17,6 +19,12 @@ var Content = React.createClass({
       onChange: function() {}
     }
   },
+  getInitialState: function() {
+    return {
+      content: {},
+      selection: {}
+    }
+  },
 
   componentWillMount: function() {
     this.setState({content: this.props.content});
@@ -26,18 +34,54 @@ var Content = React.createClass({
     return this.refs.editor.getDOMNode()
   },
 
+
+  insertBlock: function() {
+  },
+  removeBlock: function() {
+  },
+  updateBlock: function() {
+  },
+  insertSection: function() {
+  },
+  removeSection: function() {
+  },
+  updateSection: function() {
+  },
+
+  checkSelection: function() {
+    setTimeout(function() {
+      var sel = new Selection(document.getSelection())
+      var attr = sel.attr();
+
+      this.setState({selection: attr});
+      this.props.onChange(this.state.content, attr);
+    }.bind(this), 1);
+  },
+
   // handle changes
-  onChange: function() {
+  onChange: function(e) {
+    // console.log('changed')
   },
-  onInput: function() {
+  onBlur: function(e) {
+    this.checkSelection();
+    this.onChange();
   },
-  onBlur: function() {
+  onPaste: function(e) {
+    // console.log('paste')
   },
-  onPaste: function() {
+  onKeyUp: function(e) {
+    this.checkSelection();
+    // - carriage return (enter, ctrl-m, etc.)
+    //   13, ctrl+77,
+    //
+    // - delete (delete, backspace, etc.)
+    //   8, 46
+    //
+    // - type-over (select-text-and-type)
+    //
   },
-  onKeyUp: function() {
-  },
-  onKeyDown: function() {
+  onMouseUp: function(e) {
+    this.checkSelection();
   },
 
   render: function() {
@@ -49,11 +93,11 @@ var Content = React.createClass({
 
     return (
       <div className="ic-Editor-Content" ref="editor"
-           onInput={this.onInput}
+           onInput={this.onChange}
            onBlur={this.onBlur}
            onPaste={this.onPaste}
            onKeyUp={this.onKeyUp}
-           onKeyDown={this.onKeyDown}
+           onMouseUp={this.onMouseUp}
            contentEditable="true">
         {sections}
       </div>

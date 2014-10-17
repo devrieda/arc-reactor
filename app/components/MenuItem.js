@@ -20,6 +20,13 @@ var MenuItem = React.createClass({
       active: false
     }
   },
+  getInitialState: function() {
+    return { active: false }
+  },
+
+  componentWillMount: function() {
+    this.setState({active: this.props.active});
+  },
 
   render: function() {
     var itemClass = {
@@ -28,11 +35,11 @@ var MenuItem = React.createClass({
     }
     itemClass['ic-Editor-MenuItem--'+this.props.type] = true;
 
-    // icons
+    // icon
     var iconClass = { 'ic-Editor-MenuItem__icon': true, 'fa': true }
     iconClass[this.props.icon] = true;
 
-    // screenreader text
+    // text
     var textClass = { 
       'ic-Editor-MenuItem__icon-text': true,
       'screenreader-only': ['h2', 'h3', 'h4'].indexOf(this.props.type) == -1

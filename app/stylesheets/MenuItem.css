@@ -16,6 +16,7 @@
     cursor: pointer;
     text-transform: none;
     font: inherit;
+    outline: none;
   }
   .ic-Editor-MenuItem__item:first-child .ic-Editor-MenuItem__button {
     padding-left: 18px;
@@ -31,5 +32,6 @@
   }
   .ic-Editor-MenuItem__icon-text {
     font-weight: bold;
+    line-height: 42px;
   }
 }

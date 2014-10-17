@@ -18,13 +18,6 @@ var Block = React.createClass({
     return { selected: false }
   },
 
-  // not all block types match 1-1 with html
-  htmlTag: function() {
-    var tag = this.props.content.type;
-    if (tag == 'pullquote') { tag = 'blockquote'; }
-    return tag;
-  },
-
   // build the block list-items for lists
   htmlContent: function() {
     var type = this.props.content.type;
@@ -77,7 +70,7 @@ var Block = React.createClass({
   },
 
   render: function() {
-    return React.DOM[this.htmlTag()](this.buildAttr(), this.htmlContent())
+    return React.DOM[this.props.content.type](this.buildAttr(), this.htmlContent())
   }
 });
 

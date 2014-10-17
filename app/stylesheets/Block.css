@@ -39,7 +39,6 @@
 
   .ic-Editor-Block--p,
   .ic-Editor-Block--blockquote,
-  .ic-Editor-Block--pullquote,
   .ic-Editor-Block--list {
     margin-bottom: 30px;
     font-family: "freight-text-pro",Georgia,Cambria,"Times New Roman",Times,serif;
@@ -59,14 +58,12 @@
     margin-left: -23px;
     padding-bottom: 3px;
   }
-  .ic-Editor-Block--pullquote {
-    line-height: 1.4;
-    text-align: center;
-    font-size: 32px;
+  .ic-Editor-Block--blockquote[data-align="center"] {
     margin: 48px -160px;
-    letter-spacing: 0.01rem;
-    font-weight: 400;
-    font-style: italic;
+    border-left: none;
+    padding: 0;
+    line-height: 1.4;
+    font-size: 32px;
   }
 
   .ic-Editor-Block--list {
@@ -112,6 +109,7 @@
   .ic-Editor-Block[data-align="center"] {
     text-align: center;
   }
+
 
   /* inline */
   .ic-Editor-Block__strong {

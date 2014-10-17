@@ -88,10 +88,10 @@ ContentStore.find = function() {
             "text": "Something here that has a link in it",
             "inlines": [
               {
-                "action": "createLink",
+                "type": "a",
                 "value": "http://google.com",
-                "startOffset": 26,
-                "endOffset": 30
+                "offsetStart": 26,
+                "offsetEnd": 30
               }
             ]
           },
@@ -101,14 +101,14 @@ ContentStore.find = function() {
             "text": "And something here bold and italic words.",
             "inlines": [
               {
-                "action": "bold",
-                "startOffset": 19,
-                "endOffset": 23
+                "type": "strong",
+                "offsetStart": 19,
+                "offsetEnd": 23
               },
               {
-                "action": "italic",
-                "startOffset": 28,
-                "endOffset": 34
+                "type": "em",
+                "offsetStart": 28,
+                "offsetEnd": 34
               },
             ],
           },
@@ -117,11 +117,14 @@ ContentStore.find = function() {
             "type": "blockquote",
             "text": "And more here with something else"
           },
-          // {
-          //   "id": "067c",
-          //   "type": "pullquote",
-          //   "text": "Quoted two"
-          // },
+          {
+            "id": "067c",
+            "type": "blockquote",
+            "text": "Quoted two",
+            "meta": {
+              "align": "center"
+            }
+          },
           {
             "id": "e5fe",
             "type": "p",

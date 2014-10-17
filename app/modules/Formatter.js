@@ -1,25 +1,30 @@
-var Formatter = function(node) {
-  this.node = node;
+function escape(string) {
+  var entityMap = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;' };
+  return String(string).replace(/[&<>"'\/]/g, function (s) {
+    return entityMap[s];
+  });
+}
+
+var Formatter = function(text) {
+  this.text = text;
 }
 Formatter.prototype.applyMarkup = function(markups) {
   if (markups.length == 0) { return; }
 
-  this.applyAction('createLink', markups);
-  this.applyAction('bold', markups);
-  this.applyAction('italic', markups);
+  this.applyAction('a', markups);
+  this.applyAction('strong', markups);
+  this.applyAction('em', markups);
+
+  return this.text;
 }
 
 Formatter.prototype.applyAction = function(action, markups) {
-  var textNode = this.node.childNodes[0];
   var markups = markups.forEach(function(markup) {
     if (markup.action != action) { return; }
 
-    var range = document.createRange();
-    range.setStart(textNode, markup.startOffset);
-    range.setEnd(textNode, markup.endOffset);
+    var text = this.text.slice(markup.offsetStart, markup.offsetEnd);
+    console.log(text)
 
-    console.log(range)
-    document.execCommand(markup.action, false, markup.value)
   }.bind(this));
 }
 

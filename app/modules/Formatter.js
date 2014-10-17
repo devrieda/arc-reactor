@@ -1,19 +1,26 @@
-var Formatter = function(text) {
-  this.text = text;
+var Formatter = function(node) {
+  this.node = node;
 }
 Formatter.prototype.applyMarkup = function(markups) {
-  // return text;
-  // var markups = inlines.filter(function(inline) {
-  //   return inline.type == type; 
-  // });
-  // if (markups.length == 0) { return text; }
+  if (markups.length == 0) { return; }
 
-  return this.text;
+  this.applyAction('createLink', markups);
+  this.applyAction('bold', markups);
+  this.applyAction('italic', markups);
 }
 
-Formatter.prototype.applyTag = function(tag) {
+Formatter.prototype.applyAction = function(action, markups) {
+  var textNode = this.node.childNodes[0];
+  var markups = markups.forEach(function(markup) {
+    if (markup.action != action) { return; }
 
+    var range = document.createRange();
+    range.setStart(textNode, markup.startOffset);
+    range.setEnd(textNode, markup.endOffset);
+
+    console.log(range)
+    document.execCommand(markup.action, false, markup.value)
+  }.bind(this));
 }
-
 
 module.exports = Formatter;

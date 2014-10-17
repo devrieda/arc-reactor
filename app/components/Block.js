@@ -34,22 +34,22 @@ var Block = React.createClass({
         return <Block key={block.id} content={block} />
       });
     } else {
-      return this.buildText();
+      return this.props.content.text;
     }
   },
 
-  // add inline markup
-  buildText: function() {
+  componentDidMount: function() {
+    var node    = this.getDOMNode();
     var text    = this.props.content.text;
     var inlines = this.props.content.inlines || [];
     if (!text) { return text; }
 
-    var formatter = new Formatter(text);
-    return formatter.applyMarkup(inlines);
+    // var formatter = new Formatter(node);
+    // return formatter.applyMarkup(inlines);
   },
 
   // add class modifiers
-  buildClassNames: function() {
+  blockClasses: function() {
     var type = this.props.content.type;
     var classes = {
       'ic-Editor-Block': true,
@@ -64,7 +64,7 @@ var Block = React.createClass({
   // add meta info to custom attributes
   buildAttr: function() {
     var attr = {
-      "className": this.buildClassNames(),
+      "className": this.blockClasses(),
       "name": this.props.content.id
     }
     var meta = this.props.content.meta || {};

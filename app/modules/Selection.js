@@ -12,15 +12,12 @@ Selection.prototype.text = function() {
 }
 
 Selection.prototype.type = function() {
-  var tag = this.getStartNode().tagName.toLowerCase();
-  if (tag == 'blockquote') {
-  } else if (tag == 'p') {
-    return tag;
-  }
+  return this.getStartNode().tagName.toLowerCase();
 }
 
 Selection.prototype.isCenter = function() {
-  this.getStartNode()
+  var node = this.getStartNode();
+  return node.getAttribute('data-align') == "center";
 }
 
 Selection.prototype.bounds = function() {

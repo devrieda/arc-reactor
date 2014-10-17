@@ -18,10 +18,6 @@
     font: inherit;
     outline: none;
   }
-  .ic-Editor-MenuItem__button--active {
-    color: #57baff;
-  }
-
   .ic-Editor-MenuItem__item:first-child .ic-Editor-MenuItem__button {
     padding-left: 18px;
   }
@@ -34,8 +30,14 @@
     font-size: 17px;
     line-height: 42px;
   }
+
   .ic-Editor-MenuItem__icon-text {
     font-weight: bold;
     line-height: 42px;
+  }
+
+  .ic-Editor-MenuItem__button--active,
+  .ic-Editor-MenuItem__icon--active {
+    color: #57baff;
   }
 }

@@ -83,7 +83,7 @@ var Menu = React.createClass({
                       type={button.type}
                       text={button.text}
                       icon={button.icon}
-                    active={this.props.selection.type == button.type} />
+                 selection={this.props.selection} />
     }.bind(this));
 
     return (

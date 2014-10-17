@@ -17,7 +17,7 @@ var Section = React.createClass({
   },
 
   // add class modifiers
-  buildClassName: function() {
+  sectionClasses: function() {
     var meta = this.props.content.meta;
     return React.addons.classSet({
       'ic-Editor-Section': true,
@@ -31,7 +31,7 @@ var Section = React.createClass({
     });
 
     return (
-      <section className={this.buildClassName()} name={this.props.content.id}>
+      <section className={this.sectionClasses()} name={this.props.content.id}>
         <div className="ic-Editor-Section__divider">
           <hr className="ic-Editor-Section__hr" />
         </div>

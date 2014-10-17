@@ -17,7 +17,7 @@ var Content = React.createClass({
 
   getDefaultProps: function() {
     return {
-      content: { sections: [] },
+      content: { sections: [] }, 
       onChange: function() {}
     }
   },

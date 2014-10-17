@@ -9,7 +9,7 @@ var MenuItem = React.createClass({
     type: React.PropTypes.string,
     text: React.PropTypes.string,
     icon: React.PropTypes.string,
-    active: React.PropTypes.bool
+    selection: React.PropTypes.object
   },
 
   getDefaultProps: function() {
@@ -17,44 +17,57 @@ var MenuItem = React.createClass({
       type: '',
       text: '',
       icon: null,
-      active: false
+      selection: {}
     }
   },
-  getInitialState: function() {
-    return { active: false }
+
+  isActive: function() {
+    if (this.props.type == 'center') {
+      return this.props.selection.centered;
+    } else {
+      return this.props.selection.type == this.props.type;
+    }
   },
 
-  componentWillMount: function() {
-    this.setState({active: this.props.active});
+  itemClasses: function() {
+    var itemClass = {
+      'ic-Editor-MenuItem': true,
+      'ic-Editor-MenuItem--active': this.isActive()
+    }
+    itemClass['ic-Editor-MenuItem--'+this.props.type] = true;
+    return classSet(itemClass);
+  },
+
+  buttonClasses: function() {
+    return classSet({
+      'ic-Editor-MenuItem__button': true,
+      'ic-Editor-MenuItem__button--active': this.isActive()
+    });
+  },
+
+  iconClasses: function() {
+    var iconClass = {
+      'ic-Editor-MenuItem__icon': true,
+      'ic-Editor-MenuItem__icon--active': this.isActive(),
+      'fa': true
+    }
+    iconClass[this.props.icon] = true;
+    return classSet(iconClass);
+  },
+
+  textClasses: function() {
+    return classSet({ 
+      'ic-Editor-MenuItem__icon-text': true,
+      'screenreader-only': ['h2', 'h3', 'h4'].indexOf(this.props.type) == -1
+    });
   },
 
   render: function() {
-    var itemClass = {
-      'ic-Editor-MenuItem': true,
-      'ic-Editor-MenuItem--active': this.props.active
-    }
-    itemClass['ic-Editor-MenuItem--'+this.props.type] = true;
-
-    var buttonClass = {
-      'ic-Editor-MenuItem__button': true,
-      'ic-Editor-MenuItem__button--active': this.props.active
-    }
-
-    // icon
-    var iconClass = { 'ic-Editor-MenuItem__icon': true, 'fa': true }
-    iconClass[this.props.icon] = true;
-
-    // text
-    var textClass = { 
-      'ic-Editor-MenuItem__icon-text': true,
-      'screenreader-only': ['h2', 'h3', 'h4'].indexOf(this.props.type) == -1
-    }
-
     return (
-      <li className={classSet(itemClass)} key={this.props.type}>
-        <button className={classSet(buttonClass)} data-action={this.props.type}>
-          <i className={classSet(iconClass)}></i>
-          <span className={classSet(textClass)}>{this.props.text}</span>
+      <li className={this.itemClasses()} key={this.props.type}>
+        <button className={this.buttonClasses()} data-action={this.props.type}>
+          <i className={this.iconClasses()}></i>
+          <span className={this.textClasses()}>{this.props.text}</span>
         </button>
       </li>
     )

@@ -4,22 +4,30 @@ var React = require('react/addons');
 var MenuItem = require('./MenuItem');
 
 var ContentActions = require('../actions/ContentActions');
+var SelectionState = require('../state/SelectionState');
 
 require('../stylesheets/Menu.css');
 
 var classSet = React.addons.classSet;
 
 var Menu = React.createClass({
-  propTypes: {
-    linkMode: React.PropTypes.bool,
-    selection: React.PropTypes.object
+  getInitialState: function() {
+    return {
+      selection: {},
+      linkMode: false
+    }
   },
 
-  getDefaultProps: function() {
-    return {
-      linkMode: false,
-      selection: {}
-    }
+  componentDidMount: function() {
+    SelectionState.register(this.setState.bind(this));
+  },
+
+  clickMenu: function(e) {
+    var target = e.target.nodeName == 'BUTTON' ? e.target : e.target.parentNode;
+    var action = target.getAttribute('data-action');
+    var active = target.className.indexOf('active') != -1;
+
+    ContentActions.pressButton(action, active);
   },
 
   buttonTypes: function() {
@@ -34,42 +42,33 @@ var Menu = React.createClass({
       {type: 'a',          icon: 'fa-link',         text: 'Link'}
     ];
 
-    var isHeader = ['h2', 'h3', 'h4'].indexOf(this.props.selection.type) != -1;
+    var isHeader = ['h2', 'h3', 'h4'].indexOf(this.state.selection.type) != -1;
     return isHeader ? buttons.slice(2) : buttons;
   },
-
-  clickMenu: function(e) {
-    var target = e.target.nodeName == 'BUTTON' ? e.target : e.target.parentNode;
-    var action = target.getAttribute('data-action');
-    var active = target.className.indexOf('active') != -1;
-
-    ContentActions.pressButton(action, active);
-  },
-
   menuClasses: function() {
     return classSet({
       'ic-Editor-Menu': true,
-      'ic-Editor-Menu--active': this.props.selection.text,
-      'ic-Editor-Menu--link': this.props.linkMode
+      'ic-Editor-Menu--active': this.state.selection.text,
+      'ic-Editor-Menu--link': this.state.linkMode
     });
   },
   itemsClasses: function() {
     return classSet({
       'ic-Editor-Menu__inner': true,
-      'ic-Editor-Menu__inner--active': !this.props.linkMode
+      'ic-Editor-Menu__inner--active': !this.state.linkMode
     });
   },
   linkClasses: function() {
     return classSet({
       'ic-Editor-Menu__linkinput': true,
-      'ic-Editor-Menu__linkinput--active': this.props.linkMode
+      'ic-Editor-Menu__linkinput--active': this.state.linkMode
     });
   },
 
   menuStyles: function() {
-    if (!this.props.selection.type) { return {}; }
+    if (!this.state.selection.type) { return {}; }
 
-    var selection = this.props.selection;
+    var selection = this.state.selection;
     var buttonHeight = 50;
     var menuWidth = this.buttonTypes().length * 38;
 
@@ -85,7 +84,7 @@ var Menu = React.createClass({
                       type={button.type}
                       text={button.text}
                       icon={button.icon}
-                 selection={this.props.selection} />
+                 selection={this.state.selection} />
     }.bind(this));
 
     return (

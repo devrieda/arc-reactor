@@ -18,7 +18,9 @@ var SelectionState = {
   },
 
   notify: function() {
-    this.callbacks.forEach(function(cb) { cb(this); })
+    this.callbacks.forEach(function(cb) {
+      cb(this._state);
+    }.bind(this));
   }
 };
 

@@ -20,23 +20,17 @@ var Editor = React.createClass({
       onChange: function() {}
     }
   },
-  getInitialState: function() {
-    return {
-      selection: {}
-    }
-  },
 
   // pass json/html data back up to Editor
   changeContent: function(content, selection) {
     this.props.onChange(content);
-    this.setState({selection: selection});
   },
 
   render: function() {
     return (
       <div className="ic-Editor">
         <Content content={this.props.content} onChange={this.changeContent} />
-        <Menu selection={this.state.selection} />
+        <Menu />
       </div>
     )
   }

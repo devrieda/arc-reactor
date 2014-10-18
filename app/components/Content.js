@@ -7,6 +7,7 @@ var Selection = require('../modules/Selection');
 var KeyIntent = require('../modules/KeyIntent');
 
 var ContentState = require('../state/ContentState');
+var SelectionState = require('../state/SelectionState');
 var ContentActions = require('../actions/ContentActions');
 
 require('../stylesheets/Content.css');
@@ -35,21 +36,21 @@ var Content = React.createClass({
 
   // update when store changes
   componentDidMount: function() {
-    ContentState.register(function() {
-      this.setState(ContentState.getState())
-    }.bind(this));
+    ContentState.register(this.setState.bind(this));
+    SelectionState.register(this.setState.bind(this));
   },
 
   checkSelection: function() {
     setTimeout(function() {
-      var sel = new Selection;
-      this.props.onChange(this.state.content, sel.attr());
+      var sel = new Selection();
+      SelectionState.setState({selection: sel.attr()})
     }.bind(this), 1);
   },
 
   // handle changes
   onChange: function(e) {
     this.checkSelection();
+    this.props.onChange(this.state.content);
   },
   onMouseUp: function(e) {
     this.checkSelection();

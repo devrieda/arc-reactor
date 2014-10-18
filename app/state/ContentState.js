@@ -18,7 +18,9 @@ var ContentState = {
   },
 
   notify: function() {
-    this.callbacks.forEach(function(cb) { cb(this); })
+    this.callbacks.forEach(function(cb) { 
+      cb(this._state);
+    });
   }
 };
 

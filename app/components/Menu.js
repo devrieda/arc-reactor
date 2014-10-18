@@ -3,8 +3,8 @@
 var React = require('react/addons');
 var MenuItem = require('./MenuItem');
 
-var ContentActions = require('../actions/ContentActions');
 var SelectionState = require('../state/SelectionState');
+var ContentActions = require('../actions/ContentActions');
 
 require('../stylesheets/Menu.css');
 
@@ -19,20 +19,39 @@ var Menu = React.createClass({
   },
 
   componentDidMount: function() {
-    SelectionState.register(this.setState.bind(this));
+    SelectionState.register(function(state) {
+      this.setState(state);
+      if (!state.selection.type) {
+        this.setState({linkMode: false});
+      }
+    }.bind(this));
+    this.actions = new ContentActions;
+  },
+
+  componentDidUpdate: function() {
+    if (this.state.linkMode) {
+      // this.refs.linkInput.getDOMNode().focus();
+    }
   },
 
   clickMenu: function(e) {
+    console.log('click')
     var target = e.target.nodeName == 'BUTTON' ? e.target : e.target.parentNode;
     var action = target.getAttribute('data-action');
     var active = target.className.indexOf('active') != -1;
 
-    if (target == 'link' == !active) {
-      this.setState({linkMode: true});
+    // toggle link mode
+    if ((action == 'a' && !active) || action == 'cancelLink') {
+      this.setState({linkMode: (action == 'a')});
+
+    } else if (action) {
+      this.actions.pressButton(action, active);
     }
-    ContentActions.pressButton(action, active);
   },
   onKeyUp: function(e) {
+    if (e.keyCode != 13) { return; }
+
+    this.actions.pressButton('a', false, e.target.value);
   },
 
   buttonTypes: function() {
@@ -59,8 +78,8 @@ var Menu = React.createClass({
   },
   itemsClasses: function() {
     return classSet({
-      'ic-Editor-Menu__inner': true,
-      'ic-Editor-Menu__inner--active': !this.state.linkMode
+      'ic-Editor-Menu__items': true,
+      'ic-Editor-Menu__items--active': !this.state.linkMode
     });
   },
   linkClasses: function() {
@@ -100,11 +119,11 @@ var Menu = React.createClass({
           </ul>
 
           <div className={this.linkClasses()}>
-            <input className="ic-Editor-Menu__linkinput-field" type="text"
+            <input className="ic-Editor-Menu__linkinput-field" type="text" ref="linkInput"
               placeholder="Paste or type a link" onKeyUp={this.onKeyUp} />
 
-            <button className="ic-Editor-MenuItem__button" data-action="cancelLink">
-              <i className="ic-Editor-MenuItem__icon fa fa-close"></i>
+            <button className="ic-Editor-Menu__linkinput_button ic-Editor-MenuItem__button" data-action="cancelLink">
+              <i className="ic-Editor-MenuItem__icon fa fa-times"></i>
               <span className="ic-Editor-MenuItem__icon-text screenreader-only">Close</span>
             </button>
           </div>

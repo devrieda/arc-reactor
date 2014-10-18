@@ -1,9 +1,18 @@
-var Selection    = require('../modules/Selection');
-var ContentState = require('../state/ContentState');
+var mixInto = require('react/lib/mixInto');
 
-var ContentActions = {
-  pressButton: function(button, active) {
-    this[button+"Selection"](active)
+var Selection = require('../modules/Selection');
+
+var ContentState = require('../state/ContentState');
+var SelectionState = require('../state/SelectionState');
+
+var ContentActions = function() {
+  this.content   = ContentState.get();
+  this.selection = SelectionState.get();
+}
+
+mixInto(ContentActions, {
+  pressButton: function(button, active, value) {
+    this[button+"Selection"](active, value)
   },
 
   // key presses
@@ -26,17 +35,14 @@ var ContentActions = {
   h2Selection: function(active) {
     var block = this._findBlock();
     block.type = active ? 'p' : 'h2';
-    ContentState.notify();
   },
   h3Selection: function(active) {
     var block = this._findBlock();
     block.type = active ? 'p' : 'h3';
-    ContentState.notify();
   },
   h4Selection: function(active) {
     var block = this._findBlock();
     block.type = active ? 'p' : 'h4';
-    ContentState.notify();
   },
   centerSelection: function() {
     console.log('center')
@@ -52,20 +58,21 @@ var ContentActions = {
   emSelection: function() {
     console.log('italic')
   },
-  aSelection: function() {
-    console.log('link')
-  }, 
+  aSelection: function(active, value) {
+    console.log('link: ' + value)
+  },
 
   _getContent: function() {
-    var state = ContentState.getState();
+    var state = ContentState.get();
     return state.content;
   },
   _updateContent: function(content) {
-    ContentState.update(content)
+    ContentState.set(content)
   },
   _getSelection: function() {
     return new Selection();
   },
+
   _findBlock: function() {
     var guid = this._getSelection().beginGuid();
     var content = this._getContent();
@@ -78,6 +85,6 @@ var ContentActions = {
     });
     return selected;
   }
-};
+});
 
 module.exports = ContentActions;

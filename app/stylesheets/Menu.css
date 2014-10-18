@@ -29,9 +29,13 @@
   }
 
   .ic-Editor-Menu__items {
+    visibility: hidden;
     padding: 0;
     white-space: nowrap;
-    font-size: 0;
+  }
+  .ic-Editor-Menu__items--active {
+    display: block;
+    visibility: visible;
   }
 
   .ic-Editor-Menu__linkinput {
@@ -41,7 +45,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    vertical-align: middle;
+  }
+  .ic-Editor-Menu__linkinput--active {
+    display: block;
+    -webkit-animation: pop-upwards 180ms forwards linear;
+    -moz-animation: pop-upwards 180ms forwards linear;
+    -ms-animation: pop-upwards 180ms forwards linear;
+    -o-animation: pop-upwards 180ms forwards linear;
+    animation: pop-upwards 180ms forwards linear;
   }
 
   .ic-Editor-Menu__linkinput-field {
@@ -69,6 +80,12 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  .ic-Editor-Menu__linkinput_button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 4px;
   }
 
   .ic-Editor-Menu__arrow-clip {

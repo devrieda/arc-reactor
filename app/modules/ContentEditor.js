@@ -96,14 +96,6 @@ mixInto(ContentEditor, {
     blocks.splice(index, 0);
   },
 
-  updateBlock: function() {
-  },
-  insertSection: function() {
-  },
-  removeSection: function() {
-  },
-  updateSection: function() {
-  },
 
   newSection: function() {
     return { "id": Guid.unique(), "blocks": [] }

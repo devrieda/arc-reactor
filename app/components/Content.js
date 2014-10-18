@@ -5,7 +5,8 @@ var Section = require('./Section');
 
 var Selection = require('../modules/Selection');
 var KeyIntent = require('../modules/KeyIntent');
-var ContentState = require('../modules/ContentState');
+
+var ContentState = require('../state/ContentState');
 var ContentActions = require('../actions/ContentActions');
 
 require('../stylesheets/Content.css');
@@ -30,7 +31,6 @@ var Content = React.createClass({
 
   componentWillMount: function() {
     this.setState({content: this.props.content});
-    ContentState.init({content: this.props.content});
   },
 
   // update when store changes

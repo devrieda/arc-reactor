@@ -4,7 +4,7 @@ var React = require('react');
 var Content = require('./Content');
 var Menu = require('./Menu');
 
-var State = require('../modules/ContentState');
+var ContentState = require('../state/ContentState');
 
 require('../stylesheets/Editor.css');
 

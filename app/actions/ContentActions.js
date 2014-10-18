@@ -1,5 +1,5 @@
-var ContentState = require('../modules/ContentState');
 var Selection    = require('../modules/Selection');
+var ContentState = require('../state/ContentState');
 
 var ContentActions = {
   pressButton: function(button, active) {

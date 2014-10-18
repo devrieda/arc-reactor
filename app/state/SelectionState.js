@@ -1,16 +1,11 @@
-var ContentState = {
-  _state: {
-    content: {}
-  },
+var SelectionState = {
+  _state: {},
 
-  init: function(state) {
-    this._state = state;
-  },
   getState: function() {
     return this._state;
   },
 
-  update: function(state) {
+  setState: function(state) {
     this._state = state;
     this.notify();
   },
@@ -27,4 +22,5 @@ var ContentState = {
   }
 };
 
-module.exports = ContentState;
+module.exports = SelectionState;
+

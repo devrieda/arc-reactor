@@ -1,9 +1,11 @@
 /** @jsx React.DOM */
 
-var React = require('react');
-var addons = require('react/addons');
+var React = require('react/addons');
 var Block = require('./Block');
+
 require('../stylesheets/Section.css');
+
+var classSet = React.addons.classSet;
 
 var Section = React.createClass({
   propTypes: {
@@ -19,7 +21,7 @@ var Section = React.createClass({
   // add class modifiers
   sectionClasses: function() {
     var meta = this.props.content.meta;
-    return React.addons.classSet({
+    return classSet({
       'ic-Editor-Section': true,
       'ic-Editor-Section--first': meta && meta.first
     });

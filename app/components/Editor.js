@@ -3,6 +3,9 @@
 var React = require('react');
 var Content = require('./Content');
 var Menu = require('./Menu');
+
+var State = require('../modules/ContentState');
+
 require('../stylesheets/Editor.css');
 
 var Editor = React.createClass({
@@ -17,19 +20,16 @@ var Editor = React.createClass({
       onChange: function() {}
     }
   },
-
   getInitialState: function() {
     return {
       selection: {}
     }
   },
 
+  // pass json/html data back up to Editor
   changeContent: function(content, selection) {
-    // update menu based on selection
-    this.setState({selection: selection});
-
-    // pass json/html data back up to Editor
     this.props.onChange(content);
+    this.setState({selection: selection});
   },
 
   render: function() {

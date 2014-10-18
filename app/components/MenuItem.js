@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
 
 var React = require('react/addons');
-var classSet = React.addons.classSet;
 require('../stylesheets/MenuItem.css');
+
+var classSet = React.addons.classSet;
 
 var MenuItem = React.createClass({
   propTypes: {

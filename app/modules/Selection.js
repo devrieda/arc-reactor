@@ -1,7 +1,7 @@
 var mixInto = require('react/lib/mixInto');
 
-var Selection = function(selection) {
-  this.selection = selection;
+var Selection = function() {
+  this.selection = document.getSelection();
 }
 
 mixInto(Selection, {
@@ -15,9 +15,14 @@ mixInto(Selection, {
   },
 
   // which blocks does this range begin/end at
+  beginGuid: function() {
+    return this._beginNode().getAttribute('name');
+  },
+  endGuid: function() {
+    return this._endNode().getAttribute('name');
+  },
   guidRange: function() {
-    return [this._beginNode().getAttribute('name'),
-            this._endNode().getAttribute('name')];
+    return [this.beginGuid(), this.endGuid()];
   },
 
   // does this selection affect multiple blocks

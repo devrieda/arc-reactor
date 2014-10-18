@@ -1,9 +1,10 @@
 var mixInto = require('react/lib/mixInto');
 var Guid = require('../modules/Guid');
+var Selection = require('../modules/Selection');
 
-var ContentEditor = function(content, selection) {
+var ContentEditor = function(content) {
   this.content   = content;
-  this.selection = selection;
+  this.selection = new Selection;
 }
 
 mixInto(ContentEditor, {
@@ -117,4 +118,3 @@ mixInto(ContentEditor, {
 });
 
 module.exports = ContentEditor;
-

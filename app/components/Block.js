@@ -1,7 +1,9 @@
 /** @jsx React.DOM */
 
 var React = require('react/addons');
+
 var Formatter = require('../modules/Formatter');
+
 require('../stylesheets/Block.css');
 
 var Block = React.createClass({

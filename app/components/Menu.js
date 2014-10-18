@@ -2,8 +2,12 @@
 
 var React = require('react/addons');
 var MenuItem = require('./MenuItem');
-var classSet = React.addons.classSet;
+
+var ContentActions = require('../actions/ContentActions');
+
 require('../stylesheets/Menu.css');
+
+var classSet = React.addons.classSet;
 
 var Menu = React.createClass({
   propTypes: {
@@ -38,6 +42,8 @@ var Menu = React.createClass({
     var target = e.target.nodeName == 'BUTTON' ? e.target : e.target.parentNode;
     var action = target.getAttribute('data-action');
     var active = target.className.indexOf('active') != -1;
+
+    ContentActions.pressButton(action, active);
   },
 
   menuClasses: function() {
@@ -67,8 +73,8 @@ var Menu = React.createClass({
     var buttonHeight = 50;
     var menuWidth = this.buttonTypes().length * 38;
 
-    return { 
-      top: window.pageYOffset + selection.top - buttonHeight, 
+    return {
+      top: window.pageYOffset + selection.top - buttonHeight,
       left: selection.left + (selection.width / 2) - (menuWidth / 2)
     };
   },

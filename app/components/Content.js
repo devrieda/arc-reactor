@@ -14,24 +14,18 @@ require('../stylesheets/Content.css');
 
 var Content = React.createClass({
   propTypes: {
-    content: React.PropTypes.object,
     onChange: React.PropTypes.func
   },
 
   getDefaultProps: function() {
     return {
-      content: { sections: [] },
       onChange: function() {}
     }
   },
   getInitialState: function() {
     return {
-      content: {}
+      content: {sections: []}
     }
-  },
-
-  componentWillMount: function() {
-    this.setState({content: this.props.content});
   },
 
   // update when store changes
@@ -43,7 +37,7 @@ var Content = React.createClass({
   checkSelection: function() {
     setTimeout(function() {
       var sel = new Selection();
-      SelectionState.setState({selection: sel.attr()})
+      SelectionState.set({selection: sel.attr()})
     }.bind(this), 1);
   },
 
@@ -60,12 +54,17 @@ var Content = React.createClass({
     this.onChange();
   },
 
+  onKeyUp: function(e) {
+    this.checkSelection();
+    if (e.keyCode == 91) { this.metaKey = false; }
+  },
   onKeyDown: function(e) {
     if (e.keyCode == 91) { this.metaKey = true; }
     e.metaKey = this.metaKey;
 
-    // var keyIntent = new KeyIntent(e);
-    // var intent = keyIntent.getIntent();
+    var keyIntent = new KeyIntent(e);
+    var intent = keyIntent.getIntent();
+
     // if (intent) {
     //   var ce = new ContentEditor(this.state.content);
 

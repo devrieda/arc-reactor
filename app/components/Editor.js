@@ -26,10 +26,14 @@ var Editor = React.createClass({
     this.props.onChange(content);
   },
 
+  componentDidMount: function() {
+    ContentState.set({content: this.props.content});
+  },
+
   render: function() {
     return (
       <div className="ic-Editor">
-        <Content content={this.props.content} onChange={this.changeContent} />
+        <Content onChange={this.changeContent} />
         <Menu />
       </div>
     )

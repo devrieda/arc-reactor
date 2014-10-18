@@ -27,7 +27,12 @@ var Menu = React.createClass({
     var action = target.getAttribute('data-action');
     var active = target.className.indexOf('active') != -1;
 
+    if (target == 'link' == !active) {
+      this.setState({linkMode: true});
+    }
     ContentActions.pressButton(action, active);
+  },
+  onKeyUp: function(e) {
   },
 
   buttonTypes: function() {
@@ -95,7 +100,9 @@ var Menu = React.createClass({
           </ul>
 
           <div className={this.linkClasses()}>
-            <input className="ic-Editor-Menu__linkinput-field" type="text" placeholder="Paste or type a link" />
+            <input className="ic-Editor-Menu__linkinput-field" type="text"
+              placeholder="Paste or type a link" onKeyUp={this.onKeyUp} />
+
             <button className="ic-Editor-MenuItem__button" data-action="cancelLink">
               <i className="ic-Editor-MenuItem__icon fa fa-close"></i>
               <span className="ic-Editor-MenuItem__icon-text screenreader-only">Close</span>

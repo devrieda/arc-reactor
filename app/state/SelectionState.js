@@ -1,11 +1,11 @@
 var SelectionState = {
   _state: {},
 
-  getState: function() {
+  get: function() {
     return this._state;
   },
 
-  setState: function(state) {
+  set: function(state) {
     this._state = state;
     this.notify();
   },
@@ -25,4 +25,3 @@ var SelectionState = {
 };
 
 module.exports = SelectionState;
-

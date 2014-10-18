@@ -1,3 +1,22 @@
+var ContentStore = {
+  _state: {
+    content:{} 
+  },
+
+  getState: function() {
+    return this._state;
+  },
+
+  update: function(assignment) {
+    this._state.assignments.push(assignment);
+    this.onChange();
+  },
+
+  register: function(func) {
+    this.observers.push(func);
+  }
+};
+
 var ContentStore = function() {
 }
 

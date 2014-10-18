@@ -8,15 +8,13 @@ require('../stylesheets/Menu.css');
 var Menu = React.createClass({
   propTypes: {
     linkMode: React.PropTypes.bool,
-    selection: React.PropTypes.object,
-    clickMenu: React.PropTypes.func
+    selection: React.PropTypes.object
   },
 
   getDefaultProps: function() {
     return {
       linkMode: false,
-      selection: {},
-      onClick: function() {}
+      selection: {}
     }
   },
 
@@ -40,8 +38,6 @@ var Menu = React.createClass({
     var target = e.target.nodeName == 'BUTTON' ? e.target : e.target.parentNode;
     var action = target.getAttribute('data-action');
     var active = target.className.indexOf('active') != -1;
-
-    this.props.onClick(action, !active);
   },
 
   menuClasses: function() {

@@ -5,19 +5,19 @@ var Selection = function(selection) {
 }
 
 mixInto(Selection, {
-  beginNode: function() {
+  _beginNode: function() {
     var node = this.selection.anchorNode;
     return node && node.nodeType === 3 ? node.parentNode : node;
   },
-  endNode: function() {
+  _endNode: function() {
     var node = this.selection.extentNode;
     return node && node.nodeType === 3 ? node.parentNode : node;
   },
 
   // which blocks does this range begin/end at
   guidRange: function() {
-    return [this.beginNode().getAttribute('name'),
-            this.endNode().getAttribute('name')];
+    return [this._beginNode().getAttribute('name'),
+            this._endNode().getAttribute('name')];
   },
 
   // does this selection affect multiple blocks
@@ -30,20 +30,20 @@ mixInto(Selection, {
     return this.selection.type == "Range";
   },
   endOfBlock: function() {
-    var blockNode = this.beginNode();
+    var blockNode = this._beginNode();
     var textNode  = this.selection.anchorNode;
     var offset = this.selection.anchorOffset;
     return textNode == blockNode.lastChild && textNode.length == offset;
   },
   begOfBlock: function() {
-    var blockNode = this.beginNode();
+    var blockNode = this._beginNode();
     var textNode  = this.selection.anchorNode;
     var offset = this.selection.anchorOffset;
     return textNode == blockNode.firstChild && offset == 0;
   },
 
   isValid: function() {
-    var node = this.beginNode()
+    var node = this._beginNode()
     if (!node) { return false; }
 
     // the selection is within the content
@@ -59,11 +59,11 @@ mixInto(Selection, {
   },
 
   type: function() {
-    return this.beginNode().tagName.toLowerCase();
+    return this._beginNode().tagName.toLowerCase();
   },
 
   isCenter: function() {
-    var node = this.beginNode();
+    var node = this._beginNode();
     return node.getAttribute('data-align') == "center";
   },
 

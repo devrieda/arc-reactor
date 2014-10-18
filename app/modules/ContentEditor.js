@@ -20,17 +20,18 @@ mixInto(ContentEditor, {
 
     } else {
       var guids = this.selection.guidRange();
+      this.insertBlock('before', guids[0]);
 
-      if (this.selection.endOfBlock()) {
-        this.insertBlock('after', guids[0]);
+      // if (this.selection.endOfBlock()) {
+      //   this.insertBlock('after', guids[0]);
 
-      } else if (this.selection.begOfBlock()) {
-        this.insertBlock('before', guids[0]);
+      // } else if (this.selection.begOfBlock()) {
+      //   this.insertBlock('before', guids[0]);
 
-      } else {
-        var text = '';
-        this.insertBlock('before', guids[0], text);
-      }
+      // } else {
+      //   var text = '';
+      //   this.insertBlock('before', guids[0], text);
+      // }
     }
     return true;
   },
@@ -96,7 +97,6 @@ mixInto(ContentEditor, {
 
   updateBlock: function() {
   },
-
   insertSection: function() {
   },
   removeSection: function() {

@@ -31,19 +31,12 @@ var Editor = React.createClass({
     // pass json/html data back up to Editor
     this.props.onChange(content);
   },
-  clickMenu: function(type, state) {
-    // console.log(type + ':' + state);
-  },
-
-  componentWillMount: function() {
-    this.setState({content: this.props.content});
-  },
 
   render: function() {
     return (
       <div className="ic-Editor">
-        <Content content={this.state.content} onChange={this.changeContent} />
-        <Menu selection={this.state.selection} onClick={this.clickMenu} />
+        <Content content={this.props.content} onChange={this.changeContent} />
+        <Menu selection={this.state.selection} />
       </div>
     )
   }

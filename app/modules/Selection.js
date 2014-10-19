@@ -9,24 +9,32 @@ mixInto(Selection, {
     this.selection = document.getSelection();
 
     if (this._isValid() && this._text()) {
-      var bounds = this._bounds();
-
-      this.anchorGuid   = this._anchorGuid();
-      this.focusGuid    = this._focusGuid();
-      this.anchorOffset = this.selection.anchorOffset;
-      this.focusOffset  = this.selection.focusOffset;
-      this.anchorPosition = this._anchorPosition();
-      this.focusPosition  = this._focusPosition();
-
-      this.text = this._text();
-      this.type = this._type();
-      this.centered = this._isCenter();
-      this.top = bounds.top;
-      this.left = bounds.left;
-      this.width = bounds.width;
-      this.height = bounds.height;
+      this.initNodes();
+      this.initBounds();
+      this.initMeta();
     }
     console.log(this)
+  },
+
+  initMeta: function() {
+    this.text = this._text();
+    this.type = this._type();
+    this.centered = this._isCenter();
+  },
+  initNodes: function() {
+    this.anchorGuid   = this._anchorGuid();
+    this.focusGuid    = this._focusGuid();
+    this.anchorOffset = this.selection.anchorOffset;
+    this.focusOffset  = this.selection.focusOffset;
+    this.anchorPosition = this._anchorPosition();
+    this.focusPosition  = this._focusPosition();
+  },
+  initBounds: function() {
+    var bounds = this._bounds();
+    this.top = bounds.top;
+    this.left = bounds.left;
+    this.width = bounds.width;
+    this.height = bounds.height;
   },
 
   // which blocks does this range begin/end at

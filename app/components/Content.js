@@ -32,12 +32,13 @@ var Content = React.createClass({
   componentDidMount: function() {
     ContentState.register(this.setState.bind(this));
     SelectionState.register(this.setState.bind(this));
+
+    this.actions = new ContentActions;
   },
 
   checkSelection: function() {
     setTimeout(function() {
-      var sel = new Selection();
-      SelectionState.set({selection: sel.attr()})
+      SelectionState.set({selection: new Selection})
     }.bind(this), 1);
   },
 

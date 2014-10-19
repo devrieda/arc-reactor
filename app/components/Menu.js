@@ -25,17 +25,19 @@ var Menu = React.createClass({
         this.setState({linkMode: false});
       }
     }.bind(this));
+
     this.actions = new ContentActions;
   },
 
   componentDidUpdate: function() {
-    if (this.state.linkMode) {
-      // this.refs.linkInput.getDOMNode().focus();
-    }
+    if (!this.state.linkMode) { return; }
+
+    setTimeout(function() {
+      this.refs.linkInput.getDOMNode().focus();
+    }.bind(this), 1);
   },
 
   clickMenu: function(e) {
-    console.log('click')
     var target = e.target.nodeName == 'BUTTON' ? e.target : e.target.parentNode;
     var action = target.getAttribute('data-action');
     var active = target.className.indexOf('active') != -1;
@@ -49,8 +51,10 @@ var Menu = React.createClass({
     }
   },
   onKeyUp: function(e) {
-    if (e.keyCode != 13) { return; }
+    var returnKey = 13;
+    if (e.keyCode != returnKey) { return; }
 
+    // add link href
     this.actions.pressButton('a', false, e.target.value);
   },
 
@@ -89,6 +93,7 @@ var Menu = React.createClass({
     });
   },
 
+  // move menu to selected text
   menuStyles: function() {
     if (!this.state.selection.type) { return {}; }
 

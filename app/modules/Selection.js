@@ -1,17 +1,24 @@
 var mixInto = require('react/lib/mixInto');
 
 var Selection = function() {
-  this.selection = document.getSelection();
+  this.init();
 }
 
 mixInto(Selection, {
-  _beginNode: function() {
-    var node = this.selection.anchorNode;
-    return node && node.nodeType === 3 ? node.parentNode : node;
-  },
-  _endNode: function() {
-    var node = this.selection.extentNode;
-    return node && node.nodeType === 3 ? node.parentNode : node;
+  init: function() {
+    this.selection = document.getSelection();
+
+    if (this._isValid() && this._text()) {
+      var bounds = this._bounds();
+
+      this.text = this._text();
+      this.type = this._type();
+      this.centered = this._isCenter();
+      this.top = bounds.top;
+      this.left = bounds.left;
+      this.width = bounds.width;
+      this.height = bounds.height;
+    }
   },
 
   // which blocks does this range begin/end at
@@ -23,12 +30,6 @@ mixInto(Selection, {
   },
   guidRange: function() {
     return [this.beginGuid(), this.endGuid()];
-  },
-
-  // does this selection affect multiple blocks
-  crossBlock: function() {
-    var range = this.guidRange();
-    return range[0] != range[1];
   },
 
   isRange: function() {
@@ -46,8 +47,21 @@ mixInto(Selection, {
     var offset = this.selection.anchorOffset;
     return textNode == blockNode.firstChild && offset == 0;
   },
+  crossBlock: function() {
+    var range = this.guidRange();
+    return range[0] != range[1];
+  },
 
-  isValid: function() {
+  _beginNode: function() {
+    var node = this.selection.anchorNode;
+    return node && node.nodeType === 3 ? node.parentNode : node;
+  },
+  _endNode: function() {
+    var node = this.selection.extentNode;
+    return node && node.nodeType === 3 ? node.parentNode : node;
+  },
+
+  _isValid: function() {
     var node = this._beginNode()
     if (!node) { return false; }
 
@@ -58,43 +72,23 @@ mixInto(Selection, {
     return node !== document;
   },
 
-
-  text: function() {
+  _text: function() {
     return this.selection.toString().trim();
   },
 
-  type: function() {
+  _type: function() {
     return this._beginNode().tagName.toLowerCase();
   },
 
-  isCenter: function() {
+  _isCenter: function() {
     var node = this._beginNode();
     return node.getAttribute('data-align') == "center";
   },
 
-  bounds: function() {
+  _bounds: function() {
     var range = this.selection.getRangeAt(0);
     return range.getBoundingClientRect();
-  },
-
-  attr: function() {
-    var obj = {};
-    if (this.isValid() && this.text()) {
-      var bounds = this.bounds();
-      obj = {
-        text: this.text(),
-        type: this.type(), 
-        centered: this.isCenter(),
-        top: bounds.top,
-        left: bounds.left,
-        width: bounds.width,
-        height: bounds.height
-      }
-    }
-    return obj;
   }
-
 });
-
 
 module.exports = Selection;

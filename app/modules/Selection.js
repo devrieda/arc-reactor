@@ -51,6 +51,8 @@ mixInto(Selection, {
     var range = this.guidRange();
     return range[0] != range[1];
   },
+  select: function() {
+  },
 
   _beginNode: function() {
     var node = this.selection.anchorNode;

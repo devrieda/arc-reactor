@@ -44,20 +44,36 @@ mixInto(ContentActions, {
   h2Selection: function(active) {
     var block = this._findBlock();
     block.type = active ? 'p' : 'h2';
+
+    this._flushContent();
   },
   h3Selection: function(active) {
     var block = this._findBlock();
     block.type = active ? 'p' : 'h3';
+
+    this._flushContent();
   },
   h4Selection: function(active) {
     var block = this._findBlock();
     block.type = active ? 'p' : 'h4';
+
+    this._flushContent();
   },
-  centerSelection: function() {
-    console.log('center')
+  centerSelection: function(active) {
+    var block = this._findBlock();
+    block.meta = block.meta || {}
+    if (active) {
+      delete block.meta.align;
+    } else {
+      block.meta.align = "center";
+    }
+    this._flushContent();
   },
-  blockquoteSelection: function() {
-    console.log('quote')
+  blockquoteSelection: function(active) {
+    var block = this._findBlock();
+    block.type = active ? 'p' : 'blockquote';
+
+    this._flushContent();
   },
 
   // inline changes
@@ -71,17 +87,23 @@ mixInto(ContentActions, {
     console.log('link: ' + value)
   },
 
-  _findBlock: function() {
-    var guid = this._getSelection().beginGuid();
-    var content = this._getContent();
+  _flushContent: function() {
+    ContentState.set({content: this.content});
+  },
+  _flushSelection: function() {
+    SelectionState.set({selection: this.selection});
+  },
 
-    var selected = {};
-    content.sections.forEach(function(sect) {
-      sect.blocks.forEach(function(block) {
-        if (guid == block.id) { selected = block; }
+  _findBlock: function() {
+    var guid = this.selection.beginGuid();
+
+    var block = {};
+    this.content.sections.forEach(function(sect) {
+      sect.blocks.forEach(function(b) {
+        if (guid == b.id) { block = b; }
       });
     });
-    return selected;
+    return block;
   }
 });
 

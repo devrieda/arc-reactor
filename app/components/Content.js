@@ -24,7 +24,8 @@ var Content = React.createClass({
   },
   getInitialState: function() {
     return {
-      content: {sections: []}
+      content: {sections: []},
+      selection: new Selection
     }
   },
 
@@ -34,6 +35,9 @@ var Content = React.createClass({
     SelectionState.register(this.setState.bind(this));
 
     this.actions = new ContentActions;
+  },
+  componentDidUpdate: function() {
+    this.state.selection.select();
   },
 
   checkSelection: function() {

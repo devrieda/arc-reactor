@@ -3,6 +3,7 @@
 var React = require('react/addons');
 var MenuItem = require('./MenuItem');
 
+var Selection = require('../modules/Selection');
 var SelectionState = require('../state/SelectionState');
 var ContentActions = require('../actions/ContentActions');
 
@@ -13,7 +14,7 @@ var classSet = React.addons.classSet;
 var Menu = React.createClass({
   getInitialState: function() {
     return {
-      selection: {},
+      selection: new Selection,
       linkMode: false
     }
   },

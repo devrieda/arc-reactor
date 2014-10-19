@@ -72,6 +72,9 @@ mixInto(MenuActions, {
   emSelection: function(active) {
     this._changeInlineTag('em', active);
   },
+  aSelection: function(active) {
+    this._changeInlineTag('em', active);
+  },
   _changeInlineTag: function(tagName, active) {
     var block = this._findBlock();
 

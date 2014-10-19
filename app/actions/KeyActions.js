@@ -34,19 +34,18 @@ mixInto(KeyActions, {
       // - delete 2nd node
 
     } else {
-      var anchor = this.selection.anchorGuid;
-      this.insertBlock('before', anchor);
+      var guid = this.selection.anchorGuid;
 
-      // if (this.selection.endOfBlock()) {
-      //   this.insertBlock('after', guids[0]);
+      if (this.selection.endOfBlock()) {
+        this._insertBlock('after', guid);
 
-      // } else if (this.selection.begOfBlock()) {
-      //   this.insertBlock('before', guids[0]);
+      } else if (this.selection.begOfBlock()) {
+        this._insertBlock('before', guid);
 
-      // } else {
-      //   var text = '';
-      //   this.insertBlock('before', guids[0], text);
-      // }
+      } else {
+        var text = '';
+        this._insertBlock('before', guids[0], text);
+      }
     }
     return true;
   }, 
@@ -67,45 +66,20 @@ mixInto(KeyActions, {
     return false;
   },
 
-  // accessibility
   focusToolbar: function() {
     console.log('toolbar')
   },
 
-  // links
-  createLink: function(active, value) {
-    this._changeInlineTag('a', active, value);
-  },
-
-  _flushContent: function() {
-    ContentState.set({content: this.content});
-  },
-  _flushSelection: function() {
-    SelectionState.set({selection: this.selection});
-  },
-
-  _findBlock: function() {
-    var guid = this.selection.anchorGuid;
-
-    var block = {};
-    this.content.sections.forEach(function(sect) {
-      sect.blocks.forEach(function(b) {
-        if (guid == b.id) { block = b; }
-      });
-    });
-    return block;
-  }, 
 
   _insertBlock: function(position, guid, text) {
-    var blockPosition = this.findBlockPosition(guid);
-    var blocks = blockPosition.blocks;
-    var index  = blockPosition.index;
-    if (!blocks || !index) { return; }
+    var section = this._findBlockSection(guid);
+    var index   = this._findBlockPosition(guid);
+    if (!section || !index) { return; }
 
-    var block = this.newBlock(text || "");
+    var block = this._newBlock(text || "");
     var index = position == 'after' ? index + 1 : index;
 
-    blocks.splice(index, 0, block);
+    section.blocks.splice(index, 0, block);
   },
 
   _removeBlock: function(guid) {
@@ -116,27 +90,41 @@ mixInto(KeyActions, {
 
     blocks.splice(index, 0);
   },
-  _findBlockPosition: function(guid) {
-    var blocks = null;
-    var index  = null;
+
+  _findBlockSection: function(guid) {
+    var section = null;
     this.content.sections.forEach(function(sect) {
-      if (index) { return; }
-      sect.blocks.forEach(function(block, i) {
-        if (block.id == guid) {
-          blocks = sect.blocks;
-          index  = i;
-        }
+      if (section) { return; }
+      sect.blocks.forEach(function(block) {
+        if (section) { return; }
+        if (block.id == guid) { section = sect; }
       });
     });
-    if (!blocks || !index) { return {}; }
 
-    return { blocks: blocks, index: index };
+    return section;
   },
+
+  _findBlockPosition: function(guid) {
+    var index = null;
+    this._findBlockSection(guid).blocks.forEach(function(block, i) {
+      if (index) { return; }
+      if (block.id == guid) { index = i; }
+    });
+    return index;
+  },
+
   _newSection: function() {
     return { "id": Guid.unique(), "blocks": [] }
   },
   _newBlock: function(text) {
     return { "id": Guid.unique(), "type": "p", "text": text }
+  },
+
+  _flushContent: function() {
+    ContentState.set({content: this.content});
+  },
+  _flushSelection: function() {
+    SelectionState.set({selection: this.selection});
   }
 });
 

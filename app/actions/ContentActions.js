@@ -1,6 +1,6 @@
 var mixInto = require('react/lib/mixInto');
 
-var Selection = require('../modules/Selection');
+var Guid = require('../modules/Guid');
 
 var ContentState = require('../state/ContentState');
 var SelectionState = require('../state/SelectionState');
@@ -8,6 +8,15 @@ var SelectionState = require('../state/SelectionState');
 var ContentActions = function() {
   this.content   = ContentState.get();
   this.selection = SelectionState.get();
+
+  // observe state changes
+  ContentState.register(function(state) {
+    this.content = state.content;
+  }.bind(this));
+
+  SelectionState.register(function(state) {
+    this.selection = state.selection;
+  }.bind(this));
 }
 
 mixInto(ContentActions, {
@@ -60,17 +69,6 @@ mixInto(ContentActions, {
   },
   aSelection: function(active, value) {
     console.log('link: ' + value)
-  },
-
-  _getContent: function() {
-    var state = ContentState.get();
-    return state.content;
-  },
-  _updateContent: function(content) {
-    ContentState.set(content)
-  },
-  _getSelection: function() {
-    return new Selection();
   },
 
   _findBlock: function() {

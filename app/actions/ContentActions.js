@@ -21,8 +21,8 @@ var ContentActions = function() {
 }
 
 mixInto(ContentActions, {
-  pressButton: function(button, active, value) {
-    this[button+"Selection"](active, value)
+  pressButton: function(button, active) {
+    this[button+"Selection"](active)
   },
 
   // key presses
@@ -70,22 +70,62 @@ mixInto(ContentActions, {
   _changeBlockTag: function(tagName, active) {
     var block = this._findBlock();
     block.type = active ? 'p' : tagName;
-    this.selection.type = tagName;
+    this.selection.type = block.type;
 
     this._flushContent();
     this._flushSelection();
   },
 
   // inline changes
-  strongSelection: function() {
-    console.log('bold')
+  strongSelection: function(active) {
+    this._changeInlineTag('strong', active);
   },
-  emSelection: function() {
-    console.log('italic')
+  emSelection: function(active) {
+    this._changeInlineTag('em', active);
   },
-  aSelection: function(active, value) {
-    console.log('link: ' + value)
+  _changeInlineTag: function(tagName, active) {
+    var block = this._findBlock();
+
+    var markup = {
+      type: tagName,
+      offsetStart: this.selection.anchorOffset,
+      offsetEnd: this.selection.focusOffset
+    }
+
+    if (block.inlines) {
+      var jsonMarkup = JSON.stringify(markup);
+
+      // check if we already added the markup
+      var found = null;
+      block.inlines.forEach(function(inline, i) {
+        if (JSON.stringify(inline) === jsonMarkup) { found = i; }
+      });
+
+      // remove it
+      if (found) {
+        block.inlines.splice(index, 0);
+        this.selection.type = block.tagName.toLowerCase();
+
+      // add to markup
+      } else {
+        block.inlines.push(markup);
+      }
+
+    // no markup yet in this block
+    } else {
+      block.inlines = [markup];
+      this.selection.type = tagName;
+    }
+
+    this._flushContent();
+    this._flushSelection();
   },
+
+  // links
+  createLink: function(active, value) {
+    this._changeInlineTag('a', active, value);
+  },
+
 
   _flushContent: function() {
     ContentState.set({content: this.content});
@@ -95,7 +135,7 @@ mixInto(ContentActions, {
   },
 
   _findBlock: function() {
-    var guid = this.selection.beginGuid();
+    var guid = this.selection.anchorGuid;
 
     var block = {};
     this.content.sections.forEach(function(sect) {

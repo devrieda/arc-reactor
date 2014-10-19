@@ -11,12 +11,12 @@ mixInto(Selection, {
     if (this._isValid() && this._text()) {
       var bounds = this._bounds();
 
-      this.anchorGuid   = this.beginGuid();
-      this.extentGuid   = this.endGuid();
+      this.anchorGuid   = this._anchorGuid();
+      this.focusGuid    = this._focusGuid();
       this.anchorOffset = this.selection.anchorOffset;
-      this.extentOffset = this.selection.extentOffset;
-      this.anchorPosition = this.beginPosition();
-      this.extentPosition = this.endPosition();
+      this.focusOffset  = this.selection.focusOffset;
+      this.anchorPosition = this._anchorPosition();
+      this.focusPosition  = this._focusPosition();
 
       this.text = this._text();
       this.type = this._type();
@@ -26,41 +26,26 @@ mixInto(Selection, {
       this.width = bounds.width;
       this.height = bounds.height;
     }
+    console.log(this)
   },
 
   // which blocks does this range begin/end at
-  beginGuid: function() {
-    return this._beginNode().getAttribute('name');
-  },
-  endGuid: function() {
-    return this._endNode().getAttribute('name');
-  },
-  guidRange: function() {
-    return [this.beginGuid(), this.endGuid()];
-  },
 
-  beginPosition: function() {
-    return Array.prototype.indexOf.call(
-      this._beginNode().childNodes, this.selection.anchorNode
-    );
-  },
-  endPosition: function() {
-    return Array.prototype.indexOf.call(
-      this._endNode().childNodes, this.selection.extentNode
-    );
+  guidRange: function() {
+    return [this.anchorGuid(), this.focusGuid()];
   },
 
   isRange: function() {
     return this.selection.type == "Range";
   },
   endOfBlock: function() {
-    var blockNode = this._beginNode();
+    var blockNode = this._anchorNode();
     var textNode  = this.selection.anchorNode;
     var offset = this.selection.anchorOffset;
     return textNode == blockNode.lastChild && textNode.length == offset;
   },
   begOfBlock: function() {
-    var blockNode = this._beginNode();
+    var blockNode = this._anchorNode();
     var textNode  = this.selection.anchorNode;
     var offset = this.selection.anchorOffset;
     return textNode == blockNode.firstChild && offset == 0;
@@ -72,17 +57,44 @@ mixInto(Selection, {
   select: function() {
   },
 
-  _beginNode: function() {
+
+  _anchorBlock: function() {
     var node = this.selection.anchorNode;
     return node && node.nodeType === 3 ? node.parentNode : node;
   },
-  _endNode: function() {
-    var node = this.selection.extentNode;
+  _focusBlock: function() {
+    var node = this.selection.focusNode;
     return node && node.nodeType === 3 ? node.parentNode : node;
   },
 
+  _anchorPosition: function() {
+    return Array.prototype.indexOf.call(
+      this._anchorNode().childNodes, this.selection.anchorNode
+    );
+  },
+  _focusPosition: function() {
+    return Array.prototype.indexOf.call(
+      this._focusNode().childNodes, this.selection.focusNode
+    );
+  },
+
+  _anchorNode: function() {
+    var node = this.selection.anchorNode;
+    return node && node.nodeType === 3 ? node.parentNode : node;
+  },
+  _focusNode: function() {
+    var node = this.selection.focusNode;
+    return node && node.nodeType === 3 ? node.parentNode : node;
+  },
+  _anchorGuid: function() {
+    return this._anchorNode().getAttribute('name');
+  },
+  _focusGuid: function() {
+    return this._focusNode().getAttribute('name');
+  },
+
   _isValid: function() {
-    var node = this._beginNode()
+    var node = this._anchorNode()
     if (!node) { return false; }
 
     // the selection is within the content
@@ -97,11 +109,11 @@ mixInto(Selection, {
   },
 
   _type: function() {
-    return this._beginNode().tagName.toLowerCase();
+    return this._anchorNode().tagName.toLowerCase();
   },
 
   _isCenter: function() {
-    var node = this._beginNode();
+    var node = this._anchorNode();
     return node.getAttribute('data-align') == "center";
   },
 

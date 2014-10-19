@@ -56,7 +56,7 @@ var Menu = React.createClass({
     if (e.keyCode != returnKey) { return; }
 
     // add link href
-    this.actions.pressButton('a', false, e.target.value);
+    this.actions.createLink('a', false, e.target.value);
   },
 
   buttonTypes: function() {

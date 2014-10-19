@@ -67,14 +67,8 @@ var Content = React.createClass({
     var keyIntent = new KeyIntent(e);
     var intent = keyIntent.getIntent();
 
-    // if (intent) {
-    //   var ce = new ContentEditor(this.state.content);
-
-    //   var prevent = ce[intent](e);
-    //   if (prevent) { e.preventDefault(); }
-
-    //   this.setState({ content: ce.getContent() });
-    // }
+    var prevent = this.actions[intent]();
+    if (prevent) { e.preventDefault(); }
   },
 
   render: function() {

@@ -18,7 +18,7 @@ mixInto(Selection, {
 
   initMeta: function() {
     this.text = this._text();
-    this.type = this._type();
+    this.types = this._types();
     this.centered = this._isCenter();
   },
   initNodes: function() {
@@ -38,10 +38,6 @@ mixInto(Selection, {
   },
 
   // which blocks does this range begin/end at
-
-  guidRange: function() {
-    return [this.anchorGuid(), this.focusGuid()];
-  },
 
   isRange: function() {
     return this.selection.type == "Range";
@@ -116,8 +112,17 @@ mixInto(Selection, {
     return this.selection.toString().trim();
   },
 
-  _type: function() {
-    return this._anchorNode().tagName.toLowerCase();
+  _types: function() {
+    var types = [];
+    var node = this._anchorNode();
+
+    while (!node.classList.contains("ic-Editor-Block")) {
+      types.push(node.tagName.toLowerCase());
+      node = node.parentNode;
+    }
+    types.push(node.tagName.toLowerCase());
+
+    return types;
   },
 
   _isCenter: function() {

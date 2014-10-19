@@ -26,7 +26,8 @@ var MenuItem = React.createClass({
     if (this.props.type == 'center') {
       return this.props.selection.centered;
     } else {
-      return this.props.selection.type == this.props.type;
+      var types = this.props.selection.types;
+      return types && types.indexOf(this.props.type) != -1;
     }
   },
 

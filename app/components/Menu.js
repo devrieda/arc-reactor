@@ -22,7 +22,7 @@ var Menu = React.createClass({
   componentDidMount: function() {
     SelectionState.register(function(state) {
       this.setState(state);
-      if (!state.selection.type) {
+      if (!state.selection.types) {
         this.setState({linkMode: false});
       }
     }.bind(this));
@@ -59,6 +59,14 @@ var Menu = React.createClass({
     this.actions.createLink('a', false, e.target.value);
   },
 
+  isHeader: function() {
+    var types = this.state.selection.types;
+    if (!types) { return false; }
+
+    return types.indexOf('h2') != -1 ||
+           types.indexOf('h3') != -1 ||
+           types.indexOf('h4') != -1
+  },
   buttonTypes: function() {
     var buttons = [
       {type: 'strong',     icon: 'fa-bold',         text: 'Bold'},
@@ -70,9 +78,7 @@ var Menu = React.createClass({
       {type: 'blockquote', icon: 'fa-quote-left',   text: 'Quote'},
       {type: 'a',          icon: 'fa-link',         text: 'Link'}
     ];
-
-    var isHeader = ['h2', 'h3', 'h4'].indexOf(this.state.selection.type) != -1;
-    return isHeader ? buttons.slice(2) : buttons;
+    return this.isHeader() ? buttons.slice(2) : buttons;
   },
   menuClasses: function() {
     return classSet({
@@ -96,7 +102,7 @@ var Menu = React.createClass({
 
   // move menu to selected text
   menuStyles: function() {
-    if (!this.state.selection.type) { return {}; }
+    if (!this.state.selection.types) { return {}; }
 
     var selection = this.state.selection;
     var buttonHeight = 50;

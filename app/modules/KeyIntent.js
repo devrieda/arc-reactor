@@ -14,62 +14,67 @@ var CODES = {
 }
 
 var KeyIntent = function(e) {
+  this.keyCode = e.keyCode;
+  this.metaKey = e.metaKey;
+  this.ctrlKey = e.ctrlKey;
+  this.altKey  = e.altKey;
+
   this.intent = null;
-
-  this.checkMarkupHotkey(e);
-  this.checkAltHotkey(e);
-
-  this.checkReturn(e);
-  this.checkDelete(e);
-  this.checkBspace(e);
 }
 
 mixInto(KeyIntent, {
   // determine intent
-  checkMarkupHotkey: function(e) {
-    if (!e.metaKey && !e.ctrlKey) { return; }
+  checkMarkupHotkey: function() {
+    if (!this.metaKey && !this.ctrlKey) { return; }
 
-    if (e.keyCode == CODES['b']) {
+    if (this.keyCode == CODES['b']) {
       this.intent = 'boldText';
 
-    } else if (e.keyCode == CODES['i']) {
+    } else if (this.keyCode == CODES['i']) {
       this.intent = 'italicText';
 
-    } else if (e.keyCode == CODES['u']) {
+    } else if (this.keyCode == CODES['u']) {
       this.intent = 'underlineText';
 
-    } else if (e.keyCode == CODES['e']) {
+    } else if (this.keyCode == CODES['e']) {
       this.intent = 'centerText';
     }
   },
 
-  checkAltHotkey: function(e) {
+  checkAltHotkey: function() {
     if (!this.altKey) { return; }
 
-    if (e.keyCode == CODES['f10']) {
+    if (this.keyCode == CODES['f10']) {
       this.intent = 'focusToolbar';
     }
   },
-  checkReturn: function(e) {
-    if (e.keyCode == CODES['return'] || (e.keyCode == CODES['m'] && e.ctrlKey)) {
+  checkReturn: function() {
+    if (this.keyCode == CODES['return'] || (this.keyCode == CODES['m'] && this.ctrlKey)) {
       this.intent = 'pressReturn';
     }
   },
 
-  checkDelete: function(e) {
-    if (e.keyCode == CODES['delete']) {
+  checkDelete: function() {
+    if (this.keyCode == CODES['delete']) {
       this.intent = 'pressDelete';
     }
   },
 
-  checkBspace: function(e) {
-    if (e.keyCode == CODES['bspace']) {
+  checkBspace: function() {
+    if (this.keyCode == CODES['bspace']) {
       this.intent = 'pressBspace';
     }
   },
 
   // check intent
   getIntent: function() {
+    this.checkMarkupHotkey();
+    this.checkAltHotkey();
+
+    this.checkReturn();
+    this.checkDelete();
+    this.checkBspace();
+
     return this.intent;
   }
 });

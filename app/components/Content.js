@@ -66,9 +66,10 @@ var Content = React.createClass({
 
     var keyIntent = new KeyIntent(e);
     var intent = keyIntent.getIntent();
-
-    var prevent = this.actions[intent]();
-    if (prevent) { e.preventDefault(); }
+    if (intent) {
+      var prevent = this.actions[intent]();
+      if (prevent) { e.preventDefault(); }
+    }
   },
 
   render: function() {

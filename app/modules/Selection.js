@@ -8,7 +8,7 @@ mixInto(Selection, {
   init: function() {
     this.selection = document.getSelection();
 
-    if (this._isValid() && this._text()) {
+    if (this._isValid()) {
       this.initNodes();
       this.initBounds();
       this.initMeta();
@@ -35,6 +35,11 @@ mixInto(Selection, {
     this.left = bounds.left;
     this.width = bounds.width;
     this.height = bounds.height;
+  },
+  boundsChanged: function() {
+    var bounds = this._bounds();
+    return (bounds.top != this.top || bounds.left != this.left ||
+            bounds.width != this.width || bounds.height != this.height);
   },
 
   // which blocks does this range begin/end at

@@ -60,6 +60,7 @@ var Block = React.createClass({
       'ic-Editor-Block--list': type == 'ol' || type == 'ul',
       'ic-Editor-Block--first': this.props.first,
     };
+    classes['ic-Editor-Block--' + this.props.content.id] = true;
     classes['ic-Editor-Block--' + type] = true;
 
     return React.addons.classSet(classes)
@@ -80,15 +81,15 @@ var Block = React.createClass({
 
   render: function() {
     var attr = this.buildAttr();
-    var node = React.DOM[this.props.content.type];
+    var reactDom = React.DOM[this.props.content.type];
     var inlines = this.props.content.inlines || [];
 
     if (inlines.length > 0 || this.isEmpty()) {
       attr.dangerouslySetInnerHTML = { __html: this.formattedText() }
-      return node(attr)
+      return reactDom(attr)
 
     } else {
-      return node(attr, this.children())
+      return reactDom(attr, this.children())
     }
   }
 });

@@ -8,7 +8,7 @@ var KeyIntent = require('../modules/KeyIntent');
 
 var ContentState = require('../state/ContentState');
 var SelectionState = require('../state/SelectionState');
-var ContentActions = require('../actions/ContentActions');
+var KeyActions = require('../actions/KeyActions');
 
 require('../stylesheets/Content.css');
 
@@ -34,7 +34,7 @@ var Content = React.createClass({
     ContentState.register(this.setState.bind(this));
     SelectionState.register(this.setState.bind(this));
 
-    this.actions = new ContentActions;
+    this.actions = new KeyActions;
   },
 
   checkSelection: function() {

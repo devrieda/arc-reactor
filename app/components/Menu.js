@@ -5,7 +5,7 @@ var MenuItem = require('./MenuItem');
 
 var Selection = require('../modules/Selection');
 var SelectionState = require('../state/SelectionState');
-var ContentActions = require('../actions/ContentActions');
+var MenuActions = require('../actions/MenuActions');
 
 require('../stylesheets/Menu.css');
 
@@ -27,7 +27,7 @@ var Menu = React.createClass({
       }
     }.bind(this));
 
-    this.actions = new ContentActions;
+    this.actions = new MenuActions;
   },
 
   componentDidUpdate: function() {

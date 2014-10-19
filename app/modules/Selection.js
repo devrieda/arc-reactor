@@ -11,6 +11,13 @@ mixInto(Selection, {
     if (this._isValid() && this._text()) {
       var bounds = this._bounds();
 
+      this.anchorGuid   = this.beginGuid();
+      this.extentGuid   = this.endGuid();
+      this.anchorOffset = this.selection.anchorOffset;
+      this.extentOffset = this.selection.extentOffset;
+      this.anchorPosition = this.beginPosition();
+      this.extentPosition = this.endPosition();
+
       this.text = this._text();
       this.type = this._type();
       this.centered = this._isCenter();
@@ -30,6 +37,17 @@ mixInto(Selection, {
   },
   guidRange: function() {
     return [this.beginGuid(), this.endGuid()];
+  },
+
+  beginPosition: function() {
+    return Array.prototype.indexOf.call(
+      this._beginNode().childNodes, this.selection.anchorNode
+    );
+  },
+  endPosition: function() {
+    return Array.prototype.indexOf.call(
+      this._endNode().childNodes, this.selection.extentNode
+    );
   },
 
   isRange: function() {

@@ -1,6 +1,7 @@
 var mixInto = require('react/lib/mixInto');
 
 var Guid = require('../modules/Guid');
+var Selection = require('../modules/Selection');
 
 var ContentState = require('../state/ContentState');
 var SelectionState = require('../state/SelectionState');
@@ -42,38 +43,37 @@ mixInto(ContentActions, {
 
   // block changes
   h2Selection: function(active) {
-    var block = this._findBlock();
-    block.type = active ? 'p' : 'h2';
-
-    this._flushContent();
+    this._changeBlockTag('h2', active);
   },
   h3Selection: function(active) {
-    var block = this._findBlock();
-    block.type = active ? 'p' : 'h3';
-
-    this._flushContent();
+    this._changeBlockTag('h3', active);
   },
   h4Selection: function(active) {
-    var block = this._findBlock();
-    block.type = active ? 'p' : 'h4';
-
-    this._flushContent();
+    this._changeBlockTag('h4', active);
+  },
+  blockquoteSelection: function(active) {
+    this._changeBlockTag('blockquote', active);
   },
   centerSelection: function(active) {
     var block = this._findBlock();
     block.meta = block.meta || {}
     if (active) {
       delete block.meta.align;
+      this.selection.centered = false;
     } else {
       block.meta.align = "center";
+      this.selection.centered = true;
     }
     this._flushContent();
+    this._flushSelection();
   },
-  blockquoteSelection: function(active) {
+  _changeBlockTag: function(tagName, active) {
     var block = this._findBlock();
-    block.type = active ? 'p' : 'blockquote';
+    block.type = active ? 'p' : tagName;
+    this.selection.type = tagName;
 
     this._flushContent();
+    this._flushSelection();
   },
 
   // inline changes

@@ -36,9 +36,6 @@ var Content = React.createClass({
 
     this.actions = new ContentActions;
   },
-  componentDidUpdate: function() {
-    this.state.selection.select();
-  },
 
   checkSelection: function() {
     setTimeout(function() {

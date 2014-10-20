@@ -70,12 +70,18 @@ mixInto(KeyActions, {
           this._insertBlock('p', 'after', guid);
         }
 
+      // enter at beginning of block
       } else if (this.selection.begOfBlock()) {
         this._insertBlock('p', 'before', guid);
 
+      // split current two
       } else {
-        var text = '';
-        this._insertBlock('p', 'before', guids[0], text);
+        var block = this._findBlock(guid)
+        var text  = block.text;
+        var offset = this.selection.anchorOffset;
+
+        block.text = block.text.substring(0, offset);
+        this._insertBlock('p', 'after', guid, text.substring(offset));
       }
     }
     return true;
@@ -107,10 +113,11 @@ mixInto(KeyActions, {
       var previous = this._findPreviousBlock(guid)
 
       if (previous) {
-        console.log("prev")
+        var offset = previous.text.length;
         previous.text = previous.text + block.text;
         this._removeBlock(guid);
-        this.selection.focusOn(previous.id);
+        this.selection.focusOn(previous.id, offset);
+        this._flushSelection();
         return true;
       } else {
         return false;
@@ -134,8 +141,10 @@ mixInto(KeyActions, {
     blocks.splice(index, 0, block);
 
     // focus on new block
-    this.selection.focusOn(block.id);
-    this._flushSelection();
+    if (position == 'after') {
+      this.selection.focusOn(block.id);
+      this._flushSelection();
+    }
   },
   _updateBlockToList: function(guid, type) {
     var block = this._findBlock(guid);

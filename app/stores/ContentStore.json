@@ -45,7 +45,7 @@ var ContentStore = {
                 {
                   "id": "4ca9",
                   "type": "li",
-                  "text": "List 2"
+                  "text": "View from an upstairs window at Niépce's estate"
                 }
               ]
             },
@@ -61,12 +61,12 @@ var ContentStore = {
                 {
                   "id": "f5a4",
                   "type": "li",
-                  "text": "Numbered"
+                  "text": "Early years (1864–1890)"
                 },
                 {
                   "id": "cc96",
                   "type": "li",
-                  "text": "Again"
+                  "text": "New York and the Camera Club (1891–1901)"
                 }
               ]
             }

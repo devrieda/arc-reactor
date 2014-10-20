@@ -55,13 +55,13 @@ mixInto(Selection, {
 
     return this._boundsChanged();
   },
-  focusOn: function(guid) {
+  focusOn: function(guid, offset) {
     this.anchorGuid = guid;
-    this.anchorOffset = 0;
+    this.anchorOffset = offset || 0;
     this.anchorPosition = 0;
 
     this.focusGuid  = guid;
-    this.focusOffset = 0;
+    this.focusOffset = offset || 0;
     this.focusPosition = 0;
   },
 

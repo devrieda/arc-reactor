@@ -37,6 +37,13 @@ var Content = React.createClass({
     this.actions = new KeyActions;
   },
 
+  // if content changed, selection may have changed
+  componentDidUpdate: function() {
+    if (this.state.selection.reselect()) {
+      SelectionState.set({selection: this.state.selection});
+    }
+  },
+
   checkSelection: function() {
     setTimeout(function() {
       SelectionState.set({selection: new Selection})
@@ -50,10 +57,6 @@ var Content = React.createClass({
   },
   onMouseUp: function(e) {
     this.checkSelection();
-  },
-  onBlur: function(e) {
-    this.checkSelection();
-    this.onChange();
   },
 
   onKeyUp: function(e) {
@@ -82,7 +85,6 @@ var Content = React.createClass({
     return (
       <div className="ic-Editor-Content" ref="editor"
            onInput={this.onChange}
-           onBlur={this.onBlur}
            onKeyDown={this.onKeyDown}
            onKeyUp={this.onKeyUp}
            onMouseUp={this.onMouseUp}

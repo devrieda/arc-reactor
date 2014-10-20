@@ -13,7 +13,6 @@ mixInto(Selection, {
       this.initBounds();
       this.initMeta();
     }
-    console.log(this)
   },
 
   initMeta: function() {
@@ -36,10 +35,24 @@ mixInto(Selection, {
     this.width = bounds.width;
     this.height = bounds.height;
   },
-  boundsChanged: function() {
-    var bounds = this._bounds();
-    return (bounds.top != this.top || bounds.left != this.left ||
-            bounds.width != this.width || bounds.height != this.height);
+
+
+  reselect: function() {
+    if (!this.anchorGuid || !this.focusGuid) { return false; }
+
+    // set the range based on selection node state
+    var range = document.createRange();
+    range.setStart(this._anchorTextNode(), this.anchorOffset);
+    range.setEnd(this._focusTextNode(), this.focusOffset);
+    this.selection.removeAllRanges();
+    this.selection.addRange(range);
+
+    if (this._boundsChanged()) {
+      this.initBounds();
+      return true;
+    } else {
+      return false;
+    }
   },
 
   // which blocks does this range begin/end at
@@ -60,12 +73,8 @@ mixInto(Selection, {
     return textNode == blockNode.firstChild && offset == 0;
   },
   crossBlock: function() {
-    var range = this.guidRange();
-    return range[0] != range[1];
+    return this.anchorGuid != this.focusGuid;
   },
-  select: function() {
-  },
-
 
   _anchorBlock: function() {
     var node = this.selection.anchorNode;
@@ -82,9 +91,11 @@ mixInto(Selection, {
     );
   },
   _focusPosition: function() {
-    return Array.prototype.indexOf.call(
+    var pos = Array.prototype.indexOf.call(
       this._focusNode().childNodes, this.selection.focusNode
     );
+    if (pos == -1) { pos = 0; }
+    return pos;
   },
 
   _anchorNode: function() {
@@ -102,11 +113,26 @@ mixInto(Selection, {
     return this._focusNode().getAttribute('name');
   },
 
+  _anchorTextNode: function() {
+    return this._textNode(this.anchorGuid, this.anchorPosition);
+  },
+  _focusTextNode: function() {
+    return this._textNode(this.focusGuid, this.focusPosition);
+  },
+  _textNode: function(guid, position) {
+    // find anchor block node by guid
+    var klass = 'ic-Editor-Block--' + guid;
+    var node = document.getElementsByClassName(klass)[0];
+
+    return node.childNodes[position];
+  },
+
+
+  // the selection has an anchor and is within the content
   _isValid: function() {
     var node = this._anchorNode()
     if (!node) { return false; }
 
-    // the selection is within the content
     while (node.tagName && !node.getAttribute('contenteditable')) {
       node = node.parentNode;
     }
@@ -138,6 +164,12 @@ mixInto(Selection, {
   _bounds: function() {
     var range = this.selection.getRangeAt(0);
     return range.getBoundingClientRect();
+  },
+
+  _boundsChanged: function() {
+    var bounds = this._bounds();
+    return (bounds.top != this.top || bounds.left != this.left ||
+            bounds.width != this.width || bounds.height != this.height);
   }
 });
 

@@ -45,18 +45,15 @@ var Content = React.createClass({
   },
 
   checkSelection: function() {
-    setTimeout(function() {
-      SelectionState.set({selection: new Selection})
-    }.bind(this), 1);
+    SelectionState.set({selection: new Selection});
   },
 
   // handle changes
   onChange: function(e) {
-    this.checkSelection();
     this.props.onChange(this.state.content);
   },
   onMouseUp: function(e) {
-    this.checkSelection();
+    setTimeout(this.checkSelection, 1);
   },
 
   onKeyUp: function(e) {

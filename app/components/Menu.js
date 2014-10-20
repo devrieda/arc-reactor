@@ -57,6 +57,7 @@ var Menu = React.createClass({
 
     // add link href
     this.actions.createLink('a', false, e.target.value);
+    SelectionState.set({selection: new Selection});
   },
 
   isHeader: function() {

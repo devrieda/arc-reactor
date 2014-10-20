@@ -46,18 +46,40 @@ mixInto(KeyActions, {
       var guid = this.selection.anchorGuid;
 
       if (this.selection.endOfBlock()) {
-        this._insertBlock('after', guid);
+        var block = this._findBlock(guid)
+        var text  = block.text;
+        var starts = text.substring(0, 1);
+        var empty = text.length == 0;
+
+        // finish list
+        if (block.type == 'li' && text === '') {
+          var guid = this._findParentBlock(guid).id;
+          this._removeBlock(this.selection.anchorGuid);
+          this._insertBlock('p', 'after', guid);
+
+        // add to a list
+        } else if (block.type == 'li') {
+          this._insertBlock('li', 'after', guid);
+
+        // create new list
+        } else if (starts == '-' || starts == '*' || starts == '1') {
+          this._updateBlockToList(guid, starts == '1' ? 'ol' : 'ul');
+
+        // normal new block
+        } else {
+          this._insertBlock('p', 'after', guid);
+        }
 
       } else if (this.selection.begOfBlock()) {
-        this._insertBlock('before', guid);
+        this._insertBlock('p', 'before', guid);
 
       } else {
         var text = '';
-        this._insertBlock('before', guids[0], text);
+        this._insertBlock('p', 'before', guids[0], text);
       }
     }
     return true;
-  }, 
+  },
   pressDelete: function() {
     if (this.selection.crossBlock()) {
       return this._combineBlocks();
@@ -81,9 +103,18 @@ mixInto(KeyActions, {
       // get text for this node
       // delete this node
       // append text to previous node
-      var previous = this._previousNode(guid)
-      this._removeBlock(this.selection.anchorGuid);
-      return true;
+      var block    = this._findBlock(guid)
+      var previous = this._findPreviousBlock(guid)
+
+      if (previous) {
+        console.log("prev")
+        previous.text = previous.text + block.text;
+        this._removeBlock(guid);
+        this.selection.focusOn(previous.id);
+        return true;
+      } else {
+        return false;
+      }
     }
     return false;
   },
@@ -93,25 +124,43 @@ mixInto(KeyActions, {
   },
 
 
-  _insertBlock: function(position, guid, text) {
-    var section = this._findBlockSection(guid);
-    var index   = this._findBlockPosition(guid);
+  _insertBlock: function(type, position, guid, text) {
+    var blocks = this._findBlocks(guid);
+    var index  = this._findBlockPosition(guid);
 
-    var block = this._newBlock(text || "");
+    var block = this._newBlock(type, text || "");
     var index = position == 'after' ? index + 1 : index;
 
-    section.blocks.splice(index, 0, block);
+    blocks.splice(index, 0, block);
 
     // focus on new block
     this.selection.focusOn(block.id);
     this._flushSelection();
   },
+  _updateBlockToList: function(guid, type) {
+    var block = this._findBlock(guid);
+    var text = block.text;
+    delete block.text
+
+    block.type = type;
+    items = [
+      this._newBlock('li', text.replace(/^[-*\d]\.?\s?/g, '')),
+      this._newBlock('li', '')
+    ]
+    block.blocks = items;
+    this.selection.focusOn(items[1].id);
+    this._flushSelection();
+  },
+  _finishList: function(guid) {
+    var block = this._findParentBlock(guid);
+    this._insertBlock('p', 'after', block.id)
+  },
 
   _removeBlock: function(guid) {
-    var section = this._findBlockSection(guid);
-    var index   = this._findBlockPosition(guid);
+    var blocks = this._findBlocks(guid);
+    var index  = this._findBlockPosition(guid);
 
-    section.blocks.splice(index, 1);
+    blocks.splice(index, 1);
   },
 
   _combineBlocks: function() {
@@ -137,26 +186,51 @@ mixInto(KeyActions, {
     this.content.sections.forEach(function(sect) {
       sect.blocks.forEach(function(b) {
         if (guid == b.id) { block = b; }
+
+        (b.blocks || []).forEach(function(subblock) {
+          if (guid == subblock.id) { block = subblock; }
+        });
+      });
+    });
+    return block;
+  },
+  _findPreviousBlock: function(guid) {
+    var blocks = this._findBlocks(guid);
+    var index  = this._findBlockPosition(guid);
+    return blocks[index - 1];
+  },
+
+  _findBlocks: function(guid) {
+    var blocks = null;
+    this.content.sections.forEach(function(sect) {
+      if (blocks) { return; }
+      sect.blocks.forEach(function(block) {
+        if (blocks) { return; }
+        if (block.id == guid) { blocks = sect.blocks; }
+
+        (block.blocks || []).forEach(function(b) {
+          if (blocks) { return; }
+          if (b.id == guid) { blocks = block.blocks; }
+        });
+      });
+    });
+    return blocks;
+  },
+  _findParentBlock: function(guid) {
+    var block = {};
+    this.content.sections.forEach(function(sect) {
+      sect.blocks.forEach(function(b) {
+        (b.blocks || []).forEach(function(subblock) {
+          if (guid == subblock.id) { block = b; }
+        });
       });
     });
     return block;
   },
 
-  _findBlockSection: function(guid) {
-    var section = null;
-    this.content.sections.forEach(function(sect) {
-      if (section) { return; }
-      sect.blocks.forEach(function(block) {
-        if (section) { return; }
-        if (block.id == guid) { section = sect; }
-      });
-    });
-    return section;
-  },
-
   _findBlockPosition: function(guid) {
     var index = null;
-    this._findBlockSection(guid).blocks.forEach(function(block, i) {
+    this._findBlocks(guid).forEach(function(block, i) {
       if (index) { return; }
       if (block.id == guid) { index = i; }
     });
@@ -166,8 +240,8 @@ mixInto(KeyActions, {
   _newSection: function() {
     return { "id": Guid.unique(), "blocks": [] }
   },
-  _newBlock: function(text) {
-    return { "id": Guid.unique(), "type": "p", "text": text }
+  _newBlock: function(type, text) {
+    return { "id": Guid.unique(), "type": type, "text": text }
   },
 
   _flushContent: function() {

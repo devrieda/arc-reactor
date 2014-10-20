@@ -40,24 +40,20 @@ mixInto(Selection, {
   reselect: function() {
     if (!this.anchorGuid || !this.focusGuid) { return false; }
 
+    // do we need to reselect?
+    if (this.selection.type == 'Range') { return this._boundsChanged(); }
+
     // set the range based on selection node state
     var range = document.createRange();
     var startNode = this._anchorTextNode();
     var endNode = this._focusTextNode();
 
-    if (startNode && endNode) {
-      range.setStart(startNode, this.anchorOffset);
-      range.setEnd(endNode, this.focusOffset);
-      this.selection.removeAllRanges();
-      this.selection.addRange(range);
-    }
+    range.setStart(startNode, this.anchorOffset);
+    range.setEnd(endNode, this.focusOffset);
+    this.selection.removeAllRanges();
+    this.selection.addRange(range);
 
-    if (this._boundsChanged()) {
-      this.initBounds();
-      return true;
-    } else {
-      return false;
-    }
+    return this._boundsChanged();
   },
   focusOn: function(guid) {
     this.anchorGuid = guid;
@@ -138,10 +134,13 @@ mixInto(Selection, {
     return this._textNode(this.focusGuid, this.focusPosition);
   },
   _textNode: function(guid, position) {
-    // find anchor block node by guid
+    if (position == -1) position = 0;
+
+    return this._blockNode(guid).childNodes[position];
+  },
+  _blockNode: function(guid) {
     var klass = 'ic-Editor-Block--' + guid;
-    var node = document.getElementsByClassName(klass)[0];
-    return node.childNodes[position];
+    return document.getElementsByClassName(klass)[0];
   },
 
 
@@ -185,8 +184,14 @@ mixInto(Selection, {
 
   _boundsChanged: function() {
     var bounds = this._bounds();
-    return (bounds.top != this.top || bounds.left != this.left ||
-            bounds.width != this.width || bounds.height != this.height);
+    var changed = (bounds.top != this.top || bounds.left != this.left ||
+                   bounds.width != this.width || bounds.height != this.height);
+    if (changed) {
+      this.initBounds();
+      return true;
+    } else {
+      return false;
+    }
   }
 });
 

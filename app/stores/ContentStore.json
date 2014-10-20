@@ -1,6 +1,24 @@
 var ContentStore = {
   findNew: function() {
-    return {};
+    return (
+      {"sections": [
+        {
+          "id": "de5f",
+          "blocks": [
+            {
+              "id": "56ef",
+              "type": "h2",
+              "text": "Course Title"
+            },
+            {
+              "id": "667a",
+              "type": "p",
+              "text": "Build your course here"
+            }
+          ]
+        }
+      ]}
+    );
   },
   find: function() {
     return (
@@ -17,6 +35,11 @@ var ContentStore = {
               "id": "667a",
               "type": "p",
               "text": "Photography is a word derived from the Greek words photos (“light”) and graphein (“to draw”) The word was first used by the scientist Sir John F.W. Herschel in 1839."
+            },
+            {
+              "id": "667b",
+              "type": "blockquote",
+              "text": "For me, the camera is a sketch book, an instrument of intuition and spontaneity."
             },
             {
               "id": "c277",
@@ -52,7 +75,7 @@ var ContentStore = {
             {
               "id": "fce3",
               "type": "h4",
-              "text": "Louis Daguerre"
+              "text": "Alfred Steiglitz"
             },
             {
               "id": "dc62",
@@ -78,7 +101,7 @@ var ContentStore = {
             {
               "id": "6353",
               "type": "p",
-              "text": "Something Else Here That is Centered",
+              "text": "Development of Photography as a Technology in different eras",
               "meta": {
                 "align": "center"
               }
@@ -86,13 +109,13 @@ var ContentStore = {
             {
               "id": "e07e",
               "type": "p",
-              "text": "Something here that has a link in it",
+              "text": "The metal-based daguerreotype process soon had some competition from the paper-based calotype negative and salt print processes invented by Henry Fox Talbot. Subsequent innovations reduced the required camera exposure time from minutes to seconds and eventually to a small fraction of a second",
               "inlines": [
                 {
                   "type": "a",
                   "value": "http://google.com",
-                  "offsetStart": 26,
-                  "offsetEnd": 30
+                  "offsetStart": 16,
+                  "offsetEnd": 29
                 }
               ]
             },
@@ -114,14 +137,9 @@ var ContentStore = {
               ],
             },
             {
-              "id": "2ea7",
-              "type": "blockquote",
-              "text": "And more here with something else"
-            },
-            {
               "id": "067c",
               "type": "blockquote",
-              "text": "Quoted two",
+              "text": "Today everything exists to end in a photograph.",
               "meta": {
                 "align": "center"
               }

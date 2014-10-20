@@ -56,6 +56,9 @@ var Content = React.createClass({
     setTimeout(this.checkSelection, 1);
   },
 
+  onBlur: function(e) {
+    setTimeout(this.checkSelection, 1);
+  },
   onKeyUp: function(e) {
     this.checkSelection();
     if (e.keyCode == 91) { this.metaKey = false; }
@@ -87,6 +90,7 @@ var Content = React.createClass({
            onInput={this.onChange}
            onKeyDown={this.onKeyDown}
            onKeyUp={this.onKeyUp}
+           onBlur={this.onBlur}
            onMouseUp={this.onMouseUp}
            contentEditable="true"
            role="textbox" aria-multiline="true" aria-label="Editable Content">

@@ -42,10 +42,15 @@ mixInto(Selection, {
 
     // set the range based on selection node state
     var range = document.createRange();
-    range.setStart(this._anchorTextNode(), this.anchorOffset);
-    range.setEnd(this._focusTextNode(), this.focusOffset);
-    this.selection.removeAllRanges();
-    this.selection.addRange(range);
+    var startNode = this._anchorTextNode();
+    var endNode = this._focusTextNode();
+
+    if (startNode && endNode) {
+      range.setStart(startNode, this.anchorOffset);
+      range.setEnd(endNode, this.focusOffset);
+      this.selection.removeAllRanges();
+      this.selection.addRange(range);
+    }
 
     if (this._boundsChanged()) {
       this.initBounds();
@@ -53,6 +58,15 @@ mixInto(Selection, {
     } else {
       return false;
     }
+  },
+  focusOn: function(guid) {
+    this.anchorGuid = guid;
+    this.anchorOffset = 0;
+    this.anchorPosition = 0;
+
+    this.focusGuid  = guid;
+    this.focusOffset = 0;
+    this.focusPosition = 0;
   },
 
   // which blocks does this range begin/end at
@@ -64,13 +78,17 @@ mixInto(Selection, {
     var blockNode = this._anchorNode();
     var textNode  = this.selection.anchorNode;
     var offset = this.selection.anchorOffset;
-    return textNode == blockNode.lastChild && textNode.length == offset;
+
+    return textNode == blockNode ||
+          (textNode == blockNode.lastChild && textNode.length == offset);
   },
   begOfBlock: function() {
     var blockNode = this._anchorNode();
     var textNode  = this.selection.anchorNode;
     var offset = this.selection.anchorOffset;
-    return textNode == blockNode.firstChild && offset == 0;
+
+    return textNode == blockNode ||
+           (textNode == blockNode.firstChild && offset == 0);
   },
   crossBlock: function() {
     return this.anchorGuid != this.focusGuid;
@@ -123,7 +141,6 @@ mixInto(Selection, {
     // find anchor block node by guid
     var klass = 'ic-Editor-Block--' + guid;
     var node = document.getElementsByClassName(klass)[0];
-
     return node.childNodes[position];
   },
 

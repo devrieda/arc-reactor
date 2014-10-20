@@ -62,6 +62,8 @@ var Content = React.createClass({
   onKeyUp: function(e) {
     this.checkSelection();
     if (e.keyCode == 91) { this.metaKey = false; }
+
+    this.actions.type();
   },
   onKeyDown: function(e) {
     if (e.keyCode == 91) { this.metaKey = true; }
@@ -73,6 +75,7 @@ var Content = React.createClass({
       var prevent = this.actions[intent]();
       if (prevent) { e.preventDefault(); }
     }
+
   },
 
   render: function() {

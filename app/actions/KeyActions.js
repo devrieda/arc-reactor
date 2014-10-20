@@ -26,13 +26,22 @@ mixInto(KeyActions, {
   },
 
   // key presses
+  type: function() {
+    var guid = this.selection.anchorGuid;
+
+    // find anchor block node by guid
+    var klass = 'ic-Editor-Block--' + guid;
+    var text = document.getElementsByClassName(klass)[0].textContent;
+
+    var block = this._findBlock(guid);
+    block.text = text;
+  },
+
   pressReturn: function() {
     if (this.selection.isRange()) {
-      // - find text before selection in beg
-      // - find text after selection in end
-      // - combine text into first node
-      // - delete 2nd node
+      return this._combineBlocks();
 
+    // caret
     } else {
       var guid = this.selection.anchorGuid;
 
@@ -51,18 +60,31 @@ mixInto(KeyActions, {
   }, 
   pressDelete: function() {
     if (this.selection.crossBlock()) {
-      console.log('cross block range')
+      return this._combineBlocks();
 
-    } else {
-      var guids = this.selection.guidRange();
-
-      if (this.selection.begOfBlock()) {
-        this.removeBlock(guids[0]);
-      }
+    } else if (this.selection.endOfBlock()) {
+      // get text for next node
+      // delete next node
+      // append text to this node
+      console.log('delete!!');
+      return true;
     }
     return false;
   },
   pressBspace: function() {
+    if (this.selection.crossBlock()) {
+      return this._combineBlocks();
+
+    } else if (this.selection.begOfBlock()) {
+      var guid = this.selection.anchorGuid;
+
+      // get text for this node
+      // delete this node
+      // append text to previous node
+      var previous = this._previousNode(guid)
+      this._removeBlock(this.selection.anchorGuid);
+      return true;
+    }
     return false;
   },
 
@@ -74,21 +96,50 @@ mixInto(KeyActions, {
   _insertBlock: function(position, guid, text) {
     var section = this._findBlockSection(guid);
     var index   = this._findBlockPosition(guid);
-    if (!section || !index) { return; }
 
     var block = this._newBlock(text || "");
     var index = position == 'after' ? index + 1 : index;
 
     section.blocks.splice(index, 0, block);
+
+    // focus on new block
+    this.selection.focusOn(block.id);
+    this._flushSelection();
   },
 
   _removeBlock: function(guid) {
-    var blockPosition = this.findBlockPosition(guid);
-    var blocks = blockPosition.blocks;
-    var index  = blockPosition.index;
-    if (!blocks || !index) { return; }
+    var section = this._findBlockSection(guid);
+    var index   = this._findBlockPosition(guid);
 
-    blocks.splice(index, 0);
+    section.blocks.splice(index, 1);
+  },
+
+  _combineBlocks: function() {
+    console.log('combine blocks');
+    // - find text before anchor selection
+    // - find text after focus selection
+    // - combine text into first node
+    // - delete 2nd node
+
+    return false;
+  },
+
+
+  _findNodeText: function(node) {
+    var children = node.childNodes;
+    if (node.childNodes) {
+
+    }
+  },
+
+  _findBlock: function(guid) {
+    var block = {};
+    this.content.sections.forEach(function(sect) {
+      sect.blocks.forEach(function(b) {
+        if (guid == b.id) { block = b; }
+      });
+    });
+    return block;
   },
 
   _findBlockSection: function(guid) {
@@ -100,7 +151,6 @@ mixInto(KeyActions, {
         if (block.id == guid) { section = sect; }
       });
     });
-
     return section;
   },
 

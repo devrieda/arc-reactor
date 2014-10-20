@@ -9,8 +9,8 @@ var CODES = {
   'f10': 121,   // alt+f10 = toolbar 
   'meta': 91,   // meta 
   'return': 13, // return 
-  'delete': 8,  // delete
-  'bspace': 46  // backspace 
+  'bspace': 8,  // bspace
+  'delete': 46  // delete
 }
 
 var KeyIntent = function(e) {

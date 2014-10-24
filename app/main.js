@@ -15,7 +15,6 @@ var App = React.createClass({
 
   contentChanged: function(json) {
     Store.update(json);
-    // save when content changes
   },
 
   render: function() {

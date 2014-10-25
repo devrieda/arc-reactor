@@ -13,7 +13,7 @@ var MenuItem = React.createClass({
     selection: React.PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return { 
       type: '',
       text: '',
@@ -22,7 +22,7 @@ var MenuItem = React.createClass({
     }
   },
 
-  isActive: function() {
+  isActive() {
     if (this.props.type == 'center') {
       return this.props.selection.centered;
     } else {
@@ -31,7 +31,7 @@ var MenuItem = React.createClass({
     }
   },
 
-  itemClasses: function() {
+  itemClasses() {
     var itemClass = {
       'ic-Editor-MenuItem': true,
       'ic-Editor-MenuItem--active': this.isActive()
@@ -40,14 +40,14 @@ var MenuItem = React.createClass({
     return classSet(itemClass);
   },
 
-  buttonClasses: function() {
+  buttonClasses() {
     return classSet({
       'ic-Editor-MenuItem__button': true,
       'ic-Editor-MenuItem__button--active': this.isActive()
     });
   },
 
-  iconClasses: function() {
+  iconClasses() {
     var iconClass = {
       'ic-Editor-MenuItem__icon': true,
       'ic-Editor-MenuItem__icon--active': this.isActive(),
@@ -57,7 +57,7 @@ var MenuItem = React.createClass({
     return classSet(iconClass);
   },
 
-  textClasses: function() {
+  textClasses() {
     var screenreader = ['h2', 'h3', 'h4'].indexOf(this.props.type) == -1;
     return classSet({
       'ic-Editor-MenuItem__icon-text': true,
@@ -65,7 +65,7 @@ var MenuItem = React.createClass({
     });
   },
 
-  render: function() {
+  render() {
     return (
       <li className={this.itemClasses()} key={this.props.type}>
         <button className={this.buttonClasses()} data-action={this.props.type}>

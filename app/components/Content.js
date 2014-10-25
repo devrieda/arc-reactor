@@ -17,12 +17,12 @@ var Content = React.createClass({
     onChange: React.PropTypes.func
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
-      onChange: function() {}
+      onChange() {}
     }
   },
-  getInitialState: function() {
+  getInitialState() {
     return {
       content: {sections: []},
       selection: new Selection
@@ -30,7 +30,7 @@ var Content = React.createClass({
   },
 
   // update when store changes
-  componentDidMount: function() {
+  componentDidMount() {
     ContentState.register(this.setState.bind(this));
     SelectionState.register(this.setState.bind(this));
 
@@ -38,34 +38,34 @@ var Content = React.createClass({
   },
 
   // if content changed, selection may have changed
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     if (this.state.selection.reselect()) {
       SelectionState.set({selection: this.state.selection});
     }
   },
 
-  checkSelection: function() {
+  checkSelection() {
     SelectionState.set({selection: new Selection});
   },
 
   // handle changes
-  onChange: function(e) {
+  onChange(e) {
     this.props.onChange(this.state.content);
   },
-  onMouseUp: function(e) {
+  onMouseUp(e) {
     setTimeout(this.checkSelection, 1);
   },
 
-  onBlur: function(e) {
+  onBlur(e) {
     setTimeout(this.checkSelection, 1);
   },
-  onKeyUp: function(e) {
+  onKeyUp(e) {
     this.checkSelection();
     if (e.keyCode == 91) { this.metaKey = false; }
 
     this.actions.type();
   },
-  onKeyDown: function(e) {
+  onKeyDown(e) {
     if (e.keyCode == 91) { this.metaKey = true; }
     e.metaKey = this.metaKey;
 
@@ -78,8 +78,8 @@ var Content = React.createClass({
 
   },
 
-  render: function() {
-    var sections = this.state.content.sections.map(function(sect, i) {
+  render() {
+    var sections = this.state.content.sections.map( (sect, i) => {
       sect.meta = sect.meta || {};
       if (i == 0) { sect.meta.first = true; }
       return <Section key={sect.id} content={sect} />

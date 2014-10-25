@@ -12,14 +12,14 @@ var Section = React.createClass({
     content: React.PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       content: { blocks: [], meta: {} }
     }
   },
 
   // add class modifiers
-  sectionClasses: function() {
+  sectionClasses() {
     var meta = this.props.content.meta;
     return classSet({
       'ic-Editor-Section': true,
@@ -27,8 +27,8 @@ var Section = React.createClass({
     });
   },
 
-  render: function() {
-    var blocks = this.props.content.blocks.map(function(block) {
+  render() {
+    var blocks = this.props.content.blocks.map( (block) => {
       return <Block key={block.id} content={block} />
     });
 

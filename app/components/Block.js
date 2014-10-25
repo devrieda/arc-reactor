@@ -11,13 +11,13 @@ var Block = React.createClass({
     content: React.PropTypes.object
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       content: { type: "p", text: "", meta: {}, blocks: [], inlines: [] }
     }
   },
 
-  formattedText: function() {
+  formattedText() {
     if (this.isEmpty()) { return '<br />'; }
 
     var text    = this.props.content.text;
@@ -31,7 +31,7 @@ var Block = React.createClass({
   },
 
   // add meta info to custom attributes
-  buildAttr: function() {
+  buildAttr() {
     var attr = {
       "className": this.blockClasses(),
       "name": this.props.content.id
@@ -45,14 +45,14 @@ var Block = React.createClass({
     return attr;
   },
 
-  isEmpty: function() {
+  isEmpty() {
     var text   = this.props.content.text   || "";
     var blocks = this.props.content.blocks || [];
     return text.length == 0 && blocks.length == 0
   },
 
   // add class modifiers
-  blockClasses: function() {
+  blockClasses() {
     var type = this.props.content.type;
     var classes = {
       'ic-Editor-Block': true,
@@ -68,11 +68,11 @@ var Block = React.createClass({
   },
 
   // build the block list-items for lists
-  children: function() {
+  children() {
     var type = this.props.content.type;
     if (type == "ul" || type == "ol") {
       var blocks = this.props.content.blocks || [];
-      return blocks.map(function(block) {
+      return blocks.map( (block) => {
         return <Block key={block.id} content={block} />
       });
     } else {
@@ -80,7 +80,7 @@ var Block = React.createClass({
     }
   },
 
-  render: function() {
+  render() {
     var attr = this.buildAttr();
     var reactDom = React.DOM[this.props.content.type];
     var inlines = this.props.content.inlines || [];

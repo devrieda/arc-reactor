@@ -12,33 +12,33 @@ require('../stylesheets/Menu.scss');
 var classSet = React.addons.classSet;
 
 var Menu = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       selection: new Selection,
       linkMode: false
     }
   },
 
-  componentDidMount: function() {
-    SelectionState.register(function(state) {
+  componentDidMount() {
+    SelectionState.register( (state) => {
       this.setState(state);
       if (!state.selection.types) {
         this.setState({linkMode: false});
       }
-    }.bind(this));
+    });
 
     this.actions = new MenuActions;
   },
 
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     if (!this.state.linkMode) { return; }
 
-    setTimeout(function() {
+    setTimeout( () => {
       this.refs.linkInput.getDOMNode().focus();
-    }.bind(this), 1);
+    }, 1);
   },
 
-  clickMenu: function(e) {
+  clickMenu(e) {
     var target = e.target.nodeName == 'BUTTON' ? e.target : e.target.parentNode;
     var action = target.getAttribute('data-action');
     var active = target.className.indexOf('active') != -1;
@@ -51,7 +51,7 @@ var Menu = React.createClass({
       this.actions.pressButton(action, active);
     }
   },
-  onKeyUp: function(e) {
+  onKeyUp(e) {
     var returnKey = 13;
     if (e.keyCode != returnKey) { return; }
 
@@ -61,7 +61,7 @@ var Menu = React.createClass({
     SelectionState.set({selection: new Selection});
   },
 
-  isHeader: function() {
+  isHeader() {
     var types = this.state.selection.types;
     if (!types) { return false; }
 
@@ -69,7 +69,7 @@ var Menu = React.createClass({
            types.indexOf('h3') != -1 ||
            types.indexOf('h4') != -1
   },
-  buttonTypes: function() {
+  buttonTypes() {
     var buttons = [
       {type: 'strong',     icon: 'fa-bold',         text: 'Bold'},
       {type: 'em',         icon: 'fa-italic',       text: 'Italic'},
@@ -82,20 +82,20 @@ var Menu = React.createClass({
     ];
     return this.isHeader() ? buttons.slice(2) : buttons;
   },
-  menuClasses: function() {
+  menuClasses() {
     return classSet({
       'ic-Editor-Menu': true,
       'ic-Editor-Menu--active': this.state.selection.text,
       'ic-Editor-Menu--link': this.state.linkMode
     });
   },
-  itemsClasses: function() {
+  itemsClasses() {
     return classSet({
       'ic-Editor-Menu__items': true,
       'ic-Editor-Menu__items--active': !this.state.linkMode
     });
   },
-  linkClasses: function() {
+  linkClasses() {
     return classSet({
       'ic-Editor-Menu__linkinput': true,
       'ic-Editor-Menu__linkinput--active': this.state.linkMode
@@ -103,7 +103,7 @@ var Menu = React.createClass({
   },
 
   // move menu to selected text
-  menuStyles: function() {
+  menuStyles() {
     if (!this.state.selection.types) { return {}; }
 
     var selection = this.state.selection;
@@ -116,14 +116,14 @@ var Menu = React.createClass({
     };
   },
 
-  render: function() {
-    var buttons = this.buttonTypes().map(function(button) {
+  render() {
+    var buttons = this.buttonTypes().map( (button) => {
       return <MenuItem key={button.type}
                       type={button.type}
                       text={button.text}
                       icon={button.icon}
                  selection={this.state.selection} />
-    }.bind(this));
+    });
 
     return (
       <div ref="menu" className={this.menuClasses()} style={this.menuStyles()}>

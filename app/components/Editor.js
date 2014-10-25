@@ -14,23 +14,23 @@ var Editor = React.createClass({
     onChange: React.PropTypes.func
   },
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       content: { sections: [] },
-      onChange: function() {}
+      onChange() {}
     }
   },
 
   // pass json/html data back up to Editor
-  changeContent: function(content, selection) {
+  changeContent(content, selection) {
     this.props.onChange(content);
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     ContentState.set({content: this.props.content});
   },
 
-  render: function() {
+  render() {
     return (
       <div className="ic-Editor">
         <Content onChange={this.changeContent} />

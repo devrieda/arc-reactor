@@ -20,7 +20,7 @@ class MenuActions {
   }
 
   pressButton(button, active) {
-    this[button+"Selection"](active)
+    this[`${button}Selection`](active)
   }
 
   // block changes

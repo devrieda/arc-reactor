@@ -36,7 +36,7 @@ var MenuItem = React.createClass({
       'ic-Editor-MenuItem': true,
       'ic-Editor-MenuItem--active': this.isActive()
     }
-    itemClass['ic-Editor-MenuItem--'+this.props.type] = true;
+    itemClass[`ic-Editor-MenuItem--${this.props.type}`] = true;
     return classSet(itemClass);
   },
 

@@ -28,7 +28,7 @@ class KeyActions {
     var guid = this.selection.anchorGuid;
 
     // find anchor block node by guid
-    var klass = 'ic-Editor-Block--' + guid;
+    var klass = `ic-Editor-Block--${guid}`
     var text = document.getElementsByClassName(klass)[0].textContent;
 
     var block = this._findBlock(guid);

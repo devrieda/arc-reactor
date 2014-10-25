@@ -27,10 +27,10 @@ class Formatter {
     var markups = markups.forEach( (markup) => {
       if (markup.type != type) { return; }
 
-      var re = new RegExp("("+markup.text+")");
+      var re = new RegExp(`(${markup.text})`);
       if (type == 'a') {
         this.text = this.text.replace(re, 
-          "<a class=\"ic-Editor-Block__a\" href=\"" + markup.value + "\">$1</a>");
+         `<a class="ic-Editor-Block__a" href="${markup.value}">$1</a>`);
 
       } else if (type == 'strong') {
         this.text = this.text.replace(re,

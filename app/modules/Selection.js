@@ -173,7 +173,7 @@ class Selection {
     return this._blockNode(guid).childNodes[position];
   }
   _blockNode(guid) {
-    var klass = 'ic-Editor-Block--' + guid;
+    var klass = `ic-Editor-Block--${guid}`
     return document.getElementsByClassName(klass)[0];
   }
 }

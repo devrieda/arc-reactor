@@ -39,7 +39,7 @@ var Block = React.createClass({
     var meta = this.props.content.meta || {};
     for (var property in meta) {
       if (meta.hasOwnProperty(property)) {
-        attr["data-" + property] = meta[property];
+        attr[`data-#{property}`] = meta[property];
       }
     }
     return attr;
@@ -61,8 +61,8 @@ var Block = React.createClass({
       'ic-Editor-Block--list': ['ol', 'ul'].indexOf(type) != -1,
       'ic-Editor-Block--first': this.props.first,
     };
-    classes['ic-Editor-Block--' + this.props.content.id] = true;
-    classes['ic-Editor-Block--' + type] = true;
+    classes[`ic-Editor-Block--${this.props.content.id}`] = true;
+    classes[`ic-Editor-Block--${type}`] = true;
 
     return React.addons.classSet(classes)
   },

@@ -57,7 +57,8 @@ var Block = React.createClass({
     var classes = {
       'ic-Editor-Block': true,
       'ic-Editor-Block--empty': this.isEmpty(),
-      'ic-Editor-Block--list': type == 'ol' || type == 'ul',
+      'ic-Editor-Block--header': ['h2', 'h3', 'h4'].indexOf(type) != -1,
+      'ic-Editor-Block--list': ['ol', 'ul'].indexOf(type) != -1,
       'ic-Editor-Block--first': this.props.first,
     };
     classes['ic-Editor-Block--' + this.props.content.id] = true;

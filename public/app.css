@@ -2,9 +2,7 @@ body {
   margin: 0;
 }
 
-div .ic-Editor-Block--h2,
-div .ic-Editor-Block--h3,
-div .ic-Editor-Block--h4 {
+div .ic-Editor-Block--header {
   font-family: "proxima-nova", "Helvetica Neue", arial, helvetica, sans-serif;
 }
 div .ic-Editor {

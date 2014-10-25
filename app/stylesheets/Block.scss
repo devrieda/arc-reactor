@@ -9,9 +9,7 @@
 }
 
 // block
-.ic-Editor-Block--h2,
-.ic-Editor-Block--h3,
-.ic-Editor-Block--h4 {
+.ic-Editor-Block--header {
   margin: 0;
   margin-top: 40px;
   letter-spacing: -0.02em;
@@ -83,9 +81,7 @@
   list-style-image: none;
   font-weight: 200;
 }
-.ic-Editor-Block--h1 +.ic-Editor-Block--list,
-.ic-Editor-Block--h2 +.ic-Editor-Block--list,
-.ic-Editor-Block--h3 +.ic-Editor-Block--list {
+.ic-Editor-Block--header +.ic-Editor-Block--list {
   margin-top: 10px;
 }
 

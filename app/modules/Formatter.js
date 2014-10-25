@@ -9,10 +9,10 @@ class Formatter {
   applyMarkup(markups) {
     if (markups.length == 0) { return this.text; }
 
-    var markups = markups.map(function(markup) {
+    var markups = markups.map( (markup) => {
       markup.text = this.text.slice(markup.offsetStart, markup.offsetEnd);
       return markup;
-    }.bind(this));
+    });
 
     this.text = this._escape(this.text);
 
@@ -24,7 +24,7 @@ class Formatter {
   }
 
   applyAction(type, markups) {
-    var markups = markups.forEach(function(markup) {
+    var markups = markups.forEach( (markup) => {
       if (markup.type != type) { return; }
 
       var re = new RegExp("("+markup.text+")");
@@ -40,11 +40,11 @@ class Formatter {
         this.text = this.text.replace(re,
           "<em class=\"ic-Editor-Block__em\">$1</em>");
       }
-    }.bind(this));
+    });
   }
 
   _escape(string) {
-    return String(string).replace(/[&<>"]/g, function(s) {
+    return String(string).replace(/[&<>"]/g, (s) => {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;' }[s];
     });
   }

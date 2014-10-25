@@ -10,13 +10,13 @@ class KeyActions {
     this.selection = SelectionState.get();
 
     // observe state changes
-    ContentState.register(function(state) {
+    ContentState.register( (state) => {
       this.content = state.content;
-    }.bind(this));
+    });
 
-    SelectionState.register(function(state) {
+    SelectionState.register( (state) => {
       this.selection = state.selection;
-    }.bind(this));
+    });
   }
 
   pressButton(button, active) {
@@ -190,11 +190,11 @@ class KeyActions {
 
   _findBlock(guid) {
     var block = {};
-    this.content.sections.forEach(function(sect) {
-      sect.blocks.forEach(function(b) {
+    this.content.sections.forEach( (sect) => {
+      sect.blocks.forEach( (b) => {
         if (guid == b.id) { block = b; }
 
-        (b.blocks || []).forEach(function(subblock) {
+        (b.blocks || []).forEach( (subblock) => {
           if (guid == subblock.id) { block = subblock; }
         });
       });
@@ -209,13 +209,13 @@ class KeyActions {
 
   _findBlocks(guid) {
     var blocks = null;
-    this.content.sections.forEach(function(sect) {
+    this.content.sections.forEach( (sect) => {
       if (blocks) { return; }
-      sect.blocks.forEach(function(block) {
+      sect.blocks.forEach( (block) => {
         if (blocks) { return; }
         if (block.id == guid) { blocks = sect.blocks; }
 
-        (block.blocks || []).forEach(function(b) {
+        (block.blocks || []).forEach( (b) => {
           if (blocks) { return; }
           if (b.id == guid) { blocks = block.blocks; }
         });
@@ -225,9 +225,9 @@ class KeyActions {
   }
   _findParentBlock(guid) {
     var block = {};
-    this.content.sections.forEach(function(sect) {
-      sect.blocks.forEach(function(b) {
-        (b.blocks || []).forEach(function(subblock) {
+    this.content.sections.forEach( (sect) => {
+      sect.blocks.forEach( (b) => {
+        (b.blocks || []).forEach( (subblock) => {
           if (guid == subblock.id) { block = b; }
         });
       });
@@ -237,7 +237,7 @@ class KeyActions {
 
   _findBlockPosition(guid) {
     var index = null;
-    this._findBlocks(guid).forEach(function(block, i) {
+    this._findBlocks(guid).forEach( (block, i) => {
       if (index) { return; }
       if (block.id == guid) { index = i; }
     });

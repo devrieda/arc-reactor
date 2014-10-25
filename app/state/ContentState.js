@@ -1,11 +1,11 @@
 var ContentState = {
   _state: {},
 
-  get: function() {
+  get() {
     return this._state;
   },
 
-  set: function(state) {
+  set(state) {
     this._state = state;
     this.notify();
   },
@@ -13,14 +13,14 @@ var ContentState = {
   // observer
   callbacks: [],
 
-  register: function(cb) {
+  register(cb) {
     this.callbacks.push(cb);
   },
 
-  notify: function() {
-    this.callbacks.forEach(function(cb) { 
+  notify() {
+    this.callbacks.forEach( (cb) => {
       cb(this._state);
-    }.bind(this));
+    });
   }
 };
 

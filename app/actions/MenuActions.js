@@ -10,13 +10,13 @@ class MenuActions {
     this.selection = SelectionState.get();
 
     // observe state changes
-    ContentState.register(function(state) {
+    ContentState.register( (state) => {
       this.content = state.content;
-    }.bind(this));
+    });
 
-    SelectionState.register(function(state) {
+    SelectionState.register( (state) => {
       this.selection = state.selection;
-    }.bind(this));
+    });
   }
 
   pressButton(button, active) {
@@ -88,7 +88,7 @@ class MenuActions {
 
       // check if we already added the markup
       var index = null;
-      block.inlines.forEach(function(inline, i) {
+      block.inlines.forEach( (inline, i) => {
         if (JSON.stringify(inline) === jsonMarkup) { index = i; }
       });
 
@@ -130,8 +130,8 @@ class MenuActions {
     var guid = this.selection.anchorGuid;
 
     var block = {};
-    this.content.sections.forEach(function(sect) {
-      sect.blocks.forEach(function(b) {
+    this.content.sections.forEach( (sect) => {
+      sect.blocks.forEach( (b) => {
         if (guid == b.id) { block = b; }
       });
     });

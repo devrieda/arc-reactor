@@ -15,7 +15,7 @@
   margin: 0;
   margin-top: 40px;
   letter-spacing: -0.02em;
-  font-family: "Helvetica Neue", arial, helvetica, sans-serif;
+  font-family: $header-font;
 }
 .ic-Editor-Block--h2 {
   margin-left: -3px;
@@ -45,7 +45,6 @@
 .ic-Editor-Block--list {
   margin: 0;
   margin-bottom: 30px;
-  font-family: Georgia, "Times New Roman", Times, serif;
 }
 .ic-Editor-Block--p {
   letter-spacing: 0.01rem;
@@ -98,8 +97,6 @@
 .ic-Editor-Block--li:before {
   position: absolute;
   display: inline-block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 58px;
   margin-left: -58px;
@@ -123,7 +120,6 @@
   text-align: center;
 }
 
-
 // inline
 .ic-Editor-Block__strong {
   font-weight: bold;
@@ -133,5 +129,5 @@
 }
 .ic-Editor-Block__a,
 .ic-Editor-Block__a:visited {
-  color: #333;
+  color: $link-color;
 }

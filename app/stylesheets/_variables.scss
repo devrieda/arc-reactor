@@ -1,1 +1,35 @@
-$body-font: Helvetica, sans-serif;
+// ------- variables --------
+
+// colors
+$text-color: rgba(0,0,0,0.8);
+$header-color: rgba(0,0,0,0.8);
+$subheader-color: rgba(0,0,0,0.44);
+$rule-color: rgba(0,0,0,0.15);
+$link-color: rgba(0,153,224,1.0);
+
+$button-text-off-color: rgba(255, 255, 255, 1);
+$button-text-on-color: rgba(87, 186, 255, 1);
+
+
+// typography
+$editor-font: Georgia, "Times New Roman", Times, serif;
+$header-font: "Helvetica Neue", arial, helvetica, sans-serif;
+
+$base-font-size: 22px;
+
+
+// layout
+$max-width: 700px;
+
+
+// ------- mixins --------
+@mixin screenreader() {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

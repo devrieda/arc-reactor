@@ -10,10 +10,10 @@
   display: block;
   background: rgba(0,0,0,0);
   border: 0;
-  color: white;
+  color: $button-text-off-color;
   padding: 0 10px;
   box-sizing: content-box;
-  -webkit-appearance: button;
+  appearance: button;
   cursor: pointer;
   text-transform: none;
   font: inherit;
@@ -27,7 +27,7 @@
 }
 
 .ic-Editor-MenuItem__icon {
-  color: #fff;
+  color: $button-text-off-color;
   font-size: 17px;
   line-height: 42px;
 }
@@ -36,8 +36,11 @@
   font-weight: bold;
   line-height: 42px;
 }
+.ic-Editor-MenuItem__icon-text--sr {
+  @include screenreader;
+}
 
 .ic-Editor-MenuItem__button--active,
 .ic-Editor-MenuItem__icon--active {
-  color: #57baff;
+  color: $button-text-on-color;
 }

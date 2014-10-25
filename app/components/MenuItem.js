@@ -58,9 +58,10 @@ var MenuItem = React.createClass({
   },
 
   textClasses: function() {
-    return classSet({ 
+    var screenreader = ['h2', 'h3', 'h4'].indexOf(this.props.type) == -1;
+    return classSet({
       'ic-Editor-MenuItem__icon-text': true,
-      'screenreader-only': ['h2', 'h3', 'h4'].indexOf(this.props.type) == -1
+      'ic-Editor-MenuItem__icon-text--sr': screenreader
     });
   },
 

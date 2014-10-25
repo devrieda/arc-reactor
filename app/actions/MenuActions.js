@@ -1,44 +1,42 @@
-var mixInto = require('react/lib/mixInto');
-
 var Guid = require('../modules/Guid');
 var Selection = require('../modules/Selection');
 
 var ContentState = require('../state/ContentState');
 var SelectionState = require('../state/SelectionState');
 
-var MenuActions = function() {
-  this.content   = ContentState.get();
-  this.selection = SelectionState.get();
+class MenuActions {
+  constructor() {
+    this.content   = ContentState.get();
+    this.selection = SelectionState.get();
 
-  // observe state changes
-  ContentState.register(function(state) {
-    this.content = state.content;
-  }.bind(this));
+    // observe state changes
+    ContentState.register(function(state) {
+      this.content = state.content;
+    }.bind(this));
 
-  SelectionState.register(function(state) {
-    this.selection = state.selection;
-  }.bind(this));
-}
+    SelectionState.register(function(state) {
+      this.selection = state.selection;
+    }.bind(this));
+  }
 
-mixInto(MenuActions, {
-  pressButton: function(button, active) {
+  pressButton(button, active) {
     this[button+"Selection"](active)
-  },
+  }
 
   // block changes
-  h2Selection: function(active) {
+  h2Selection(active) {
     this._changeBlockTag('h2', active);
-  },
-  h3Selection: function(active) {
+  }
+  h3Selection(active) {
     this._changeBlockTag('h3', active);
-  },
-  h4Selection: function(active) {
+  }
+  h4Selection(active) {
     this._changeBlockTag('h4', active);
-  },
-  blockquoteSelection: function(active) {
+  }
+  blockquoteSelection(active) {
     this._changeBlockTag('blockquote', active);
-  },
-  centerSelection: function(active) {
+  }
+  centerSelection(active) {
     var block = this._findBlock();
     block.meta = block.meta || {}
     if (active) {
@@ -50,8 +48,8 @@ mixInto(MenuActions, {
     }
     this._flushContent();
     this._flushSelection();
-  },
-  _changeBlockTag: function(tagName, active) {
+  }
+  _changeBlockTag(tagName, active) {
     var block = this._findBlock();
     var prevType = block.type;
     block.type = active ? 'p' : tagName;
@@ -63,19 +61,19 @@ mixInto(MenuActions, {
 
     this._flushContent();
     this._flushSelection();
-  },
+  }
 
   // inline changes
-  strongSelection: function(active) {
+  strongSelection(active) {
     this._changeInlineTag('strong', active);
-  },
-  emSelection: function(active) {
+  }
+  emSelection(active) {
     this._changeInlineTag('em', active);
-  },
-  aSelection: function(active) {
+  }
+  aSelection(active) {
     this._changeInlineTag('em', active);
-  },
-  _changeInlineTag: function(tagName, active) {
+  }
+  _changeInlineTag(tagName, active) {
     var block = this._findBlock();
 
     var markup = {
@@ -114,21 +112,21 @@ mixInto(MenuActions, {
 
     this._flushContent();
     this._flushSelection();
-  },
+  }
 
   // links
-  createLink: function(active, value) {
+  createLink(active, value) {
     this._changeInlineTag('a', active, value);
-  },
+  }
 
-  _flushContent: function() {
+  _flushContent() {
     ContentState.set({content: this.content});
-  },
-  _flushSelection: function() {
+  }
+  _flushSelection() {
     SelectionState.set({selection: this.selection});
-  },
+  }
 
-  _findBlock: function() {
+  _findBlock() {
     var guid = this.selection.anchorGuid;
 
     var block = {};
@@ -139,6 +137,6 @@ mixInto(MenuActions, {
     });
     return block;
   } 
-});
+}
 
 module.exports = MenuActions;

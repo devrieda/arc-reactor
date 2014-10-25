@@ -1,32 +1,30 @@
-var mixInto = require('react/lib/mixInto');
-
 var Guid = require('../modules/Guid');
 var Selection = require('../modules/Selection');
 
 var ContentState = require('../state/ContentState');
 var SelectionState = require('../state/SelectionState');
 
-var KeyActions = function() {
-  this.content   = ContentState.get();
-  this.selection = SelectionState.get();
+class KeyActions {
+  constructor() {
+    this.content   = ContentState.get();
+    this.selection = SelectionState.get();
 
-  // observe state changes
-  ContentState.register(function(state) {
-    this.content = state.content;
-  }.bind(this));
+    // observe state changes
+    ContentState.register(function(state) {
+      this.content = state.content;
+    }.bind(this));
 
-  SelectionState.register(function(state) {
-    this.selection = state.selection;
-  }.bind(this));
-}
+    SelectionState.register(function(state) {
+      this.selection = state.selection;
+    }.bind(this));
+  }
 
-mixInto(KeyActions, {
-  pressButton: function(button, active) {
+  pressButton(button, active) {
     this[button+"Selection"](active)
-  },
+  }
 
   // key presses
-  type: function() {
+  type() {
     var guid = this.selection.anchorGuid;
 
     // find anchor block node by guid
@@ -35,9 +33,9 @@ mixInto(KeyActions, {
 
     var block = this._findBlock(guid);
     block.text = text;
-  },
+  }
 
-  pressReturn: function() {
+  pressReturn() {
     if (this.selection.isRange()) {
       return this._combineBlocks();
 
@@ -85,8 +83,8 @@ mixInto(KeyActions, {
       }
     }
     return true;
-  },
-  pressDelete: function() {
+  }
+  pressDelete() {
     if (this.selection.crossBlock()) {
       return this._combineBlocks();
 
@@ -98,8 +96,8 @@ mixInto(KeyActions, {
       return true;
     }
     return false;
-  },
-  pressBspace: function() {
+  }
+  pressBspace() {
     if (this.selection.crossBlock()) {
       return this._combineBlocks();
 
@@ -124,14 +122,14 @@ mixInto(KeyActions, {
       }
     }
     return false;
-  },
+  }
 
-  focusToolbar: function() {
+  focusToolbar() {
     console.log('toolbar')
-  },
+  }
 
 
-  _insertBlock: function(type, position, guid, text) {
+  _insertBlock(type, position, guid, text) {
     var blocks = this._findBlocks(guid);
     var index  = this._findBlockPosition(guid);
 
@@ -145,8 +143,8 @@ mixInto(KeyActions, {
       this.selection.focusOn(block.id);
       this._flushSelection();
     }
-  },
-  _updateBlockToList: function(guid, type) {
+  }
+  _updateBlockToList(guid, type) {
     var block = this._findBlock(guid);
     var text = block.text;
     delete block.text
@@ -159,20 +157,20 @@ mixInto(KeyActions, {
     block.blocks = items;
     this.selection.focusOn(items[1].id);
     this._flushSelection();
-  },
-  _finishList: function(guid) {
+  }
+  _finishList(guid) {
     var block = this._findParentBlock(guid);
     this._insertBlock('p', 'after', block.id)
-  },
+  }
 
-  _removeBlock: function(guid) {
+  _removeBlock(guid) {
     var blocks = this._findBlocks(guid);
     var index  = this._findBlockPosition(guid);
 
     blocks.splice(index, 1);
-  },
+  }
 
-  _combineBlocks: function() {
+  _combineBlocks() {
     console.log('combine blocks');
     // - find text before anchor selection
     // - find text after focus selection
@@ -180,17 +178,17 @@ mixInto(KeyActions, {
     // - delete 2nd node
 
     return false;
-  },
+  }
 
 
-  _findNodeText: function(node) {
+  _findNodeText(node) {
     var children = node.childNodes;
     if (node.childNodes) {
 
     }
-  },
+  }
 
-  _findBlock: function(guid) {
+  _findBlock(guid) {
     var block = {};
     this.content.sections.forEach(function(sect) {
       sect.blocks.forEach(function(b) {
@@ -202,14 +200,14 @@ mixInto(KeyActions, {
       });
     });
     return block;
-  },
-  _findPreviousBlock: function(guid) {
+  }
+  _findPreviousBlock(guid) {
     var blocks = this._findBlocks(guid);
     var index  = this._findBlockPosition(guid);
     return blocks[index - 1];
-  },
+  }
 
-  _findBlocks: function(guid) {
+  _findBlocks(guid) {
     var blocks = null;
     this.content.sections.forEach(function(sect) {
       if (blocks) { return; }
@@ -224,8 +222,8 @@ mixInto(KeyActions, {
       });
     });
     return blocks;
-  },
-  _findParentBlock: function(guid) {
+  }
+  _findParentBlock(guid) {
     var block = {};
     this.content.sections.forEach(function(sect) {
       sect.blocks.forEach(function(b) {
@@ -235,31 +233,30 @@ mixInto(KeyActions, {
       });
     });
     return block;
-  },
+  }
 
-  _findBlockPosition: function(guid) {
+  _findBlockPosition(guid) {
     var index = null;
     this._findBlocks(guid).forEach(function(block, i) {
       if (index) { return; }
       if (block.id == guid) { index = i; }
     });
     return index;
-  },
+  }
 
-  _newSection: function() {
+  _newSection() {
     return { "id": Guid.unique(), "blocks": [] }
-  },
-  _newBlock: function(type, text) {
+  }
+  _newBlock(type, text) {
     return { "id": Guid.unique(), "type": type, "text": text }
-  },
+  }
 
-  _flushContent: function() {
+  _flushContent() {
     ContentState.set({content: this.content});
-  },
-  _flushSelection: function() {
+  }
+  _flushSelection() {
     SelectionState.set({selection: this.selection});
   }
-});
+}
 
 module.exports = KeyActions;
-

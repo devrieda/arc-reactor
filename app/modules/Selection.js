@@ -1,43 +1,15 @@
-var mixInto = require('react/lib/mixInto');
-
-var Selection = function() {
-  this.init();
-}
-
-mixInto(Selection, {
-  init: function() {
+class Selection {
+  constructor() {
     this.selection = document.getSelection();
 
     if (this._isValid()) {
-      this.initNodes();
-      this.initBounds();
-      this.initMeta();
+      this._initNodes();
+      this._initBounds();
+      this._initMeta();
     }
-  },
+  }
 
-  initMeta: function() {
-    this.text = this._text();
-    this.types = this._types();
-    this.centered = this._isCenter();
-  },
-  initNodes: function() {
-    this.anchorGuid   = this._anchorGuid();
-    this.focusGuid    = this._focusGuid();
-    this.anchorOffset = this.selection.anchorOffset;
-    this.focusOffset  = this.selection.focusOffset;
-    this.anchorPosition = this._anchorPosition();
-    this.focusPosition  = this._focusPosition();
-  },
-  initBounds: function() {
-    var bounds = this._bounds();
-    this.top = bounds.top;
-    this.left = bounds.left;
-    this.width = bounds.width;
-    this.height = bounds.height;
-  },
-
-
-  reselect: function() {
+  reselect() {
     if (!this.anchorGuid || !this.focusGuid) { return false; }
 
     // do we need to reselect?
@@ -54,8 +26,9 @@ mixInto(Selection, {
     this.selection.addRange(range);
 
     return this._boundsChanged();
-  },
-  focusOn: function(guid, offset) {
+  }
+
+  focusOn(guid, offset) {
     this.anchorGuid = guid;
     this.anchorOffset = offset || 0;
     this.anchorPosition = 0;
@@ -63,89 +36,37 @@ mixInto(Selection, {
     this.focusGuid  = guid;
     this.focusOffset = offset || 0;
     this.focusPosition = 0;
-  },
+  }
 
-  // which blocks does this range begin/end at
-
-  isRange: function() {
+  isRange() {
     return this.selection.type == "Range";
-  },
-  endOfBlock: function() {
+  }
+
+  endOfBlock() {
     var blockNode = this._anchorNode();
     var textNode  = this.selection.anchorNode;
     var offset = this.selection.anchorOffset;
 
     return textNode == blockNode ||
           (textNode == blockNode.lastChild && textNode.length == offset);
-  },
-  begOfBlock: function() {
+  }
+
+  begOfBlock() {
     var blockNode = this._anchorNode();
     var textNode  = this.selection.anchorNode;
     var offset = this.selection.anchorOffset;
 
     return textNode == blockNode ||
            (textNode == blockNode.firstChild && offset == 0);
-  },
-  crossBlock: function() {
+  }
+
+  crossBlock() {
     return this.anchorGuid != this.focusGuid;
-  },
-
-  _anchorBlock: function() {
-    var node = this.selection.anchorNode;
-    return node && node.nodeType === 3 ? node.parentNode : node;
-  },
-  _focusBlock: function() {
-    var node = this.selection.focusNode;
-    return node && node.nodeType === 3 ? node.parentNode : node;
-  },
-
-  _anchorPosition: function() {
-    return Array.prototype.indexOf.call(
-      this._anchorNode().childNodes, this.selection.anchorNode
-    );
-  },
-  _focusPosition: function() {
-    var pos = Array.prototype.indexOf.call(
-      this._focusNode().childNodes, this.selection.focusNode
-    );
-    if (pos == -1) { pos = 0; }
-    return pos;
-  },
-
-  _anchorNode: function() {
-    var node = this.selection.anchorNode;
-    return node && node.nodeType === 3 ? node.parentNode : node;
-  },
-  _focusNode: function() {
-    var node = this.selection.focusNode;
-    return node && node.nodeType === 3 ? node.parentNode : node;
-  },
-  _anchorGuid: function() {
-    return this._anchorNode().getAttribute('name');
-  },
-  _focusGuid: function() {
-    return this._focusNode().getAttribute('name');
-  },
-
-  _anchorTextNode: function() {
-    return this._textNode(this.anchorGuid, this.anchorPosition);
-  },
-  _focusTextNode: function() {
-    return this._textNode(this.focusGuid, this.focusPosition);
-  },
-  _textNode: function(guid, position) {
-    if (position == -1) position = 0;
-
-    return this._blockNode(guid).childNodes[position];
-  },
-  _blockNode: function(guid) {
-    var klass = 'ic-Editor-Block--' + guid;
-    return document.getElementsByClassName(klass)[0];
-  },
+  }
 
 
   // the selection has an anchor and is within the content
-  _isValid: function() {
+  _isValid() {
     var node = this._anchorNode()
     if (!node) { return false; }
 
@@ -153,13 +74,18 @@ mixInto(Selection, {
       node = node.parentNode;
     }
     return node !== document;
-  },
+  }
 
-  _text: function() {
+  // initializers
+  _initMeta() {
+    this.text = this._text();
+    this.types = this._types();
+    this.centered = this._isCenter();
+  }
+  _text() {
     return this.selection.toString().trim();
-  },
-
-  _types: function() {
+  }
+  _types() {
     var types = [];
     var node = this._anchorNode();
 
@@ -170,29 +96,86 @@ mixInto(Selection, {
     types.push(node.tagName.toLowerCase());
 
     return types;
-  },
-
-  _isCenter: function() {
+  }
+  _isCenter() {
     var node = this._anchorNode();
     return node.getAttribute('data-align') == "center";
-  },
+  }
 
-  _bounds: function() {
+  _initNodes() {
+    this.anchorGuid   = this._anchorGuid();
+    this.focusGuid    = this._focusGuid();
+    this.anchorOffset = this.selection.anchorOffset;
+    this.focusOffset  = this.selection.focusOffset;
+    this.anchorPosition = this._anchorPosition();
+    this.focusPosition  = this._focusPosition();
+  }
+  _anchorGuid() {
+    return this._anchorNode().getAttribute('name');
+  }
+  _focusGuid() {
+    return this._focusNode().getAttribute('name');
+  }
+  _anchorPosition() {
+    return Array.prototype.indexOf.call(
+      this._anchorNode().childNodes, this.selection.anchorNode
+    );
+  }
+  _focusPosition() {
+    var pos = Array.prototype.indexOf.call(
+      this._focusNode().childNodes, this.selection.focusNode
+    );
+    if (pos == -1) { pos = 0; }
+    return pos;
+  }
+
+  _initBounds() {
+    var bounds = this._bounds();
+    this.top = bounds.top;
+    this.left = bounds.left;
+    this.width = bounds.width;
+    this.height = bounds.height;
+  }
+  _bounds() {
     var range = this.selection.getRangeAt(0);
     return range.getBoundingClientRect();
-  },
-
-  _boundsChanged: function() {
+  }
+  _boundsChanged() {
     var bounds = this._bounds();
     var changed = (bounds.top != this.top || bounds.left != this.left ||
                    bounds.width != this.width || bounds.height != this.height);
     if (changed) {
-      this.initBounds();
+      this._initBounds();
       return true;
     } else {
       return false;
     }
   }
-});
+
+  _anchorNode() {
+    var node = this.selection.anchorNode;
+    return node && node.nodeType === 3 ? node.parentNode : node;
+  }
+  _focusNode() {
+    var node = this.selection.focusNode;
+    return node && node.nodeType === 3 ? node.parentNode : node;
+  }
+
+  _anchorTextNode() {
+    return this._textNode(this.anchorGuid, this.anchorPosition);
+  }
+  _focusTextNode() {
+    return this._textNode(this.focusGuid, this.focusPosition);
+  }
+  _textNode(guid, position) {
+    if (position == -1) position = 0;
+
+    return this._blockNode(guid).childNodes[position];
+  }
+  _blockNode(guid) {
+    var klass = 'ic-Editor-Block--' + guid;
+    return document.getElementsByClassName(klass)[0];
+  }
+}
 
 module.exports = Selection;

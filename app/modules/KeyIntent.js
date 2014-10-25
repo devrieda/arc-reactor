@@ -1,5 +1,3 @@
-var mixInto = require('react/lib/mixInto');
-
 var CODES = {
   'b': 66,      // meta+b  = bold
   'i': 73,      // meta+i  = italic 
@@ -13,18 +11,18 @@ var CODES = {
   'delete': 46  // delete
 }
 
-var KeyIntent = function(e) {
-  this.keyCode = e.keyCode;
-  this.metaKey = e.metaKey;
-  this.ctrlKey = e.ctrlKey;
-  this.altKey  = e.altKey;
+class KeyIntent {
+  constructor(e) {
+    this.keyCode = e.keyCode;
+    this.metaKey = e.metaKey;
+    this.ctrlKey = e.ctrlKey;
+    this.altKey  = e.altKey;
 
-  this.intent = null;
-}
+    this.intent = null;
+  }
 
-mixInto(KeyIntent, {
   // determine intent
-  checkMarkupHotkey: function() {
+  checkMarkupHotkey() {
     if (!this.metaKey && !this.ctrlKey) { return; }
 
     if (this.keyCode == CODES['b']) {
@@ -39,35 +37,35 @@ mixInto(KeyIntent, {
     } else if (this.keyCode == CODES['e']) {
       this.intent = 'centerText';
     }
-  },
+  }
 
-  checkAltHotkey: function() {
+  checkAltHotkey() {
     if (!this.altKey) { return; }
 
     if (this.keyCode == CODES['f10']) {
       this.intent = 'focusToolbar';
     }
-  },
-  checkReturn: function() {
+  }
+  checkReturn() {
     if (this.keyCode == CODES['return'] || (this.keyCode == CODES['m'] && this.ctrlKey)) {
       this.intent = 'pressReturn';
     }
-  },
+  }
 
-  checkDelete: function() {
+  checkDelete() {
     if (this.keyCode == CODES['delete']) {
       this.intent = 'pressDelete';
     }
-  },
+  }
 
-  checkBspace: function() {
+  checkBspace() {
     if (this.keyCode == CODES['bspace']) {
       this.intent = 'pressBspace';
     }
-  },
+  }
 
   // check intent
-  getIntent: function() {
+  getIntent() {
     this.checkMarkupHotkey();
     this.checkAltHotkey();
 
@@ -77,6 +75,6 @@ mixInto(KeyIntent, {
 
     return this.intent;
   }
-});
+}
 
 module.exports = KeyIntent;

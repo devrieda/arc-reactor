@@ -1,20 +1,12 @@
-var mixInto = require('react/lib/mixInto');
-
-function escape(string) {
-  return String(string).replace(/[&<>"]/g, function(s) {
-    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;' }[s];
-  });
-}
-
-var Formatter = function(text) {
-  this.text = text;
-}
-
 // SUPER-HACK - just regexp in the markup. This will fail as soon as there
 // is a string with multiple of the same word marked up
 //
-mixInto(Formatter, {
-  applyMarkup: function(markups) {
+class Formatter {
+  constructor(text) {
+    this.text = text;
+  }
+
+  applyMarkup(markups) {
     if (markups.length == 0) { return this.text; }
 
     var markups = markups.map(function(markup) {
@@ -22,16 +14,16 @@ mixInto(Formatter, {
       return markup;
     }.bind(this));
 
-    this.text = escape(this.text);
+    this.text = this._escape(this.text);
 
     this.applyAction('a', markups);
     this.applyAction('strong', markups);
     this.applyAction('em', markups);
 
     return this.text;
-  },
+  }
 
-  applyAction: function(type, markups) {
+  applyAction(type, markups) {
     var markups = markups.forEach(function(markup) {
       if (markup.type != type) { return; }
 
@@ -50,6 +42,12 @@ mixInto(Formatter, {
       }
     }.bind(this));
   }
-});
+
+  _escape(string) {
+    return String(string).replace(/[&<>"]/g, function(s) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;' }[s];
+    });
+  }
+}
 
 module.exports = Formatter;

@@ -3,7 +3,7 @@
 var React = require('react/addons');
 var Block = require('./Block');
 
-require('../stylesheets/Section.css');
+require('../stylesheets/Section.scss');
 
 var classSet = React.addons.classSet;
 

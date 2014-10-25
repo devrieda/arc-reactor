@@ -5,14 +5,12 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/,  loader: 'jsx-loader' },
-      { test: /\.css$/, loader: "style!css!sass?outputStyle=expanded" }
+      { test: /\.js$/,  loader: 'jsx-loader?harmony' },
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.scss$/, loader: 'style!css!sass?includePaths[]=' + __dirname + '/app/stylesheets' }
     ]
   },
   resolve: {
     extensions: ['', '.js', '.css']
   }
 };
-
-
-

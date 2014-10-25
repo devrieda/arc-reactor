@@ -1,5 +1,16 @@
 body {
-  font-family: "proxima-nova", "Helvetica Neue", arial, helvetica, sans-serif;
   font-weight: 200;
   color: rgba(0,0,0,0.8);
+}
+
+
+div .ic-Editor-Block--h2,
+div .ic-Editor-Block--h3,
+div .ic-Editor-Block--h4 {
+  font-family: "proxima-nova", "Helvetica Neue", arial, helvetica, sans-serif;
+}
+div .ic-Editor-Block--p,
+div .ic-Editor-Block--blockquote,
+div .ic-Editor-Block--list {
+  font-family: "freight-text-pro", Georgia, "Times New Roman", Times, serif;
 }

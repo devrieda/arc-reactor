@@ -6,7 +6,7 @@ var Menu = require('./Menu');
 
 var ContentState = require('../state/ContentState');
 
-require('../stylesheets/Editor.css');
+require('../stylesheets/Editor.scss');
 
 var Editor = React.createClass({
   propTypes: {

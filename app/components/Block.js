@@ -4,7 +4,7 @@ var React = require('react/addons');
 
 var Formatter = require('../modules/Formatter');
 
-require('../stylesheets/Block.css');
+require('../stylesheets/Block.scss');
 
 var Block = React.createClass({
   propTypes: {

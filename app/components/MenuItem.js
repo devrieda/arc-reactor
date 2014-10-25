@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react/addons');
-require('../stylesheets/MenuItem.css');
+require('../stylesheets/MenuItem.scss');
 
 var classSet = React.addons.classSet;
 

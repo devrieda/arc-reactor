@@ -7,7 +7,7 @@ var Selection = require('../modules/Selection');
 var SelectionState = require('../state/SelectionState');
 var MenuActions = require('../actions/MenuActions');
 
-require('../stylesheets/Menu.css');
+require('../stylesheets/Menu.scss');
 
 var classSet = React.addons.classSet;
 

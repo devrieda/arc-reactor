@@ -10,7 +10,7 @@ var ContentState = require('../state/ContentState');
 var SelectionState = require('../state/SelectionState');
 var KeyActions = require('../actions/KeyActions');
 
-require('../stylesheets/Content.css');
+require('../stylesheets/Content.scss');
 
 var Content = React.createClass({
   propTypes: {

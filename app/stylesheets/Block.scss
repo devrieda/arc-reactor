@@ -30,12 +30,11 @@
   line-height: 1.2;
 }
 .ic-Editor-Block--h4 {
-  margin-bottom: 2px;
+  margin-bottom: 6px;
   margin-left: -1.5px;
-  font-weight: 300;
-  font-size: 30px;
+  font-weight: 600;
+  font-size: 22px;
   line-height: 1.2;
-  color: rgba(0,0,0,0.44);
 }
 
 .ic-Editor-Block--p,
@@ -43,16 +42,16 @@
 .ic-Editor-Block--list {
   margin: 0;
   margin-bottom: 30px;
+  font-size: 20px;
 }
 .ic-Editor-Block--p {
-  letter-spacing: 0.01rem;
-  font-weight: 200;
-  font-size: 21px;
+  font-weight: 300;
   line-height: 1.5;
 }
+
+// quotes
 .ic-Editor-Block--blockquote {
   quotes: none;
-  letter-spacing: 0.01rem;
   font-weight: 400;
   font-style: italic;
   border-left: 3px solid rgba(0,0,0,0.8);
@@ -71,8 +70,17 @@
   padding: 0;
   line-height: 1.4;
   font-size: 32px;
+
+  &:before {
+    content: '“';
+    margin-right: 4px;
+  }
+  &:after {
+    content: '”';
+  }
 }
 
+// lists
 .ic-Editor-Block--list {
   margin: 0;
   padding: 0;

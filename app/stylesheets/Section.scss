@@ -14,12 +14,24 @@
 .ic-Editor-Section--first .ic-Editor-Section__divider {
   display: none;
 }
+
 .ic-Editor-Section__hr {
   display: block;
   width: 100px;
-  margin: 50px auto 40px auto;
-  border: 0;
-  border-top: 1px solid $rule-color;
+  margin: 55px auto 20px auto;
+  border: none;
+  border-top: medium double $rule-color;
+  color: $rule-color;
+  text-align: center;
+}
+.ic-Editor-Section__hr:after {
+  content: "§";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.25em;
+  background: $bg-color;
 }
 
 .ic-Editor-Section__content {

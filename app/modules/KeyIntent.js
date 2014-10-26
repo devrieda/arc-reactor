@@ -31,9 +31,6 @@ class KeyIntent {
     } else if (this.keyCode == CODES['i']) {
       this.intent = 'italicText';
 
-    } else if (this.keyCode == CODES['u']) {
-      this.intent = 'underlineText';
-
     } else if (this.keyCode == CODES['e']) {
       this.intent = 'centerText';
     }

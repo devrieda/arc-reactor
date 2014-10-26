@@ -16,10 +16,6 @@ class KeyActions {
     SelectionState.register( (state) => { this.selection = state.selection; });
   }
 
-  pressButton(button, active) {
-    this[button+"Selection"](active)
-  }
-
   // key presses
   type() {
     var key = new OtherKey(this.content, this.selection);
@@ -38,8 +34,24 @@ class KeyActions {
     return key.press();
   }
 
+  boldText() {
+    console.log('bold')
+    return true;
+  }
+
+  italicText() {
+    console.log('italic')
+    return true;
+  }
+
+  centerText() {
+    console.log('center')
+    return true;
+  }
+
   focusToolbar() {
     console.log('toolbar')
+    return true;
   }
 }
 

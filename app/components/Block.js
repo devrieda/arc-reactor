@@ -39,7 +39,7 @@ var Block = React.createClass({
     var meta = this.props.content.meta || {};
     for (var property in meta) {
       if (meta.hasOwnProperty(property)) {
-        attr[`data-#{property}`] = meta[property];
+        attr[`data-${property}`] = meta[property];
       }
     }
     return attr;

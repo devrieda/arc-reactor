@@ -26,13 +26,13 @@ class KeyIntent {
     if (!this.metaKey && !this.ctrlKey) { return; }
 
     if (this.keyCode == CODES['b']) {
-      this.intent = 'boldText';
+      this.intent = 'pressBold';
 
     } else if (this.keyCode == CODES['i']) {
-      this.intent = 'italicText';
+      this.intent = 'pressItalic';
 
     } else if (this.keyCode == CODES['e']) {
-      this.intent = 'centerText';
+      this.intent = 'pressCenter';
     }
   }
 

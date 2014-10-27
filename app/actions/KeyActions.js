@@ -6,6 +6,10 @@ var BspaceKey = require('./keys/BspaceKey');
 var DeleteKey = require('./keys/DeleteKey');
 var OtherKey = require('./keys/OtherKey');
 
+var BoldButton = require('./buttons/BoldButton');
+var ItalicButton = require('./buttons/ItalicButton');
+var CenterButton = require('./buttons/CenterButton');
+
 class KeyActions {
   constructor() {
     this.content   = ContentState.get();
@@ -34,19 +38,22 @@ class KeyActions {
     return key.press();
   }
 
-  boldText() {
-    console.log('bold')
-    return true;
+  pressBold() {
+    var active = false;
+    var button = new BoldButton(this.content, this.selection);
+    return button.press(active);
   }
 
-  italicText() {
-    console.log('italic')
-    return true;
+  pressItalic() {
+    var active = false;
+    var button = new ItalicButton(this.content, this.selection);
+    return button.press(active);
   }
 
-  centerText() {
-    console.log('center')
-    return true;
+  pressCenter() {
+    var active = false;
+    var button = new CenterButton(this.content, this.selection);
+    return button.press(active);
   }
 
   focusToolbar() {

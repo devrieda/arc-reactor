@@ -68,7 +68,7 @@ var MenuItem = React.createClass({
   render() {
     return (
       <li className={this.itemClasses()} key={this.props.type}>
-        <button className={this.buttonClasses()} data-action={this.props.type}>
+        <button className={this.buttonClasses()} data-action={this.props.action}>
           <i className={this.iconClasses()}></i>
           <span className={this.textClasses()}>{this.props.text}</span>
         </button>

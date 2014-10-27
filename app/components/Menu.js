@@ -6,6 +6,7 @@ var MenuItem = require('./MenuItem');
 var Selection = require('../modules/Selection');
 var SelectionState = require('../state/SelectionState');
 var MenuActions = require('../actions/MenuActions');
+var BaseButton = require('../actions/buttons/BaseButton');
 
 require('../stylesheets/Menu.scss');
 
@@ -44,8 +45,8 @@ var Menu = React.createClass({
     var active = target.className.indexOf('active') != -1;
 
     // toggle link mode
-    if ((action == 'a' && !active) || action == 'cancelLink') {
-      this.setState({linkMode: (action == 'a')});
+    if ((action == 'Link' && !active) || action == 'cancelLink') {
+      this.setState({linkMode: (action == 'Link')});
 
     } else if (action) {
       this.actions.pressButton(action, active);
@@ -56,7 +57,7 @@ var Menu = React.createClass({
     if (e.keyCode != returnKey) { return; }
 
     // add link href
-    this.actions.createLink('a', false, e.target.value);
+    this.actions.pressLink('a', false, e.target.value);
     this.refs.linkInput.getDOMNode().value = "";
     SelectionState.set({selection: new Selection});
   },
@@ -70,16 +71,7 @@ var Menu = React.createClass({
            types.indexOf('h4') != -1
   },
   buttonTypes() {
-    var buttons = [
-      {type: 'strong',     icon: 'fa-bold',         text: 'Bold'},
-      {type: 'em',         icon: 'fa-italic',       text: 'Italic'},
-      {type: 'h2',         icon: null,              text: 'H1'},
-      {type: 'h3',         icon: null,              text: 'H2'},
-      {type: 'h4',         icon: null,              text: 'H3'},
-      {type: 'center',     icon: 'fa-align-center', text: 'Center'},
-      {type: 'blockquote', icon: 'fa-quote-left',   text: 'Quote'},
-      {type: 'a',          icon: 'fa-link',         text: 'Link'}
-    ];
+    var buttons = BaseButton.types();
     return this.isHeader() ? buttons.slice(2) : buttons;
   },
   menuClasses() {
@@ -122,6 +114,7 @@ var Menu = React.createClass({
                       type={button.type}
                       text={button.text}
                       icon={button.icon}
+                    action={button.action}
                  selection={this.state.selection} />
     });
 
@@ -138,7 +131,7 @@ var Menu = React.createClass({
 
             <button className="ic-Editor-Menu__linkinput_button ic-Editor-MenuItem__button" data-action="cancelLink">
               <i className="ic-Editor-MenuItem__icon fa fa-times"></i>
-              <span className="ic-Editor-MenuItem__icon-text screenreader-only">Close</span>
+              <span className="ic-Editor-MenuItem__icon-text ic-Editor-MenuItem__icon-text--sr">Close</span>
             </button>
           </div>
         </div>

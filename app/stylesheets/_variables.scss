@@ -9,12 +9,12 @@ $rule-color: rgba(0,0,0,0.15);
 $link-color: rgba(0,153,224,1.0);
 
 // menu
-$menu-color: #0097e2;
+$menu-color: rgba(0, 151, 226, 1);
 $menu-placeholder-color: rgba(255, 255, 255, 0.5);
 $button-text-off-color: rgba(255, 255, 255, 1);
 $button-text-on-color: rgba(255, 255, 255, 1);
 $button-border-color:  rgba(255, 255, 255, 0.1);
-$button-on-color: #007db7;
+$button-on-color: rgba(0, 128, 191, 1);
 
 // typography
 $editor-font: Georgia, "Times New Roman", Times, serif;
@@ -22,10 +22,8 @@ $header-font: "Helvetica Neue", arial, helvetica, sans-serif;
 
 $base-font-size: 22px;
 
-
 // layout
 $max-width: 700px;
-
 
 // ------- mixins --------
 @mixin screenreader() {

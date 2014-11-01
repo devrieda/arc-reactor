@@ -14,12 +14,8 @@
 .ic-Editor-Menu__inner {
   position: relative;
   height: 43px;
-  border: 1px solid;
-  border-color: #262625 #1c1c1b #121211;
   box-shadow: 0 1px 3px -1px rgba(0,0,0,0.8),inset 0 0 1px rgba(255,255,255,0.07),inset 0 0 2px rgba(255,255,255,0.15);
-  background-image: linear-gradient(to bottom, rgba(49,49,47,0.97), #262625);
-  background-repeat: repeat-x;
-  border-radius: 5px;
+  background-color: $menu-color;
 }
 
 .ic-Editor-Menu__items {
@@ -53,7 +49,7 @@
   left: 0;
   width: 100%;
   padding: 11px 40px 11px 10px;
-  color: #fff;
+  color: $button-text-off-color;
   border: none;
   outline: none;
   font-size: 16px;
@@ -63,40 +59,36 @@
   letter-spacing: 0.01rem;
   font-weight: 400;
   font-style: normal;
+
+  &::-webkit-input-placeholder {
+    color: $menu-placeholder-color;
+  }
+  &::-moz-placeholder {
+    color: $menu-placeholder-color;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    color: $menu-placeholder-color;
+  }
 }
+
 .ic-Editor-Menu__linkinput_button {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 4px;
 }
 
 .ic-Editor-Menu__arrow-clip {
   position: absolute;
-  bottom: -12px;
+  bottom: -9px;
   left: 50%;
-  clip: rect(12px 24px 24px 0);
   margin-left: -12px;
 }
-
 .ic-Editor-Menu__arrow {
   display: block;
-  width: 20px;
-  height: 20px;
-  background-color: #454543;
-  border: 2px solid #121211;
-  transform: rotate(45deg) scale(.5);
-}
-.ic-Editor-Menu:after {
-  content: '';
-  display: block;
-  position: absolute;
-  bottom: -3px;
-  left: 50%;
-  margin-left: -4px;
-  width: 8px;
-  height: 8px;
-  background: #262625;
-  box-shadow: 0 0 2px #262625;
-  transform: rotate(45deg);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent !important;
+  border-right: 10px solid transparent !important;
+  border-top: 10px solid $menu-color;
 }

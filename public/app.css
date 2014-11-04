@@ -8,3 +8,8 @@ div .ic-Editor-Block--header {
 div .ic-Editor {
   font-family: "calluna", Georgia, "Times New Roman", Times, serif;
 }
+
+h2.title {
+  font-family: "proxima-nova", "Helvetica Neue", arial, helvetica, sans-serif;
+  margin: 20px;
+}

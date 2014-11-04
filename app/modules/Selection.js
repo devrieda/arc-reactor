@@ -24,9 +24,7 @@ class Selection {
     if (!this.anchorGuid || !this.focusGuid) { return false; }
 
     // do we need to reselect?
-    if (this.selection.type == 'Range') { 
-      return this._initBounds();
-    }
+    if (this.selection.type == 'Range') { return this._initBounds(); }
 
     // set the range based on selection node state
     var startNode = this._anchorTextNode();

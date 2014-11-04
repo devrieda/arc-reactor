@@ -26,4 +26,4 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(<App/>, document.body);
+React.renderComponent(<App/>, document.getElementById("editor"));

@@ -10,15 +10,14 @@
 //   focusOffset: 10
 //
 class Selection {
-  constructor() {
-    this.selection = document.getSelection();
+  constructor(selection) {
+    this.selection = selection;
 
     if (this._isValid()) {
       this._initNodes();
       this._initBounds();
       this._initMeta();
     }
-    console.log(this)
   }
 
   reselect() {

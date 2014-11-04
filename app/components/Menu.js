@@ -15,7 +15,7 @@ var classSet = React.addons.classSet;
 var Menu = React.createClass({
   getInitialState() {
     return {
-      selection: new Selection,
+      selection: new Selection(document.getSelection()),
       linkMode: false
     }
   },
@@ -59,7 +59,7 @@ var Menu = React.createClass({
     // add link href
     this.actions.pressLink('a', false, e.target.value);
     this.refs.linkInput.getDOMNode().value = "";
-    SelectionState.set({selection: new Selection});
+    SelectionState.set({selection: new Selection(document.getSelection())});
   },
 
   isHeader() {

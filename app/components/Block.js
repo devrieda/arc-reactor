@@ -13,7 +13,7 @@ var Block = React.createClass({
 
   getDefaultProps() {
     return {
-      content: { type: "p", text: "", meta: {}, blocks: [], inlines: [] }
+      content: { type: "p", text: "", meta: {}, blocks: [], markups: {} }
     }
   },
 
@@ -21,11 +21,11 @@ var Block = React.createClass({
     if (this.isEmpty()) { return '<br />'; }
 
     var text    = this.props.content.text;
-    var inlines = this.props.content.inlines || [];
+    var markups = this.props.content.markups || {};
     if (!text) { return text; }
 
     var formatter = new Formatter(text);
-    var formatted = formatter.applyMarkup(inlines);
+    var formatted = formatter.applyMarkup(markups);
 
     return formatted;
   },
@@ -83,9 +83,9 @@ var Block = React.createClass({
   render() {
     var attr = this.buildAttr();
     var reactDom = React.DOM[this.props.content.type];
-    var inlines = this.props.content.inlines || [];
+    var markups = this.props.content.markups || {};
 
-    if (inlines.length > 0 || this.isEmpty()) {
+    if (Object.keys(markups).length > 0 || this.isEmpty()) {
       attr.dangerouslySetInnerHTML = { __html: this.formattedText() }
       return reactDom(attr)
 

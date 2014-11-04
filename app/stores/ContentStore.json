@@ -110,31 +110,31 @@ var ContentStore = {
               "id": "e07e",
               "type": "p",
               "text": "The metal-based daguerreotype process soon had some competition from the paper-based calotype negative and salt print processes invented by Henry Fox Talbot. Subsequent innovations reduced the required camera exposure time from minutes to seconds and eventually to a small fraction of a second",
-              "inlines": [
-                {
-                  "type": "a",
-                  "value": "http://google.com",
-                  "offsetStart": 16,
-                  "offsetEnd": 29
-                }
-              ]
+              "markups": {
+                "links": [{
+                  "url": "http://google.com",
+                  "text": "daguerreotype",
+                  "start": 16,
+                  "end": 29
+                }]
+              }
             },
             {
               "id": "1d6f",
               "type": "p",
               "text": "And something here bold and italic words.",
-              "inlines": [
-                {
-                  "type": "strong",
-                  "offsetStart": 19,
-                  "offsetEnd": 23
-                },
-                {
-                  "type": "em",
-                  "offsetStart": 28,
-                  "offsetEnd": 34
-                },
-              ],
+              "markups": {
+                "bolds": [{
+                  "text": "bold",
+                  "start": 19,
+                  "end": 23
+                }],
+                "italics": [{
+                  "text": "italic",
+                  "start": 28,
+                  "end": 34
+                }]
+              }
             },
             {
               "id": "067c",

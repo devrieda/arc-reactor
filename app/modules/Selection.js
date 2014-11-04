@@ -1,3 +1,14 @@
+// Selection is an abstraction of the Dom selection object. It composes the 
+// Dom selection and caches additional info to make it simpler to interact
+// with the data in respect to the block and inline markup.
+//
+// selection
+//   anchorGuid: "1d6f"
+//   focusGuid: "1d6f"
+//
+//   anchorOffset: 2
+//   focusOffset: 10
+//
 class Selection {
   constructor() {
     this.selection = document.getSelection();
@@ -7,41 +18,52 @@ class Selection {
       this._initBounds();
       this._initMeta();
     }
+    console.log(this)
   }
 
   reselect() {
     if (!this.anchorGuid || !this.focusGuid) { return false; }
 
     // do we need to reselect?
-    if (this.selection.type == 'Range') { return this._boundsChanged(); }
+    if (this.selection.type == 'Range') { 
+      return this._boundsChanged();
+    }
 
     // set the range based on selection node state
-    var range = document.createRange();
     var startNode = this._anchorTextNode();
-    var endNode = this._focusTextNode();
+    var endNode   = this._focusTextNode();
+    var startOffset = this.anchorOffset;
+    var endOffset   = this.focusOffset;
 
-    range.setStart(startNode, this.anchorOffset);
-    range.setEnd(endNode, this.focusOffset);
+    this._setRange(startNode, endNode, startOffset, endOffset);
+
+    // user selected from back to front
+    if (this.selection.getRangeAt(0).collapsed) {
+      this._setRange(endNode, startNode, endOffset, startOffset);
+    }
+    return this._boundsChanged();
+  }
+  _setRange(startNode, endNode, startOffset, endOffset) {
+    var range = document.createRange();
+    range.setStart(startNode, startOffset);
+    range.setEnd(endNode, endOffset);
     this.selection.removeAllRanges();
     this.selection.addRange(range);
-
-    return this._boundsChanged();
   }
 
   focusOn(guid, offset) {
     this.anchorGuid = guid;
-    this.anchorOffset = offset || 0;
-    this.anchorPosition = 0;
-
     this.focusGuid  = guid;
-    this.focusOffset = offset || 0;
-    this.focusPosition = 0;
+
+    this.anchorOffset = offset || 0;
+    this.focusOffset  = offset || 0;
   }
 
+
+  // find position of selection
   isRange() {
     return this.selection.type == "Range";
   }
-
   endOfBlock() {
     var blockNode = this._anchorNode();
     var textNode  = this.selection.anchorNode;
@@ -50,7 +72,6 @@ class Selection {
     return textNode == blockNode ||
           (textNode == blockNode.lastChild && textNode.length == offset);
   }
-
   begOfBlock() {
     var blockNode = this._anchorNode();
     var textNode  = this.selection.anchorNode;
@@ -59,7 +80,6 @@ class Selection {
     return textNode == blockNode ||
            (textNode == blockNode.firstChild && offset == 0);
   }
-
   crossBlock() {
     return this.anchorGuid != this.focusGuid;
   }
@@ -102,33 +122,54 @@ class Selection {
     return node.getAttribute('data-align') == "center";
   }
 
+
   _initNodes() {
     this.anchorGuid   = this._anchorGuid();
     this.focusGuid    = this._focusGuid();
     this.anchorOffset = this.selection.anchorOffset;
     this.focusOffset  = this.selection.focusOffset;
-    this.anchorPosition = this._anchorPosition();
-    this.focusPosition  = this._focusPosition();
   }
   _anchorGuid() {
-    return this._anchorNode().getAttribute('name');
+    return this._anchorBlock().getAttribute('name');
   }
   _focusGuid() {
-    return this._focusNode().getAttribute('name');
+    return this._focusBlock().getAttribute('name');
   }
-  _anchorPosition() {
-    return Array.prototype.indexOf.call(
-      this._anchorNode().childNodes, this.selection.anchorNode
-    );
+  _anchorOffset() {
+    var anchor = this.selection.anchorNode;
   }
-  _focusPosition() {
-    var pos = Array.prototype.indexOf.call(
-      this._focusNode().childNodes, this.selection.focusNode
-    );
-    if (pos == -1) { pos = 0; }
-    return pos;
+  _focusOffset() {
+    var focus = this.selection.focusNode;
   }
 
+
+  // go up all the way to the block
+  _anchorBlock() {
+    var node = this._anchorNode();
+    while (!node.classList.contains("ic-Editor-Block")) {
+      node = node.parentNode;
+    }
+    return node;
+  }
+  _focusBlock() {
+    var node = this._focusNode();
+    while (!node.classList.contains("ic-Editor-Block")) {
+      node = node.parentNode;
+    }
+    return node;
+  }
+  // get the node (either inline or block)
+  _anchorNode() {
+    var node = this.selection.anchorNode;
+    return node && node.nodeType === 3 ? node.parentNode : node;
+  }
+  _focusNode() {
+    var node = this.selection.focusNode;
+    return node && node.nodeType === 3 ? node.parentNode : node;
+  }
+
+
+  // selection bounds
   _initBounds() {
     var bounds = this._bounds();
     this.top = bounds.top;
@@ -152,29 +193,31 @@ class Selection {
     }
   }
 
-  _anchorNode() {
-    var node = this.selection.anchorNode;
-    return node && node.nodeType === 3 ? node.parentNode : node;
-  }
-  _focusNode() {
-    var node = this.selection.focusNode;
-    return node && node.nodeType === 3 ? node.parentNode : node;
-  }
 
+  // get the text
   _anchorTextNode() {
-    return this._textNode(this.anchorGuid, this.anchorPosition);
+    return this._textNode(this.anchorGuid, this.anchorOffset);
   }
   _focusTextNode() {
-    return this._textNode(this.focusGuid, this.focusPosition);
+    return this._textNode(this.focusGuid, this.focusOffset);
   }
-  _textNode(guid, position) {
-    if (position == -1) position = 0;
+  _textNode(guid, offset) {
+    var block = document.getElementsByClassName(`ic-Editor-Block--${guid}`)[0];
+    return this._findChild(block, offset)
+  }
+  _findChild(block, offset, pos) {
+    var pos = pos || 0;
+    var children = block.childNodes;
 
-    return this._blockNode(guid).childNodes[position];
-  }
-  _blockNode(guid) {
-    var klass = `ic-Editor-Block--${guid}`
-    return document.getElementsByClassName(klass)[0];
+    for (var i = 0, j = children.length; i < j; i++) {
+      var node = children[i];
+      if (node.nodeType == Node.TEXT_NODE) {
+        pos += node.length;
+        if (offset < pos) { return node; }
+      } else {
+        return this._findChild(node, offset, pos);
+      }
+    }
   }
 }
 

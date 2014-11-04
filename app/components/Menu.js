@@ -99,12 +99,13 @@ var Menu = React.createClass({
     if (!this.state.selection.types) { return {}; }
 
     var selection = this.state.selection;
+    var bounds = selection.bounds;
     var buttonHeight = 50;
     var menuWidth = this.buttonTypes().length * 38;
 
     return {
-      top: window.pageYOffset + selection.top - buttonHeight,
-      left: selection.left + (selection.width / 2) - (menuWidth / 2)
+      top: window.pageYOffset + bounds.top - buttonHeight,
+      left: bounds.left + (bounds.width / 2) - (menuWidth / 2)
     };
   },
 

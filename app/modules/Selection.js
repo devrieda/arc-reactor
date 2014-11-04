@@ -26,7 +26,7 @@ class Selection {
 
     // do we need to reselect?
     if (this.selection.type == 'Range') { 
-      return this._boundsChanged();
+      return this._initBounds();
     }
 
     // set the range based on selection node state
@@ -41,7 +41,7 @@ class Selection {
     if (this.selection.getRangeAt(0).collapsed) {
       this._setRange(endNode, startNode, endOffset, startOffset);
     }
-    return this._boundsChanged();
+    return this._initBounds();
   }
   _setRange(startNode, endNode, startOffset, endOffset) {
     var range = document.createRange();
@@ -171,26 +171,14 @@ class Selection {
 
   // selection bounds
   _initBounds() {
-    var bounds = this._bounds();
-    this.top = bounds.top;
-    this.left = bounds.left;
-    this.width = bounds.width;
-    this.height = bounds.height;
+    var old = this.bounds;
+    this.bounds = this._bounds();
+
+    return JSON.stringify(old) != JSON.stringify(this.bounds);
   }
   _bounds() {
     var range = this.selection.getRangeAt(0);
     return range.getBoundingClientRect();
-  }
-  _boundsChanged() {
-    var bounds = this._bounds();
-    var changed = (bounds.top != this.top || bounds.left != this.left ||
-                   bounds.width != this.width || bounds.height != this.height);
-    if (changed) {
-      this._initBounds();
-      return true;
-    } else {
-      return false;
-    }
   }
 
 

@@ -96,7 +96,7 @@ var Menu = React.createClass({
 
   // move menu to selected text
   menuStyles() {
-    if (!this.state.selection.types) { return {}; }
+    if (!this.state.selection.bounds) { return {}; }
 
     var selection = this.state.selection;
     var bounds = selection.bounds;

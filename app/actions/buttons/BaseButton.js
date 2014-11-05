@@ -41,8 +41,8 @@ class BaseButton {
 
     var markup = {
       type: tagName,
-      offsetStart: this.selection.anchorOffset,
-      offsetEnd: this.selection.focusOffset,
+      offsetStart: this.selection.anchor.offset,
+      offsetEnd: this.selection.focus.offset,
       text: this.selection.text
     }
 
@@ -85,7 +85,7 @@ class BaseButton {
   }
 
   findBlock() {
-    var guid = this.selection.anchorGuid;
+    var guid = this.selection.anchor.guid;
 
     var block = {};
     this.content.sections.forEach( (sect) => {

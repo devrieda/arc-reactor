@@ -31,9 +31,8 @@ class Selection {
     // set the range based on selection node state
     var startNode = this._anchorTextNode();
     var endNode   = this._focusTextNode();
-    var startOffset = this.anchorBlockOffset;
-    var endOffset   = this.focusBlockOffset;
-
+    var startOffset = this.anchorOffset;
+    var endOffset   = this.focusOffset;
     if (!startNode || !endNode) { return; }
 
     // set range, swap if user selected back to front
@@ -173,29 +172,29 @@ class Selection {
     return range.getBoundingClientRect();
   }
 
-  // reconstituting selection of node from attributes
+  // reconstituting selection of node from guids & offsets
   _anchorTextNode() {
     var block = this._blockNode(this.anchorGuid);
-    return this._findChild(block, this.anchorOffset)
+    console.log(block, this.anchorBlockOffset);
+    return this._findChild(block, this.anchorBlockOffset);
   }
   _focusTextNode() {
     var block = this._blockNode(this.focusGuid);
-    return this._findChild(block, this.focusOffset)
+    console.log(block, this.focusBlockOffset);
+    return this._findChild(block, this.focusBlockOffset);
   }
   _blockNode(guid) {
     return document.getElementsByClassName(`ic-Editor-Block--${guid}`)[0];
   }
-  _findChild(block, offset, pos) {
-    var pos = pos || 0;
-    var children = block.childNodes;
-
-    for (var i = 0, j = children.length; i < j; i++) {
-      var child = children[i];
-      if (child.nodeType == Node.TEXT_NODE) {
-        pos += child.length;
-        if (offset < pos) { return child; }
+  _findChild(block, offset) {
+    var nodes = this._textNodes(block);
+    var total = 0;
+    for (var i = 0, j = nodes.length; i < j; i++) {
+      var len = nodes[i].length;
+      if (total + len >= offset) {
+        return nodes[i];
       } else {
-        return this._findChild(child, offset, pos);
+        total += len;
       }
     }
   }

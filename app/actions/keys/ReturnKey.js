@@ -7,7 +7,7 @@ class ReturnKey extends BaseKey {
 
     // caret
     } else {
-      var guid = this.selection.anchorGuid;
+      var guid = this.selection.anchor.guid;
 
       if (this.selection.endOfBlock()) {
         var block = this.findBlock(guid)
@@ -18,7 +18,7 @@ class ReturnKey extends BaseKey {
         // finish list
         if (block.type == 'li' && text === '') {
           var guid = this.findParentBlock(guid).id;
-          this.removeBlock(this.selection.anchorGuid);
+          this.removeBlock(this.selection.anchor.guid);
           this.insertBlock('p', 'after', guid);
 
         // add to a list
@@ -42,7 +42,7 @@ class ReturnKey extends BaseKey {
       } else {
         var block = this.findBlock(guid)
         var text  = block.text;
-        var offset = this.selection.anchorOffset;
+        var offset = this.selection.anchor.offset;
 
         block.text = block.text.substring(0, offset);
         this.insertBlock('p', 'after', guid, text.substring(offset));

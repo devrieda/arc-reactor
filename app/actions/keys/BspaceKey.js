@@ -6,7 +6,7 @@ class BspaceKey extends BaseKey {
       return this.combineBlocks();
 
     } else if (this.selection.begOfBlock()) {
-      var guid = this.selection.anchorGuid;
+      var guid = this.selection.anchor.guid;
 
       // get text for this node
       // delete this node

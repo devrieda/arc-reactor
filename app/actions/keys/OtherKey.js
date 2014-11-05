@@ -2,7 +2,7 @@ var BaseKey = require('./BaseKey');
 
 class OtherKey extends BaseKey {
   press() {
-    var guid = this.selection.anchorGuid;
+    var guid = this.selection.anchor.guid;
 
     // find anchor block node by guid
     var klass = `ic-Editor-Block--${guid}`

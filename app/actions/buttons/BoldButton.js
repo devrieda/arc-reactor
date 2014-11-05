@@ -44,14 +44,14 @@ class BoldButton extends BaseButton {
 
   markup() {
     return {
-      "start": this.selection.anchorBlockOffset,
-      "end":   this.selection.focusBlockOffset,
+      "start": this.selection.anchor.blockOffset,
+      "end":   this.selection.focus.blockOffset,
       "text":  this.selection.text
     }
   }
 
   findBlock() {
-    var guid = this.selection.anchorGuid;
+    var guid = this.selection.anchor.guid;
 
     var block = {};
     this.content.sections.forEach( (sect) => {

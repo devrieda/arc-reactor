@@ -5,7 +5,7 @@ class CenterButton extends BaseButton {
     var block = this.findBlock();
     block.meta = block.meta || {}
 
-    if (active) {
+    if (block.meta.align == "center") {
       delete block.meta.align;
       this.selection.centered = false;
     } else {

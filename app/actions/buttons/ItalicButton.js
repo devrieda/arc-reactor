@@ -2,7 +2,7 @@ var BaseButton = require('./BaseButton');
 
 class ItalicButton extends BaseButton {
 
-  press() {
+  press(active) {
     var block = this.findContentBlock();
     var active = this.selection.types.indexOf("em") != -1;
 
@@ -18,6 +18,7 @@ class ItalicButton extends BaseButton {
 
     this.flushContent();
     this.flushSelection();
+    return true;
   }
 
   markup() {
@@ -27,7 +28,6 @@ class ItalicButton extends BaseButton {
       "text":  this.selection.text
     }
   }
-
 
   addMarkup(block, type, markup) {
     block.markups.italics = block.markups.italics || [];

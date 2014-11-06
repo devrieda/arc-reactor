@@ -39,21 +39,18 @@ class KeyActions {
   }
 
   pressBold() {
-    var active = false;
     var button = new BoldButton(this.content, this.selection);
-    return button.press(active);
+    return button.press();
   }
 
   pressItalic() {
-    var active = false;
     var button = new ItalicButton(this.content, this.selection);
-    return button.press(active);
+    return button.press();
   }
 
   pressCenter() {
-    var active = false;
     var button = new CenterButton(this.content, this.selection);
-    return button.press(active);
+    return button.press();
   }
 
   focusToolbar() {

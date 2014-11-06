@@ -2,7 +2,7 @@ var BaseButton = require('./BaseButton');
 
 class LinkButton extends BaseButton {
 
-  press() {
+  press(active, value) {
     var block = this.findContentBlock();
     var active = this.selection.types.indexOf("a") != -1;
 

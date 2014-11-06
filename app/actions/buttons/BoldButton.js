@@ -2,7 +2,7 @@ var BaseButton = require('./BaseButton');
 
 class BoldButton extends BaseButton {
 
-  press() {
+  press(active) {
     var block = this.findContentBlock();
     var active = this.selection.types.indexOf("strong") != -1;
 
@@ -18,6 +18,7 @@ class BoldButton extends BaseButton {
 
     this.flushContent();
     this.flushSelection();
+    return true;
   }
 
   markup() {

@@ -26,16 +26,14 @@ class Selection {
     if (this.selection.type == 'Range') { return this._initBounds(); }
 
     // set the range based on selection node state
-    var startNode   = this.anchor.textNode();
-    var startOffset = this.anchor.textOffset();
-    var endNode     = this.focus.textNode();
-    var endOffset   = this.focus.textOffset();
-    if (!startNode || !endNode) { return; }
+    var start = this.anchor.textNodeOffset();
+    var end   = this.focus.textNodeOffset();
+    if (!start.node || !end.node) { return; }
 
     // set range, swap if user selected back to front
-    this._setRange(startNode, endNode, startOffset, endOffset);
+    this._setRange(start.node, end.node, start.offset, end.offset);
     if (this.selection.getRangeAt(0).collapsed) {
-      this._setRange(endNode, startNode, endOffset, startOffset);
+      this._setRange(end.node, start.node, end.offset, start.offset);
     }
     return this._initBounds();
   }

@@ -3,7 +3,7 @@ var BaseButton = require('./BaseButton');
 class BoldButton extends BaseButton {
 
   press() {
-    var block = this.findBlock();
+    var block = this.findContentBlock();
     var active = this.selection.types.indexOf("strong") != -1;
 
     // init markups
@@ -11,35 +11,13 @@ class BoldButton extends BaseButton {
 
     // remove from bold
     if (block.markups.bolds && active) {
-      this.removeMarkup(block);
+      this.removeMarkup(block, "strong", this.markup());
     } else {
-      this.addMarkup(block);
+      this.addMarkup(block, "strong", this.markup());
     }
 
     this.flushContent();
     this.flushSelection();
-  }
-
-  addMarkup(block) {
-    var markup = this.markup();
-
-    block.markups.bolds = block.markups.bolds || [];
-    block.markups.bolds.push(markup)
-    this.selection.types.push('strong');
-  }
-
-  removeMarkup(block) {
-    var markup = this.markup();
-    var jsonMarkup = JSON.stringify(markup);
-
-    var idx = 0;
-    block.markups.bolds.forEach( (bold, i) => {
-      if (JSON.stringify(bold) === jsonMarkup) { idx = i; }
-    })
-    block.markups.bolds.splice(idx, 1);
-
-    var idx = this.selection.types.indexOf('strong');
-    this.selection.types.splice(idx, 1)
   }
 
   markup() {
@@ -50,7 +28,27 @@ class BoldButton extends BaseButton {
     }
   }
 
-  findBlock() {
+  addMarkup(block, type, markup) {
+    block.markups.bolds = block.markups.bolds || [];
+    block.markups.bolds.push(markup)
+    this.selection.types.push(type);
+  }
+
+  removeMarkup(block, type, markup) {
+    var jsonMarkup = JSON.stringify(markup);
+
+    var idx = 0;
+    block.markups.bolds.forEach( (bold, i) => {
+      if (JSON.stringify(bold) === jsonMarkup) { idx = i; }
+    })
+    block.markups.bolds.splice(idx, 1);
+
+    var idx = this.selection.types.indexOf(type);
+    this.selection.types.splice(idx, 1)
+  }
+
+
+  findContentBlock() {
     var guid = this.selection.anchor.guid;
 
     var block = {};
@@ -60,7 +58,7 @@ class BoldButton extends BaseButton {
       });
     });
     return block;
-  } 
+  }
 }
 
 module.exports = BoldButton;

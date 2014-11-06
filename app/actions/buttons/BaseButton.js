@@ -36,47 +36,6 @@ class BaseButton {
     this.flushSelection();
   }
 
-  changeInlineTag(tagName, active) {
-    var block = this.findBlock();
-
-    var markup = {
-      type: tagName,
-      offsetStart: this.selection.anchor.offset,
-      offsetEnd: this.selection.focus.offset,
-      text: this.selection.text
-    }
-
-    if (block.inlines) {
-      var jsonMarkup = JSON.stringify(markup);
-
-      // check if we already added the markup
-      var index = null;
-      block.inlines.forEach( (inline, i) => {
-        if (JSON.stringify(inline) === jsonMarkup) { index = i; }
-      });
-
-      // remove it
-      if (index !== null) {
-        block.inlines.splice(index, 1);
-        var idx = this.selection.types.indexOf(tagName);
-        this.selection.types.splice(idx, 1)
-
-      // add to markup
-      } else {
-        block.inlines.push(markup);
-        this.selection.types.push(tagName);
-      }
-
-    // no markup yet in this block
-    } else {
-      block.inlines = [markup];
-      this.selection.types.push(tagName);
-    }
-
-    this.flushContent();
-    this.flushSelection();
-  }
-
   flushContent() {
     ContentState.set({content: this.content});
   }

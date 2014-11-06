@@ -12,23 +12,8 @@ class SelectionNode {
   // reconstituting selection of node from guids & offsets
   textNodeOffset() {
     if (!this.guid) { return {}; }
-
     var block = this._blockByGuid(this.guid);
     return this._findNodeOffset(block, this.blockOffset);
-  }
-
-  _findNodeOffset(block, offset) {
-    var nodes = this._textNodes(block);
-
-    for (var i = 0, j = nodes.length; i < j; i++) {
-      var len = nodes[i].length;
-      if (offset - len <= 0) {
-        return {'node': nodes[i], 'offset': offset };
-      } else {
-        offset -= len;
-      }
-    }
-    return {};
   }
 
   // upstream tag types
@@ -53,14 +38,9 @@ class SelectionNode {
   }
 
   focusOn(guid, offset) {
-    var block = this._blockByGuid(guid);
-    var node  = this._findChild(block, offset);
-
-    this.node   = node;
+    this.guid   = guid;
     this.offset = offset;
-    this._initNodes();
   }
-
 
   _initNodes() {
     var domNode = this._domNode();
@@ -98,6 +78,22 @@ class SelectionNode {
 
   _blockByGuid(guid) {
     return document.getElementsByClassName(`${CLASS_NAMES.block}--${guid}`)[0];
+  }
+
+  _findNodeOffset(block, offset) {
+    var nodes = this._textNodes(block);
+
+    for (var i = 0, j = nodes.length; i < j; i++) {
+      var len = nodes[i].length;
+      if (offset - len <= 0) {
+        return {'node': nodes[i], 'offset': offset };
+      } else {
+        offset -= len;
+      }
+    }
+
+    // no text node found, default to the first node
+    return block.firstChild ? {'node': block.firstChild, 'offset': 0} : {};
   }
 
   // find the total offset for the parent block

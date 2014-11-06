@@ -33,7 +33,7 @@ class BaseKey {
     delete block.text
 
     block.type = type;
-    items = [
+    var items = [
       this.newBlock('li', text.replace(/^[-*\d]\.?\s?/g, '')),
       this.newBlock('li', '')
     ]

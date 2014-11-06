@@ -38,8 +38,8 @@ class SelectionNode {
   }
 
   focusOn(guid, offset) {
-    this.guid   = guid;
-    this.offset = offset;
+    this.guid = guid;
+    this.blockOffset = offset;
   }
 
   _initNodes() {

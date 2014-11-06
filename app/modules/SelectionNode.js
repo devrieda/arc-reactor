@@ -22,7 +22,7 @@ class SelectionNode {
 
     for (var i = 0, j = nodes.length; i < j; i++) {
       var len = nodes[i].length;
-      if (offset - len < 0) {
+      if (offset - len <= 0) {
         return {'node': nodes[i], 'offset': offset };
       } else {
         offset -= len;
@@ -133,7 +133,7 @@ class SelectionNode {
   // recursively find text nodes within a dom node
   _textNodes(node, textNodes) {
     var textNodes = textNodes || [];
-    var children = node.childNodes;
+    var children = node ? node.childNodes : [];
 
     for (var i = 0, j = children.length; i < j; i++) {
       var child = children[i];

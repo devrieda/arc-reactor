@@ -28,6 +28,7 @@ class SelectionNode {
         offset -= len;
       }
     }
+    return {};
   }
 
   // upstream tag types

@@ -94,7 +94,7 @@ var ContentStore = {
               ]
             }
           ]
-        }, 
+        },
         {
           "id": "9fb3",
           "blocks": [
@@ -147,8 +147,33 @@ var ContentStore = {
             {
               "id": "e5fe",
               "type": "p",
-              "text": "And more paragraphs of text"
+              "text": "And more paragraphs of text that are <b>escaped</b>"
+            },
+            {
+              "id": "e5ff",
+              "type": "p",
+              "text": "And that can combine both markup and <b>escaped</b>",
+              "markups": {
+                "bolds": [{
+                  "text": "both",
+                  "start": 21,
+                  "end": 25
+                }],
+                "italics": [{
+                  "text": "both",
+                  "start": 21,
+                  "end": 25
+                }],
+                "links": [{
+                  "url": "http://google.com",
+                  "text": "both",
+                  "start": 21,
+                  "end": 25
+                }]
+              }
+
             }
+
           ]
         }
       ]}

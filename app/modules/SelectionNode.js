@@ -1,3 +1,5 @@
+var DomNode = require('./DomNode');
+
 var CLASS_NAMES = {
   block: "ic-Editor-Block"
 }
@@ -49,7 +51,7 @@ class SelectionNode {
     this.domNode     = domNode;
     this.blockNode   = this._blockNode();
     this.guid        = this.blockNode.getAttribute('name');
-    this.blockOffset = this._nodeOffset(this.blockNode, this.node, this.offset);
+    this.blockOffset = this._blockOffset(this.blockNode, this.node, this.offset);
   }
 
   _isValid(node) {
@@ -81,7 +83,7 @@ class SelectionNode {
   }
 
   _findNodeOffset(block, offset) {
-    var nodes = this._textNodes(block);
+    var nodes = new DomNode(block).textNodes();
 
     for (var i = 0, j = nodes.length; i < j; i++) {
       var len = nodes[i].length;
@@ -97,8 +99,9 @@ class SelectionNode {
   }
 
   // find the total offset for the parent block
-  _nodeOffset(block, node, offset) {
-    var nodes = this._textNodes(block);
+  _blockOffset(block, node, offset) {
+    var nodes = new DomNode(block).textNodes();
+
     var total = 0;
     for (var i = 0, j = nodes.length; i < j; i++) {
       if (nodes[i] == node) {
@@ -111,36 +114,6 @@ class SelectionNode {
     return total;
   }
 
-  // find the child node at the given offset
-  _findChild(block, offset) {
-    var nodes = this._textNodes(block);
-    var total = 0;
-
-    for (var i = 0, j = nodes.length; i < j; i++) {
-      var len = nodes[i].length;
-      if (total + len >= offset) {
-        return nodes[i];
-      } else {
-        total += len;
-      }
-    }
-  }
-
-  // recursively find text nodes within a dom node
-  _textNodes(node, textNodes) {
-    var textNodes = textNodes || [];
-    var children = node ? node.childNodes : [];
-
-    for (var i = 0, j = children.length; i < j; i++) {
-      var child = children[i];
-      if (child.nodeType == Node.TEXT_NODE) {
-        textNodes.push(child);
-      } else {
-        this._textNodes(child, textNodes);
-      }
-    }
-    return textNodes;
-  } 
 }
 
 module.exports = SelectionNode;

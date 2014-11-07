@@ -1,4 +1,4 @@
-var DomNode = require('./DomNode');
+var BlockNode = require('./BlockNode');
 
 var CLASS_NAMES = {
   block: "ic-Editor-Block"
@@ -6,16 +6,25 @@ var CLASS_NAMES = {
 
 class SelectionNode {
   constructor(node, offset) {
-    this.node   = node;
-    this.offset = offset;
-    this._initNodes();
+    this.node    = node;
+    this.offset  = offset;
+    this.domNode = this._domNode();
+
+    if (this._isValid(this.domNode)) {
+      this.blockNode = this._blockNode();
+      this.guid      = this.blockNode.getAttribute('name');
+
+      var bn = new BlockNode(this.blockNode);
+      this.blockOffset = bn.blockOffset(this.node, this.offset);
+    }
   }
 
   // reconstituting selection of node from guids & offsets
   textNodeOffset() {
     if (!this.guid) { return {}; }
-    var block = this._blockByGuid(this.guid);
-    return this._findNodeOffset(block, this.blockOffset);
+
+    var block = this._blockNodeByGuid(this.guid);
+    return new BlockNode(block).nodeOffset(this.blockOffset);
   }
 
   // upstream tag types
@@ -44,19 +53,8 @@ class SelectionNode {
     this.blockOffset = offset;
   }
 
-  _initNodes() {
-    var domNode = this._domNode();
-    if (!this._isValid(domNode)) { return; }
-
-    this.domNode     = domNode;
-    this.blockNode   = this._blockNode();
-    this.guid        = this.blockNode.getAttribute('name');
-    this.blockOffset = this._blockOffset(this.blockNode, this.node, this.offset);
-  }
-
   _isValid(node) {
     if (!node) { return false; }
-
     while (node.tagName && !node.getAttribute('contenteditable')) {
       node = node.parentNode;
     }
@@ -78,42 +76,10 @@ class SelectionNode {
     return node;
   }
 
-  _blockByGuid(guid) {
+  // find block node by the guid
+  _blockNodeByGuid(guid) {
     return document.getElementsByClassName(`${CLASS_NAMES.block}--${guid}`)[0];
   }
-
-  _findNodeOffset(block, offset) {
-    var nodes = new DomNode(block).textNodes();
-
-    for (var i = 0, j = nodes.length; i < j; i++) {
-      var len = nodes[i].length;
-      if (offset - len <= 0) {
-        return {'node': nodes[i], 'offset': offset };
-      } else {
-        offset -= len;
-      }
-    }
-
-    // no text node found, default to the first node
-    return block.firstChild ? {'node': block.firstChild, 'offset': 0} : {};
-  }
-
-  // find the total offset for the parent block
-  _blockOffset(block, node, offset) {
-    var nodes = new DomNode(block).textNodes();
-
-    var total = 0;
-    for (var i = 0, j = nodes.length; i < j; i++) {
-      if (nodes[i] == node) {
-        total += offset;
-        break;
-      } else {
-        total += nodes[i].length;
-      }
-    }
-    return total;
-  }
-
 }
 
 module.exports = SelectionNode;

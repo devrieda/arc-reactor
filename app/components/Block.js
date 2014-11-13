@@ -20,12 +20,11 @@ var Block = React.createClass({
   formattedText() {
     if (this.isEmpty()) { return '<br />'; }
 
-    var text    = this.props.content.text;
-    var markups = this.props.content.markups || {};
+    var text = this.props.content.text;
     if (!text) { return text; }
 
     var formatter = new Formatter(text);
-    var formatted = formatter.applyMarkup(markups);
+    var formatted = formatter.applyMarkup(this.props.content.markups);
 
     return formatted;
   },

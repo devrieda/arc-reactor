@@ -24,6 +24,7 @@ class KeyIntent {
   // determine intent
   checkMarkupHotkey() {
     if (!this.metaKey && !this.ctrlKey) { return; }
+    if (this.altKey) { return; }
 
     if (this.keyCode == CODES['b']) {
       this.intent = 'pressBold';

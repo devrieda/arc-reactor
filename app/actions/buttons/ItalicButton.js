@@ -23,7 +23,7 @@ class ItalicButton extends BaseButton {
 
   markup() {
     return {
-      "start": this.selection.anchor.blockOffset,
+      "begin": this.selection.anchor.blockOffset,
       "end":   this.selection.focus.blockOffset,
       "text":  this.selection.text
     }

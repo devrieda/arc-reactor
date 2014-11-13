@@ -114,7 +114,7 @@ var ContentStore = {
                 "links": [{
                   "url": "http://google.com",
                   "text": "daguerreotype",
-                  "start": 16,
+                  "begin": 16,
                   "end": 29
                 }]
               }
@@ -126,12 +126,12 @@ var ContentStore = {
               "markups": {
                 "bolds": [{
                   "text": "bold",
-                  "start": 19,
+                  "begin": 19,
                   "end": 23
                 }],
                 "italics": [{
                   "text": "italic",
-                  "start": 28,
+                  "begin": 28,
                   "end": 34
                 }]
               }
@@ -156,18 +156,18 @@ var ContentStore = {
               "markups": {
                 "bolds": [{
                   "text": "both",
-                  "start": 21,
+                  "begin": 21,
                   "end": 25
                 }],
                 "italics": [{
                   "text": "both",
-                  "start": 21,
+                  "begin": 21,
                   "end": 25
                 }],
                 "links": [{
                   "url": "http://google.com",
                   "text": "both",
-                  "start": 21,
+                  "begin": 21,
                   "end": 25
                 }]
               }

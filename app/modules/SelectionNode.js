@@ -24,7 +24,7 @@ class SelectionNode {
     if (!this.guid) { return {}; }
 
     var block = this._blockNodeByGuid(this.guid);
-    return new BlockNode(block).nodeOffset(this.blockOffset);
+    return new BlockNode(block).nodeOffset(this.blockOffset, true);
   }
 
   // upstream tag types

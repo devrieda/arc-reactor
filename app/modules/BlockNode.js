@@ -11,12 +11,14 @@ class BlockNode {
   }
 
   // find the node and offset given the blockOffset
-  nodeOffset(blockOffset) {
+  nodeOffset(blockOffset, isFocusOffset) {
+    var isFocusOffset = isFocusOffset || false
     var nodes = this.textNodes();
 
     for (var i = 0, j = nodes.length; i < j; i++) {
       var len = nodes[i].length;
-      if (blockOffset - len <= 0) {
+      var nodeOffset = isFocusOffset ? blockOffset-len-1 : blockOffset-len;
+      if (nodeOffset < 0) {
         return {'node': nodes[i], 'offset': blockOffset };
       } else {
         blockOffset -= len;

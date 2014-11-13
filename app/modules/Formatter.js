@@ -1,63 +1,94 @@
-// SUPER-HACK - just regexp in the markup. This will fail as soon as there
-// is a string with multiple of the same word marked up
+var BlockNode = require('./BlockNode');
+
+var CLASS_NAMES = {
+  bold:   "ic-Editor-Block__strong",
+  italic: "ic-Editor-Block__em",
+  link:   "ic-Editor-Block__a"
+}
+
+// Formats text with inline markup based on the markup begin/end indices. We
+// always next inline markups in the following order: a, strong, em. This
+// should always be consistent.
 //
 // <a href="#">
-// <strong>
-//   <em>Something</em>
-// </strong>
+//   <strong>
+//     <em>some text</em>
+//   </strong>
 // </a>
+//
 class Formatter {
+  // escape markup & create dom node from text to manipulate
   constructor(text) {
-    this.text = text;
+    this.node = document.createElement('div');
+    this.node.appendChild(document.createTextNode(text));
   }
 
   applyMarkup(markups) {
-    if (Object.keys(markups).length == 0) { return this.text; }
+    if (Object.keys(markups || {}).length == 0) {
+      return this.node.textContent;
+    }
 
-    this.text = this._escape(this.text);
+    this._applyMarkup(markups.links,   'a',      CLASS_NAMES.link);
+    this._applyMarkup(markups.bolds,   'strong', CLASS_NAMES.bold);
+    this._applyMarkup(markups.italics, 'em',     CLASS_NAMES.italic);
 
-    this.applyLinks(markups.links);
-    this.applyBolds(markups.bolds);
-    this.applyItalics(markups.italics);
-
-    return this.text;
+    return this.node.innerHTML;
   }
 
-  applyLinks(links) {
-    (links || []).forEach( (link) => {
-      var re = new RegExp(`(${link.text})`);
-      this.text = this.text.replace(re,
-        `<a class="ic-Editor-Block__a" href="${link.url}">$1</a>`);
+  _applyMarkup(markups, type, klass) {
+    var markups = markups || [];
+    var blockNode = new BlockNode(this.node);
+
+    markups.forEach( (markup) => {
+      var begin = blockNode.nodeOffset(markup.begin);
+      var end   = blockNode.nodeOffset(markup.end, true);
+      var url   = markup.url;
+
+      if (begin.node == end.node) {
+        // split up text using selection
+        var newNodes = this._formatNode(url, type, klass, begin, end);
+
+        // replace previous node with our new node
+        var parent = begin.node.parentNode;
+        parent.replaceChild(newNodes, begin.node);
+
+      } else {
+        console.log('no worky');
+        // it spans multiple nodes.... we'll figure that out later
+      }
     })
   }
 
-  applyBolds(bolds) {
-    (bolds || []).forEach( (bold) => {
-      var re = new RegExp(`(${bold.text})`);
-      this.text = this.text.replace(re,
-        "<strong class=\"ic-Editor-Block__strong\">$1</strong>");
-    })
+  _formatNode(url, type, klass, begin, end) {
+    var text = begin.node.textContent;
+
+    // our formatting markup node
+    var format = document.createElement(type);
+    format.setAttribute('class', klass);
+    if (url) {
+      format.setAttribute('href', url);
+    }
+
+    // text nodes
+    var beforeText = text.substring(0, begin.offset);
+    var before = document.createTextNode(beforeText);
+
+    var withinText = text.substring(begin.offset, end.offset);
+    var within = document.createTextNode(withinText);
+    format.appendChild(within);
+
+    var afterText = text.substring(end.offset);
+    var after = document.createTextNode(afterText);
+
+    // docfrag is good for performance
+    var docfrag = document.createDocumentFragment();
+    docfrag.appendChild(before);
+    docfrag.appendChild(format);
+    docfrag.appendChild(after);
+
+    return docfrag;
   }
 
-  applyItalics(italics) {
-    (italics || []).forEach( (italic) => {
-      var re = new RegExp(`(${italic.text})`);
-      this.text = this.text.replace(re,
-        "<em class=\"ic-Editor-Block__em\">$1</em>");
-    })
-  }
-
-  _escape(string) {
-    return String(string).replace(/[&<>"]/g, (s) => {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': '&quot;' }[s];
-    });
-  }
-
-  _strip(html) {
-    var tmp = document.createElement("DIV");
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || "";
-  }
 }
 
 module.exports = Formatter;

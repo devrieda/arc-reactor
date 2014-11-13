@@ -31,7 +31,7 @@ class SelectionNode {
   types() {
     var types = [];
     var node = this.domNode;
-    if (!node) { return types; }
+    if (!this._isValid(node)) { return types; }
 
     while (!node.classList.contains(CLASS_NAMES.block)) {
       types.push(node.tagName.toLowerCase());

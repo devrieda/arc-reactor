@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var Editor = require('./components/Editor.js');
-var Store = require('./stores/ContentStore.json');
+var Editor = require('../../lib/index');
+
+var Store = require('./ContentStore.js');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -26,4 +27,4 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(<App/>, document.getElementById("editor"));
+React.renderComponent(<App/>, document.getElementById("example"));

@@ -1,28 +1,56 @@
 {
   "name": "react-editor",
   "version": "0.0.1",
+  "description": "A rich content editor using React.js",
+  "main": "./lib/index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devrieda/react-editor.git"
+  },
+  "homepage": "https://github.com/devrieda/react-editor/blob/latest/README.md",
+  "directories": {
+    "example": "examples"
+  },
   "scripts": {
-    "test": "jest"
+    "test": "scripts/test --browsers Chrome --single-run",
+    "start": "scripts/dev-examples"
   },
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/preprocessor.js",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react"
-    ]
-  },
+  "authors": [
+    "Derek DeVries"
+  ],
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^0.11.2",
     "react-addons": "^0.9.0"
   },
+  "dependencies": {},
   "devDependencies": {
-    "react-tools": "^0.11.2",
-    "jest-cli": "^0.1.18",
-    "style-loader": "^0.8.1",
-    "css-loader": "^0.9.0",
     "autoprefixer-loader": "^1.0.0",
-    "sass-loader": "^0.2.0",
+    "browserify": "4.2.3",
+    "browserify-shim": "3.6.0",
+    "css-loader": "^0.9.0",
+    "envify": "1.2.0",
+    "es6ify": "^1.5.1",
+    "expect": "0.1.1",
     "jsx-loader": "^0.11.2",
-    "webpack": "^1.3.0-beta5"
+    "karma": "0.12.16",
+    "karma-browserify": "^0.2.1",
+    "karma-chrome-launcher": "0.1.4",
+    "karma-cli": "0.0.4",
+    "karma-firefox-launcher": "0.1.3",
+    "karma-mocha": "0.1.3",
+    "mocha": "1.20.1",
+    "react": ">=0.11.2",
+    "react-tools": "^0.11.2",
+    "reactify": "^0.14.0",
+    "sass-loader": "^0.2.0",
+    "sassify": "^0.5.2",
+    "style-loader": "^0.8.1",
+    "uglify-js": "2.4.15",
+    "webpack": "^1.3.0-beta5",
+    "webpack-dev-server": "1.6.5"
+  },
+  "browserify-shim": {
+    "react": "global:React"
   }
 }

@@ -3,8 +3,7 @@
 
 React Editor
 ===========
-
-Medium style rich content editor compoment. Super alpha
+Rich content editor compoment. Super alpha and under heavy dev.
 
 Usage
 -----
@@ -19,7 +18,7 @@ Inside an app
 
 var React = require('react');
 var Editor = require('./components/Editor.js');
-var Store = require('./stores/ContentStore.json');
+var Store = require('./ContentStore.json');
 
 var App = React.createClass({
   getInitialState: function() {

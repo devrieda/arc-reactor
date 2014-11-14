@@ -6,7 +6,7 @@ describe('Formatter', function() {
     var format = new Formatter('a string of linked text');
 
     var expected = 'a string of linked text';
-    expect(format.applyMarkup([])).toBe(expected);
+    expect(format.applyMarkup({})).toBe(expected);
   });
 });
 

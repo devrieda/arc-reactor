@@ -2,13 +2,13 @@
 
 jest.dontMock('../../app/components/Editor.js');
 
-describe('Editor', function() {
-  it('changes the text after click', function() {
+describe('Editor', () => {
+  it('changes the text after click', () => {
     var React = require('react/addons');
     var Editor = require('../../app/components/Editor.js');
     var TestUtils = React.addons.TestUtils;
 
-    changed = function() {};
+    changed = () => {};
     content = {sections: []};
 
     // Render an editor

@@ -8,12 +8,12 @@ var ContentStore = {
             {
               "id": "56ef",
               "type": "h2",
-              "text": "Course Title"
+              "text": "Page Title"
             },
             {
               "id": "667a",
               "type": "p",
-              "text": "Build your course here"
+              "text": "Build your page here"
             }
           ]
         }

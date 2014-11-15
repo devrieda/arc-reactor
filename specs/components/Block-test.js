@@ -1,12 +1,13 @@
-/** @jsx React.DOM */
+var expect = require('expect');
+
+var React = require('react/addons');
+var TestUtils = React.addons.TestUtils;
 
 var ContentState = require('../../lib/state/ContentState');
+var Block = require('../../lib/components/Block.js');
 
 describe('Block', function() {
   it('changes the text after click', function() {
-    var React = require('react/addons');
-    var Block = require('../../lib/components/Block.js');
-    var TestUtils = React.addons.TestUtils;
 
     var content = {type: "p"};
 

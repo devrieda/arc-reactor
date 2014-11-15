@@ -20,9 +20,7 @@ var App = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <Editor content={this.state.content} onChange={this.contentChanged} />
-      </div>
+      <Editor content={this.state.content} onChange={this.contentChanged} />
     );
   }
 });

@@ -1,22 +1,24 @@
-// /** @jsx React.DOM */
+var expect = require('expect');
 
+var React = require('react/addons');
+var TestUtils = React.addons.TestUtils;
 
-// describe('Section', function() {
-//   it('changes the text after click', function() {
-//     var React = require('react/addons');
-//     var Section = require('../../app/components/Section.js');
-//     var TestUtils = React.addons.TestUtils;
+var ContentState = require('../../lib/state/ContentState');
+var Section = require('../../lib/components/Section.js');
 
-//     var content = { blocks: [] };
+describe('Section', function() {
+  it('changes the text after click', function() {
 
-//     // Render a section
-//     var section = TestUtils.renderIntoDocument(
-//       <Section content={content} />
-//     );
+    var content = { blocks: [] };
 
-//     // Simulate a click and verify that it is now On
-//     // var input = TestUtils.findRenderedDOMComponentWithTag(checkbox, 'input');
-//     // TestUtils.Simulate.change(input);
-//     // expect(label.getDOMNode().textContent).toEqual('On');
-//   });
-// });
+    // Render a section
+    var section = TestUtils.renderIntoDocument(
+      <Section content={content} />
+    );
+
+    // Simulate a click and verify that it is now On
+    // var input = TestUtils.findRenderedDOMComponentWithTag(checkbox, 'input');
+    // TestUtils.Simulate.change(input);
+    // expect(label.getDOMNode().textContent).toEqual('On');
+  });
+});

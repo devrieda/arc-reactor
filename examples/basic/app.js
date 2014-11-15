@@ -27,4 +27,4 @@ var App = React.createClass({
   }
 });
 
-React.renderComponent(<App/>, document.getElementById("example"));
+React.render(<App/>, document.getElementById("example"));

@@ -6,17 +6,17 @@ module.exports = function(config) {
     frameworks: ['mocha', 'browserify'],
 
     files: [
-      'specs/main.js'
+      'specs/**/*.js'
     ],
 
     exclude: [],
 
     preprocessors: {
-      'specs/main.js': ['browserify']
+      'specs/**/*.js': ['browserify']
     },
 
     browserify: {
-      transform: ['sassify', 'es6ify', 'envify'],
+      transform: [ ['reactify', {'es6': true}], 'sassify' ],
       extensions: ['.js', '.scss'],
       watch: true,
       debug: true

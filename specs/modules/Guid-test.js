@@ -9,6 +9,6 @@ describe('Guid', function() {
     var id1 = Guid.unique();
     var id2 = Guid.unique();
 
-    expect(id1).not.toBe(id2);
+    expect(id1).toNotBe(id2);
   });
 });

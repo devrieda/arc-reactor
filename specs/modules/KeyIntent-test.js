@@ -1,8 +1,10 @@
-jest.dontMock('../../app/modules/KeyIntent');
+var assert = require('assert');
+var expect = require('expect');
+var React = require('react');
+
+var KeyIntent = require('../../lib/modules/KeyIntent');
 
 describe('KeyIntent', function() {
   it('translate a key press event', function() {
-    var KeyIntent = require('../../app/modules/KeyIntent');
   });
 });
-

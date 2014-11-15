@@ -1,9 +1,8 @@
 #!/bin/sh
 mkdir -p dist
 NODE_ENV=production node_modules/.bin/browserify \
-  -t reactify \
+  -t [ reactify --es6 ] \
   -t sassify \
-  -t es6ify \
   -t browserify-shim \
   -t envify \
   --detect-globals false \

@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 
-jest.dontMock('../../app/components/Block.js');
+var ContentState = require('../../lib/state/ContentState');
 
 describe('Block', function() {
   it('changes the text after click', function() {
     var React = require('react/addons');
-    var Block = require('../../app/components/Block.js');
+    var Block = require('../../lib/components/Block.js');
     var TestUtils = React.addons.TestUtils;
 
     var content = {type: "p"};

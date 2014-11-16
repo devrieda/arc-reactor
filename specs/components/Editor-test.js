@@ -1,4 +1,5 @@
 var expect = require('expect');
+var assert = require('assert');
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
@@ -12,7 +13,6 @@ describe('Editor', () => {
     var changed = () => {};
     var content = {sections: []};
 
-    // Render an editor
     var editor = TestUtils.renderIntoDocument(
       <Editor onChange={changed} content={content} />
     );
@@ -21,35 +21,42 @@ describe('Editor', () => {
   });
 
   it('should pass up change when content changes', () => {
-    var passedUp = false;
-    var changed = () => { passedUp = true };
+    var called = false;
+    var changed = () => { called = true };
     var content = {sections: []};
 
-    // Render an editor
     var editor = TestUtils.renderIntoDocument(
       <Editor onChange={changed} content={content} />
     );
 
-    // simulate typing in content
     var content = TestUtils.findRenderedDOMComponentWithClass(editor, 'ic-Editor-Content');
     TestUtils.Simulate.input(content, {key: "a"});
-
-    expect(passedUp).toBe(true);
+    expect(called).toBe(true);
   });
+
 
   // rendering 
   it('should render content', () => {
+    var changed = () => { };
+    var content = {sections: []};
+
+    var editor = TestUtils.renderIntoDocument(
+      <Editor onChange={changed} content={content} />
+    );
+
+    var content = TestUtils.findRenderedDOMComponentWithClass(editor, 'ic-Editor-Content');
+    assert(content);
   });
 
   it('should render menu', () => {
+    var changed = () => { };
+    var content = {sections: []};
 
-  });
+    var editor = TestUtils.renderIntoDocument(
+      <Editor onChange={changed} content={content} />
+    );
 
-  it('changes the text after click', () => {
-
-    // Simulate a click and verify that it is now On
-    // var input = TestUtils.findRenderedDOMComponentWithTag(checkbox, 'input');
-    // TestUtils.Simulate.change(input);
-    // expect(label.getDOMNode().textContent).toEqual('On');
+    var menu = TestUtils.findRenderedDOMComponentWithClass(editor, 'ic-Editor-Menu');
+    assert(menu);
   });
 });

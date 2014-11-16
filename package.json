@@ -43,6 +43,7 @@
     "reactify": "^0.16.0",
     "sass-loader": "^0.2.0",
     "sassify": "^0.5.2",
+    "sinon": "^1.12.1",
     "style-loader": "^0.8.1",
     "uglify-js": "^2.4.15",
     "webpack-dev-server": "1.6.5"

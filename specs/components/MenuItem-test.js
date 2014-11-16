@@ -1,37 +1,88 @@
 var expect = require('expect');
+var assert = require('assert');
+var sinon = require('sinon');
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
+var findByClass = TestUtils.findRenderedDOMComponentWithClass
 
 var ContentState = require('../../lib/state/ContentState');
 var MenuItem = require('../../lib/components/MenuItem');
 
-describe('MenuItem', function() {
+describe('MenuItem', () => {
 
-  var appDiv;
-  before(function() {
-    appDiv = document.body.appendChild(document.createElement('div'))
-  })
-  after(function() {
-    document.body.removeChild(appDiv)
-  })
+  it('should be active if selection is centered and type is center', () => {
+    var type = 'center';
+    var text = 'Center';
+    var icon = 'fa-align-center';
+    var action = 'Center';
+    var selection = {"centered": true};
 
-  it('changes the text after click', function() {
-    var props = {
-      type: '',
-      text: '',
-      icon: null,
-      selection: {}
-    }
-
-    // Render a section
-    var section = TestUtils.renderIntoDocument(
-      <MenuItem />
+    var menuItem = TestUtils.renderIntoDocument(
+      <MenuItem type={type}
+                text={text}
+                icon={icon}
+              action={action}
+           selection={selection} />
     );
-
-    // Simulate a click and verify that it is now On
-    // var input = TestUtils.findRenderedDOMComponentWithTag(checkbox, 'input');
-    // TestUtils.Simulate.change(input);
-    // expect(label.getDOMNode().textContent).toEqual('On');
+    expect(menuItem.isActive()).toBe(true);
   });
+
+  it('should be active if selection is bolded and type is bold', () => {
+    var type = 'strong';
+    var text = 'Bold';
+    var icon = 'fa-bold';
+    var action = 'Bold';
+    var selection = {"types": ['strong']};
+
+    var menuItem = TestUtils.renderIntoDocument(
+      <MenuItem type={type}
+                text={text}
+                icon={icon}
+              action={action}
+           selection={selection} />
+    );
+    expect(menuItem.isActive()).toBe(true);
+  });
+
+  it('should have item, button, and icon with active class if is active', () => {
+    var type = 'strong';
+    var text = 'Bold';
+    var icon = 'fa-bold';
+    var action = 'Bold';
+    var selection = {"types": ['strong']};
+
+    var menuItem = TestUtils.renderIntoDocument(
+      <MenuItem type={type}
+                text={text}
+                icon={icon}
+              action={action}
+           selection={selection} />
+    );
+    var component = findByClass(menuItem, 'ic-Editor-MenuItem--active');
+    assert(component);
+    var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon--active');
+    assert(component);
+    var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon--active');
+    assert(component);
+  });
+
+  it('should have screenreader only class if is an icon', () => {
+    var type = 'strong';
+    var text = 'Bold';
+    var icon = 'fa-bold';
+    var action = 'Bold';
+    var selection = {};
+
+    var menuItem = TestUtils.renderIntoDocument(
+      <MenuItem type={type}
+                text={text}
+                icon={icon}
+              action={action}
+           selection={selection} />
+    );
+    var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon-text--sr');
+    assert(component);
+  });
+
 });

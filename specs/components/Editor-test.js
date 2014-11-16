@@ -3,6 +3,7 @@ var assert = require('assert');
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
+var findByClass = TestUtils.findRenderedDOMComponentWithClass
 
 var ContentState = require('../../lib/state/ContentState');
 var Editor = require('../../lib/components/Editor.js');
@@ -29,8 +30,8 @@ describe('Editor', () => {
       <Editor onChange={changed} content={content} />
     );
 
-    var content = TestUtils.findRenderedDOMComponentWithClass(editor, 'ic-Editor-Content');
-    TestUtils.Simulate.input(content, {key: "a"});
+    var component = findByClass(editor, 'ic-Editor-Content');
+    TestUtils.Simulate.input(component, {key: "a"});
     expect(called).toBe(true);
   });
 
@@ -44,8 +45,8 @@ describe('Editor', () => {
       <Editor onChange={changed} content={content} />
     );
 
-    var content = TestUtils.findRenderedDOMComponentWithClass(editor, 'ic-Editor-Content');
-    assert(content);
+    var component = findByClass(editor, 'ic-Editor-Content');
+    assert(component);
   });
 
   it('should render menu', () => {
@@ -56,7 +57,7 @@ describe('Editor', () => {
       <Editor onChange={changed} content={content} />
     );
 
-    var menu = TestUtils.findRenderedDOMComponentWithClass(editor, 'ic-Editor-Menu');
+    var menu = findByClass(editor, 'ic-Editor-Menu');
     assert(menu);
   });
 });

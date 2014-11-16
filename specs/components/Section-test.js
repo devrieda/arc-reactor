@@ -1,24 +1,46 @@
 var expect = require('expect');
+var assert = require('assert');
+var sinon = require('sinon');
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
+var findByClass = TestUtils.findRenderedDOMComponentWithClass
 
 var ContentState = require('../../lib/state/ContentState');
 var Section = require('../../lib/components/Section.js');
 
-describe('Section', function() {
-  it('changes the text after click', function() {
+describe('Section', () => {
+  it('should set class name if first section', () => {
+    var content = { "id": "0000", "blocks": [], "meta": {"first": true} }
+    var section = TestUtils.renderIntoDocument(
+      <Section content={content} />
+    );
+    dom = section.getDOMNode();
+    assert(dom.classList.contains('ic-Editor-Section--first'))
+  });
 
-    var content = { blocks: [] };
+  it('should not set class name if not first section', () => {
+    var content = { "id": "0000", "blocks": [] }
+    var section = TestUtils.renderIntoDocument(
+      <Section content={content} />
+    );
+    dom = section.getDOMNode();
+    assert(!dom.classList.contains('ic-Editor-Section--first'))
+  });
 
-    // Render a section
+  it('should render blocks', () => {
+    var content = {
+      "id": "0000",
+      "blocks": [
+        {"id": "0001", "type": "p", "text": "hey now"}
+      ]
+    }
+
     var section = TestUtils.renderIntoDocument(
       <Section content={content} />
     );
 
-    // Simulate a click and verify that it is now On
-    // var input = TestUtils.findRenderedDOMComponentWithTag(checkbox, 'input');
-    // TestUtils.Simulate.change(input);
-    // expect(label.getDOMNode().textContent).toEqual('On');
+    var component = findByClass(section, 'ic-Editor-Block--p');
+    assert(component);
   });
 });

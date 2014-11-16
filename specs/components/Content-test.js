@@ -38,6 +38,8 @@ describe('Content', () => {
     assert(callback.called)
   });
 
+
+  // actions
   it('should delegate typing to actions on key up', () => {
     var changed = function() {};
 
@@ -82,6 +84,8 @@ describe('Content', () => {
     assert(callback.called);
   });
 
+
+  // rendering
   it('should render sections', () => {
     var changed = function() {};
 

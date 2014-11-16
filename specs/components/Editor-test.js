@@ -21,6 +21,8 @@ describe('Editor', () => {
     expect(content).toEqual(ContentState.get().content)
   });
 
+
+  // actions
   it('should pass up change when content changes', () => {
     var called = false;
     var changed = () => { called = true };

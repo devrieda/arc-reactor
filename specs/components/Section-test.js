@@ -10,12 +10,13 @@ var ContentState = require('../../lib/state/ContentState');
 var Section = require('../../lib/components/Section.js');
 
 describe('Section', () => {
+  // class names
   it('should set class name if first section', () => {
     var content = { "id": "0000", "blocks": [], "meta": {"first": true} }
     var section = TestUtils.renderIntoDocument(
       <Section content={content} />
     );
-    dom = section.getDOMNode();
+    var dom = section.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Section--first'))
   });
 
@@ -24,10 +25,12 @@ describe('Section', () => {
     var section = TestUtils.renderIntoDocument(
       <Section content={content} />
     );
-    dom = section.getDOMNode();
+    var dom = section.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Section--first'))
   });
 
+
+  // rendering
   it('should render blocks', () => {
     var content = {
       "id": "0000",

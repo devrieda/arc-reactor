@@ -111,11 +111,8 @@ var ContentStore = {
               "type": "p",
               "text": "The metal-based daguerreotype process soon had some competition from the paper-based calotype negative and salt print processes invented by Henry Fox Talbot. Subsequent innovations reduced the required camera exposure time from minutes to seconds and eventually to a small fraction of a second",
               "markups": {
-                "links": [{
-                  "url": "http://google.com",
-                  "text": "daguerreotype",
-                  "begin": 16,
-                  "end": 29
+                "links": [{ 
+                  "begin": 16, "end": 29, "url": "http://google.com"
                 }]
               }
             },
@@ -124,15 +121,11 @@ var ContentStore = {
               "type": "p",
               "text": "And something here bold and italic words.",
               "markups": {
-                "bolds": [{
-                  "text": "bold",
-                  "begin": 19,
-                  "end": 23
+                "bolds": [{ 
+                  "begin": 19, "end": 23
                 }],
                 "italics": [{
-                  "text": "italic",
-                  "begin": 28,
-                  "end": 34
+                  "begin": 28, "end": 34
                 }]
               }
             },
@@ -155,20 +148,13 @@ var ContentStore = {
               "text": "And that can combine both markup and <b>escaped</b>",
               "markups": {
                 "bolds": [{
-                  "text": "both",
-                  "begin": 21,
-                  "end": 25
+                  "begin": 21, "end": 25
                 }],
                 "italics": [{
-                  "text": "both",
-                  "begin": 21,
-                  "end": 25
+                  "begin": 21, "end": 25
                 }],
                 "links": [{
-                  "url": "http://google.com",
-                  "text": "both",
-                  "begin": 21,
-                  "end": 25
+                  "begin": 21, "end": 25, "url": "http://google.com"
                 }]
               }
 

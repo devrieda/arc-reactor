@@ -1,24 +1,128 @@
 var expect = require('expect');
+var assert = require('assert');
+var sinon = require('sinon');
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;
+var findByClass = TestUtils.findRenderedDOMComponentWithClass
 
 var ContentState = require('../../lib/state/ContentState');
+var SelectionState = require('../../lib/state/SelectionState');
 var Menu = require('../../lib/components/Menu.js');
 
-describe('Menu', function() {
-  it('changes the text after click', function() {
+describe('Menu', () => {
 
-    var content = { blocks: [] };
-
-    // Render a section
-    var section = TestUtils.renderIntoDocument(
+  // events
+  it('should set link mode state when clicking link button', () => {
+    var menu = TestUtils.renderIntoDocument(
       <Menu />
     );
 
-    // Simulate a click and verify that it is now On
-    // var input = TestUtils.findRenderedDOMComponentWithTag(checkbox, 'input');
-    // TestUtils.Simulate.change(input);
-    // expect(label.getDOMNode().textContent).toEqual('On');
-  });
+    var link = findByClass(menu, 'ic-Editor-MenuItem--a');
+    var button = findByClass(link, 'ic-Editor-MenuItem__button');
+
+    TestUtils.Simulate.click(button);
+
+    var component = findByClass(menu, 'ic-Editor-Menu--link');
+    assert(component)
+  })
+
+  it('should press a button when clicking the menu', () => {
+    var menu = TestUtils.renderIntoDocument(
+      <Menu />
+    );
+    var callback = sinon.spy();
+    menu.actions = {pressButton: callback};
+
+    var link = findByClass(menu, 'ic-Editor-MenuItem--strong');
+    var button = findByClass(link, 'ic-Editor-MenuItem__button');
+
+    TestUtils.Simulate.click(button);
+    assert(callback.called)
+  })
+
+  it('should create link when pressing enter in link mode', () => {
+    var menu = TestUtils.renderIntoDocument(
+      <Menu />
+    );
+
+    var link = findByClass(menu, 'ic-Editor-MenuItem--a');
+    var button = findByClass(link, 'ic-Editor-MenuItem__button');
+    var input = findByClass(menu, 'ic-Editor-Menu__linkinput-field');
+
+    TestUtils.Simulate.click(button);
+
+    var callback = sinon.spy();
+    menu.actions = {pressLink: callback};
+
+    TestUtils.Simulate.input(input, "http://google.com");
+    TestUtils.Simulate.keyUp(input, {keyCode: 13});
+
+    assert(callback.called)
+  })
+
+  it('should include bold when header is not selected', () => {
+    var menu = TestUtils.renderIntoDocument(
+      <Menu />
+    );
+
+    SelectionState.set({
+      selection: {types: ['h2'], reselect: () => {}}
+    });
+    var types = menu.buttonTypes();
+    expect(types.length).toBe(6);
+  })
+
+  it('should not include bold when header is selected', () => {
+    var menu = TestUtils.renderIntoDocument(
+      <Menu />
+    );
+
+    SelectionState.set({
+      selection: {types: ['p'], reselect: () => {}}
+    });
+    var types = menu.buttonTypes();
+    expect(types.length).toBe(8);
+  })
+
+
+  // classes
+  it('should be active if text is selected', () => {
+    var menu = TestUtils.renderIntoDocument(
+      <Menu />
+    );
+
+    SelectionState.set({
+      selection: {text: 'hey', types: ['p'], reselect: () => {}}
+    });
+    assert(menu.getDOMNode().classList.contains('ic-Editor-Menu--active'))
+  })
+
+  it('should build styles based off bounds', () => {
+    var menu = TestUtils.renderIntoDocument(
+      <Menu />
+    );
+    SelectionState.set({
+      selection: {
+        text: 'hey',
+        types: ['p'], 
+        reselect: () => {},
+        bounds: {top: 20, left: 20, width: 20}
+      }
+    });
+
+    var styles = menu.menuStyles();
+    assert(styles.top);
+    assert(styles.left);
+  })
+
+
+  // rendering
+  it('should render menu items', () => {
+    var menu = TestUtils.renderIntoDocument(
+      <Menu />
+    );
+    var link = findByClass(menu, 'ic-Editor-MenuItem--strong');
+    assert(link);
+  })
 });

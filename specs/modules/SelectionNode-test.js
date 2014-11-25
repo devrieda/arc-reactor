@@ -132,4 +132,31 @@ describe('SelectionNode', () => {
     sn.focusOn('0102', 0);
     expect(sn.guid).toBe('0102');
   });
+
+  // beg/end of block
+  it('finds if cursor is at the beginning of a block', () => {
+    createNode.apply(this);
+    var sn = new SelectionNode(this.thisIs, 0);
+
+    assert(sn.begOfBlock());
+  });
+  it('finds if cursor is not at the beginning of a block', () => {
+    createNode.apply(this);
+    var sn = new SelectionNode(this.thisIs, 1);
+
+    assert(!sn.begOfBlock());
+  });
+
+  it('finds if cursor is at the end of a block', () => {
+    createNode.apply(this);
+    var sn = new SelectionNode(this.text, 5);
+
+    assert(sn.endOfBlock());
+  });
+  it('finds if cursor is not at the end of a block', () => {
+    createNode.apply(this);
+    var sn = new SelectionNode(this.text, 0);
+
+    assert(!sn.endOfBlock());
+  });
 });

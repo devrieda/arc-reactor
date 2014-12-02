@@ -26,7 +26,7 @@ describe('MenuItem', () => {
            selection={selection} />
     );
     expect(menuItem.isActive()).toBe(true);
-  });
+  })
 
   it('should be active if selection is bolded and type is bold', () => {
     var type = 'strong';
@@ -43,7 +43,7 @@ describe('MenuItem', () => {
            selection={selection} />
     );
     expect(menuItem.isActive()).toBe(true);
-  });
+  })
 
   it('should have item, button, and icon with active class if is active', () => {
     var type = 'strong';
@@ -65,7 +65,7 @@ describe('MenuItem', () => {
     assert(component);
     var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon--active');
     assert(component);
-  });
+  })
 
   it('should have screenreader only class if is an icon', () => {
     var type = 'strong';
@@ -83,6 +83,6 @@ describe('MenuItem', () => {
     );
     var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon-text--sr');
     assert(component);
-  });
+  })
 
-});
+})

@@ -13,7 +13,7 @@ describe('KeyIntent', () => {
 
     var intent = keyIntent.getIntent();
     expect(intent).toEqual('pressBold');
-  });
+  })
 
   it('finds intent for italic hotkey', () => {
     var event = {
@@ -24,7 +24,7 @@ describe('KeyIntent', () => {
 
     var intent = keyIntent.getIntent();
     expect(intent).toEqual('pressItalic');
-  });
+  })
 
   it('finds intent for center hotkey', () => {
     var event = {
@@ -35,7 +35,7 @@ describe('KeyIntent', () => {
 
     var intent = keyIntent.getIntent();
     expect(intent).toEqual('pressCenter');
-  });
+  })
 
   it('finds intent for focus toolbar hotkey', () => {
     var event = {
@@ -46,7 +46,7 @@ describe('KeyIntent', () => {
 
     var intent = keyIntent.getIntent();
     expect(intent).toEqual('focusToolbar');
-  });
+  })
 
   it('finds intent for return key', () => {
     var event = {
@@ -56,7 +56,7 @@ describe('KeyIntent', () => {
 
     var intent = keyIntent.getIntent();
     expect(intent).toEqual('pressReturn');
-  });
+  })
 
   it('finds intent for delete key', () => {
     var event = {
@@ -66,7 +66,7 @@ describe('KeyIntent', () => {
 
     var intent = keyIntent.getIntent();
     expect(intent).toEqual('pressDelete');
-  });
+  })
 
   it('finds intent for bspace key', () => {
     var event = {
@@ -76,6 +76,6 @@ describe('KeyIntent', () => {
 
     var intent = keyIntent.getIntent();
     expect(intent).toEqual('pressBspace');
-  });
+  })
 
-});
+})

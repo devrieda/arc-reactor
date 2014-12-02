@@ -18,7 +18,7 @@ describe('Section', () => {
     );
     var dom = section.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Section--first'))
-  });
+  })
 
   it('should not set class name if not first section', () => {
     var content = { "id": "0000", "blocks": [] }
@@ -27,7 +27,7 @@ describe('Section', () => {
     );
     var dom = section.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Section--first'))
-  });
+  })
 
 
   // rendering
@@ -45,5 +45,5 @@ describe('Section', () => {
 
     var component = findByClass(section, 'ic-Editor-Block--p');
     assert(component);
-  });
-});
+  })
+})

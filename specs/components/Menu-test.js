@@ -125,4 +125,4 @@ describe('Menu', () => {
     var link = findByClass(menu, 'ic-Editor-MenuItem--strong');
     assert(link);
   })
-});
+})

@@ -34,7 +34,7 @@ describe('BlockNode', () => {
     expect(textNodes[0]).toBe(this.thisIs);
     expect(textNodes[1]).toBe(this.some);
     expect(textNodes[2]).toBe(this.text);
-  });
+  })
 
 
   // node offset
@@ -88,6 +88,6 @@ describe('BlockNode', () => {
 
     var blockOffset = blockNode.blockOffset(this.some, 2);
     expect(blockOffset).toBe(10);
-  });
+  })
 
 })

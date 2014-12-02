@@ -9,5 +9,5 @@ describe('Guid', function() {
     var id2 = Guid.unique();
 
     expect(id1).toNotBe(id2);
-  });
-});
+  })
+})

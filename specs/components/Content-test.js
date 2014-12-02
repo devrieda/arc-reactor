@@ -22,7 +22,7 @@ describe('Content', () => {
     var component = findByClass(content, 'ic-Editor-Content');
     TestUtils.Simulate.input(component, {key: "a"});
     expect(called).toBe(true);
-  });
+  })
 
   it('should reselect selection when updated', () => {
     var changed = function() {};
@@ -36,7 +36,7 @@ describe('Content', () => {
     content.checkSelection();
 
     assert(callback.called)
-  });
+  })
 
 
   // actions
@@ -53,7 +53,7 @@ describe('Content', () => {
     TestUtils.Simulate.keyDown(component, {key: "b"});
 
     assert(callback.called);
-  });
+  })
 
   it('should set meta key on key down', () => {
     var changed = function() {};
@@ -66,7 +66,7 @@ describe('Content', () => {
     var component = findByClass(content, 'ic-Editor-Content');
     TestUtils.Simulate.keyDown(component, {keyCode: 91});
     assert(content.metaKey)
-  });
+  })
 
   it('should call action from intent', () => {
     var changed = function() {};
@@ -82,7 +82,7 @@ describe('Content', () => {
     TestUtils.Simulate.keyDown(component, {keyCode: 66});
 
     assert(callback.called);
-  });
+  })
 
 
   // rendering
@@ -99,5 +99,5 @@ describe('Content', () => {
 
     var component = findByClass(content, 'ic-Editor-Section');
     assert(component);
-  });
+  })
 });

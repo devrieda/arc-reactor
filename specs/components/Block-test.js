@@ -21,7 +21,7 @@ describe('Block', () => {
     var dom = block.getDOMNode();
 
     expect(dom.getAttribute('data-align')).toBe('center');
-  });
+  })
 
   // class names
   it('adds empty class if no text or blocks', () => {
@@ -35,7 +35,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--empty'))
-  });
+  })
 
   it('doesnt add empty class if there is text', () => {
     var content = {
@@ -48,7 +48,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--empty'))
-  });
+  })
 
   it('doesnt add empty class if there are sub-blocks', () => {
     var content = {
@@ -64,7 +64,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--empty'))
-  });
+  })
 
   it('adds header class if h2, h3, h4', () => {
     var content = {
@@ -77,7 +77,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--header'))
-  });
+  })
 
   it('doesnt add header class for lists', () => {
     var content = {
@@ -90,7 +90,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--header'))
-  });
+  })
 
   it('adds list class if ol, ul', () => {
     var content = {
@@ -104,7 +104,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--list'))
-  });
+  })
 
   it('doesnt add list class for headers', () => {
     var content = {
@@ -117,7 +117,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--list'))
-  });
+  })
 
   it('adds first class if first block', () => {
     var content = {
@@ -130,7 +130,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--first'))
-  });
+  })
 
   it('doesnt add first class if not first block', () => {
     var content = {
@@ -143,7 +143,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--first'))
-  });
+  })
 
   it('adds id class', () => {
     var content = {
@@ -157,7 +157,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--0000'))
-  });
+  })
 
   it('adds block type class', () => {
     var content = {
@@ -170,7 +170,7 @@ describe('Block', () => {
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--h2'))
-  });
+  })
 
 
   // rendering
@@ -188,7 +188,7 @@ describe('Block', () => {
     );
     var component = findByClass(block, 'ic-Editor-Block--li');
     assert(component);
-  });
+  })
 
   it('renders inline formatting', () => {
     var content = {
@@ -206,7 +206,7 @@ describe('Block', () => {
     );
     var formatted = 'hey <em class="ic-Editor-Block__em">there</em>';
     expect(block.getDOMNode().innerHTML).toBe(formatted)
-  });
+  })
 
   it('renders line break if empty', () => {
     var content = {
@@ -218,6 +218,6 @@ describe('Block', () => {
       <Block content={content} />
     );
     expect(block.getDOMNode().innerHTML).toBe('<br>')
-  });
+  })
 
-});
+})

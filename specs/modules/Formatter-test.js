@@ -10,7 +10,7 @@ describe('Formatter', () => {
     var expected = 'a string of some text';
     var markups  = {};
     expect(format.applyMarkup(markups)).toBe(expected);
-  });
+  })
 
   it('formats text with single trong tag', () => {
     var format = new Formatter('a string of text');
@@ -18,7 +18,7 @@ describe('Formatter', () => {
     var expected = 'a <strong class="ic-Editor-Block__strong">string</strong> of text';
     var markups  = {"bolds": [{"begin": 2, "end": 8}]};
     expect(format.applyMarkup(markups)).toBe(expected);
-  });
+  })
 
   it('formats text with single em tag', () => {
     var format = new Formatter('a string of text');
@@ -26,7 +26,7 @@ describe('Formatter', () => {
     var expected = 'a <em class="ic-Editor-Block__em">string</em> of text';
     var markups  = {"italics": [{"begin": 2, "end": 8}]};
     expect(format.applyMarkup(markups)).toBe(expected);
-  });
+  })
 
   it('formats text with single link tag', () => {
     var format = new Formatter('a string of text');
@@ -35,7 +35,7 @@ describe('Formatter', () => {
     var markups  = {"links": [{"begin": 2, "end": 8, "url": "http://example.com"}]};
 
     expect(format.applyMarkup(markups)).toBe(expected);
-  });
+  })
 
   it('formats text with strong, em, and tag', () => {
     var format = new Formatter('a string of text');
@@ -58,5 +58,5 @@ describe('Formatter', () => {
                       {"begin": 2, "end": 8, "url": "http://example.com"}
                     ]};
     expect(format.applyMarkup(markups)).toBe(expected);
-  });
-});
+  })
+})

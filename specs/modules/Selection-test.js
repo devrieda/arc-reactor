@@ -61,7 +61,7 @@ describe('Selection', () => {
 
     var selection = new Selection(sel);
     expect(selection.text).toBe('some');
-  });
+  })
 
   it('sets types from anchor types', () => {
     var div = createNode.apply(this);
@@ -71,7 +71,7 @@ describe('Selection', () => {
     expect(selection.types[0]).toBe('em');
     expect(selection.types[1]).toBe('strong');
     expect(selection.types[2]).toBe('p');
-  });
+  })
 
   it('sets centered from anchor centered', () => {
     var div = createNode.apply(this);
@@ -79,7 +79,7 @@ describe('Selection', () => {
     var selection = new Selection(sel);
 
     assert(selection.centered);
-  });
+  })
 
   it('doesnt reselect if there is no anchor or focus', () => {
     var div = createNode.apply(this);
@@ -88,7 +88,7 @@ describe('Selection', () => {
 
     selection.anchor = false;
     assert(!selection.reselect());
-  });
+  })
 
   it('doesnt reselect if there is a selection range', () => {
     var div = createNode.apply(this);
@@ -96,7 +96,7 @@ describe('Selection', () => {
     var selection = new Selection(sel);
 
     assert(!selection.reselect());
-  });
+  })
 
   it('doesnt reselect if no start or end is found', () => {
     var div = createNode.apply(this);
@@ -105,7 +105,7 @@ describe('Selection', () => {
     selection.anchor.guid = 'foo';
 
     assert(!selection.reselect());
-  });
+  })
 
   it('reselects range from forward selection', () => {
     var div = createNode.apply(this);
@@ -116,7 +116,7 @@ describe('Selection', () => {
     selection.focus.focusOn('0101', 12);
 
     assert(selection.reselect());
-  });
+  })
 
   it('reselects range from reverse selection', () => {
     var div = createNode.apply(this);
@@ -127,7 +127,7 @@ describe('Selection', () => {
     selection.focus.focusOn('0101', 9);
 
     assert(selection.reselect());
-  });
+  })
 
   it('reinitializes bounds after selection', () => {
     var div = createNode.apply(this);
@@ -146,7 +146,7 @@ describe('Selection', () => {
     expect(boundsBefore.width).toNotBe(boundsAfter.width);
     expect(boundsBefore.left).toNotBe(boundsAfter.left);
     expect(boundsBefore.right).toNotBe(boundsAfter.right);
-  });
+  })
 
 
   // focus on
@@ -165,7 +165,7 @@ describe('Selection', () => {
 
     assert(anchorCallback.called)
     assert(focusCallback.called)
-  });
+  })
 
 
   // range
@@ -181,7 +181,7 @@ describe('Selection', () => {
     var selection = new Selection(sel);
 
     assert(selection.isRange())
-  });
+  })
 
 
   it('finds if the selection crosses multiple blocks', () => {
@@ -195,7 +195,7 @@ describe('Selection', () => {
     var selection = new Selection(sel);
 
     assert(selection.crossBlock())
-  });
+  })
 
 
   it('finds if the cursor is at the beginning of a block', () => {
@@ -209,7 +209,7 @@ describe('Selection', () => {
     selection.begOfBlock();
 
     assert(anchorCallback.called);
-  });
+  })
 
   it('finds if the cursor is at the end of a block', () => {
     var div = createNode.apply(this);
@@ -222,6 +222,6 @@ describe('Selection', () => {
     selection.endOfBlock();
 
     assert(focusCallback.called);
-  });
+  })
 
-});
+})

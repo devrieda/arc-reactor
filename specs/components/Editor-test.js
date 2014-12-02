@@ -19,7 +19,7 @@ describe('Editor', () => {
     );
 
     expect(content).toEqual(ContentState.get().content)
-  });
+  })
 
 
   // actions
@@ -35,7 +35,7 @@ describe('Editor', () => {
     var component = findByClass(editor, 'ic-Editor-Content');
     TestUtils.Simulate.input(component, {key: "a"});
     expect(called).toBe(true);
-  });
+  })
 
 
   // rendering 
@@ -49,7 +49,7 @@ describe('Editor', () => {
 
     var component = findByClass(editor, 'ic-Editor-Content');
     assert(component);
-  });
+  })
 
   it('should render menu', () => {
     var changed = () => { };
@@ -61,5 +61,5 @@ describe('Editor', () => {
 
     var menu = findByClass(editor, 'ic-Editor-Menu');
     assert(menu);
-  });
+  })
 });

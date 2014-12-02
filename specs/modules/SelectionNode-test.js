@@ -40,42 +40,42 @@ describe('SelectionNode', () => {
     var sn = new SelectionNode(this.em, 0);
 
     expect(sn.node).toBe(this.em);
-  });
+  })
 
   it('sets the offset', () => {
     createNode.apply(this);
     var sn = new SelectionNode(this.em, 1);
 
     expect(sn.offset).toBe(1);
-  });
+  })
 
   it('sets the domNode', () => {
     createNode.apply(this);
     var sn = new SelectionNode(this.thisIs, 1);
 
     expect(sn.domNode).toBe(this.p);
-  });
+  })
 
   it('sets the block node', () => {
     createNode.apply(this);
     var sn = new SelectionNode(this.some, 1);
 
     expect(sn.blockNode).toBe(this.p);
-  });
+  })
 
   it('sets the guid', () => {
     createNode.apply(this);
     var sn = new SelectionNode(this.text, 1);
 
     expect(sn.guid).toBe('0101');
-  });
+  })
 
   it('sets the block offset', () => {
     createNode.apply(this);
     var sn = new SelectionNode(this.some, 1);
 
     expect(sn.blockOffset).toBe(9);
-  });
+  })
 
 
   // find text node offset
@@ -86,7 +86,7 @@ describe('SelectionNode', () => {
 
     expect(nodeOffset.node.text).toBe(this.some.text);
     expect(nodeOffset.offset).toBe(1);
-  });
+  })
 
 
   // types
@@ -98,7 +98,7 @@ describe('SelectionNode', () => {
     expect(types[0]).toBe('em');
     expect(types[1]).toBe('strong');
     expect(types[2]).toBe('p');
-  });
+  })
 
   // isCenter
   it('finds if the node is centered', () => {
@@ -111,7 +111,7 @@ describe('SelectionNode', () => {
     // add center
     this.p.setAttribute('data-align', 'center');
     assert(sn.isCenter());
-  });
+  })
 
   // focusOn
   it('focuses on the given guid and offset', () => {
@@ -131,7 +131,7 @@ describe('SelectionNode', () => {
 
     sn.focusOn('0102', 0);
     expect(sn.guid).toBe('0102');
-  });
+  })
 
   // beg/end of block
   it('finds if cursor is at the beginning of a block', () => {
@@ -139,24 +139,24 @@ describe('SelectionNode', () => {
     var sn = new SelectionNode(this.thisIs, 0);
 
     assert(sn.begOfBlock());
-  });
+  })
   it('finds if cursor is not at the beginning of a block', () => {
     createNode.apply(this);
     var sn = new SelectionNode(this.thisIs, 1);
 
     assert(!sn.begOfBlock());
-  });
+  })
 
   it('finds if cursor is at the end of a block', () => {
     createNode.apply(this);
     var sn = new SelectionNode(this.text, 5);
 
     assert(sn.endOfBlock());
-  });
+  })
   it('finds if cursor is not at the end of a block', () => {
     createNode.apply(this);
     var sn = new SelectionNode(this.text, 0);
 
     assert(!sn.endOfBlock());
-  });
-});
+  })
+})

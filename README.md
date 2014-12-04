@@ -14,8 +14,6 @@ Usage
 Inside an app
 -----
 ```js
-/** @jsx React.DOM */
-
 var React = require('react');
 var Editor = require('./components/Editor.js');
 var Store = require('./ContentStore.json');

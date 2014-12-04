@@ -20,7 +20,7 @@ require('./components/MenuItem-test');
 require('./components/Section-test');
 
 require('./modules/BlockNode-test');
-require('./modules/Formatter-test');
+require('./modules/BlockFormatter-test');
 require('./modules/Guid-test');
 require('./modules/KeyIntent-test');
 require('./modules/Selection-test');

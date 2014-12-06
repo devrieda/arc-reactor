@@ -224,4 +224,38 @@ describe('Selection', () => {
     assert(focusCallback.called);
   })
 
+  it('adds type', () => {
+    var div = createNode.apply(this);
+    var sel = createSelection(this.some, this.some, 0, 4);
+    var selection = new Selection(sel);
+
+    assert(selection.types.indexOf('h3') == -1);
+    selection.addType('h3')
+    assert(selection.types.indexOf('h3') != -1);
+  });
+
+  it('removes type', () => {
+    var div = createNode.apply(this);
+    var sel = createSelection(this.some, this.some, 0, 4);
+    var selection = new Selection(sel);
+
+    assert(selection.types.indexOf('em') != -1);
+    selection.removeType('em')
+    assert(selection.types.indexOf('em') == -1);
+  });
+
+  it('switches type', () => {
+    var div = createNode.apply(this);
+    var sel = createSelection(this.some, this.some, 0, 4);
+    var selection = new Selection(sel);
+
+    assert(selection.types.indexOf('p') != -1);
+    assert(selection.types.indexOf('h1') == -1);
+
+    selection.replaceType('p', 'h1')
+
+    assert(selection.types.indexOf('p') == -1);
+    assert(selection.types.indexOf('h1') != -1);
+  });
+
 })

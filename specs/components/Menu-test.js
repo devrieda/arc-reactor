@@ -32,7 +32,7 @@ describe('Menu', () => {
       <Menu />
     );
     var callback = sinon.spy();
-    menu.actions = {pressButton: callback};
+    menu.button = {press: callback};
 
     var link = findByClass(menu, 'ic-Editor-MenuItem--strong');
     var button = findByClass(link, 'ic-Editor-MenuItem__button');
@@ -53,7 +53,7 @@ describe('Menu', () => {
     TestUtils.Simulate.click(button);
 
     var callback = sinon.spy();
-    menu.actions = {pressLink: callback};
+    menu.button = {press: callback};
 
     TestUtils.Simulate.input(input, "http://google.com");
     TestUtils.Simulate.keyUp(input, {keyCode: 13});

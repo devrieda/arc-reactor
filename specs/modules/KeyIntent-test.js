@@ -12,7 +12,7 @@ describe('KeyIntent', () => {
     var keyIntent = new KeyIntent(event);
 
     var intent = keyIntent.getIntent();
-    expect(intent).toEqual('pressBold');
+    expect(intent).toEqual('Bold');
   })
 
   it('finds intent for italic hotkey', () => {
@@ -23,7 +23,7 @@ describe('KeyIntent', () => {
     var keyIntent = new KeyIntent(event);
 
     var intent = keyIntent.getIntent();
-    expect(intent).toEqual('pressItalic');
+    expect(intent).toEqual('Italic');
   })
 
   it('finds intent for center hotkey', () => {
@@ -34,7 +34,7 @@ describe('KeyIntent', () => {
     var keyIntent = new KeyIntent(event);
 
     var intent = keyIntent.getIntent();
-    expect(intent).toEqual('pressCenter');
+    expect(intent).toEqual('Center');
   })
 
   it('finds intent for focus toolbar hotkey', () => {
@@ -45,7 +45,7 @@ describe('KeyIntent', () => {
     var keyIntent = new KeyIntent(event);
 
     var intent = keyIntent.getIntent();
-    expect(intent).toEqual('focusToolbar');
+    expect(intent).toEqual('Toolbar');
   })
 
   it('finds intent for return key', () => {
@@ -55,7 +55,7 @@ describe('KeyIntent', () => {
     var keyIntent = new KeyIntent(event);
 
     var intent = keyIntent.getIntent();
-    expect(intent).toEqual('pressReturn');
+    expect(intent).toEqual('Return');
   })
 
   it('finds intent for delete key', () => {
@@ -65,7 +65,7 @@ describe('KeyIntent', () => {
     var keyIntent = new KeyIntent(event);
 
     var intent = keyIntent.getIntent();
-    expect(intent).toEqual('pressDelete');
+    expect(intent).toEqual('Delete');
   })
 
   it('finds intent for bspace key', () => {
@@ -75,7 +75,7 @@ describe('KeyIntent', () => {
     var keyIntent = new KeyIntent(event);
 
     var intent = keyIntent.getIntent();
-    expect(intent).toEqual('pressBspace');
+    expect(intent).toEqual('Bspace');
   })
 
 })

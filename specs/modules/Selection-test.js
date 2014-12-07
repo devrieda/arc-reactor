@@ -167,6 +167,16 @@ describe('Selection', () => {
     assert(focusCallback.called)
   })
 
+  // guids
+
+  it('finds anchor and focus guids', () => {
+    var sel = createSelection(this.thisIs, this.andMore, 0, 0);
+    var selection = new Selection(sel);
+
+    var guids = selection.guids();
+    expect(guids.anchor).toBe('0101');
+    expect(guids.focus).toBe('0102');
+  })
 
   // range
 

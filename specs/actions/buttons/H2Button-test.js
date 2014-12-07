@@ -4,9 +4,9 @@ var sinon = require('sinon');
 
 var ContentState = require('../../../lib/state/ContentState');
 var SelectionState = require('../../../lib/state/SelectionState');
-var Header1Button = require('../../../lib/actions/buttons/Header1Button');
+var Header2Button = require('../../../lib/actions/buttons/H2Button');
 
-describe('Header1Button', () => {
+describe('H2Button', () => {
 
   before(() => {
     ContentState.set({});

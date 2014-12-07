@@ -1,8 +1,8 @@
 require('./actions/buttons/BoldButton-test');
 require('./actions/buttons/CenterButton-test');
-require('./actions/buttons/Header1Button-test');
-require('./actions/buttons/Header2Button-test');
-require('./actions/buttons/Header3Button-test');
+require('./actions/buttons/H1Button-test');
+require('./actions/buttons/H2Button-test');
+require('./actions/buttons/H3Button-test');
 require('./actions/buttons/ItalicButton-test');
 require('./actions/buttons/LinkButton-test');
 require('./actions/buttons/QuoteButton-test');

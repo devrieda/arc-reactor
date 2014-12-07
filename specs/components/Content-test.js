@@ -49,7 +49,7 @@ describe('Content', () => {
     var component = findByClass(content, 'ic-Editor-Content');
 
     var callback = sinon.spy()
-    content.actions.type = callback();
+    content.key.type = callback();
     TestUtils.Simulate.keyDown(component, {key: "b"});
 
     assert(callback.called);
@@ -76,7 +76,7 @@ describe('Content', () => {
     );
 
     var callback = sinon.spy();
-    content.actions.press = callback;
+    content.key.press = callback;
     var component = findByClass(content, 'ic-Editor-Content');
     TestUtils.Simulate.keyDown(component, {keyCode: 91});
     TestUtils.Simulate.keyDown(component, {keyCode: 66});

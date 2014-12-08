@@ -15,15 +15,18 @@ describe('QuoteButton', () => {
     SelectionState.set({});
   })
 
-  it('press converts a block to be a quote', () => {
-  })
+  describe('#press', () => {
 
-  it('press converts a block from a quote', () => {
-  })
+    it('converts a block to be a quote', () => {
+    })
 
-  it('press converts blocks to quote across multiple blocks', () => {
-  })
+    it('converts a block from a quote', () => {
+    })
 
-  it('press converts blocks from quote across multiple blocks', () => {
+    it('converts blocks to quote across multiple blocks', () => {
+    })
+
+    it('converts blocks from quote across multiple blocks', () => {
+    })
   })
 })

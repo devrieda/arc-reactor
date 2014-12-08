@@ -15,15 +15,18 @@ describe('CenterButton', () => {
     SelectionState.set({});
   })
 
-  it('press centers a single block', () => {
-  })
+  describe('#press', () => {
 
-  it('press left aligns a single block', () => {
-  })
+    it('centers a single block', () => {
+    })
 
-  it('press centers across multiple blocks', () => {
-  })
+    it('left aligns a single block', () => {
+    })
 
-  it('press left aligns across multiple blocks', () => {
+    it('centers across multiple blocks', () => {
+    })
+
+    it('left aligns across multiple blocks', () => {
+    })
   })
 })

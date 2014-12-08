@@ -15,7 +15,8 @@ describe('BspaceKey', () => {
     SelectionState.set({});
   })
 
-  describe('press with caret selection', () => {
+  describe('#press with caret selection', () => {
+
     describe('at the beginning of block', () => {
     })
     describe('in the middle of a block', () => {
@@ -24,7 +25,8 @@ describe('BspaceKey', () => {
     })
   })
 
-  describe('press with range selection', () => {
+  describe('#press with range selection', () => {
+
     describe('within a single block', () => {
     })
     describe('across blocks', () => {

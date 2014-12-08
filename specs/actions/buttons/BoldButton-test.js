@@ -13,33 +13,36 @@ describe('BoldButton', () => {
   beforeEach(() => {
   })
 
-  it('press adds bold to a single block', () => {
-    var manager = new ContentManager({});
-    var callback = sinon.spy();
+  describe('#press', () => {
 
-    var selection = {
-      anchor: {guid: "56ef", blockOffset: 0},
-      focus:  {guid: "56ef", blockOffset: 4},
-      types:  ['p'],
-      text:   "this",
-      hasType: () => {},
-      addType: () => {},
-      removeType: () => {}
-    }
+    it('adds bold to a single block', () => {
+      var manager = new ContentManager({});
+      var callback = sinon.spy();
 
-    // var button = new BoldButton(manager, selection);
-    // var result = button.press();
+      var selection = {
+        anchor: {guid: "56ef", blockOffset: 0},
+        focus:  {guid: "56ef", blockOffset: 4},
+        types:  ['p'],
+        text:   "this",
+        hasType: () => {},
+        addType: () => {},
+        removeType: () => {}
+      }
 
-    // var result = ContentState.get();
-    // console.log(JSON.stringify(result.content, null, 4))
-  })
+      // var button = new BoldButton(manager, selection);
+      // var result = button.press();
 
-  it('press removes bold from a single block', () => {
-  })
+      // var result = ContentState.get();
+      // console.log(JSON.stringify(result.content, null, 4))
+    })
 
-  it('press adds bold across multiple blocks', () => {
-  })
+    it('removes bold from a single block', () => {
+    })
 
-  it('press removes bold across multiple blocks', () => {
+    it('adds bold across multiple blocks', () => {
+    })
+
+    it('removes bold across multiple blocks', () => {
+    })
   })
 })

@@ -15,15 +15,18 @@ describe('ItalicButton', () => {
     SelectionState.set({});
   })
 
-  it('press adds italics to a single block', () => {
-  })
+  describe('#press', () => {
 
-  it('press removes italics from a single block', () => {
-  })
+    it('adds italics to a single block', () => {
+    })
 
-  it('press adds italics across multiple blocks', () => {
-  })
+    it('removes italics from a single block', () => {
+    })
 
-  it('press removes italics across multiple blocks', () => {
+    it('adds italics across multiple blocks', () => {
+    })
+
+    it('removes italics across multiple blocks', () => {
+    })
   })
 })

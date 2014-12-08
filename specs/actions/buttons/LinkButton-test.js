@@ -15,15 +15,18 @@ describe('LinkButton', () => {
     SelectionState.set({});
   })
 
-  it('press adds link to a single block', () => {
-  })
+  describe('#press', () => {
 
-  it('press removes link from a single block', () => {
-  })
+    it('adds link to a single block', () => {
+    })
 
-  it('press adds link across multiple blocks', () => {
-  })
+    it('removes link from a single block', () => {
+    })
 
-  it('press removes link across multiple blocks', () => {
+    it('adds link across multiple blocks', () => {
+    })
+
+    it('removes link across multiple blocks', () => {
+    })
   })
 })

@@ -15,15 +15,18 @@ describe('H1Button', () => {
     SelectionState.set({});
   })
 
-  it('press converts a block to be a header', () => {
-  })
+  describe('#press', () => {
 
-  it('press converts a block from a header', () => {
-  })
+    it('converts a block to be a header', () => {
+    })
 
-  it('press converts blocks to header across multiple blocks', () => {
-  })
+    it('converts a block from a header', () => {
+    })
 
-  it('press converts blocks from header across multiple blocks', () => {
+    it('converts blocks to header across multiple blocks', () => {
+    })
+
+    it('converts blocks from header across multiple blocks', () => {
+    })
   })
 })

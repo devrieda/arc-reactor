@@ -55,226 +55,258 @@ describe('Selection', () => {
     return selection;
   }
 
-  it('sets text from doc selection', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
+  describe('.new', () => {
 
-    var selection = new Selection(sel);
-    expect(selection.text).toBe('some');
+    it('sets text from doc selection', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+
+      var selection = new Selection(sel);
+      expect(selection.text).toBe('some');
+    })
+
+    it('sets types from anchor types', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+
+      var selection = new Selection(sel);
+      expect(selection.types[0]).toBe('em');
+      expect(selection.types[1]).toBe('strong');
+      expect(selection.types[2]).toBe('p');
+    })
+
+    it('sets centered from anchor centered', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+      var selection = new Selection(sel);
+
+      assert(selection.centered);
+    })
   })
 
-  it('sets types from anchor types', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
+  describe('#reselect', () => {
 
-    var selection = new Selection(sel);
-    expect(selection.types[0]).toBe('em');
-    expect(selection.types[1]).toBe('strong');
-    expect(selection.types[2]).toBe('p');
-  })
+    it('doesnt reselect if there is no anchor or focus', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+      var selection = new Selection(sel);
 
-  it('sets centered from anchor centered', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
-    var selection = new Selection(sel);
+      selection.anchor = false;
+      assert(!selection.reselect());
+    })
 
-    assert(selection.centered);
-  })
+    it('doesnt reselect if there is a selection range', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+      var selection = new Selection(sel);
 
-  it('doesnt reselect if there is no anchor or focus', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
-    var selection = new Selection(sel);
+      assert(!selection.reselect());
+    })
 
-    selection.anchor = false;
-    assert(!selection.reselect());
-  })
+    it('doesnt reselect if no start or end is found', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 0);
+      var selection = new Selection(sel);
+      selection.anchor.guid = 'foo';
 
-  it('doesnt reselect if there is a selection range', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
-    var selection = new Selection(sel);
+      assert(!selection.reselect());
+    })
 
-    assert(!selection.reselect());
-  })
+    it('reselects range from forward selection', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
+      var selection = new Selection(sel);
 
-  it('doesnt reselect if no start or end is found', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 0);
-    var selection = new Selection(sel);
-    selection.anchor.guid = 'foo';
+      selection.anchor.focusOn('0101', 9);
+      selection.focus.focusOn('0101', 12);
 
-    assert(!selection.reselect());
-  })
+      assert(selection.reselect());
+    })
 
-  it('reselects range from forward selection', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-    var selection = new Selection(sel);
+    it('reselects range from reverse selection', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
+      var selection = new Selection(sel);
 
-    selection.anchor.focusOn('0101', 9);
-    selection.focus.focusOn('0101', 12);
+      selection.anchor.focusOn('0101', 12);
+      selection.focus.focusOn('0101', 9);
 
-    assert(selection.reselect());
-  })
+      assert(selection.reselect());
+    })
 
-  it('reselects range from reverse selection', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-    var selection = new Selection(sel);
+    it('reinitializes bounds after selection', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
+      var selection = new Selection(sel);
 
-    selection.anchor.focusOn('0101', 12);
-    selection.focus.focusOn('0101', 9);
+      var boundsBefore = selection.bounds;
 
-    assert(selection.reselect());
-  })
+      selection.anchor.focusOn('0101', 9);
+      selection.focus.focusOn('0101', 12);
+      selection.reselect()
 
-  it('reinitializes bounds after selection', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-    var selection = new Selection(sel);
+      var boundsAfter = selection.bounds;
 
-    var boundsBefore = selection.bounds;
-
-    selection.anchor.focusOn('0101', 9);
-    selection.focus.focusOn('0101', 12);
-    selection.reselect()
-
-    var boundsAfter = selection.bounds;
-
-    expect(boundsBefore.height).toNotBe(boundsAfter.height);
-    expect(boundsBefore.width).toNotBe(boundsAfter.width);
-    expect(boundsBefore.left).toNotBe(boundsAfter.left);
-    expect(boundsBefore.right).toNotBe(boundsAfter.right);
-  })
-
-
-  // focus on
-
-  it('focuses on given guid and offset', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-    var selection = new Selection(sel);
-
-    var anchorCallback = sinon.spy();
-    var focusCallback  = sinon.spy();
-    selection.anchor.focusOn = anchorCallback;
-    selection.focus.focusOn  = focusCallback;
-
-    selection.focusOn('0101', 0);
-
-    assert(anchorCallback.called)
-    assert(focusCallback.called)
-  })
-
-  // guids
-
-  it('finds anchor and focus guids', () => {
-    var sel = createSelection(this.thisIs, this.andMore, 0, 0);
-    var selection = new Selection(sel);
-
-    var guids = selection.guids();
-    expect(guids.anchor).toBe('0101');
-    expect(guids.focus).toBe('0102');
-  })
-
-  // range
-
-  it('finds if the doc selection was a range', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-    var selection = new Selection(sel);
-
-    assert(!selection.isRange())
-
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 8);
-    var selection = new Selection(sel);
-
-    assert(selection.isRange())
+      expect(boundsBefore.height).toNotBe(boundsAfter.height);
+      expect(boundsBefore.width).toNotBe(boundsAfter.width);
+      expect(boundsBefore.left).toNotBe(boundsAfter.left);
+      expect(boundsBefore.right).toNotBe(boundsAfter.right);
+    })
   })
 
 
-  it('finds if the selection crosses multiple blocks', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-    var selection = new Selection(sel);
+  describe('#focusOn', () => {
 
-    assert(!selection.crossBlock());
+    it('focuses on given guid and offset', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
+      var selection = new Selection(sel);
 
-    var sel = createSelection(this.thisIs, this.andMore, 0, 0);
-    var selection = new Selection(sel);
+      var anchorCallback = sinon.spy();
+      var focusCallback  = sinon.spy();
+      selection.anchor.focusOn = anchorCallback;
+      selection.focus.focusOn  = focusCallback;
 
-    assert(selection.crossBlock())
+      selection.focusOn('0101', 0);
+
+      assert(anchorCallback.called)
+      assert(focusCallback.called)
+    })
   })
 
 
-  it('finds if the cursor is at the beginning of a block', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-    var selection = new Selection(sel);
+  describe('#guids', () => {
 
-    var anchorCallback = sinon.spy();
-    selection.anchor.begOfBlock = anchorCallback;
+    it('finds anchor and focus guids', () => {
+      var sel = createSelection(this.thisIs, this.andMore, 0, 0);
+      var selection = new Selection(sel);
 
-    selection.begOfBlock();
-
-    assert(anchorCallback.called);
+      var guids = selection.guids();
+      expect(guids.anchor).toBe('0101');
+      expect(guids.focus).toBe('0102');
+    })
   })
 
-  it('finds if the cursor is at the end of a block', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-    var selection = new Selection(sel);
 
-    var focusCallback = sinon.spy();
-    selection.focus.endOfBlock = focusCallback;
+  describe('#isRange', () => {
 
-    selection.endOfBlock();
+    it('finds if the doc selection was a range', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
+      var selection = new Selection(sel);
 
-    assert(focusCallback.called);
+      assert(!selection.isRange())
+
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 8);
+      var selection = new Selection(sel);
+
+      assert(selection.isRange())
+    })
   })
 
-  it('checks if selection has type', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
-    var selection = new Selection(sel);
 
-    assert(selection.hasType('p'));
-    assert(!selection.hasType('h3'));
+  describe('#crossBlock', () => {
+
+    it('finds if the selection crosses multiple blocks', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
+      var selection = new Selection(sel);
+
+      assert(!selection.crossBlock());
+
+      var sel = createSelection(this.thisIs, this.andMore, 0, 0);
+      var selection = new Selection(sel);
+
+      assert(selection.crossBlock())
+    })
   })
 
-  it('adds type', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
-    var selection = new Selection(sel);
+  describe('#begOfBlock', () => {
 
-    assert(!selection.hasType('h3'));
-    selection.addType('h3');
-    assert(selection.hasType('h3'));
+    it('finds if the cursor is at the beginning of a block', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
+      var selection = new Selection(sel);
+
+      var anchorCallback = sinon.spy();
+      selection.anchor.begOfBlock = anchorCallback;
+
+      selection.begOfBlock();
+
+      assert(anchorCallback.called);
+    })
   })
 
-  it('removes type', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
-    var selection = new Selection(sel);
+  describe('#endOfBlock', () => {
 
-    assert(selection.hasType('em'));
-    selection.removeType('em');
-    assert(!selection.hasType('em'));
+    it('finds if the cursor is at the end of a block', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
+      var selection = new Selection(sel);
+
+      var focusCallback = sinon.spy();
+      selection.focus.endOfBlock = focusCallback;
+
+      selection.endOfBlock();
+
+      assert(focusCallback.called);
+    })
   })
 
-  it('switches type', () => {
-    var div = createNode.apply(this);
-    var sel = createSelection(this.some, this.some, 0, 4);
-    var selection = new Selection(sel);
 
-    assert(selection.hasType('p'));
-    assert(!selection.hasType('h1'));
+  describe('#hasType', () => {
 
-    selection.replaceType('p', 'h1');
+    it('checks if selection has type', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+      var selection = new Selection(sel);
 
-    assert(!selection.hasType('p'));
-    assert(selection.hasType('h1'));
+      assert(selection.hasType('p'));
+      assert(!selection.hasType('h3'));
+    })
+  })
+
+  describe('#addType', () => {
+
+    it('adds type', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+      var selection = new Selection(sel);
+
+      assert(!selection.hasType('h3'));
+      selection.addType('h3');
+      assert(selection.hasType('h3'));
+    })
+  })
+
+  describe('#removeType', () => {
+
+    it('removes type', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+      var selection = new Selection(sel);
+
+      assert(selection.hasType('em'));
+      selection.removeType('em');
+      assert(!selection.hasType('em'));
+    })
+  })
+
+  describe('#replaceType', () => {
+
+    it('switches type', () => {
+      var div = createNode.apply(this);
+      var sel = createSelection(this.some, this.some, 0, 4);
+      var selection = new Selection(sel);
+
+      assert(selection.hasType('p'));
+      assert(!selection.hasType('h1'));
+
+      selection.replaceType('p', 'h1');
+
+      assert(!selection.hasType('p'));
+      assert(selection.hasType('h1'));
+    })
   })
 
 })

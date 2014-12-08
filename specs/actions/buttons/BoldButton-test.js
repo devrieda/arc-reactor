@@ -2,47 +2,77 @@ var expect = require('expect');
 var assert = require('assert');
 var sinon = require('sinon');
 
-var ContentState = require('../../../lib/state/ContentState');
-var SelectionState = require('../../../lib/state/SelectionState');
 var ContentManager = require('../../../lib/modules/ContentManager');
-
 var BoldButton = require('../../../lib/actions/buttons/BoldButton');
 
 describe('BoldButton', () => {
 
+  var manager, selection;
+
   beforeEach(() => {
+    manager = {
+      toggleMarkup: () => {},
+      flush: () => {}
+    }
+
+    selection = {
+      anchor: {guid: "56ef", blockOffset: 0},
+      focus:  {guid: "56ef", blockOffset: 4},
+      types:  ['p'],
+      text:   "this",
+      guids: () => {},
+      hasType: () => { return false; },
+      addType: () => {},
+      removeType: () => {}
+    }
   })
 
-  describe('#press', () => {
+  describe('#press while inactive', () => {
 
-    it('adds bold to a single block', () => {
-      var manager = new ContentManager({});
+    it('sends toggleMarkup to manager', () => {
       var callback = sinon.spy();
+      manager.toggleMarkup = callback;
 
-      var selection = {
-        anchor: {guid: "56ef", blockOffset: 0},
-        focus:  {guid: "56ef", blockOffset: 4},
-        types:  ['p'],
-        text:   "this",
-        hasType: () => {},
-        addType: () => {},
-        removeType: () => {}
-      }
+      var button = new BoldButton(manager, selection);
+      var result = button.press();
 
-      // var button = new BoldButton(manager, selection);
-      // var result = button.press();
+      assert(callback.called);
+    })
+    it('adds type to selection', () => {
+      var callback = sinon.spy();
+      selection.addType = callback;
 
-      // var result = ContentState.get();
-      // console.log(JSON.stringify(result.content, null, 4))
+      var button = new BoldButton(manager, selection);
+      var result = button.press();
+
+      assert(callback.called);
+    })
+  })
+
+  describe('#press while active', () => {
+
+    it('sends toggleMarkup to manager', () => {
+      selection.hasType = () => { return true; }
+
+      var callback = sinon.spy();
+      manager.toggleMarkup = callback;
+
+      var button = new BoldButton(manager, selection);
+      var result = button.press();
+
+      assert(callback.called);
     })
 
-    it('removes bold from a single block', () => {
-    })
+    it('removes type from selection', () => {
+      selection.hasType = () => { return true; }
 
-    it('adds bold across multiple blocks', () => {
-    })
+      var callback = sinon.spy();
+      selection.removeType = callback;
 
-    it('removes bold across multiple blocks', () => {
+      var button = new BoldButton(manager, selection);
+      var result = button.press();
+
+      assert(callback.called);
     })
   })
 })

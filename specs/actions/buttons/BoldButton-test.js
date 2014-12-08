@@ -10,32 +10,13 @@ var BoldButton = require('../../../lib/actions/buttons/BoldButton');
 
 describe('BoldButton', () => {
 
-  var content, manager;
-
   beforeEach(() => {
-    content = {
-      "sections": [
-        {
-          "id": "de5f",
-          "blocks": [
-            {
-              "id": "56ef",
-              "type": "p",
-              "text": "this is the first paragraph"
-            },
-            {
-              "id": "667a",
-              "type": "p",
-              "text": "and this is the second"
-            }
-          ]
-        }
-      ]
-    }
-    manager = new ContentManager(content);
   })
 
   it('press adds bold to a single block', () => {
+    var manager = new ContentManager({});
+    var callback = sinon.spy();
+
     var selection = {
       anchor: {guid: "56ef", blockOffset: 0},
       focus:  {guid: "56ef", blockOffset: 4},
@@ -46,8 +27,8 @@ describe('BoldButton', () => {
       removeType: () => {}
     }
 
-    var button = new BoldButton(manager, selection);
-    button.press();
+    // var button = new BoldButton(manager, selection);
+    // var result = button.press();
 
     // var result = ContentState.get();
     // console.log(JSON.stringify(result.content, null, 4))

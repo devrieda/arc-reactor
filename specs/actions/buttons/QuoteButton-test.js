@@ -2,31 +2,49 @@ var expect = require('expect');
 var assert = require('assert');
 var sinon = require('sinon');
 
-var ContentState = require('../../../lib/state/ContentState');
-var SelectionState = require('../../../lib/state/SelectionState');
 var ContentManager = require('../../../lib/modules/ContentManager');
-
 var QuoteButton = require('../../../lib/actions/buttons/QuoteButton');
 
 describe('QuoteButton', () => {
 
-  before(() => {
-    ContentState.set({});
-    SelectionState.set({});
+  var manager, selection;
+
+  beforeEach(() => {
+    manager = {
+      toggleBlockType: () => { return {}; },
+      flush: () => {}
+    }
+
+    selection = {
+      anchor: {guid: "56ef", blockOffset: 0},
+      focus:  {guid: "56ef", blockOffset: 4},
+      types:  ['p'],
+      text:   "this",
+      guids: () => {},
+      replaceType: () => {}
+    }
   })
 
   describe('#press', () => {
 
-    it('converts a block to be a quote', () => {
+    it('sends toggleBlockType to manager', () => {
+      sinon.spy(manager, "toggleBlockType");
+
+      var button = new QuoteButton(manager, selection);
+      var result = button.press();
+
+      assert(manager.toggleBlockType.calledOnce);
+      manager.toggleBlockType.restore();
     })
 
-    it('converts a block from a quote', () => {
-    })
+    it('sends replaceType to selection', () => {
+      sinon.spy(selection, "replaceType");
 
-    it('converts blocks to quote across multiple blocks', () => {
-    })
+      var button = new QuoteButton(manager, selection);
+      var result = button.press();
 
-    it('converts blocks from quote across multiple blocks', () => {
+      assert(selection.replaceType.calledOnce);
+      selection.replaceType.restore();
     })
   })
 })

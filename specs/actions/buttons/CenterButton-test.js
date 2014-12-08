@@ -2,31 +2,59 @@ var expect = require('expect');
 var assert = require('assert');
 var sinon = require('sinon');
 
-var ContentState = require('../../../lib/state/ContentState');
-var SelectionState = require('../../../lib/state/SelectionState');
 var ContentManager = require('../../../lib/modules/ContentManager');
-
 var CenterButton = require('../../../lib/actions/buttons/CenterButton');
 
 describe('CenterButton', () => {
 
-  before(() => {
-    ContentState.set({});
-    SelectionState.set({});
+  var manager, selection;
+
+  beforeEach(() => {
+    manager = {
+      toggleCenter: () => {},
+      flush: () => {}
+    }
+
+    selection = {
+      anchor: {guid: "56ef", blockOffset: 0},
+      focus:  {guid: "56ef", blockOffset: 4},
+      types:  ['p'],
+      text:   "this",
+      guids: () => {}
+    }
   })
 
-  describe('#press', () => {
+  describe('#press while left aligned', () => {
+    it('sends toggleCenter to manager', () => {
+      var callback = sinon.spy();
+      manager.toggleCenter = callback;
 
-    it('centers a single block', () => {
+      var button = new CenterButton(manager, selection);
+      var result = button.press();
+
+      assert(callback.called);
     })
 
-    it('left aligns a single block', () => {
+    it('toggles selection centered', () => {
+      selection.centered = false
+
+      var button = new CenterButton(manager, selection);
+      var result = button.press();
+
+      assert(selection.centered);
     })
 
-    it('centers across multiple blocks', () => {
+  })
+
+  describe('#press while centered', () => {
+    it('toggles selection centered', () => {
+      selection.centered = true 
+
+      var button = new CenterButton(manager, selection);
+      var result = button.press();
+
+      assert(!selection.centered);
     })
 
-    it('left aligns across multiple blocks', () => {
-    })
   })
 })

@@ -21,6 +21,7 @@ require('./components/Section-test');
 
 require('./modules/BlockNode-test');
 require('./modules/BlockFormatter-test');
+require('./modules/ContentFinder-test');
 require('./modules/ContentManager-test');
 require('./modules/Guid-test');
 require('./modules/KeyIntent-test');

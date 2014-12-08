@@ -4,6 +4,8 @@ var sinon = require('sinon');
 
 var ContentState = require('../../../lib/state/ContentState');
 var SelectionState = require('../../../lib/state/SelectionState');
+var ContentManager = require('../../../lib/modules/ContentManager');
+
 var LinkButton = require('../../../lib/actions/buttons/LinkButton');
 
 describe('LinkButton', () => {
@@ -13,15 +15,15 @@ describe('LinkButton', () => {
     SelectionState.set({});
   })
 
-  it('adds link to a single block', () => {
+  it('press adds link to a single block', () => {
   })
 
-  it('removes link from a single block', () => {
+  it('press removes link from a single block', () => {
   })
 
-  it('adds link across multiple blocks', () => {
+  it('press adds link across multiple blocks', () => {
   })
 
-  it('removes link across multiple blocks', () => {
+  it('press removes link across multiple blocks', () => {
   })
 })

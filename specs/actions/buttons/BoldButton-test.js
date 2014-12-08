@@ -4,11 +4,13 @@ var sinon = require('sinon');
 
 var ContentState = require('../../../lib/state/ContentState');
 var SelectionState = require('../../../lib/state/SelectionState');
+var ContentManager = require('../../../lib/modules/ContentManager');
+
 var BoldButton = require('../../../lib/actions/buttons/BoldButton');
 
 describe('BoldButton', () => {
 
-  var content;
+  var content, manager;
 
   beforeEach(() => {
     content = {
@@ -30,29 +32,33 @@ describe('BoldButton', () => {
         }
       ]
     }
+    manager = new ContentManager(content);
   })
 
-  it('adds bold to a single block', () => {
+  it('press adds bold to a single block', () => {
     var selection = {
       anchor: {guid: "56ef", blockOffset: 0},
       focus:  {guid: "56ef", blockOffset: 4},
       types:  ['p'],
-      text:   "this"
+      text:   "this",
+      hasType: () => {},
+      addType: () => {},
+      removeType: () => {}
     }
 
-    // var button = new BoldButton(content, selection);
-    // button.press();
+    var button = new BoldButton(manager, selection);
+    button.press();
 
     // var result = ContentState.get();
     // console.log(JSON.stringify(result.content, null, 4))
   })
 
-  it('removes bold from a single block', () => {
+  it('press removes bold from a single block', () => {
   })
 
-  it('adds bold across multiple blocks', () => {
+  it('press adds bold across multiple blocks', () => {
   })
 
-  it('removes bold across multiple blocks', () => {
+  it('press removes bold across multiple blocks', () => {
   })
 })

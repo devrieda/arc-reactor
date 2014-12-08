@@ -4,6 +4,8 @@ var sinon = require('sinon');
 
 var ContentState = require('../../../lib/state/ContentState');
 var SelectionState = require('../../../lib/state/SelectionState');
+var ContentManager = require('../../../lib/modules/ContentManager');
+
 var DeleteKey = require('../../../lib/actions/keys/DeleteKey');
 
 describe('DeleteKey', () => {
@@ -13,7 +15,7 @@ describe('DeleteKey', () => {
     SelectionState.set({});
   })
 
-  describe('with caret selection', () => {
+  describe('press with caret selection', () => {
     describe('at the beginning of block', () => {
     })
     describe('in the middle of a block', () => {
@@ -22,7 +24,7 @@ describe('DeleteKey', () => {
     })
   })
 
-  describe('with range selection', () => {
+  describe('press with range selection', () => {
     describe('within a single block', () => {
     })
     describe('across blocks', () => {

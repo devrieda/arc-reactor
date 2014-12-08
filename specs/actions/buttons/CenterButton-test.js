@@ -4,6 +4,8 @@ var sinon = require('sinon');
 
 var ContentState = require('../../../lib/state/ContentState');
 var SelectionState = require('../../../lib/state/SelectionState');
+var ContentManager = require('../../../lib/modules/ContentManager');
+
 var CenterButton = require('../../../lib/actions/buttons/CenterButton');
 
 describe('CenterButton', () => {
@@ -13,15 +15,15 @@ describe('CenterButton', () => {
     SelectionState.set({});
   })
 
-  it('centers a single block', () => {
+  it('press centers a single block', () => {
   })
 
-  it('left aligns a single block', () => {
+  it('press left aligns a single block', () => {
   })
 
-  it('centers across multiple blocks', () => {
+  it('press centers across multiple blocks', () => {
   })
 
-  it('left aligns across multiple blocks', () => {
+  it('press left aligns across multiple blocks', () => {
   })
 })

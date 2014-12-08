@@ -4,6 +4,8 @@ var sinon = require('sinon');
 
 var ContentState = require('../../../lib/state/ContentState');
 var SelectionState = require('../../../lib/state/SelectionState');
+var ContentManager = require('../../../lib/modules/ContentManager');
+
 var ItalicButton = require('../../../lib/actions/buttons/ItalicButton');
 
 describe('ItalicButton', () => {
@@ -13,15 +15,15 @@ describe('ItalicButton', () => {
     SelectionState.set({});
   })
 
-  it('adds italics to a single block', () => {
+  it('press adds italics to a single block', () => {
   })
 
-  it('removes italics from a single block', () => {
+  it('press removes italics from a single block', () => {
   })
 
-  it('adds italics across multiple blocks', () => {
+  it('press adds italics across multiple blocks', () => {
   })
 
-  it('removes italics across multiple blocks', () => {
+  it('press removes italics across multiple blocks', () => {
   })
 })

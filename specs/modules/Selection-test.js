@@ -188,6 +188,19 @@ describe('Selection', () => {
   })
 
 
+  describe('#offsets', () => {
+
+    it('finds anchor and focus block offsets', () => {
+      var sel = createSelection(this.thisIs, this.andMore, 1, 2);
+      var selection = new Selection(sel);
+
+      var offsets = selection.offsets();
+      expect(offsets.anchor).toBe(1);
+      expect(offsets.focus).toBe(2);
+    })
+  })
+
+
   describe('#isRange', () => {
 
     it('finds if the doc selection was a range', () => {

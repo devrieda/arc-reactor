@@ -93,16 +93,73 @@ describe('ContentManager', () => {
     it('should add item to a list', () => {
       var manager = new ContentManager(content);
       manager.appendBlock({ anchor: '56ef' });
+
+      var block = {
+        "id": "c6a7",
+        "type": "ul",
+        "text": "",
+        "blocks": [
+          {
+            "id": "56ed",
+            "type": "li",
+            "text": "first item"
+          }
+        ]
+      }
+      content.sections[0].blocks = [block];
+      var manager = new ContentManager(content);
+      manager.appendBlock({ anchor: '56ed' });
+
+      var blocks = content.sections[0].blocks;
+
+      expect(blocks[0].blocks[0].type).toBe('li');
+      expect(blocks[0].blocks[0].text).toBe('first item');
+
+      expect(blocks[0].blocks[1].type).toBe('li');
+      expect(blocks[0].blocks[1].text).toBe('');
     })
 
     it('should finish up a list', () => {
+      var block = {
+        "id": "c6a7",
+        "type": "ul",
+        "text": "",
+        "blocks": [
+          {
+            "id": "56ed",
+            "type": "li",
+            "text": "first item"
+          },
+          {
+            "id": "56ef",
+            "type": "li",
+            "text": ""
+          }
+        ]
+      }
+      content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
       manager.appendBlock({ anchor: '56ef' });
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks[0].blocks.length).toBe(1);
+      expect(blocks[1].type).toBe('p');
     })
 
     it('should create a new paragraph', () => {
+      var block = {
+        "id": "c6a7",
+        "type": "h1",
+        "text": "this is a header"
+      }
+      content.sections[0].blocks = [block];
+
       var manager = new ContentManager(content);
-      manager.appendBlock({ anchor: '56ef' });
+      manager.appendBlock({ anchor: 'c6a7' });
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(2);
+      expect(blocks[1].type).toBe('p');
     })
   })
 

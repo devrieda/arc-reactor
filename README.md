@@ -3,7 +3,7 @@
 
 React Editor
 ===========
-Rich content editor compoment. Super alpha and under heavy dev.
+Rich content editor component. Super alpha and under heavy dev.
 
 Usage
 -----

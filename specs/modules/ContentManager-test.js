@@ -12,30 +12,7 @@ describe('ContentManager', () => {
       "sections": [
         {
           "id": "de5f",
-          "blocks": [
-            {
-              "id": "56ef",
-              "type": "p",
-              "text": "this is the first paragraph"
-            },
-            {
-              "id": "667a",
-              "type": "p",
-              "text": "and this is the second"
-            },
-            {
-              "id": "ad84",
-              "type": "ul",
-              "text": "",
-              "blocks": [
-                {
-                  "id": "abcd",
-                  "type": "li",
-                  "text": "list item 1"
-                }
-              ]
-            }
-          ]
+          "blocks": []
         }
       ]
     }
@@ -50,7 +27,7 @@ describe('ContentManager', () => {
       }
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
-      manager.appendBlock({ anchor: 'c6a7' });
+      var result = manager.appendBlock({ anchor: 'c6a7' });
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].type).toBe('ol');
@@ -66,7 +43,7 @@ describe('ContentManager', () => {
       }
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
-      manager.appendBlock({ anchor: 'c6a7' });
+      var result = manager.appendBlock({ anchor: 'c6a7' });
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].type).toBe('ul');
@@ -82,7 +59,7 @@ describe('ContentManager', () => {
       }
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
-      manager.appendBlock({ anchor: 'c6a7' });
+      var result = manager.appendBlock({ anchor: 'c6a7' });
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].type).toBe('ul');
@@ -91,9 +68,6 @@ describe('ContentManager', () => {
     })
 
     it('should add item to a list', () => {
-      var manager = new ContentManager(content);
-      manager.appendBlock({ anchor: '56ef' });
-
       var block = {
         "id": "c6a7",
         "type": "ul",
@@ -108,7 +82,7 @@ describe('ContentManager', () => {
       }
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
-      manager.appendBlock({ anchor: '56ed' });
+      var result = manager.appendBlock({ anchor: '56ed' });
 
       var blocks = content.sections[0].blocks;
 
@@ -139,7 +113,7 @@ describe('ContentManager', () => {
       }
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
-      manager.appendBlock({ anchor: '56ef' });
+      var result = manager.appendBlock({ anchor: '56ef' });
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].blocks.length).toBe(1);
@@ -155,7 +129,7 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block];
 
       var manager = new ContentManager(content);
-      manager.appendBlock({ anchor: 'c6a7' });
+      var result = manager.appendBlock({ anchor: 'c6a7' });
 
       var blocks = content.sections[0].blocks;
       expect(blocks.length).toBe(2);
@@ -165,15 +139,67 @@ describe('ContentManager', () => {
 
   describe('#prependBlock', () => {
     it('should add a paragraph before the block', () => {
+      var block = {
+        "id": "c6a7",
+        "type": "h1",
+        "text": "this is a header"
+      }
+      content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
+      var result = manager.prependBlock({ anchor: 'c6a7' });
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(2);
+      expect(blocks[0].type).toBe('p');
     })
   })
 
   describe('#splitBlock', () => {
     it('should split a single block', () => {
+      var block = {
+        "id": "c6a7",
+        "type": "p",
+        "text": "this is some text to split"
+      }
+      content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a7', focus: 'c6a7' };
+      var offsets = { anchor: 4, focus: 4 };
+      var result = manager.splitBlock(guids, offsets);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(2);
+      expect(blocks[0].text).toBe('this');
+      expect(blocks[1].text).toBe(' is some text to split');
     })
+
+    it('should split a single block with range', () => {
+      var block = {
+        "id": "c6a7",
+        "type": "p",
+        "text": "this is some text to split"
+      }
+      content.sections[0].blocks = [block];
+      var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a7', focus: 'c6a7' };
+      var offsets = { anchor: 5, focus: 7 };
+      var result = manager.splitBlock(guids, offsets);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(2);
+      expect(blocks[0].text).toBe('this ');
+      expect(blocks[1].text).toBe(' some text to split');
+    })
+
     it('should split across multiple blocks', () => {
+      var block = {
+        "id": "c6a7",
+        "type": "p",
+        "text": "this is some text to split"
+      }
+      content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
     })
   })

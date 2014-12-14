@@ -36,7 +36,7 @@ describe('BspaceKey', () => {
         selection.begOfBlock = () => { return true; }
 
         var callback = sinon.spy();
-        manager.combineWithPrevious = callback;
+        manager.combineBlockWithPrevious = callback;
 
         var button = new BspaceKey(manager, selection);
         var result = button.press();

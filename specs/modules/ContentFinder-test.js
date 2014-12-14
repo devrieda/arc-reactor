@@ -32,6 +32,11 @@ describe('ContentFinder', () => {
                   "id": "abcd",
                   "type": "li",
                   "text": "list item 1"
+                },
+                {
+                  "id": "abce",
+                  "type": "li",
+                  "text": "list item 2"
                 }
               ]
             }
@@ -63,6 +68,14 @@ describe('ContentFinder', () => {
       var blocks = finder.findBlocks('56ef');
 
       expect(blocks).toBe(content.sections[0].blocks);
+    })
+  })
+
+  describe('#findRange', () => {
+    it('finds reference to a range of blocks by guids', () => {
+      var finder = new ContentFinder(content);
+      var guids = finder.findRange({ anchor: '667a', focus: 'abcd'});
+      expect(guids).toEqual(['667a', 'ad84', 'abcd'])
     })
   })
 

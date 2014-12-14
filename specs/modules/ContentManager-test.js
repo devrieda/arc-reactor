@@ -194,13 +194,32 @@ describe('ContentManager', () => {
     })
 
     it('should split across multiple blocks', () => {
-      var block = {
+      var block1 = {
         "id": "c6a7",
         "type": "p",
-        "text": "this is some text to split"
+        "text": "You can imagine where it goes from here."
       }
-      content.sections[0].blocks = [block];
+      var block2 = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "He fixes the cable?"
+      }
+      var block3 = {
+        "id": "c6a9",
+        "type": "p",
+        "text": "Don't be fatuous, Jeffrey."
+      }
+      content.sections[0].blocks = [block1, block2, block3];
       var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a7', focus: 'c6a9' };
+      var offsets = { anchor: 8, focus: 6 };
+      var result = manager.splitBlock(guids, offsets);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(2);
+      expect(blocks[0].text).toBe('You can ');
+      expect(blocks[1].text).toBe('be fatuous, Jeffrey.');
     })
   })
 

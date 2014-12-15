@@ -225,7 +225,6 @@ describe('ContentManager', () => {
 
   describe('#combineBlocks', () => {
     it('should combine multiple blocks', () => {
-
       var block1 = {
         "id": "c6a7",
         "type": "p",
@@ -256,19 +255,85 @@ describe('ContentManager', () => {
 
   describe('#combineBlockWithPrevious', () => {
     it('should combine given block with previous sibling', () => {
+      var block1 = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "cable? "
+      }
+      var block2 = {
+        "id": "c6a9",
+        "type": "p",
+        "text": "Don't be fatuous"
+      }
+      content.sections[0].blocks = [block1, block2];
       var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a9', focus: 'c6a9' };
+      var offsets = { anchor: 0, focus: 0 };
+      var result = manager.combineBlockWithPrevious(guids, offsets);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(1);
+      expect(blocks[0].text).toBe('cable? Don\'t be fatuous');
     })
     it('should noop if no previous sibling', () => {
+      var block = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "cable?"
+      }
+      content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a8', focus: 'c6a8' };
+      var offsets = { anchor: 0, focus: 0 };
+      var result = manager.combineBlockWithPrevious(guids, offsets);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(1);
+      expect(blocks[0].text).toBe('cable?');
     })
   })
 
   describe('#combineBlockWithNext', () => {
     it('should combine given block with next sibling', () => {
+      var block1 = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "cable? "
+      }
+      var block2 = {
+        "id": "c6a9",
+        "type": "p",
+        "text": "Don't be fatuous"
+      }
+      content.sections[0].blocks = [block1, block2];
       var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a8', focus: 'c6a8' };
+      var offsets = { anchor: 0, focus: 0 };
+      var result = manager.combineBlockWithNext(guids, offsets);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(1);
+      expect(blocks[0].text).toBe('cable? Don\'t be fatuous');
     })
     it('should noop if no next sibling', () => {
+      var block = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "cable?"
+      }
+      content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a8', focus: 'c6a8' };
+      var offsets = { anchor: 0, focus: 0 };
+      var result = manager.combineBlockWithNext(guids, offsets);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks.length).toBe(1);
+      expect(blocks[0].text).toBe('cable?');
     })
   })
 })

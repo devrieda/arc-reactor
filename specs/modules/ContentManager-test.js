@@ -356,7 +356,106 @@ describe('ContentManager', () => {
   })
 
   describe('#toggleCenter', () => {
+    it('should add center meta for a single block', () => {
+      var block = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "a"
+      }
+      content.sections[0].blocks = [block];
+      var manager = new ContentManager(content);
 
+      var guids = { anchor: 'c6a8', focus: 'c6a8' };
+      var result = manager.toggleCenter(guids);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks[0].meta).toEqual({align: 'center'});
+    })
+    it('should add center meta across multiple blocks', () => {
+      var block1 = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "a"
+      }
+      var block2 = {
+        "id": "c6a9",
+        "type": "p",
+        "text": "b"
+      }
+      content.sections[0].blocks = [block1, block2];
+      var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a8', focus: 'c6a9' };
+      var result = manager.toggleCenter(guids);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks[0].meta).toEqual({align: 'center'});
+      expect(blocks[1].meta).toEqual({align: 'center'});
+    })
+
+    it('should remove center meta for a single block', () => {
+      var block = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "a",
+        "meta": {"align": "center"}
+      }
+      content.sections[0].blocks = [block];
+      var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a8', focus: 'c6a8' };
+      var result = manager.toggleCenter(guids);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks[0].meta).toEqual({});
+    })
+
+    it('should remove center meta across multiple blocks', () => {
+      var block1 = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "a",
+        "meta": {"align": "center"}
+      }
+      var block2 = {
+        "id": "c6a9",
+        "type": "p",
+        "text": "b",
+        "meta": {"align": "center"}
+      }
+      content.sections[0].blocks = [block1, block2];
+      var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a8', focus: 'c6a9' };
+      var result = manager.toggleCenter(guids);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks[0].meta).toEqual({});
+      expect(blocks[1].meta).toEqual({});
+    })
+
+    it('should center all blocks if a single one isnt centered', () => {
+      var block1 = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "a",
+        "meta": {"align": "center"}
+      }
+      var block2 = {
+        "id": "c6a9",
+        "type": "p",
+        "text": "b"
+      }
+      content.sections[0].blocks = [block1, block2];
+      var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a8', focus: 'c6a9' };
+      var result = manager.toggleCenter(guids);
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks[0].meta).toEqual({align: 'center'});
+      expect(blocks[1].meta).toEqual({align: 'center'});
+    })
   })
 
   describe('#toggleBlockType', () => {

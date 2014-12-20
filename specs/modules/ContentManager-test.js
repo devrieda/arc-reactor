@@ -336,5 +336,34 @@ describe('ContentManager', () => {
       expect(blocks[0].text).toBe('cable?');
     })
   })
-})
 
+  describe('#updateText', () => {
+    it('should update text in a block', () => {
+      var block = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "cable?"
+      }
+      content.sections[0].blocks = [block];
+      var manager = new ContentManager(content);
+
+      var guids = { anchor: 'c6a8', focus: 'c6a8' };
+      var result = manager.updateText(guids, 'cable!!!');
+
+      var blocks = content.sections[0].blocks;
+      expect(blocks[0].text).toBe('cable!!!');
+    })
+  })
+
+  describe('#toggleCenter', () => {
+
+  })
+
+  describe('#toggleBlockType', () => {
+
+  })
+
+  describe('#toggleMarkup', () => {
+
+  })
+})

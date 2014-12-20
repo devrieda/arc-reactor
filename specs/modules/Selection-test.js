@@ -123,17 +123,6 @@ describe('Selection', () => {
       assert(selection.reselect());
     })
 
-    it('reselects range from reverse selection', () => {
-      var div = createNode.apply(this);
-      var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
-      var selection = new Selection(sel);
-
-      selection.anchor.focusOn('0101', 12);
-      selection.focus.focusOn('0101', 9);
-
-      assert(selection.reselect());
-    })
-
     it('reinitializes bounds after selection', () => {
       var div = createNode.apply(this);
       var sel = createSelection(this.thisIs, this.thisIs, 0, 0);

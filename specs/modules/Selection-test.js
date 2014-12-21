@@ -116,10 +116,10 @@ describe('Selection', () => {
       var div = createNode.apply(this);
       var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
       var selection = new Selection(sel);
+      selection.selType = 'Range';
 
       selection.anchor.focusOn('0101', 9);
       selection.focus.focusOn('0101', 12);
-
       assert(selection.reselect());
     })
 
@@ -127,6 +127,7 @@ describe('Selection', () => {
       var div = createNode.apply(this);
       var sel = createSelection(this.thisIs, this.thisIs, 0, 0);
       var selection = new Selection(sel);
+      selection.selType = 'Range';
 
       var boundsBefore = selection.bounds;
 

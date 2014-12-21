@@ -21,9 +21,7 @@ describe('ItalicButton', () => {
       types:  ['p'],
       text:   "this",
       guids: () => {},
-      hasType: () => { return false; },
-      addType: () => {},
-      removeType: () => {}
+      offsets: () => {}
     }
   })
 

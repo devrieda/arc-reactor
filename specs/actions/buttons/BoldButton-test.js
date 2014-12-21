@@ -21,9 +21,7 @@ describe('BoldButton', () => {
       types:  ['p'],
       text:   "this",
       guids: () => {},
-      hasType: () => { return false; },
-      addType: () => {},
-      removeType: () => {}
+      offsets: () => {}
     }
   })
 

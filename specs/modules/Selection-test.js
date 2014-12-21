@@ -10,7 +10,7 @@ describe('Selection', () => {
   // <p>and more</p>
   function createNode() {
     this.div = document.createElement('div');
-    this.div.setAttribute('contenteditable', true);
+    this.div.setAttribute('class', 'ic-Editor-Content');
 
     this.p1 = document.createElement('p');
     this.p1.setAttribute('class', 'ic-Editor-Block ic-Editor-Block--0101');

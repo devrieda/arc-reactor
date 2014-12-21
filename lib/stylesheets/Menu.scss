@@ -9,6 +9,10 @@
 .ic-Editor-Menu--active {
   display: inline-block;
   visibility: visible;
+  -webkit-transition: top 75ms ease-out, left 75ms ease-out;
+  transition: top 75ms ease-out, left 75ms ease-out;
+  -webkit-animation: pop-upwards 180ms forwards linear;
+  animation: pop-upwards 180ms forwards linear;
 }
 
 .ic-Editor-Menu__inner {

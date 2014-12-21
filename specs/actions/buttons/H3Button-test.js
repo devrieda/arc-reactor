@@ -36,15 +36,5 @@ describe('H3Button', () => {
       assert(manager.toggleBlockType.calledOnce);
       manager.toggleBlockType.restore();
     })
-
-    it('sends replaceType to selection', () => {
-      sinon.spy(selection, "replaceType");
-
-      var button = new H3Button(manager, selection);
-      var result = button.press();
-
-      assert(selection.replaceType.calledOnce);
-      selection.replaceType.restore();
-    })
   })
 })

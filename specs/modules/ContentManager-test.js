@@ -559,6 +559,29 @@ describe('ContentManager', () => {
   })
 
   describe('#toggleMarkup', () => {
+    it('should add markup for a single block', () => {
+      var block = {
+        "id": "c6a8",
+        "type": "p",
+        "text": "this is my formatted text"
+      }
+      content.sections[0].blocks = [block];
+      var manager = new ContentManager(content);
 
+      var guids = { anchor: 'c6a8', focus: 'c6a8' };
+      var result = manager.toggleMarkup(guids, 'bolds', true, 'strong');
+    })
+
+    it('should add markup across multiple blocks', () => {
+
+    })
+
+    it('should remove markup for a single block', () => {
+
+    })
+
+    it('should remove markup across multiple blocks', () => {
+
+    })
   })
 })

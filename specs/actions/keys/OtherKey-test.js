@@ -86,29 +86,29 @@ describe('OtherKey', () => {
       selection.isRange = () => { return true; }
     })
 
-    describe('within a single block', () => {
-      it('should pass through and update text', () => {
-        var callback = sinon.spy();
-        manager.updateText = callback;
+    // describe('within a single block', () => {
+    //   it('should pass through and update text', () => {
+    //     var callback = sinon.spy();
+    //     manager.updateText = callback;
 
-        var button = new OtherKey(manager, selection);
-        var result = button.press();
-        assert(!result);
-        assert(callback.called); 
-      })
-    })
-    describe('across blocks', () => {
-      it('should combine blocks', () => {
-        selection.crossBlock = () => { return true; }
+    //     var button = new OtherKey(manager, selection);
+    //     var result = button.press();
+    //     assert(!result);
+    //     assert(callback.called); 
+    //   })
+    // })
+    // describe('across blocks', () => {
+    //   it('should combine blocks', () => {
+    //     selection.crossBlock = () => { return true; }
 
-        var callback = sinon.spy();
-        manager.combineBlocks = callback;
+    //     var callback = sinon.spy();
+    //     manager.combineBlocks = callback;
 
-        var button = new OtherKey(manager, selection);
-        var result = button.press();
+    //     var button = new OtherKey(manager, selection);
+    //     var result = button.press();
 
-        assert(callback.called);
-      })
-    })
+    //     assert(callback.called);
+    //   })
+    // })
   })
 })

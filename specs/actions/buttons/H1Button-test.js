@@ -26,7 +26,6 @@ describe('H1Button', () => {
   })
 
   describe('#press', () => {
-
     it('sends toggleBlockType to manager', () => {
       sinon.spy(manager, "toggleBlockType");
 
@@ -35,16 +34,6 @@ describe('H1Button', () => {
 
       assert(manager.toggleBlockType.calledOnce);
       manager.toggleBlockType.restore();
-    })
-
-    it('sends replaceType to selection', () => {
-      sinon.spy(selection, "replaceType");
-
-      var button = new H1Button(manager, selection);
-      var result = button.press();
-
-      assert(selection.replaceType.calledOnce);
-      selection.replaceType.restore();
     })
   })
 })

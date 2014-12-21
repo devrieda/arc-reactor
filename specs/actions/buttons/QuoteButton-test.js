@@ -36,15 +36,5 @@ describe('QuoteButton', () => {
       assert(manager.toggleBlockType.calledOnce);
       manager.toggleBlockType.restore();
     })
-
-    it('sends replaceType to selection', () => {
-      sinon.spy(selection, "replaceType");
-
-      var button = new QuoteButton(manager, selection);
-      var result = button.press();
-
-      assert(selection.replaceType.calledOnce);
-      selection.replaceType.restore();
-    })
   })
 })

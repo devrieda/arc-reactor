@@ -67,7 +67,12 @@ describe('Menu', () => {
     );
 
     SelectionState.set({
-      selection: {types: ['h2'], reselect: () => {}}
+      selection: {
+        types: ['h2'], 
+        reselect: () => {},
+        retype: () => {},
+        recenter: () => {}
+      }
     });
     var types = menu.buttonTypes();
     expect(types.length).toBe(6);
@@ -79,7 +84,12 @@ describe('Menu', () => {
     );
 
     SelectionState.set({
-      selection: {types: ['p'], reselect: () => {}}
+      selection: {
+        types: ['p'],
+        reselect: () => {},
+        retype: () => {},
+        recenter: () => {}
+      }
     });
     var types = menu.buttonTypes();
     expect(types.length).toBe(8);
@@ -93,7 +103,13 @@ describe('Menu', () => {
     );
 
     SelectionState.set({
-      selection: {text: 'hey', types: ['p'], reselect: () => {}}
+      selection: {
+        text: 'hey',
+        types: ['p'],
+        reselect: () => {},
+        retype: () => {},
+        recenter: () => {}
+      }
     });
     assert(menu.getDOMNode().classList.contains('ic-Editor-Menu--active'))
   })
@@ -107,6 +123,8 @@ describe('Menu', () => {
         text: 'hey',
         types: ['p'], 
         reselect: () => {},
+        retype: () => {},
+        recenter: () => {},
         bounds: {top: 20, left: 20, width: 20}
       }
     });

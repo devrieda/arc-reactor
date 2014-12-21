@@ -256,58 +256,14 @@ describe('Selection', () => {
   })
 
 
-  describe('#hasType', () => {
+  describe('#retype', () => {
 
-    it('checks if selection has type', () => {
-      var div = createNode.apply(this);
-      var sel = createSelection(this.some, this.some, 0, 4);
-      var selection = new Selection(sel);
-
-      assert(selection.hasType('p'));
-      assert(!selection.hasType('h3'));
+    it('checks if types have changed', () => {
     })
   })
 
-  describe('#addType', () => {
-
-    it('adds type', () => {
-      var div = createNode.apply(this);
-      var sel = createSelection(this.some, this.some, 0, 4);
-      var selection = new Selection(sel);
-
-      assert(!selection.hasType('h3'));
-      selection.addType('h3');
-      assert(selection.hasType('h3'));
-    })
-  })
-
-  describe('#removeType', () => {
-
-    it('removes type', () => {
-      var div = createNode.apply(this);
-      var sel = createSelection(this.some, this.some, 0, 4);
-      var selection = new Selection(sel);
-
-      assert(selection.hasType('em'));
-      selection.removeType('em');
-      assert(!selection.hasType('em'));
-    })
-  })
-
-  describe('#replaceType', () => {
-
-    it('switches type', () => {
-      var div = createNode.apply(this);
-      var sel = createSelection(this.some, this.some, 0, 4);
-      var selection = new Selection(sel);
-
-      assert(selection.hasType('p'));
-      assert(!selection.hasType('h1'));
-
-      selection.replaceType('p', 'h1');
-
-      assert(!selection.hasType('p'));
-      assert(selection.hasType('h1'));
+  describe('#recenter', () => {
+    it('checks if center has changed', () => {
     })
   })
 

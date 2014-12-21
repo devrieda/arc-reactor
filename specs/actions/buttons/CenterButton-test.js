@@ -34,27 +34,5 @@ describe('CenterButton', () => {
 
       assert(callback.called);
     })
-
-    it('toggles selection centered', () => {
-      selection.centered = false
-
-      var button = new CenterButton(manager, selection);
-      var result = button.press();
-
-      assert(selection.centered);
-    })
-
-  })
-
-  describe('#press while centered', () => {
-    it('toggles selection centered', () => {
-      selection.centered = true 
-
-      var button = new CenterButton(manager, selection);
-      var result = button.press();
-
-      assert(!selection.centered);
-    })
-
   })
 })

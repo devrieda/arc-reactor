@@ -38,15 +38,6 @@ describe('BoldButton', () => {
 
       assert(callback.called);
     })
-    it('adds type to selection', () => {
-      var callback = sinon.spy();
-      selection.addType = callback;
-
-      var button = new BoldButton(manager, selection);
-      var result = button.press();
-
-      assert(callback.called);
-    })
   })
 
   describe('#press while active', () => {
@@ -56,18 +47,6 @@ describe('BoldButton', () => {
 
       var callback = sinon.spy();
       manager.toggleMarkup = callback;
-
-      var button = new BoldButton(manager, selection);
-      var result = button.press();
-
-      assert(callback.called);
-    })
-
-    it('removes type from selection', () => {
-      selection.hasType = () => { return true; }
-
-      var callback = sinon.spy();
-      selection.removeType = callback;
 
       var button = new BoldButton(manager, selection);
       var result = button.press();

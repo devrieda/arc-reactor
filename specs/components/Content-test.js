@@ -32,7 +32,11 @@ describe('Content', () => {
     );
 
     var callback = sinon.spy();
-    ContentState.set({selection: {reselect: callback}});
+    ContentState.set({selection: {
+      reselect: callback,
+      retype: () => {},
+      recenter: () => {}
+    }});
     content.checkSelection();
 
     assert(callback.called)

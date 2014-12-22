@@ -34,8 +34,7 @@ describe('Content', () => {
     var callback = sinon.spy();
     ContentState.set({selection: {
       reselect: callback,
-      retype: () => {},
-      recenter: () => {}
+      rebound: () => {}
     }});
     content.checkSelection();
 

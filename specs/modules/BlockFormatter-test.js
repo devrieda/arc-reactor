@@ -18,7 +18,7 @@ describe('BlockFormatter', () => {
       var format = new BlockFormatter('a string of text');
 
       var expected = 'a <strong class="ic-Editor-Block__strong">string</strong> of text';
-      var markups  = {"bolds": [{"begin": 2, "end": 8}]};
+      var markups  = {"strong": [{"begin": 2, "end": 8}]};
       expect(format.applyMarkup(markups)).toBe(expected);
     })
 
@@ -26,7 +26,7 @@ describe('BlockFormatter', () => {
       var format = new BlockFormatter('a string of text');
 
       var expected = 'a <em class="ic-Editor-Block__em">string</em> of text';
-      var markups  = {"italics": [{"begin": 2, "end": 8}]};
+      var markups  = {"em": [{"begin": 2, "end": 8}]};
       expect(format.applyMarkup(markups)).toBe(expected);
     })
 
@@ -34,7 +34,7 @@ describe('BlockFormatter', () => {
       var format = new BlockFormatter('a string of text');
 
       var expected = 'a <a class=\"ic-Editor-Block__a\" href=\"http://example.com\">string</a> of text';
-      var markups  = {"links": [{"begin": 2, "end": 8, "url": "http://example.com"}]};
+      var markups  = {"a": [{"begin": 2, "end": 8, "url": "http://example.com"}]};
 
       expect(format.applyMarkup(markups)).toBe(expected);
     })
@@ -50,13 +50,13 @@ describe('BlockFormatter', () => {
                          '</strong>' + 
                        '</a> of text'
 
-      var markups  = {"bolds": [
+      var markups  = {"strong": [
                         {"begin": 2, "end": 8}
                       ],
-                      "italics": [
+                      "em": [
                         {"begin": 2, "end": 8}
                       ],
-                      "links": [
+                      "a": [
                         {"begin": 2, "end": 8, "url": "http://example.com"}
                       ]};
       expect(format.applyMarkup(markups)).toBe(expected);

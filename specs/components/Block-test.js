@@ -195,7 +195,7 @@ describe('Block', () => {
       type: "p",
       text: "hey there",
       markups: {
-        "italics": [
+        "em": [
           {"begin": 4, "end": 9}
         ]
       }

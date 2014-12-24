@@ -569,7 +569,7 @@ describe('ContentManager', () => {
       var manager = new ContentManager(content);
 
       var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var result = manager.toggleMarkup(guids, 'bolds', true, 'strong');
+      var result = manager.toggleMarkup(guids, 'strong', true, 'strong');
     })
 
     it('should add markup across multiple blocks', () => {

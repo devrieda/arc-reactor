@@ -103,47 +103,47 @@ describe('SelectionNode', () => {
   })
 
 
-  describe('#types', () => {
+  // describe('#types', () => {
 
-    it('finds all upstream node tag types', () => {
-      createNode.apply(this);
-      var sn = new SelectionNode(this.some, 1);
+  //   it('finds all upstream node tag types', () => {
+  //     createNode.apply(this);
+  //     var sn = new SelectionNode(this.some, 1);
 
-      var types = sn.types();
-      expect(types[0]).toBe('em');
-      expect(types[1]).toBe('strong');
-      expect(types[2]).toBe('p');
-    })
-  })
+  //     var types = sn.types();
+  //     expect(types[0]).toBe('em');
+  //     expect(types[1]).toBe('strong');
+  //     expect(types[2]).toBe('p');
+  //   })
+  // })
 
 
-  describe('#isCenter', () => {
+  // describe('#isCenter', () => {
 
-    it('finds if the node is centered', () => {
-      createNode.apply(this);
+  //   it('finds if the node is centered', () => {
+  //     createNode.apply(this);
 
-      // no align=center
-      var sn = new SelectionNode(this.p2, 0);
-      assert(!sn.isCenter(sn));
+  //     // no align=center
+  //     var sn = new SelectionNode(this.p2, 0);
+  //     assert(!sn.isCenter(sn));
 
-      // has align=center
-      var sn = new SelectionNode(this.p1, 0);
-      assert(sn.isCenter(sn));
-    })
+  //     // has align=center
+  //     var sn = new SelectionNode(this.p1, 0);
+  //     assert(sn.isCenter(sn));
+  //   })
 
-    it('finds if the node is centered until another node', () => {
-      createNode.apply(this);
+  //   it('finds if the node is centered until another node', () => {
+  //     createNode.apply(this);
 
-      // only one is centered
-      var sn1 = new SelectionNode(this.p1, 0);
-      var sn2 = new SelectionNode(this.p2, 0);
-      assert(!sn1.isCenter(sn2));
+  //     // only one is centered
+  //     var sn1 = new SelectionNode(this.p1, 0);
+  //     var sn2 = new SelectionNode(this.p2, 0);
+  //     assert(!sn1.isCenter(sn2));
 
-      // both are centered
-      this.p2.setAttribute('data-align', 'center');
-      assert(sn1.isCenter(sn2));
-    })
-  })
+  //     // both are centered
+  //     this.p2.setAttribute('data-align', 'center');
+  //     assert(sn1.isCenter(sn2));
+  //   })
+  // })
 
 
   describe('#focusOn', () => {

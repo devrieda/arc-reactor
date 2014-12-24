@@ -17,13 +17,14 @@ describe('MenuItem', () => {
     var icon = 'fa-align-center';
     var action = 'Center';
     var selection = {"centered": true};
+    var selContent = { isCentered: () => { return true; } }
 
     var menuItem = TestUtils.renderIntoDocument(
       <MenuItem type={type}
                 text={text}
                 icon={icon}
               action={action}
-           selection={selection} />
+          selContent={selContent} />
     );
     expect(menuItem.isActive()).toBe(true);
   })
@@ -34,13 +35,14 @@ describe('MenuItem', () => {
     var icon = 'fa-bold';
     var action = 'Bold';
     var selection = {"types": ['strong']};
+    var selContent = { hasType: (type) => { return type == 'strong'; } }
 
     var menuItem = TestUtils.renderIntoDocument(
       <MenuItem type={type}
                 text={text}
                 icon={icon}
               action={action}
-           selection={selection} />
+          selContent={selContent} />
     );
     expect(menuItem.isActive()).toBe(true);
   })
@@ -51,13 +53,14 @@ describe('MenuItem', () => {
     var icon = 'fa-bold';
     var action = 'Bold';
     var selection = {"types": ['strong']};
+    var selContent = { hasType: (type) => { return type == 'strong'; } }
 
     var menuItem = TestUtils.renderIntoDocument(
       <MenuItem type={type}
                 text={text}
                 icon={icon}
               action={action}
-           selection={selection} />
+          selContent={selContent} />
     );
     var component = findByClass(menuItem, 'ic-Editor-MenuItem--active');
     assert(component);
@@ -72,14 +75,14 @@ describe('MenuItem', () => {
     var text = 'Bold';
     var icon = 'fa-bold';
     var action = 'Bold';
-    var selection = {};
+    var selContent = { hasType: (type) => { return false; } }
 
     var menuItem = TestUtils.renderIntoDocument(
       <MenuItem type={type}
                 text={text}
                 icon={icon}
               action={action}
-           selection={selection} />
+          selContent={selContent} />
     );
     var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon-text--sr');
     assert(component);

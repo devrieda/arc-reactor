@@ -21,6 +21,7 @@ describe('QuoteButton', () => {
       types:  ['p'],
       text:   "this",
       guids: () => {},
+      offsets: () => {},
       replaceType: () => {}
     }
   })

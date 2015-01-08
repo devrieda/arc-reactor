@@ -365,8 +365,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var result = manager.toggleCenter(guids);
+      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleCenter(guids, offsets);
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].meta).toEqual({align: 'center'});
@@ -385,8 +386,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block1, block2];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a9' };
-      var result = manager.toggleCenter(guids);
+      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleCenter(guids, offsets);
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].meta).toEqual({align: 'center'});
@@ -403,8 +405,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var result = manager.toggleCenter(guids);
+      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleCenter(guids, offsets);
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].meta).toEqual({});
@@ -426,8 +429,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block1, block2];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a9' };
-      var result = manager.toggleCenter(guids);
+      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleCenter(guids, offsets);
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].meta).toEqual({});
@@ -449,8 +453,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block1, block2];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a9' };
-      var result = manager.toggleCenter(guids);
+      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleCenter(guids, offsets);
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].meta).toEqual({align: 'center'});
@@ -468,8 +473,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var result = manager.toggleBlockType(guids, 'h1');
+      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleBlockType(guids, offsets, 'h1');
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].type).toBe('h1');
@@ -489,8 +495,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block1, block2];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a9' };
-      var result = manager.toggleBlockType(guids, 'h1');
+      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleBlockType(guids, offsets, 'h1');
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].type).toBe('h1');
@@ -506,8 +513,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var result = manager.toggleBlockType(guids, 'h1');
+      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleBlockType(guids, offsets, 'h1');
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].type).toBe('p');
@@ -527,8 +535,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block1, block2];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a9' };
-      var result = manager.toggleBlockType(guids, 'h1');
+      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleBlockType(guids, offsets, 'h1');
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].type).toBe('p');
@@ -549,8 +558,9 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block1, block2];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a9' };
-      var result = manager.toggleBlockType(guids, 'h1');
+      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      var offsets = { anchor: 0, focus: 1 };
+      var result = manager.toggleBlockType(guids, offsets, 'h1');
 
       var blocks = content.sections[0].blocks;
       expect(blocks[0].type).toBe('p');

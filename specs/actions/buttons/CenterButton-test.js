@@ -20,7 +20,8 @@ describe('CenterButton', () => {
       focus:  {guid: "56ef", blockOffset: 4},
       types:  ['p'],
       text:   "this",
-      guids: () => {}
+      guids: () => {},
+      offsets: () => {}
     }
   })
 

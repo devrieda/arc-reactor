@@ -21,6 +21,7 @@ describe('H2Button', () => {
       types:  ['p'],
       text:   "this",
       guids: () => {},
+      offsets: () => {},
       replaceType: () => {}
     }
   })

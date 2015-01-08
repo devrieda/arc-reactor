@@ -21,6 +21,7 @@ describe('H3Button', () => {
       types:  ['p'],
       text:   "this",
       guids: () => {},
+      offsets: () => {},
       replaceType: () => {}
     }
   })

@@ -93,6 +93,14 @@ describe('BlockNode', () => {
       var blockOffset = blockNode.blockOffset(this.some, 2);
       expect(blockOffset).toBe(10);
     })
+
+    it('finds block offset for focus on block element', () => {
+      var node = createNode.apply(this);
+      var blockNode = new BlockNode(node);
+
+      var blockOffset = blockNode.blockOffset(this.p, 0);
+      expect(blockOffset).toBe(0);
+    })
   })
 
 })

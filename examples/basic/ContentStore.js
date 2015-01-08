@@ -116,24 +116,55 @@ var ContentStore = {
               "type": "p",
               "text": "The metal-based daguerreotype process soon had some competition from the paper-based calotype negative and salt print processes invented by Henry Fox Talbot. Subsequent innovations reduced the required camera exposure time from minutes to seconds and eventually to a small fraction of a second",
               "markups": {
-                "links": [{ 
+                "a": [{
                   "begin": 16, "end": 29, "url": "http://google.com"
                 }]
               }
             },
             {
-              "id": "1d6f",
+              "id": "1d6e",
               "type": "p",
-              "text": "And something here bold and italic words.",
+              "text": "Photography is the result of combining several different technical discoveries.",
               "markups": {
-                "bolds": [{ 
-                  "begin": 19, "end": 23
-                }],
-                "italics": [{
-                  "begin": 28, "end": 34
+                "strong": [{
+                  "begin": 67, "end": 79
                 }]
               }
             },
+            {
+              "id": "1d6b",
+              "type": "p",
+              "text": "photos!",
+              "markups": {
+                "strong": [{
+                  "begin": 0, "end": 7
+                }]
+              }
+            },
+            {
+              "id": "1d6d",
+              "type": "p",
+              "text": "Long before the first photographs were made, Chinese philosopher Mo Ti and Greek mathematicians Aristotle and Euclid described a pinhole camera in the 5th and 4th centuries BCE.",
+              "markups": {
+                "strong": [{
+                  "begin": 0, "end": 4
+                }],
+                "em": [{
+                  "begin": 22, "end": 33
+                }]
+              }
+            },
+            {
+              "id": "1d6c",
+              "type": "p",
+              "text": "In 1833 Niépce died suddenly, leaving his notes to Daguerre.",
+              "markups": {
+                "strong": [{
+                  "begin": 0, "end": 7
+                }]
+              }
+            },
+
             {
               "id": "067c",
               "type": "blockquote",
@@ -152,13 +183,13 @@ var ContentStore = {
               "type": "p",
               "text": "And that can combine both markup and <b>escaped</b>",
               "markups": {
-                "bolds": [{
+                "strong": [{
                   "begin": 21, "end": 25
                 }],
-                "italics": [{
+                "em": [{
                   "begin": 21, "end": 25
                 }],
-                "links": [{
+                "a": [{
                   "begin": 21, "end": 25, "url": "http://google.com"
                 }]
               }

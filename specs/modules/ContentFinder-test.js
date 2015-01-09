@@ -77,6 +77,15 @@ describe('ContentFinder', () => {
       var guids = finder.findRange({ anchor: '667a', focus: 'abcd'});
       expect(guids).toEqual(['667a', 'ad84', 'abcd'])
     })
+
+    it('drops the last block if no content in the block is selected', () => {
+      var finder = new ContentFinder(content);
+      var guids = finder.findRange(
+        { anchor: '667a', focus: 'abcd'},
+        { anchor: 0, focus: 0 }
+      );
+      expect(guids).toEqual(['667a', 'ad84'])
+    })
   })
 
   describe('#findPreviousBlock', () => {

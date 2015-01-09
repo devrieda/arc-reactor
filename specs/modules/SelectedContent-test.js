@@ -28,7 +28,7 @@ describe('SelectedContent', () => {
       beforeEach(() => {
         selection = {
           guids: () => { return { anchor: 'c6a7', focus: 'c6a7' }; },
-          offsets: () => { return { anchor: '', focus: '' }; }
+          offsets: () => { return { anchor: 0, focus: 1 }; }
         }
         block = {
           "id": "c6a7",
@@ -41,7 +41,7 @@ describe('SelectedContent', () => {
       it('should be false if single block is not centered', () => {
         var selection = {
           guids: () => { return { anchor: 'c6a7', focus: 'c6a7' }; },
-          offsets: () => { return { anchor: '', focus: '' }; }
+          offsets: () => { return { anchor: 0, focus: 1 }; }
         }
 
         var selContent = new SelectedContent(selection, content);
@@ -51,7 +51,7 @@ describe('SelectedContent', () => {
       it('should be true if single block is centered', () => {
         var selection = {
           guids: () => { return { anchor: 'c6a7', focus: 'c6a7' }; },
-          offsets: () => { return { anchor: '', focus: '' }; }
+          offsets: () => { return { anchor: 0, focus: 1 }; }
         }
         content.sections[0].blocks[0].meta = { align: "center" };
 
@@ -66,7 +66,7 @@ describe('SelectedContent', () => {
       beforeEach(() => {
         selection = {
           guids: () => { return { anchor: 'c6a7', focus: 'c6a8' }; },
-          offsets: () => { return { anchor: '', focus: '' }; }
+          offsets: () => { return { anchor: 0, focus: 1 }; }
         }
         block1 = {
           "id": "c6a7",
@@ -125,7 +125,7 @@ describe('SelectedContent', () => {
         beforeEach(() => {
           selection = {
             guids: () => { return { anchor: 'c6a7', focus: 'c6a7' }; },
-            offsets: () => { return { anchor: '', focus: '' }; }
+            offsets: () => { return { anchor: 0, focus: 1 }; }
           }
           block = {
             "id": "c6a7",
@@ -155,7 +155,7 @@ describe('SelectedContent', () => {
         beforeEach(() => {
           selection = {
             guids: () => { return { anchor: 'c6a7', focus: 'c6a8' }; },
-            offsets: () => { return { anchor: '', focus: '' }; }
+            offsets: () => { return { anchor: 0, focus: 1 }; }
           }
           block1 = {
             "id": "c6a7",
@@ -330,7 +330,7 @@ describe('SelectedContent', () => {
     beforeEach(() => {
       selection = {
         guids: () => { return { anchor: 'c6a7', focus: 'c6a7' }; },
-        offsets: () => { return { anchor: '', focus: '' }; }
+        offsets: () => { return { anchor: 0, focus: 1 }; }
       }
       block = {
         "id": "c6a7",

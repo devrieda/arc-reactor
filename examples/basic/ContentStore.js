@@ -176,7 +176,7 @@ var ContentStore = {
             {
               "id": "e5fe",
               "type": "p",
-              "text": " And more paragraphs of text that are <b>escaped</b>"
+              "text": " And more paragraphs of text that are <b>escaped</b> "
             },
             {
               "id": "e5ff",

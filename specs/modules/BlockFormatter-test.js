@@ -14,11 +14,11 @@ describe('BlockFormatter', () => {
       expect(format.applyMarkup(markups)).toBe(expected);
     })
 
-    it('formats text with single trong tag', () => {
+    it('formats text with single strong tag', () => {
       var format = new BlockFormatter('a string of text');
 
       var expected = 'a <strong class="ic-Editor-Block__strong">string</strong> of text';
-      var markups  = {"strong": [{"begin": 2, "end": 8}]};
+      var markups  = {"strong": [{"range": [2,8]}]};
       expect(format.applyMarkup(markups)).toBe(expected);
     })
 
@@ -26,7 +26,7 @@ describe('BlockFormatter', () => {
       var format = new BlockFormatter('a string of text');
 
       var expected = 'a <em class="ic-Editor-Block__em">string</em> of text';
-      var markups  = {"em": [{"begin": 2, "end": 8}]};
+      var markups  = {"em": [{"range": [2,8]}]};
       expect(format.applyMarkup(markups)).toBe(expected);
     })
 
@@ -34,7 +34,7 @@ describe('BlockFormatter', () => {
       var format = new BlockFormatter('a string of text');
 
       var expected = 'a <a class=\"ic-Editor-Block__a\" href=\"http://example.com\">string</a> of text';
-      var markups  = {"a": [{"begin": 2, "end": 8, "url": "http://example.com"}]};
+      var markups  = {"a": [{"range": [2,8], "value": "http://example.com"}]};
 
       expect(format.applyMarkup(markups)).toBe(expected);
     })
@@ -51,13 +51,13 @@ describe('BlockFormatter', () => {
                        '</a> of text'
 
       var markups  = {"strong": [
-                        {"begin": 2, "end": 8}
+                        {"range": [2,8]}
                       ],
                       "em": [
-                        {"begin": 2, "end": 8}
+                        {"range": [2,8]}
                       ],
                       "a": [
-                        {"begin": 2, "end": 8, "url": "http://example.com"}
+                        {"range": [2,8], "value": "http://example.com"}
                       ]};
       expect(format.applyMarkup(markups)).toBe(expected);
     })

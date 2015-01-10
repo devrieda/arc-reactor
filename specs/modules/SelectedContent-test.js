@@ -224,14 +224,14 @@ describe('SelectedContent', () => {
 
         it('should be false if the selection does not fall within a range', () => {
           var selContent = new SelectedContent(selection, content);
-          content.sections[0].blocks[0].markups = { 'strong': [{begin: 0, end: 2}] }
+          content.sections[0].blocks[0].markups = { 'strong': [{range: [0,2]}] }
 
           assert(!selContent.hasType('strong'));
         })
 
         it('should be true if the selection falls within a range', () => {
           var selContent = new SelectedContent(selection, content);
-          content.sections[0].blocks[0].markups = { 'strong': [{begin: 0, end: 4}] }
+          content.sections[0].blocks[0].markups = { 'strong': [{range: [0,4]}] }
 
           assert(selContent.hasType('strong'));
         })
@@ -250,7 +250,7 @@ describe('SelectedContent', () => {
             "type": "p",
             "text": "some basic content",
             "markups": {
-              'strong': [{begin: 11, end: 18}]
+              'strong': [{range: [11,18]}]
             }
           }
           block2 = {
@@ -258,7 +258,7 @@ describe('SelectedContent', () => {
             "type": "p",
             "text": "more content",
             "markups": {
-              'strong': [{begin: 0, end: 12}]
+              'strong': [{range: [0,12]}]
             }
           }
           block3 = {
@@ -266,7 +266,7 @@ describe('SelectedContent', () => {
             "type": "p",
             "text": "and more",
             "markups": {
-              'strong': [{begin: 0, end: 3}]
+              'strong': [{range: [0,3]}]
             }
           }
           content.sections[0].blocks = [block1, block2, block3];
@@ -281,35 +281,35 @@ describe('SelectedContent', () => {
 
         it('should be false if the anchor offset isnt within a range', () => {
           var selContent = new SelectedContent(selection, content);
-          content.sections[0].blocks[0].markups.strong = [{begin: 12, end: 18}]
+          content.sections[0].blocks[0].markups.strong = [{range: [12,18]}]
 
           assert(!selContent.hasType('strong'));
         })
 
         it('should be false if the anchor selection doesnt go to end of block', () => {
           var selContent = new SelectedContent(selection, content);
-          content.sections[0].blocks[0].markups.strong = [{begin: 11, end: 13}]
+          content.sections[0].blocks[0].markups.strong = [{range: [11,13]}]
 
           assert(!selContent.hasType('strong'));
         })
 
         it('should be false if the focus offset isnt within a range', () => {
           var selContent = new SelectedContent(selection, content);
-          content.sections[0].blocks[2].markups.strong = [{begin: 0, end: 2}]
+          content.sections[0].blocks[2].markups.strong = [{range: [0,2]}]
 
           assert(!selContent.hasType('strong'));
         })
 
         it('should be false if the focus offset doesnt start at beginning of block', () => {
           var selContent = new SelectedContent(selection, content);
-          content.sections[0].blocks[2].markups.strong = [{begin: 1, end: 3}]
+          content.sections[0].blocks[2].markups.strong = [{range: [1,3]}]
 
           assert(!selContent.hasType('strong'));
         })
 
         it('should be false if all in-between blocks arent a full range', () => {
           var selContent = new SelectedContent(selection, content);
-          content.sections[0].blocks[1].markups.strong = [{begin: 0, end: 2}]
+          content.sections[0].blocks[1].markups.strong = [{range: [0,2]}]
 
           assert(!selContent.hasType('strong'));
         })

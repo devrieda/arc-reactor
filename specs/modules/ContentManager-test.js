@@ -578,8 +578,11 @@ describe('ContentManager', () => {
       content.sections[0].blocks = [block];
       var manager = new ContentManager(content);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var result = manager.toggleMarkup(guids, 'strong', true, 'strong');
+      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      var offsets = { anchor: 0, focus: 4 };
+      var result = manager.toggleMarkup(guids, offsets, 'strong');
+
+      expect(block.markups).toEqual({"strong":[{"range": [0,4]}]});
     })
 
     it('should add markup across multiple blocks', () => {
@@ -587,7 +590,24 @@ describe('ContentManager', () => {
     })
 
     it('should remove markup for a single block', () => {
+      // var block = {
+      //   "id": "c6a8",
+      //   "type": "p",
+      //   "text": "this is my formatted text",
+      //   "markups": {
+      //     "strong": [{
+      //       "range": [0,4]
+      //     }]
+      //   }
+      // }
+      // content.sections[0].blocks = [block];
+      // var manager = new ContentManager(content);
 
+      // var guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      // var offsets = { anchor: 0, focus: 4 };
+      // var result = manager.toggleMarkup(guids, offsets, 'strong');
+
+      // expect(block.markups).toEqual({"strong":[]});
     })
 
     it('should remove markup across multiple blocks', () => {
@@ -595,3 +615,4 @@ describe('ContentManager', () => {
     })
   })
 })
+

@@ -25,6 +25,7 @@ require('./modules/ContentFinder-test');
 require('./modules/ContentManager-test');
 require('./modules/Guid-test');
 require('./modules/KeyIntent-test');
+require('./modules/RangeSet-test');
 require('./modules/SelectedContent-test');
 require('./modules/Selection-test');
 require('./modules/SelectionNode-test');

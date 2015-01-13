@@ -10,57 +10,19 @@ var ContentState = require('../../lib/state/ContentState');
 var MenuItem = require('../../lib/components/MenuItem');
 
 describe('MenuItem', () => {
-
-  it('should be active if selection is centered and type is center', () => {
-    var type = 'center';
-    var text = 'Center';
-    var icon = 'fa-align-center';
-    var action = 'Center';
-    var selection = {"centered": true};
-    var selContent = { isCentered: () => { return true; } }
-
-    var menuItem = TestUtils.renderIntoDocument(
-      <MenuItem type={type}
-                text={text}
-                icon={icon}
-              action={action}
-          selContent={selContent} />
-    );
-    expect(menuItem.isActive()).toBe(true);
-  })
-
-  it('should be active if selection is bolded and type is bold', () => {
-    var type = 'strong';
-    var text = 'Bold';
-    var icon = 'fa-bold';
-    var action = 'Bold';
-    var selection = {"types": ['strong']};
-    var selContent = { hasType: (type) => { return type == 'strong'; } }
-
-    var menuItem = TestUtils.renderIntoDocument(
-      <MenuItem type={type}
-                text={text}
-                icon={icon}
-              action={action}
-          selContent={selContent} />
-    );
-    expect(menuItem.isActive()).toBe(true);
-  })
-
   it('should have item, button, and icon with active class if is active', () => {
     var type = 'strong';
     var text = 'Bold';
     var icon = 'fa-bold';
     var action = 'Bold';
-    var selection = {"types": ['strong']};
-    var selContent = { hasType: (type) => { return type == 'strong'; } }
+    var active = true;
 
     var menuItem = TestUtils.renderIntoDocument(
       <MenuItem type={type}
                 text={text}
                 icon={icon}
               action={action}
-          selContent={selContent} />
+              active={active} />
     );
     var component = findByClass(menuItem, 'ic-Editor-MenuItem--active');
     assert(component);
@@ -75,14 +37,14 @@ describe('MenuItem', () => {
     var text = 'Bold';
     var icon = 'fa-bold';
     var action = 'Bold';
-    var selContent = { hasType: (type) => { return false; } }
+    var active = false;
 
     var menuItem = TestUtils.renderIntoDocument(
       <MenuItem type={type}
                 text={text}
                 icon={icon}
               action={action}
-          selContent={selContent} />
+              active={active} />
     );
     var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon-text--sr');
     assert(component);

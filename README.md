@@ -15,7 +15,8 @@ Inside an app
 -----
 ```js
 var React = require('react');
-var Editor = require('./components/Editor.js');
+var ReactEditor = require('react-editor');
+var { Editor } = ReactEditor;
 var Store = require('./ContentStore.json');
 
 var App = React.createClass({

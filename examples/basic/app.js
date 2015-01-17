@@ -1,5 +1,6 @@
 var React = require('react');
-var Editor = require('../../lib/index');
+var ReactEditor = require('react-editor');
+var { Editor } = ReactEditor;
 
 var Store = require('./ContentStore.js');
 

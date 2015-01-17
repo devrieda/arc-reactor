@@ -1,41 +1,44 @@
-module.exports = function(config) {
+var webpack = require('webpack');
+
+module.exports = function (config) {
   config.set({
 
-    basePath: '',
+    browsers: [ process.env.CONTINUOUS_INTEGRATION ? 'Firefox' : 'Chrome' ],
 
-    frameworks: ['mocha', 'browserify'],
+    singleRun: process.env.CONTINUOUS_INTEGRATION === 'true',
+
+    frameworks: ['mocha', 'sinon-chai'],
 
     files: [
-      'tests/main.js'
+      'tests.webpack.js'
     ],
 
-    exclude: [],
-
     preprocessors: {
-      'tests/**/*.js': ['browserify']
+      'tests.webpack.js': [ 'webpack', 'sourcemap' ]
     },
 
-    browserify: {
-      transform: [ ['reactify', {'es6': true}], 'sassify' ],
-      extensions: ['.js', '.scss'],
-      watch: true,
-      debug: true
+    reporters: [ 'dots' ],
+
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        loaders: [
+          { test: /\.js$/, loader: 'jsx-loader?harmony' },
+          { test: /\.css$/, loader: 'style!css' },
+          { test: /\.scss$/, loader: 'style!css!autoprefixer?browsers=last 2 version!sass?includePaths[]=' + __dirname + '/app/stylesheets' }
+        ]
+      },
+      plugins: [
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify('test')
+        })
+      ]
     },
 
-    reporters: ['progress'],
+    webpackServer: {
+      noInfo: true
+    }
 
-    port: 9876,
-
-    colors: true,
-
-    logLevel: config.LOG_INFO,
-
-    autoWatch: true,
-
-    browsers: ['Chrome'],
-
-    captureTimeout: 60000,
-
-    singleRun: false
   });
 };
+

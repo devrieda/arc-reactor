@@ -1,6 +1,5 @@
 var expect = require('expect');
 var assert = require('assert');
-var sinon = require('sinon');
 
 var React = require('react/addons');
 var TestUtils = React.addons.TestUtils;

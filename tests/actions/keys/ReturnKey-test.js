@@ -1,6 +1,5 @@
 var expect = require('expect');
 var assert = require('assert');
-var sinon = require('sinon');
 
 var ContentManager = require('../../../lib/modules/ContentManager');
 var ReturnKey = require('../../../lib/actions/keys/ReturnKey');

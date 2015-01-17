@@ -1,6 +1,5 @@
 var expect = require('expect');
 var assert = require('assert');
-var sinon = require('sinon');
 
 var SelectedContent = require('../../lib/modules/SelectedContent');
 var ContentState = require('../../lib/state/ContentState');

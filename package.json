@@ -15,7 +15,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack ./lib/index.js dist/react-editor.js",
     "build-min": "NODE_ENV=production COMPRESS=1 webpack ./lib/index.js dist/react-editor.min.js",
-    "examples": "webpack-dev-server --config examples/webpack.config.js --no-info --content-base examples",
+    "examples": "webpack-dev-server --config examples/webpack.config.js --no-info --inline --content-base examples",
     "test": "karma start"
   },
   "authors": [

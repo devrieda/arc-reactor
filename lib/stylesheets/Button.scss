@@ -1,0 +1,39 @@
+@import 'variables';
+
+.ic-Editor-Button {
+  display: block;
+  background: rgba(0,0,0,0);
+  border: 0;
+  border-right: 1px solid $button-border-color;
+  color: $button-text-off-color;
+  padding: 0 12px;
+  box-sizing: content-box;
+  appearance: button;
+  cursor: pointer;
+  text-transform: none;
+  font: inherit;
+  outline: none;
+}
+
+.ic-Editor-Button__icon {
+  color: $button-text-off-color;
+  font-size: 17px;
+  line-height: 42px;
+}
+
+.ic-Editor-Button__icon-text {
+  font-weight: bold;
+  line-height: 42px;
+}
+.ic-Editor-Button__icon-text--sr {
+  @include screenreader;
+}
+
+.ic-Editor-Button:hover,
+.ic-Editor-Button--active,
+.ic-Editor-Button__icon--active {
+  color: $button-text-on-color;
+  transition: background-color 0.2s ease-in-out;
+  background-color: $button-on-color;
+}
+

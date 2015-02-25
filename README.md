@@ -8,7 +8,10 @@ Rich content editor component. Super alpha and under heavy dev.
 Usage
 -----
 ```xml
-<Editor content={object} onChange={fn} />
+<Editor>
+  <Content content={object} onChange={fn} />
+  <Toolbar.Basic />
+</Editor>
 ```
 
 Inside an app
@@ -16,8 +19,8 @@ Inside an app
 ```js
 var React = require('react');
 var ReactEditor = require('react-editor');
-var { Editor } = ReactEditor;
-var Store = require('./ContentStore.json');
+var { Editor, Content, Toolbar, Button } = ReactEditor;
+var ContentStore = require('./ContentStore.json');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -25,7 +28,7 @@ var App = React.createClass({
   },
 
   componentWillMount: function() {
-    this.setState({content: Store.find()});
+    this.setState({content: ContentStore.find()});
   },
 
   contentChanged: function(json) {
@@ -36,7 +39,10 @@ var App = React.createClass({
     return (
       <div>
         <h1>React Editor</h1>
-        <Editor content={this.state.content} onChange={this.contentChanged} />
+        <Editor>
+          <Content content={this.state.content} onChange={this.contentChanged} />
+          <Toolbar.Basic />
+        </Editor>
       </div>
     );
   }
@@ -50,4 +56,11 @@ To run tests
 
 ```bash
 npm test
+```
+
+To view examples
+-----
+
+```bash
+npm run examples
 ```

@@ -15,7 +15,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
 
@@ -30,7 +30,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--empty'))
@@ -43,7 +43,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--empty'))
@@ -59,7 +59,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--empty'))
@@ -72,7 +72,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--header'))
@@ -85,7 +85,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--header'))
@@ -99,7 +99,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--list'))
@@ -112,7 +112,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--list'))
@@ -125,7 +125,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} first={true}/>
+      <Block {...content} first={true}/>
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--first'))
@@ -138,7 +138,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Block--first'))
@@ -152,7 +152,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--0000'))
@@ -165,7 +165,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var dom = block.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Block--h2'))
@@ -183,7 +183,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var component = findByClass(block, 'ic-Editor-Block--li');
     assert(component);
@@ -199,7 +199,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     var formatted = 'hey <em class="ic-Editor-Block__em">there</em>';
     expect(block.getDOMNode().innerHTML).toBe(formatted)
@@ -212,7 +212,7 @@ describe('Block', () => {
     }
 
     var block = TestUtils.renderIntoDocument(
-      <Block content={content} />
+      <Block {...content} />
     );
     expect(block.getDOMNode().innerHTML).toBe('<br>')
   })

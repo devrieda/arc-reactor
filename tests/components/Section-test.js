@@ -8,12 +8,12 @@ var findByClass = TestUtils.findRenderedDOMComponentWithClass
 var ContentState = require('../../lib/state/ContentState');
 var Section = require('../../lib/components/Section.js');
 
-describe('Section', () => {
+describe('This::Section', () => {
   // class names
   it('should set class name if first section', () => {
     var content = { "id": "0000", "blocks": [], "meta": {"first": true} }
     var section = TestUtils.renderIntoDocument(
-      <Section content={content} />
+      <Section {...content} />
     );
     var dom = section.getDOMNode();
     assert(dom.classList.contains('ic-Editor-Section--first'))
@@ -22,12 +22,11 @@ describe('Section', () => {
   it('should not set class name if not first section', () => {
     var content = { "id": "0000", "blocks": [] }
     var section = TestUtils.renderIntoDocument(
-      <Section content={content} />
+      <Section {...content} />
     );
     var dom = section.getDOMNode();
     assert(!dom.classList.contains('ic-Editor-Section--first'))
   })
-
 
   // rendering
   it('should render blocks', () => {
@@ -39,7 +38,7 @@ describe('Section', () => {
     }
 
     var section = TestUtils.renderIntoDocument(
-      <Section content={content} />
+      <Section {...content} />
     );
 
     var component = findByClass(section, 'ic-Editor-Block--p');

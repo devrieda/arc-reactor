@@ -23,9 +23,7 @@ describe('MenuItem', () => {
               action={action}
               active={active} />
     );
-    var component = findByClass(menuItem, 'ic-Editor-MenuItem--active');
-    assert(component);
-    var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon--active');
+    var component = findByClass(menuItem, 'ic-Editor-MenuItem__button--active');
     assert(component);
     var component = findByClass(menuItem, 'ic-Editor-MenuItem__icon--active');
     assert(component);

@@ -17,9 +17,7 @@ describe('Menu', () => {
       <Menu />
     );
 
-    var link = findByClass(menu, 'ic-Editor-MenuItem--a');
-    var button = findByClass(link, 'ic-Editor-MenuItem__button');
-
+    var button = findByClass(menu, 'ic-Editor-MenuItem__button--a');
     TestUtils.Simulate.click(button);
 
     var component = findByClass(menu, 'ic-Editor-Menu--link');
@@ -33,10 +31,9 @@ describe('Menu', () => {
     var callback = sinon.spy();
     menu.button = {press: callback};
 
-    var link = findByClass(menu, 'ic-Editor-MenuItem--strong');
-    var button = findByClass(link, 'ic-Editor-MenuItem__button');
-
+    var button = findByClass(menu, 'ic-Editor-MenuItem__button--strong');
     TestUtils.Simulate.click(button);
+
     assert(callback.called)
   })
 
@@ -45,8 +42,7 @@ describe('Menu', () => {
       <Menu />
     );
 
-    var link = findByClass(menu, 'ic-Editor-MenuItem--a');
-    var button = findByClass(link, 'ic-Editor-MenuItem__button');
+    var button = findByClass(menu, 'ic-Editor-MenuItem__button--a');
     var input = findByClass(menu, 'ic-Editor-Menu__linkinput-field');
 
     TestUtils.Simulate.click(button);
@@ -145,7 +141,7 @@ describe('Menu', () => {
     var menu = TestUtils.renderIntoDocument(
       <Menu />
     );
-    var link = findByClass(menu, 'ic-Editor-MenuItem--strong');
-    assert(link);
+    var button = findByClass(menu, 'ic-Editor-MenuItem__button--strong');
+    assert(button);
   })
 })

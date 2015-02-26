@@ -1,5 +1,2 @@
-function requireAll(context) {
-  context.keys().forEach(context);
-}
-
-requireAll(require.context('./tests', true, /-test\.js$/));
+var context = require.context('./lib', true, /-test\.js$/);
+context.keys().forEach(context);

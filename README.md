@@ -8,8 +8,7 @@ Rich content editor component. Super alpha and under heavy dev.
 Usage
 -----
 ```xml
-<Editor>
-  <Content content={object} onChange={fn} />
+<Editor content={object} onChange={fn}>
   <Toolbar.Basic />
 </Editor>
 ```
@@ -19,7 +18,7 @@ Inside an app
 ```js
 var React = require('react');
 var ReactEditor = require('react-editor');
-var { Editor, Content, Toolbar, Button } = ReactEditor;
+var { Editor, Toolbar, Button } = ReactEditor;
 var ContentStore = require('./ContentStore.json');
 
 var App = React.createClass({
@@ -39,8 +38,7 @@ var App = React.createClass({
     return (
       <div>
         <h1>React Editor</h1>
-        <Editor>
-          <Content content={this.state.content} onChange={this.contentChanged} />
+        <Editor content={this.state.content} onChange={this.contentChanged}>
           <Toolbar.Basic />
         </Editor>
       </div>

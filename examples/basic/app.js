@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactEditor = require('react-editor');
-var { Editor } = ReactEditor;
+var { Editor, Toolbar } = ReactEditor;
 
 var Store = require('./ContentStore.js');
 
@@ -19,7 +19,9 @@ var App = React.createClass({
 
   render: function() {
     return (
-      <Editor content={this.state.content} onChange={this.contentChanged} />
+      <Editor content={this.state.content} onChange={this.contentChanged}>
+        <Toolbar.Basic />
+      </Editor>
     );
   }
 });

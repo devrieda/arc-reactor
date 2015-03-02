@@ -32,6 +32,11 @@
   display: block;
   visibility: visible;
 }
+.ic-Editor-Menu__item {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
 
 .ic-Editor-Menu__linkinput {
   display: none;

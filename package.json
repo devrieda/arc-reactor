@@ -45,6 +45,7 @@
     "webpack-dev-server": "^1.6.6"
   },
   "peerDependencies": {
-    "react": "^0.13.0"
+    "react": "^0.13.0",
+    "immutable": "^3.6.4"
   }
 }

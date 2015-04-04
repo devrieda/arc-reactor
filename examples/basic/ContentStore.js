@@ -202,7 +202,7 @@ var ContentStore = {
     );
   },
   update: function(json) {
-    var str = JSON.stringify(json);
+    // var str = JSON.stringify(json);
     //
     // save when content changes
     //

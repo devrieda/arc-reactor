@@ -199,7 +199,7 @@ var ContentStore = {
           ]
         }
       ]}
-    )
+    );
   },
   update: function(json) {
     var str = JSON.stringify(json);
@@ -207,6 +207,6 @@ var ContentStore = {
     // save when content changes
     //
   }
-}
+};
 
 module.exports = ContentStore;

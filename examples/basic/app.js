@@ -6,7 +6,7 @@ var Store = require('./ContentStore.js');
 
 var App = React.createClass({
   getInitialState: function() {
-    return { content: {} }
+    return { content: {} };
   },
 
   componentWillMount: function() {

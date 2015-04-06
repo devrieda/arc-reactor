@@ -1,0 +1,85 @@
+// adding commands
+var React = require('react');
+var ReactEditor = require('react-editor');
+var { Editor, Toolbar, Commands } = ReactEditor;
+
+Commands.use(UnderlineHotkey, { before: "bold-hotkey" );
+
+
+// menu items
+menu
+  bold
+  italic
+  h1
+  h2
+  h3
+  center
+  quote
+
+
+// manipulation via command keys
+direct
+  return
+    range
+      - splitBlock
+
+    caret
+      end
+        - appendBlock
+      beg
+        - prependBlock
+      middle
+        - splitBlock
+
+  delete
+    range
+      cross
+        - combineBlocks
+
+    caret
+      end
+        - combineNext
+      beg,middle
+        - deleteChar
+
+  bspace
+    range
+      cross
+        - combineBlocks
+
+    caret
+      beg
+        - combinePrev
+      middle,end
+        - deleteChar
+
+  other
+    range
+      cross
+        - combineBlocks
+        - addChar
+      inner
+        - replaceChars
+        - addChar
+
+    caret
+      - addChar
+
+  hotkeys
+    ctrl-b: bold
+    ctrl-i: italic
+    ctrl-u: underline
+    ctrl-e: center
+    ctrl-m: enter
+    alt+f10: toolbar
+
+    ctrl-backspace: delete-prev-word
+    ctrl-delete: delete-next-word
+    cmd-backspace: delete-to-beg-of-block
+    cmd-delete: delete-to-end of block
+    ctrl-k: delete-to-end-of-block
+    ctrl-a: move cursor to beg of block
+    ctrl-e: move cursor to end of block
+    ctrl-h: delete key
+
+    http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts

@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactEditor = require('react-editor');
-var { Editor, Toolbar } = ReactEditor;
+var { Editor, MenuToolbar } = ReactEditor;
 
 var Store = require('./ContentStore.js');
 
@@ -20,7 +20,7 @@ var App = React.createClass({
   render: function() {
     return (
       <Editor content={this.state.content} onChange={this.contentChanged}>
-        <Toolbar.Basic />
+        <MenuToolbar.Basic />
       </Editor>
     );
   }

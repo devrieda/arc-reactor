@@ -1,4 +1,39 @@
 @import 'variables';
 
-.ic-BarButton {
+.ic-Editor-BarButton {
+  display: block;
+  width: 18px;
+  height: 18px;
+
+  background: rgba(0,0,0,0);
+  border: 1px solid #bbb;
+  padding: 9px;
+  box-sizing: content-box;
+  appearance: button;
+  cursor: pointer;
+  text-transform: none;
+  font: inherit;
+  outline: none;
+  border-radius: 19px;
+
+  transition: -webkit-transform 250ms;
+  transition: transform 250ms;
+}
+
+.ic-Editor-BarButton__icon {
+  color: #bbb;
+  text-align: center;
+  font-size: 16px;
+}
+
+.ic-Editor-BarButton__icon-text {
+  @include screenreader;
+}
+
+.ic-Editor-BarButton:hover,
+.ic-Editor-BarButton:focus {
+  border-color: #666;
+}
+.ic-Editor-BarButton:hover .ic-Editor-BarButton__icon {
+  color: #666;
 }

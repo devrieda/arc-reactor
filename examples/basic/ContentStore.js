@@ -37,6 +37,11 @@ var ContentStore = {
               "text": "Photography is a word derived from the Greek words photos (“light”) and graphein (“to draw”) The word was first used by the scientist Sir John F.W. Herschel in 1839."
             },
             {
+              "id": "7421",
+              "type": "p",
+              "text": ""
+            },
+            {
               "id": "67a3",
               "type": "p",
               "text": "The metal-based daguerreotype process soon had some competition from the paper-based calotype negative and salt print processes invented by Henry Fox Talbot."

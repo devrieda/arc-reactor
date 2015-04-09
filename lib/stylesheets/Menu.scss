@@ -2,12 +2,11 @@
 
 .ic-Editor-Menu {
   position: absolute;
-  visibility: hidden;
+  display: none;
   z-index: 500;
 }
 .ic-Editor-Menu--active {
   display: inline-block;
-  visibility: visible;
   -webkit-transition: top 75ms ease-out, left 75ms ease-out;
   transition: top 75ms ease-out, left 75ms ease-out;
   -webkit-animation: pop-upwards 180ms forwards linear;

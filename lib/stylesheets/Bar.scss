@@ -1,17 +1,77 @@
 @import 'variables';
 
-.ic-Bar {
+.ic-Editor-Bar {
   position: absolute;
-  visibility: hidden;
+  display: none;
   z-index: 500;
 }
-
-.ic-Bar--active {
+.ic-Editor-Bar--active {
   display: inline-block;
+}
+
+// trigger button
+.ic-Editor-Bar__trigger {
+  display: block;
+  width: 18px;
+  height: 18px;
+
+  background: rgba(0,0,0,0);
+  border: 1px solid #bbb;
+  padding: 9px;
+  box-sizing: content-box;
+  appearance: button;
+  cursor: pointer;
+  text-transform: none;
+  font: inherit;
+  outline: none;
+  border-radius: 19px;
+
+  transition: -webkit-transform 250ms;
+  transition: transform 250ms;
+}
+.ic-Editor-Bar__trigger:hover,
+.ic-Editor-Bar__trigger--active {
+  border-color: #666;
+}
+.ic-Editor-Bar__trigger--active {
+  transition: -webkit-transform 250ms;
+  transition: transform 250ms;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.ic-Editor-Bar__trigger-icon {
+  color: #bbb;
+  text-align: center;
+  font-size: 16px;
+}
+.ic-Editor-Bar__trigger:hover .ic-Editor-Bar__trigger-icon,
+.ic-Editor-Bar__trigger-icon--active {
+  color: #666;
+}
+.ic-Editor-Bar__trigger-text {
+  @include screenreader;
+}
+
+.ic-Editor-Bar__menu-items {
+  position: relative;
+  left: 69px;
+  top: -38px;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+  list-style: none;
+  white-space: nowrap;
+}
+.ic-Editor-Bar__menu-items--active {
+  opacity: 100;
+  display: block;
   visibility: visible;
 }
 
-.ic-Bar-Trigger {
-}
-.ic-Bar-Trigger--active {
+.ic-Editor-Bar__menu-item {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
 }

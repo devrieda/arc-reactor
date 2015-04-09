@@ -1,0 +1,44 @@
+@import 'variables';
+
+.ic-Editor-Figure {
+  position: relative;
+  margin: 0 0 30px 0;
+  clear: both;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ic-Editor-Figure__placeholder {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ic-Editor-Figure__image {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ic-Editor-Figure__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 400;
+  content: '';
+}
+.ic-Editor-Figure__iframe {
+}
+
+.ic-Editor-Figure__iframe--selected,
+.ic-Editor-Figure__image--selected {
+  box-shadow: 0 0 0 3px $menu-color;
+}

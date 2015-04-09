@@ -1,0 +1,32 @@
+@import 'variables';
+
+.ic-Editor-FigCaption {
+  position: absolute;
+  left: -172px;
+  width: 150px;
+  top: 0;
+  text-align: right;
+  margin-top: 0;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(0,0,0,0.6);
+  outline: 0;
+  z-index: 300;
+}
+.ic-Editor-FigCaption--empty {
+  color: rgba(0,0,0,0.3);
+}
+.ic-Editor-FigCaption:before {
+  width: 25%;
+  margin-left: 75%;
+  border-top: 1px solid rgba(0,0,0,0.15);
+  display: block;
+  content: "";
+  margin-bottom: 10px;
+}
+
+.ic-Editor-FigCaption__text {
+  min-height: 20px;
+  content: " ";
+}

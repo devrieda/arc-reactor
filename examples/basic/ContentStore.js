@@ -38,8 +38,11 @@ var ContentStore = {
             },
             {
               "id": "7421",
-              "type": "p",
-              "text": ""
+              "type": "figure",
+              "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
+              "width": 1370,
+              "height": 709,
+              "text": "Daguerrotype"
             },
             {
               "id": "67a3",
@@ -51,6 +54,12 @@ var ContentStore = {
               "type": "blockquote",
               "text": "For me, the camera is a sketch book, an instrument of intuition and spontaneity."
             },
+            // {
+            //   "id": "74ca",
+            //   "type": "figure",
+            //   "src": "https://www.youtube.com/embed/oK6JW1prwTw",
+            //   "text": "The First Photographer: The Photographs of Nicéphore Niépce"
+            // },
             {
               "id": "c277",
               "type": "h3",
@@ -102,6 +111,14 @@ var ContentStore = {
                   "text": "New York and the Camera Club (1891–1901)"
                 }
               ]
+            },
+            {
+              "id": "d8c1",
+              "type": "figure",
+              "src": "http://tmp.derekdevries.com/clay-henry.jpg",
+              "width": 400,
+              "height": 500,
+              "text": ""
             }
           ]
         },

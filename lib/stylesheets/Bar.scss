@@ -1,0 +1,17 @@
+@import 'variables';
+
+.ic-Bar {
+  position: absolute;
+  visibility: hidden;
+  z-index: 500;
+}
+
+.ic-Bar--active {
+  display: inline-block;
+  visibility: visible;
+}
+
+.ic-Bar-Trigger {
+}
+.ic-Bar-Trigger--active {
+}

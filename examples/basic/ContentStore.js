@@ -54,12 +54,22 @@ var ContentStore = {
               "type": "blockquote",
               "text": "For me, the camera is a sketch book, an instrument of intuition and spontaneity."
             },
-            // {
-            //   "id": "74ca",
-            //   "type": "figure",
-            //   "src": "https://www.youtube.com/embed/oK6JW1prwTw",
-            //   "text": "The First Photographer: The Photographs of Nicéphore Niépce"
-            // },
+            {
+              "id": "7314",
+              "type": "p",
+              "text": "The history of photography has roots in remote antiquity with the discovery of the principle of the camera obscura and the observation that some substances are visibly altered by exposure to light. As far as is known, nobody thought of bringing these two phenomena together to capture camera images in permanent form until around 1800, when Thomas Wedgwood made the first reliably documented although unsuccessful attempt."
+            },
+            {
+              "id": "7315",
+              "type": "p",
+              "text": "In the mid-1820s, Nicéphore Niépce succeeded, but several days of exposure in the camera were required and the earliest results were very crude. Niépce's associate Louis Daguerre went on to develop the daguerreotype process, the first publicly announced photographic process, which required only minutes of exposure in the camera and produced clear, finely detailed results. It was commercially introduced in 1839, a date generally accepted as the birth year of practical photography"
+            },
+            {
+              "id": "74ca",
+              "type": "figure",
+              "src": "https://www.youtube.com/embed/oK6JW1prwTw",
+              "text": "The First Photographer: The Photographs of Nicéphore Niépce"
+            },
             {
               "id": "c277",
               "type": "h3",

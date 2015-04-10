@@ -154,6 +154,11 @@ var ContentStore = {
               }
             },
             {
+              "id": "1532",
+              "type": "pre",
+              "text": "(ns markov-elear.core-test\n  (:require [clojure.test :refer :all]\n            [markov-elear.core :refer :all]))\n\n(deftest a-test\n  (testing \"FIXME, I fail.\"\n    (is (= 0 1))))"
+            },
+            {
               "id": "1d6e",
               "type": "p",
               "text": "Photography is the result of combining several different technical discoveries.",

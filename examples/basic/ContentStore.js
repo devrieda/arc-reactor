@@ -1,5 +1,5 @@
 var ContentStore = {
-  findNew: function() {
+  find: function() {
     return (
       {"sections": [
         {
@@ -20,7 +20,7 @@ var ContentStore = {
       ]}
     );
   },
-  find: function() {
+  findxxx: function() {
     return (
       {"sections": [
         {

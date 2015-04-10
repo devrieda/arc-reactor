@@ -18,35 +18,30 @@ Inside an app
 ```js
 var React = require('react');
 var ReactEditor = require('react-editor');
-var { Editor, Toolbar, Button } = ReactEditor;
-var ContentStore = require('./ContentStore.json');
+var { Editor, MenuToolbar } = ReactEditor;
+var Store = require('./ContentStore.js');
 
 var App = React.createClass({
   getInitialState: function() {
-    return { content: {} }
-  },
-
-  componentWillMount: function() {
-    this.setState({content: ContentStore.find()});
+    return { content: {} };
   },
 
   contentChanged: function(json) {
-    // handle when content changes
+    Store.update(json);
   },
 
   render: function() {
+    var content = Store.find();
+
     return (
-      <div>
-        <h1>React Editor</h1>
-        <Editor content={this.state.content} onChange={this.contentChanged}>
-          <Toolbar.Basic />
-        </Editor>
-      </div>
+      <Editor content={content} onChange={this.contentChanged}>
+        <MenuToolbar.Basic />
+      </Editor>
     );
   }
 });
 
-React.render(<App/>, document.body);
+React.render(<App/>, document.getElementById("example"));
 ```
 
 To run tests

@@ -4,10 +4,6 @@ var { Editor, MenuToolbar } = ReactEditor;
 var Store = require('./ContentStore.js');
 
 var App = React.createClass({
-  getInitialState: function() {
-    return { content: {} };
-  },
-
   contentChanged: function(json) {
     Store.update(json);
   },

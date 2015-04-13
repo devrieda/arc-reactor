@@ -36,7 +36,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      'react-editor': '../../lib/index'
+      'arc-reactor': '../../lib/index'
     }
   },
 

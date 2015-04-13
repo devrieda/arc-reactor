@@ -1,6 +1,6 @@
 var React = require('react');
-var ReactEditor = require('react-editor');
-var { Editor, MenuToolbar } = ReactEditor;
+var ArcReactor = require('arc-reactor');
+var { Editor, MenuToolbar } = ArcReactor;
 var Store = require('./ContentStore.js');
 
 var App = React.createClass({

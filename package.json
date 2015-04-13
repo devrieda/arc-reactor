@@ -1,20 +1,20 @@
 {
-  "name": "react-editor",
+  "name": "arc-reactor",
   "version": "0.0.1",
-  "description": "A rich content editor using React.js",
+  "description": "(A)nother (R)ich (C)ontent editor using React.js",
   "main": "./lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/devrieda/react-editor.git"
+    "url": "https://github.com/devrieda/arc-reactor.git"
   },
-  "homepage": "https://github.com/devrieda/react-editor/blob/latest/README.md",
-  "bugs": "https://github.com/devrieda/react-editor/issues",
+  "homepage": "https://github.com/devrieda/arc-reactor/blob/latest/README.md",
+  "bugs": "https://github.com/devrieda/arc-reactor/issues",
   "directories": {
     "example": "examples"
   },
   "scripts": {
-    "build": "NODE_ENV=production webpack ./lib/index.js dist/react-editor.js",
-    "build-min": "NODE_ENV=production COMPRESS=1 webpack ./lib/index.js dist/react-editor.min.js",
+    "build": "NODE_ENV=production webpack ./lib/index.js dist/arc-reactor.js",
+    "build-min": "NODE_ENV=production COMPRESS=1 webpack ./lib/index.js dist/arc-reactor.min.js",
     "examples": "webpack-dev-server --config examples/webpack.config.js --no-info --inline --content-base examples",
     "test": "karma start"
   },

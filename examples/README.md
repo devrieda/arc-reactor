@@ -1,4 +1,4 @@
-React Editor Examples
+ARC Reactor Examples
 =====================
 
 To run and development examples:

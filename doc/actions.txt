@@ -1,7 +1,7 @@
 // adding commands
 var React = require('react');
-var ReactEditor = require('react-editor');
-var { Editor, Toolbar, Commands } = ReactEditor;
+var ArcReactor = require('arc-reactor');
+var { Editor, Toolbar, Commands } = ArcReactor;
 
 Commands.use(UnderlineHotkey, { before: "bold-hotkey" );
 

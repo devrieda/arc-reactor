@@ -19,7 +19,7 @@ if (process.env.COMPRESS) {
 module.exports = {
 
   output: {
-    library: 'ReactEditor',
+    library: 'ArcReactor',
     libraryTarget: 'var'
   },
 

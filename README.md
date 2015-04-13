@@ -1,9 +1,8 @@
-## Medium style editor in reactjs
+## ARC Reactor - (A)nother (R)ich (C)ontent editor using React.js
 
-
-React Editor
+ARC Reactor
 ===========
-Rich content editor component. Super alpha and under heavy dev.
+(A)nother (R)ich (C)ontent editor. 
 
 Usage
 -----
@@ -17,8 +16,8 @@ Inside an app
 -----
 ```js
 var React = require('react');
-var ReactEditor = require('react-editor');
-var { Editor, MenuToolbar } = ReactEditor;
+var ArcReactor = require('arc-reactor');
+var { Editor, MenuToolbar } = ArcReactor;
 var Store = require('./ContentStore.js');
 
 var App = React.createClass({

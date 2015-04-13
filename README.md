@@ -1,8 +1,6 @@
-## ARC Reactor - (A)nother (R)ich (C)ontent editor using React.js
-
 ARC Reactor
 ===========
-(A)nother (R)ich (C)ontent editor. 
+(A)nother (R)ich (C)ontent editor using React.js 
 
 Usage
 -----

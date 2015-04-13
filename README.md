@@ -6,7 +6,7 @@ Usage
 -----
 ```xml
 <Editor content={object} onChange={fn}>
-  <Toolbar.Basic />
+  <MenuToolbar.Basic />
 </Editor>
 ```
 

@@ -1,5 +1,5 @@
 var ContentStore = {
-  find: function() {
+  findxxx: function() {
     return (
       {"sections": [
         {
@@ -20,7 +20,7 @@ var ContentStore = {
       ]}
     );
   },
-  findxxx: function() {
+  find: function() {
     return (
       {"sections": [
         {
@@ -59,6 +59,11 @@ var ContentStore = {
               "type": "p",
               "text": "The history of photography has roots in remote antiquity with the discovery of the principle of the camera obscura and the observation that some substances are visibly altered by exposure to light. As far as is known, nobody thought of bringing these two phenomena together to capture camera images in permanent form until around 1800, when Thomas Wedgwood made the first reliably documented although unsuccessful attempt."
             },
+          ]
+        },
+        {
+          "id": "0fb3",
+          "blocks": [
             {
               "id": "7315",
               "type": "p",

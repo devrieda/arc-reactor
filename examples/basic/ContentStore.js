@@ -1,5 +1,5 @@
 var ContentStore = {
-  findxxx: function() {
+  findxx: function() {
     return (
       {"sections": [
         {

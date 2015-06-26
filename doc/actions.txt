@@ -1,9 +1,62 @@
-// adding commands
 var React = require('react');
 var ArcReactor = require('arc-reactor');
-var { Editor, Toolbar, Commands } = ArcReactor;
 
-Commands.use(UnderlineHotkey, { before: "bold-hotkey" );
+var { Editor, MenuToolbar, InlineToolbar } = ArcReactor;
+
+var App = React.createClass({
+  render: function() {
+    return (
+      <Editor content={Store.find()} onChange={Function.prototype}>
+        <MenuToolbar.Basic />
+        <InlineToolbar.Basic />
+      </Editor>
+    );
+  }
+});
+
+
+// underline plugin
+var UnderlineButton = require('UnderlineButton');
+var UnderlineKey = require('UnderlineKey');
+
+var class UnderlinePlugin {
+  installMenuButton(buttons) {
+    buttons.use(UnderlineButton);
+  }
+  installKey(keys) {
+    keys.use(UnderlineKey, { before: "other-key" });
+  }
+}
+
+// inline code plugin
+var CodeButton = require('CodeButton');
+var CodeBlock = require('CodeBlock');
+
+var class CodePlugin {
+  installInlineButton(buttons) {
+    buttons.use(CodeButton);
+  }
+  installBlock(blocks) {
+    blocks.use(CodeBlock);
+  }
+}
+
+
+// extended
+var { Editor } = ArcReactor;
+
+// installing plugins
+Editor.install(require("UnderlinePlugin"))
+Editor.install(requrie("InlineCodePlugin"))
+
+
+var App = React.createClass({
+  render: function() {
+    return (
+      <Editor content={Store.find()} onChange={Function.prototype} />
+    );
+  }
+});
 
 
 // menu items

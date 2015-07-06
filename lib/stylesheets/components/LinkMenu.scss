@@ -1,0 +1,42 @@
+.ic-Editor-LinkMenu {
+  overflow: hidden;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.ic-Editor-LinkMenu__a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 90%;
+
+  &:visited,
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+    font-size: 90%;
+  }
+}
+
+.ic-Editor-LinkMenu__content {
+  border-radius: 5px;
+  transition: opacity 25ms ease-out;
+  position: absolute;
+  min-width: 170px;
+  max-width: 280px;
+  padding: 8px;
+  text-align: center;
+  background-color: #444;
+}
+
+// arrow
+.ic-Editor-LinkMenu__content:before {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  height: 0;
+  width: 0;
+  margin-left: -5px;
+  border: 9px solid transparent;
+  border-bottom-color: #444;
+}

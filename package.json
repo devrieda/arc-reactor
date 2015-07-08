@@ -28,6 +28,7 @@
     "classnames": "^1.1.4",
     "css-loader": "^0.9.0",
     "expect": "^1.1.0",
+    "immutable": "^3.6.4",
     "jsx-loader": "^0.12.2",
     "jsxhint": "^0.8.1",
     "karma": "^0.12.28",
@@ -41,13 +42,10 @@
     "lodash.debounce": "^3.0.3",
     "lodash.pick": "^3.1.0",
     "mocha": "^2.0.1",
+    "react": "^0.13.0",
     "sass-loader": "^0.2.0",
     "style-loader": "^0.8.1",
     "webpack": "^1.4.13",
     "webpack-dev-server": "^1.6.6"
-  },
-  "peerDependencies": {
-    "react": "^0.13.0",
-    "immutable": "^3.6.4"
   }
 }

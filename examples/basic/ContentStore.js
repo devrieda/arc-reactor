@@ -1,5 +1,5 @@
 var ContentStore = {
-  findxx: function() {
+  findxx() {
     return (
       {"sections": [
         {
@@ -8,13 +8,11 @@ var ContentStore = {
             {
               "id": "56ef",
               "type": "h2",
-              "tag": "h2",
               "text": "Page Title"
             },
             {
               "id": "667a",
               "type": "p",
-              "tag": "p",
               "text": "Build your page here"
             }
           ]
@@ -22,7 +20,8 @@ var ContentStore = {
       ]}
     );
   },
-  find: function() {
+
+  find() {
     return (
       {"sections": [
         {
@@ -31,19 +30,46 @@ var ContentStore = {
             {
               "id": "56ef",
               "type": "h2",
-              "tag": "h2",
               "text": "History of Photography"
             },
             {
               "id": "667a",
               "type": "p",
-              "tag": "p",
               "text": "Photography is a word derived from the Greek words photos (“light”) and graphein (“to draw”) The word was first used by the scientist Sir John F.W. Herschel in 1839."
             },
             {
               "id": "7421",
               "type": "figure",
-              "tag": "figure",
+              "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
+              "width": 1370,
+              "height": 709,
+              "text": ""
+            }
+          ]
+        }
+      ]}
+    );
+  },
+
+  findxxx() {
+    return (
+      {"sections": [
+        {
+          "id": "de5f",
+          "blocks": [
+            {
+              "id": "56ef",
+              "type": "h2",
+              "text": "History of Photography"
+            },
+            {
+              "id": "667a",
+              "type": "p",
+              "text": "Photography is a word derived from the Greek words photos (“light”) and graphein (“to draw”) The word was first used by the scientist Sir John F.W. Herschel in 1839."
+            },
+            {
+              "id": "7421",
+              "type": "figure",
               "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
               "width": 1370,
               "height": 709,
@@ -52,19 +78,16 @@ var ContentStore = {
             {
               "id": "67a3",
               "type": "p",
-              "tag": "p",
               "text": "The metal-based daguerreotype process soon had some competition from the paper-based calotype negative and salt print processes invented by Henry Fox Talbot."
             },
             {
               "id": "667b",
               "type": "blockquote",
-              "tag": "blockquote",
               "text": "For me, the camera is a sketch book, an instrument of intuition and spontaneity."
             },
             {
               "id": "7314",
               "type": "p",
-              "tag": "p",
               "text": "The history of photography has roots in remote antiquity with the discovery of the principle of the camera obscura and the observation that some substances are visibly altered by exposure to light. As far as is known, nobody thought of bringing these two phenomena together to capture camera images in permanent form until around 1800, when Thomas Wedgwood made the first reliably documented although unsuccessful attempt."
             },
           ]
@@ -75,49 +98,51 @@ var ContentStore = {
             {
               "id": "7315",
               "type": "p",
-              "tag": "p",
               "text": "In the mid-1820s, Nicéphore Niépce succeeded, but several days of exposure in the camera were required and the earliest results were very crude. Niépce's associate Louis Daguerre went on to develop the daguerreotype process, the first publicly announced photographic process, which required only minutes of exposure in the camera and produced clear, finely detailed results. It was commercially introduced in 1839, a date generally accepted as the birth year of practical photography"
             },
             {
               "id": "74ca",
               "type": "figure",
-              "tag": "figure",
               "src": "https://www.youtube.com/embed/oK6JW1prwTw",
               "text": "The First Photographer: The Photographs of Nicéphore Niépce"
             },
             {
               "id": "c277",
               "type": "h3",
-              "tag": "h3",
               "text": "Pinhole Camera"
             },
             {
               "id": "cca9",
               "type": "p",
-              "tag": "p",
               "text": "Alhazen (Ibn Al-Haytham), a great authority on optics in the Middle Ages who lived around 1000AD, invented the first pinhole camera, (also called the Camera Obscura and was able to explain why the images were upside down."
             },
             {
               "id": "a141",
               "type": "h4",
-              "tag": "h4",
               "text": "The First Photograph"
             },
             {
               "id": "59b1",
               "type": "ul",
-              "tag": "ul",
               "blocks": [
                 {
                   "id": "4007",
                   "type": "li",
-                  "tag": "li",
                   "text": "Joseph Nicephore Niepce"
+                },
+                {
+                  "id": "3007",
+                  "type": "li",
+                  "text": "French inventor"
+                },
+                {
+                  "id": "2007",
+                  "type": "li",
+                  "text": "Polished sheet of pewter"
                 },
                 {
                   "id": "4ca9",
                   "type": "li",
-                  "tag": "li",
                   "text": "View from an upstairs window at Niépce's estate"
                 }
               ]
@@ -125,24 +150,20 @@ var ContentStore = {
             {
               "id": "fce3",
               "type": "h4",
-              "tag": "h4",
               "text": "Alfred Steiglitz"
             },
             {
               "id": "dc62",
               "type": "ol",
-              "tag": "ol",
               "blocks": [
                 {
                   "id": "f5a4",
                   "type": "li",
-                  "tag": "li",
                   "text": "Early years (1864–1890)"
                 },
                 {
                   "id": "cc96",
                   "type": "li",
-                  "tag": "li",
                   "text": "New York and the Camera Club (1891–1901)"
                 }
               ]
@@ -150,7 +171,6 @@ var ContentStore = {
             {
               "id": "d8c1",
               "type": "figure",
-              "tag": "figure",
               "src": "http://tmp.derekdevries.com/clay-henry.jpg",
               "width": 400,
               "height": 500,
@@ -164,7 +184,6 @@ var ContentStore = {
             {
               "id": "6353",
               "type": "p",
-              "tag": "p",
               "text": "Development of Photography as a Technology in different eras",
               "meta": {
                 "align": "center"
@@ -173,7 +192,6 @@ var ContentStore = {
             {
               "id": "e07e",
               "type": "p",
-              "tag": "p",
               "text": "The metal-based daguerreotype process soon had some competition from the paper-based calotype negative and salt print processes invented by Henry Fox Talbot. Subsequent innovations reduced the required camera exposure time from minutes to seconds and eventually to a small fraction of a second",
               "markups": {
                 "a": [{
@@ -184,13 +202,11 @@ var ContentStore = {
             {
               "id": "1532",
               "type": "pre",
-              "tag": "pre",
               "text": "(ns markov-elear.core-test\n  (:require [clojure.test :refer :all]\n            [markov-elear.core :refer :all]))\n\n(deftest a-test\n  (testing \"FIXME, I fail.\"\n    (is (= 0 1))))"
             },
             {
               "id": "1d6e",
               "type": "p",
-              "tag": "p",
               "text": "Photography is the result of combining several different technical discoveries.",
               "markups": {
                 "strong": [{
@@ -201,7 +217,6 @@ var ContentStore = {
             {
               "id": "1d6b",
               "type": "p",
-              "tag": "p",
               "text": "photos!",
               "markups": {
                 "strong": [{
@@ -212,7 +227,6 @@ var ContentStore = {
             {
               "id": "1d6d",
               "type": "p",
-              "tag": "p",
               "text": "Long before the first photographs were made, Chinese philosopher Mo Ti and Greek mathematicians Aristotle and Euclid described a pinhole camera in the 5th and 4th centuries BCE.",
               "markups": {
                 "strong": [{
@@ -226,7 +240,6 @@ var ContentStore = {
             {
               "id": "1d6c",
               "type": "p",
-              "tag": "p",
               "text": "In 1833 Niépce died suddenly, leaving his notes to Daguerre.",
               "markups": {
                 "strong": [{
@@ -238,7 +251,6 @@ var ContentStore = {
             {
               "id": "067c",
               "type": "blockquote",
-              "tag": "blockquote",
               "text": "Today everything exists to end in a photograph.",
               "meta": {
                 "align": "center"
@@ -247,13 +259,11 @@ var ContentStore = {
             {
               "id": "e5fe",
               "type": "p",
-              "tag": "p",
               "text": " And more paragraphs of text that are <b>escaped</b> "
             },
             {
               "id": "e5ff",
               "type": "p",
-              "tag": "p",
               "text": "And that can combine both markup and <b>escaped</b>",
               "markups": {
                 "strong": [{
@@ -275,10 +285,9 @@ var ContentStore = {
     );
   },
   update: function(json) {
-    // var str = JSON.stringify(json);
-    //
+    var str = JSON.stringify(json);
+    // console.log(str)
     // save when content changes
-    //
   }
 };
 

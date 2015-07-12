@@ -12,7 +12,7 @@
   line-height: 1.4;
   color: rgba(0,0,0,0.6);
   outline: 0;
-  z-index: 300;
+  z-index: 401;
 }
 .ic-Editor-FigCaption--empty {
   color: rgba(0,0,0,0.3);
@@ -24,4 +24,18 @@
   display: block;
   content: "";
   margin-bottom: 10px;
+}
+
+@media (max-width: 1199px) {
+  .ic-Editor-FigCaption {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    margin-top: 10px;
+  }
+
+  .ic-Editor-FigCaption:before {
+    display: none;
+  }
 }

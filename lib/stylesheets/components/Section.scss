@@ -2,7 +2,7 @@
   position: relative;
 }
 .ic-Editor-Section--first {
-  padding-top: 100px;
+  padding-top: 60px;
 }
 
 .ic-Editor-Section__divider {
@@ -40,4 +40,16 @@
   width: $max-width;
   position: relative;
   margin: 0 auto;
+}
+@media (max-width: 767px) {
+  .ic-Editor-Section__divider {
+    width: auto;
+    margin-left: 20px;
+    margin-right: 25px;
+  }
+  .ic-Editor-Section__inner {
+    width: auto;
+    margin-left: 20px;
+    margin-right: 25px;
+  }
 }

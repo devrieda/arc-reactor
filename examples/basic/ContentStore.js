@@ -50,10 +50,12 @@ var ContentStore = {
             {
               "id": "7421",
               "type": "figure",
-              "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
-              "width": 1370,
-              "height": 709,
-              "text": ""
+              "text": "",
+              "meta": {
+                "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
+                "width": 1370,
+                "height": 709
+              }
             }
           ]
         }
@@ -80,10 +82,12 @@ var ContentStore = {
             {
               "id": "7421",
               "type": "figure",
-              "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
-              "width": 1370,
-              "height": 709,
-              "text": "Daguerrotype"
+              "text": "Daguerrotype",
+              "meta": {
+                "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
+                "width": 1370,
+                "height": 709
+              }
             },
             {
               "id": "67a3",
@@ -113,8 +117,10 @@ var ContentStore = {
             {
               "id": "74ca",
               "type": "figure",
-              "src": "https://www.youtube.com/embed/oK6JW1prwTw",
-              "text": "The First Photographer: The Photographs of Nicéphore Niépce"
+              "text": "The First Photographer: The Photographs of Nicéphore Niépce",
+              "meta": {
+                "src": "https://www.youtube.com/embed/oK6JW1prwTw"
+              }
             },
             {
               "id": "c277",
@@ -181,10 +187,12 @@ var ContentStore = {
             {
               "id": "d8c1",
               "type": "figure",
-              "src": "http://tmp.derekdevries.com/clay-henry.jpg",
-              "width": 400,
-              "height": 500,
-              "text": ""
+              "text": "",
+              "meta": {
+                "src": "http://tmp.derekdevries.com/clay-henry.jpg",
+                "width": 400,
+                "height": 500
+              }
             }
           ]
         },

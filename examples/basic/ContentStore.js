@@ -195,7 +195,7 @@ var ContentStore = {
               "id": "6353",
               "type": "p",
               "text": "Development of Photography as a Technology in different eras",
-              "meta": {
+              "data": {
                 "align": "center"
               }
             },
@@ -262,7 +262,7 @@ var ContentStore = {
               "id": "067c",
               "type": "blockquote",
               "text": "Today everything exists to end in a photograph.",
-              "meta": {
+              "data": {
                 "align": "center"
               }
             },

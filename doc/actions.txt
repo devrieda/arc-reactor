@@ -136,3 +136,31 @@ direct
     ctrl-h: delete key
 
     http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
+
+Plugin integration points
+  - key commands
+    - Editor#handleKeyUp
+    - Editor#handleKeyDown
+    - KeyCommands
+
+  - menu buttons
+    - Editor#render (menu button components)
+    - MenuButton#render
+    - BlockFormatter INLINE_TAGS
+    - MarkupParser
+    - SelectedContent
+
+  - bar buttons
+    - Editor#render (bar button components)
+    - BarButton#render
+
+  - blocks
+    - BlockFormatter
+    - Block
+    - Manipulation/AppendBlock
+    - Manipulation/CombineBlockNext
+    - Manipulation/CombineBlockPrev
+    - Selection#isFigure
+    - Selection#isCaption
+    - SelectionNode#isFigure
+    - SelectionNode#isCaption

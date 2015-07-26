@@ -25,9 +25,9 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.js$/,  loader: 'jsx-loader?harmony' },
+      { test: /\.js$/, exclude: /node_modules/,  loader: 'babel' },
       { test: /\.css$/, loader: 'style!css' },
-      { test: /\.scss$/, loader: 'style!css!autoprefixer?browsers=last 2 version!sass?includePaths[]=' + __dirname + '/app/stylesheets' }
+      { test: /\.scss$/, loader: 'style!css!sass?includePaths[]=' + __dirname + '/app/stylesheets' }
     ]
   },
 

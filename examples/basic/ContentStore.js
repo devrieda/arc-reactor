@@ -49,7 +49,7 @@ var ContentStore = {
             },
             {
               "id": "7421",
-              "type": "figure",
+              "type": "image",
               "text": "",
               "meta": {
                 "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
@@ -81,7 +81,7 @@ var ContentStore = {
             },
             {
               "id": "7421",
-              "type": "figure",
+              "type": "image",
               "text": "Daguerrotype",
               "meta": {
                 "src": "http://tmp.derekdevries.com/daguerrotype.jpg",
@@ -116,7 +116,7 @@ var ContentStore = {
             },
             {
               "id": "74ca",
-              "type": "figure",
+              "type": "youtube",
               "text": "The First Photographer: The Photographs of Nicéphore Niépce",
               "meta": {
                 "src": "https://www.youtube.com/embed/oK6JW1prwTw"
@@ -186,7 +186,7 @@ var ContentStore = {
             },
             {
               "id": "d8c1",
-              "type": "figure",
+              "type": "image",
               "text": "",
               "meta": {
                 "src": "http://tmp.derekdevries.com/clay-henry.jpg",

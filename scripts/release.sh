@@ -26,7 +26,7 @@ update_version 'package.json' $next_version
 $changelog -t $next_ref
 
 npm run build
-git add -A build
+git add -A dist
 
 git commit -am "Version $next_version"
 
@@ -37,4 +37,4 @@ git push origin master
 git push origin $next_ref
 git push origin latest -f
 
-npm publish build
+npm publish dist

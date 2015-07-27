@@ -111,8 +111,16 @@ class Selection {
   _initBounds() {
     var old = this.bounds;
     this.bounds = this._bounds();
-    return JSON.stringify(old) !== JSON.stringify(this.bounds);
+    if (!old) return true;
+
+    return old.height != this.bounds.height ||
+           old.width  != this.bounds.width ||
+           old.top    != this.bounds.top ||
+           old.right  != this.bounds.right ||
+           old.left   != this.bounds.left ||
+           old.bottom != this.bounds.bottom
   }
+
   _bounds() {
     if (this.selection.type === "None") { return {}; }
     var range = this.selection.getRangeAt(0);

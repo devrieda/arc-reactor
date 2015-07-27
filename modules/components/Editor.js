@@ -77,7 +77,7 @@ var Editor = React.createClass({
 
   // if content changed, selection may have changed
   componentDidUpdate() {
-    var selection = this.state.selection;
+    var { selection } = EditorStore.get();
     if (selection.reselect() || selection.rebound()) {
       this._checkSelection();
     }

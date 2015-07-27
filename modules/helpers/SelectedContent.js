@@ -49,7 +49,7 @@ class SelectedContent {
 
     var filtered = guidRange.filter( (guid) => {
       var path = this._finder().findPath(guid);
-      return this.map.getIn(path.concat('meta', 'align')) === 'center';
+      return this.map.getIn(path.concat('data', 'align')) === 'center';
     });
 
     return filtered.length === guidRange.length;

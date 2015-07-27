@@ -1,8 +1,8 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../modules/History');
-var ToggleMarkup = require('../../modules/Manipulation/ToggleMarkup');
+var History = require('../../helpers/History');
+var ToggleMarkup = require('../../helpers/Manipulation/ToggleMarkup');
 var EditorStore = require('../../stores/EditorStore');
 
 var LinkButton = React.createClass({

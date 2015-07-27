@@ -1,8 +1,8 @@
 var React = require('react/addons');
 var BarButton = require('../BarButton');
 
-var History = require('../../modules/History');
-var InsertImage = require('../../modules/Manipulation/InsertImage');
+var History = require('../../helpers/History');
+var InsertImage = require('../../helpers/Manipulation/InsertImage');
 
 var ImageButton = React.createClass({
   getDefaultProps() {

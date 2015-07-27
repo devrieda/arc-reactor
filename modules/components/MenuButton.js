@@ -1,7 +1,7 @@
 var React = require('react/addons');
 var Immutable = require('immutable');
 var cx = require("classnames");
-var SelectedContent = require('../modules/SelectedContent');
+var SelectedContent = require('../helpers/SelectedContent');
 var EditorStore = require('../stores/EditorStore');
 
 var { string, bool, object, instanceOf } = React.PropTypes;

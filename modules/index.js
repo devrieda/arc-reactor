@@ -4,5 +4,5 @@ exports.Editor  = require('./components/Editor');
 exports.MenuToolbar = require('./components/MenuToolbar');
 exports.MenuButtons = require('./components/MenuButtons');
 
-var Keys = require('./modules/KeyCommands');
+var Keys = require('./helpers/KeyCommands');
 exports.Keys = new Keys();

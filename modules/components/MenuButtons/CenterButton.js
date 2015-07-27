@@ -1,10 +1,10 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../modules/History');
-var ToggleBlockType = require('../../modules/Manipulation/ToggleBlockType');
+var History = require('../../helpers/History');
+var ToggleCenter = require('../../helpers/Manipulation/ToggleCenter');
 
-var QuoteButton = React.createClass({
+var CenterButton = React.createClass({
   statics: {
     isVisible: () => true
   },
@@ -13,9 +13,9 @@ var QuoteButton = React.createClass({
 
   getDefaultProps() {
     return {
-      type: "blockquote",
-      text: "Quote",
-      icon: "fa-quote-left"
+      type: "center",
+      text: "Center",
+      icon: "fa-align-center"
     };
   },
 
@@ -24,7 +24,7 @@ var QuoteButton = React.createClass({
     var offsets = this.props.selection.offsets();
     var position = this.props.selection.position();
 
-    var result = this._toggleBlockType().execute(guids, offsets, { type: this.props.type });
+    var result = this._toggleCenter().execute(guids, offsets);
 
     // track content state and where cursor is
     History.getInstance().push({content: result.content, position: position});
@@ -32,8 +32,8 @@ var QuoteButton = React.createClass({
     return result.content;
   },
 
-  _toggleBlockType() {
-    return new ToggleBlockType(this.props.content);
+  _toggleCenter() {
+    return new ToggleCenter(this.props.content);
   },
 
   render() {
@@ -43,4 +43,4 @@ var QuoteButton = React.createClass({
   }
 });
 
-module.exports = QuoteButton;
+module.exports = CenterButton;

@@ -1,21 +1,25 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../modules/History');
-var ToggleCenter = require('../../modules/Manipulation/ToggleCenter');
+var History = require('../../helpers/History');
+var ToggleMarkup = require('../../helpers/Manipulation/ToggleMarkup');
+var SelectedContent = require('../../helpers/SelectedContent');
 
-var CenterButton = React.createClass({
+var BoldButton = React.createClass({
   statics: {
-    isVisible: () => true
+    isVisible: (content, selection) => {
+      var selContent = new SelectedContent(selection, content);
+      return !selContent.isHeader();
+    }
   },
 
   propTypes: MenuButton.propTypes,
 
   getDefaultProps() {
     return {
-      type: "center",
-      text: "Center",
-      icon: "fa-align-center"
+      type: "strong",
+      text: "Bold",
+      icon: "fa-bold"
     };
   },
 
@@ -24,7 +28,7 @@ var CenterButton = React.createClass({
     var offsets = this.props.selection.offsets();
     var position = this.props.selection.position();
 
-    var result = this._toggleCenter().execute(guids, offsets);
+    var result = this._toggleMarkup().execute(guids, offsets, { type: this.props.type });
 
     // track content state and where cursor is
     History.getInstance().push({content: result.content, position: position});
@@ -32,8 +36,8 @@ var CenterButton = React.createClass({
     return result.content;
   },
 
-  _toggleCenter() {
-    return new ToggleCenter(this.props.content);
+  _toggleMarkup() {
+    return new ToggleMarkup(this.props.content);
   },
 
   render() {
@@ -43,4 +47,4 @@ var CenterButton = React.createClass({
   }
 });
 
-module.exports = CenterButton;
+module.exports = BoldButton;

@@ -1,8 +1,8 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../modules/History');
-var ToggleBlockType = require('../../modules/Manipulation/ToggleBlockType');
+var History = require('../../helpers/History');
+var ToggleBlockType = require('../../helpers/Manipulation/ToggleBlockType');
 
 var H2Button = React.createClass({
   statics: {

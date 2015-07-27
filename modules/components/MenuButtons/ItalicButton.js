@@ -1,9 +1,9 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../modules/History');
-var ToggleMarkup    = require('../../modules/Manipulation/ToggleMarkup');
-var SelectedContent = require('../../modules/SelectedContent');
+var History = require('../../helpers/History');
+var ToggleMarkup    = require('../../helpers/Manipulation/ToggleMarkup');
+var SelectedContent = require('../../helpers/SelectedContent');
 
 var ItalicButton = React.createClass({
   statics: {

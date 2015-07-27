@@ -7,10 +7,10 @@ var LinkMenu = require('./LinkMenu');
 var Bar = require('./Bar');
 var BarButtons = require('./BarButtons');
 
-var ClipboardHandler = require('../modules/ClipboardHandler');
-var KeyCommands = require('../modules/KeyCommands');
-var History     = require('../modules/History');
-var Selection   = require('../modules/Selection');
+var ClipboardHandler = require('../helpers/ClipboardHandler');
+var KeyCommands = require('../helpers/KeyCommands');
+var History     = require('../helpers/History');
+var Selection   = require('../helpers/Selection');
 var EditorStore = require('../stores/EditorStore');
 
 var { object, func } = React.PropTypes;

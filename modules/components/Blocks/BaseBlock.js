@@ -1,7 +1,7 @@
 var React = require('react/addons');
 var PureRenderMixin = React.addons.PureRenderMixin;
 var Immutable = require('immutable');
-var BlockFormatter = require('../../modules/BlockFormatter');
+var BlockFormatter = require('../../helpers/BlockFormatter');
 var EditorStore = require('../../stores/EditorStore');
 var cx = require('classnames');
 

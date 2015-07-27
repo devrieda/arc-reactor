@@ -1,10 +1,10 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../modules/History');
-var ToggleBlockType = require('../../modules/Manipulation/ToggleBlockType');
+var History = require('../../helpers/History');
+var ToggleBlockType = require('../../helpers/Manipulation/ToggleBlockType');
 
-var H3Button = React.createClass({
+var H1Button = React.createClass({
   statics: {
     isVisible: () => true
   },
@@ -13,8 +13,8 @@ var H3Button = React.createClass({
 
   getDefaultProps() {
     return {
-      type: "h4",
-      text: "H3",
+      type: "h2",
+      text: "H1",
       icon: null
     };
   },
@@ -43,4 +43,4 @@ var H3Button = React.createClass({
   }
 });
 
-module.exports = H3Button;
+module.exports = H1Button;

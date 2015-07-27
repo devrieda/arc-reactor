@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var Immutable = require('immutable');
-var ContentFinder = require('../modules/ContentFinder');
+var ContentFinder = require('../helpers/ContentFinder');
 var cx = require("classnames");
 
 var cloneWithProps = React.addons.cloneWithProps;

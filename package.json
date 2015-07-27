@@ -2,7 +2,7 @@
   "name": "arc-reactor",
   "version": "0.1.0",
   "description": "(A)nother (R)ich (C)ontent editor using React.js",
-  "main": "./lib/index.js",
+  "main": "./modules/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/devrieda/arc-reactor.git"
@@ -11,10 +11,10 @@
   "bugs": "https://github.com/devrieda/arc-reactor/issues",
   "scripts": {
     "build": "scripts/build.sh",
-    "watch": "babel ./lib --watch -d dist",
+    "watch": "babel ./modules --watch -d lib",
     "examples": "webpack-dev-server --config examples/webpack.config.js --no-info --content-base examples --inline",
     "prepublish": "npm run build",
-    "test": "eslint lib && karma start"
+    "test": "eslint modules && karma start"
   },
   "author": "Derek DeVries",
   "license": "MIT",

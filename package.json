@@ -9,9 +9,6 @@
   },
   "homepage": "https://github.com/devrieda/arc-reactor/blob/latest/README.md",
   "bugs": "https://github.com/devrieda/arc-reactor/issues",
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
     "build": "scripts/build.sh",
     "watch": "babel ./lib --watch -d dist",
@@ -19,9 +16,7 @@
     "prepublish": "npm run build",
     "test": "eslint lib && karma start"
   },
-  "authors": [
-    "Derek DeVries"
-  ],
+  "author": "Derek DeVries",
   "license": "MIT",
   "devDependencies": {
     "babel": "^5.8.8",

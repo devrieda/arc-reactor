@@ -2,7 +2,7 @@
   "name": "arc-reactor",
   "version": "0.1.0",
   "description": "(A)nother (R)ich (C)ontent editor using React.js",
-  "main": "./modules/index.js",
+  "main": "./lib/index",
   "repository": {
     "type": "git",
     "url": "https://github.com/devrieda/arc-reactor.git"

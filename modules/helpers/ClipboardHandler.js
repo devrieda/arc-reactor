@@ -5,6 +5,22 @@ class ClipboardHandler {
   }
 
   paste(e) {
+    var text;
+    if (e.clipboardData) {
+      text = event.clipboardData.getData('text/plain');
+
+    // ie
+    } else if (window.clipboardData) {
+      text = window.clipboardData.getData("Text");
+    }
+
+    if (text.match("\n")) {
+      e.preventDefault();
+      console.log('pasting with newlines totes breaks things...');
+    }
+    return;
+
+    // TODO - hook up multiline paste
     this.elt   = e.target;
     this.saved = this.elt.innerHTML;
 

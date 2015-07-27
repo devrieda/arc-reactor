@@ -1,2 +1,5 @@
-node_modules/*
+dist/*
+!dist/umd
 examples/**/*-bundle.js
+node_modules
+npm-debug.log

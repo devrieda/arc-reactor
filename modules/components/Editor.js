@@ -122,7 +122,8 @@ var Editor = React.createClass({
 
   // option 'onlyChanges' only emits when
   _checkSelection(onlyChanges, keyCode) {
-    var newSelection = new Selection(document.getSelection(), this.target);
+    var target = !keyCode ? this.target : null;
+    var newSelection = new Selection(document.getSelection(), target);
     var emit = true;
 
     // only emit if range type changes

@@ -1,4 +1,6 @@
 examples
+modules
+doc
 scripts
 __tests__
 karma.conf.js

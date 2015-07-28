@@ -122,7 +122,7 @@ class Selection {
   }
 
   _bounds() {
-    if (this.selection.type === "None") { return {}; }
+    if (!this.selection.anchorNode) { return {}; }
     var range = this.selection.getRangeAt(0);
     return range.getBoundingClientRect();
   }

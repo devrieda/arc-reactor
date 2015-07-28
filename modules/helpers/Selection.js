@@ -20,7 +20,7 @@ class Selection {
     this._flipReverseNodesSelection();
 
     this.text = this.selection.toString();
-    this.selType = this.selection.type;
+    this.selType = this.selection.isCollapsed ? 'Caret' : 'Range';
 
     this._initBounds();
   }
@@ -53,7 +53,7 @@ class Selection {
     // don't reselect ranges that are selected via the keyboard
     var tempAnchor = this.selection.anchorNode;
     var isText = tempAnchor && tempAnchor.nodeType === Node.TEXT_NODE;
-    if (this.selection.type === 'Range' && isText) { return false; }
+    if (!this.selection.isCollapsed && isText) { return false; }
 
     // set the range based on selection node state
     var start = this.anchor.textNodeOffset();

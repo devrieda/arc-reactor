@@ -72,7 +72,7 @@ describe('Editor', () => {
     var editor = render(
       <Editor onChange={changed} content={content} />
     );
-    var component = findByClass(editor, 'ic-Editor');
+    var component = findByClass(editor, 'arc-Editor');
 
     var callback = sinon.spy();
     editor.keys = { execute: callback };
@@ -90,7 +90,7 @@ describe('Editor', () => {
     );
 
     assert(!editor.metaKey);
-    var component = findByClass(editor, 'ic-Editor');
+    var component = findByClass(editor, 'arc-Editor');
     keyDown(component, {keyCode: 91});
     assert(editor.metaKey);
   });
@@ -105,7 +105,7 @@ describe('Editor', () => {
       <Editor onChange={changed} content={content} />
     );
 
-    var component = findByClass(editor, 'ic-Editor-Content');
+    var component = findByClass(editor, 'arc-Editor-Content');
     assert(component);
   });
 
@@ -117,7 +117,7 @@ describe('Editor', () => {
       <Editor onChange={changed} content={content} />
     );
 
-    var menu = findByClass(editor, 'ic-Editor-Menu');
+    var menu = findByClass(editor, 'arc-Editor-Menu');
     assert(menu);
   });
 });

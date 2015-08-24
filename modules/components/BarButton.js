@@ -35,21 +35,21 @@ var BarButton = React.createClass({
 
   buttonClasses() {
     var classes = {};
-    classes[`ic-Editor-BarButton--${this.props.type}`] = true;
-    return cx('ic-Editor-BarButton', classes);
+    classes[`arc-Editor-BarButton--${this.props.type}`] = true;
+    return cx('arc-Editor-BarButton', classes);
   },
 
   iconClasses() {
     var iconClass = {};
     iconClass[this.props.icon] = true;
-    return cx('ic-Editor-BarButton__icon fa', iconClass);
+    return cx('arc-Editor-BarButton__icon fa', iconClass);
   },
 
   render() {
     return (
       <button className={this.buttonClasses()} onClick={this.handleClick}>
         <i className={this.iconClasses()}></i>
-        <span className="ic-Editor-BarButton__icon-text">{this.props.text}</span>
+        <span className="arc-Editor-BarButton__icon-text">{this.props.text}</span>
       </button>
     );
   }

@@ -22,7 +22,7 @@ describe('H2Button', () => {
       <H2Button content={fromJS(content)} selection={selection} />
     );
 
-    var button = findByClass(component, 'ic-Editor-MenuButton--h3');
+    var button = findByClass(component, 'arc-Editor-MenuButton--h3');
     assert(button);
   });
 

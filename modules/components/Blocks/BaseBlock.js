@@ -102,14 +102,14 @@ var BaseBlock = React.createClass({
   _buildClassNames() {
     var type = this.props.type;
     var classNames = {
-      'ic-Editor-Block': true,
-      'ic-Editor-Block--empty': this._isEmpty(),
-      'ic-Editor-Block--header': ['h2', 'h3', 'h4'].indexOf(type) !== -1,
-      'ic-Editor-Block--list': ['ol', 'ul'].indexOf(type) !== -1,
-      'ic-Editor-Block--first': this.props.meta.get('first'),
+      'arc-Editor-Block': true,
+      'arc-Editor-Block--empty': this._isEmpty(),
+      'arc-Editor-Block--header': ['h2', 'h3', 'h4'].indexOf(type) !== -1,
+      'arc-Editor-Block--list': ['ol', 'ul'].indexOf(type) !== -1,
+      'arc-Editor-Block--first': this.props.meta.get('first'),
     };
-    classNames[`ic-Editor-Block--${this.props.id}`] = true;
-    classNames[`ic-Editor-Block--${type}`] = true;
+    classNames[`arc-Editor-Block--${this.props.id}`] = true;
+    classNames[`arc-Editor-Block--${type}`] = true;
 
     return cx(classNames);
   },

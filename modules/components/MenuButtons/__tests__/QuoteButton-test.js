@@ -22,7 +22,7 @@ describe('QuoteButton', () => {
       <QuoteButton content={fromJS(content)} selection={selection} />
     );
 
-    var button = findByClass(component, 'ic-Editor-MenuButton--blockquote');
+    var button = findByClass(component, 'arc-Editor-MenuButton--blockquote');
     assert(button);
   });
 

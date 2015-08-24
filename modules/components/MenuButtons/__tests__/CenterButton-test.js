@@ -22,7 +22,7 @@ describe('CenterButton', () => {
       <CenterButton content={fromJS(content)} selection={selection} />
     );
 
-    var button = findByClass(component, 'ic-Editor-MenuButton--center');
+    var button = findByClass(component, 'arc-Editor-MenuButton--center');
     assert(button);
   });
 

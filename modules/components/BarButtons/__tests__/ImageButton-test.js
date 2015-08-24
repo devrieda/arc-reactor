@@ -21,7 +21,7 @@ describe('ImageButton', () => {
       <ImageButton content={fromJS(content)} selection={selection} />
     );
 
-    var button = findByClass(component, 'ic-Editor-BarButton--image');
+    var button = findByClass(component, 'arc-Editor-BarButton--image');
     assert(button);
   });
 });

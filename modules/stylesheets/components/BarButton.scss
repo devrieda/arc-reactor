@@ -1,4 +1,4 @@
-.ic-Editor-BarButton {
+.arc-Editor-BarButton {
   display: block;
   width: 18px;
   height: 18px;
@@ -18,20 +18,20 @@
   transition: transform 250ms;
 }
 
-.ic-Editor-BarButton__icon {
+.arc-Editor-BarButton__icon {
   color: #bbb;
   text-align: center;
   font-size: 16px;
 }
 
-.ic-Editor-BarButton__icon-text {
+.arc-Editor-BarButton__icon-text {
   @include screenreader;
 }
 
-.ic-Editor-BarButton:hover,
-.ic-Editor-BarButton:focus {
+.arc-Editor-BarButton:hover,
+.arc-Editor-BarButton:focus {
   border-color: #666;
 }
-.ic-Editor-BarButton:hover .ic-Editor-BarButton__icon {
+.arc-Editor-BarButton:hover .arc-Editor-BarButton__icon {
   color: #666;
 }

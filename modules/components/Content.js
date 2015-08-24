@@ -38,7 +38,7 @@ var Content = React.createClass({
     });
 
     return (
-      <div className="ic-Editor-Content"
+      <div className="arc-Editor-Content"
         contentEditable="true"
         role="textbox"
         data-top="true"

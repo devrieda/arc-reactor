@@ -14,7 +14,7 @@ describe('LinkMenu', () => {
       <LinkMenu active={false} />
     );
 
-    var menu = findByClass(linkMenu, 'ic-Editor-LinkMenu');
+    var menu = findByClass(linkMenu, 'arc-Editor-LinkMenu');
     assert(menu);
   });
 });

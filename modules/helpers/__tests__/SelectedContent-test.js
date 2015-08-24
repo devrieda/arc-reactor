@@ -41,7 +41,7 @@ describe('SelectedContent', () => {
       });
 
       it('is true if single block is centered', () => {
-        content.sections[0].blocks[0].meta = { align: "center" };
+        content.sections[0].blocks[0].data = { align: "center" };
 
         var selContent = new SelectedContent(selection, fromJS(content));
         assert(selContent.isCentered());
@@ -80,7 +80,7 @@ describe('SelectedContent', () => {
           guids: () => { return { anchor: 'c6a7', focus: 'c6a8' }; },
           offsets: () => { return { anchor: 5, focus: 5 }; }
         };
-        content.sections[0].blocks[0].meta = { align: "center" };
+        content.sections[0].blocks[0].data = { align: "center" };
 
         var selContent = new SelectedContent(selection, fromJS(content));
         assert(!selContent.isCentered());
@@ -91,8 +91,8 @@ describe('SelectedContent', () => {
           guids: () => { return { anchor: 'c6a7', focus: 'c6a8' }; },
           offsets: () => { return { anchor: 5, focus: 5 }; }
         };
-        content.sections[0].blocks[0].meta = { align: "center" };
-        content.sections[0].blocks[1].meta = { align: "center" };
+        content.sections[0].blocks[0].data = { align: "center" };
+        content.sections[0].blocks[1].data = { align: "center" };
 
         var selContent = new SelectedContent(selection, fromJS(content));
         assert(selContent.isCentered());

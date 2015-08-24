@@ -1,19 +1,19 @@
-.ic-Editor-Section {
+.arc-Editor-Section {
   position: relative;
 }
-.ic-Editor-Section--first {
+.arc-Editor-Section--first {
   padding-top: 60px;
 }
 
-.ic-Editor-Section__divider {
+.arc-Editor-Section__divider {
   width: $max-width;
   margin: 0 auto;
 }
-.ic-Editor-Section--first .ic-Editor-Section__divider {
+.arc-Editor-Section--first .arc-Editor-Section__divider {
   display: none;
 }
 
-.ic-Editor-Section__hr {
+.arc-Editor-Section__hr {
   display: block;
   width: 100px;
   margin: 55px auto 20px auto;
@@ -22,7 +22,7 @@
   color: $rule-color;
   text-align: center;
 }
-.ic-Editor-Section__hr:after {
+.arc-Editor-Section__hr:after {
   content: "§";
   display: inline-block;
   position: relative;
@@ -32,22 +32,22 @@
   background: $bg-color;
 }
 
-.ic-Editor-Section__content {
+.arc-Editor-Section__content {
   font-size: $base-font-size;
   line-height: 1.5;
 }
-.ic-Editor-Section__inner {
+.arc-Editor-Section__inner {
   width: $max-width;
   position: relative;
   margin: 0 auto;
 }
 @media (max-width: 767px) {
-  .ic-Editor-Section__divider {
+  .arc-Editor-Section__divider {
     width: auto;
     margin-left: 20px;
     margin-right: 25px;
   }
-  .ic-Editor-Section__inner {
+  .arc-Editor-Section__inner {
     width: auto;
     margin-left: 20px;
     margin-right: 25px;

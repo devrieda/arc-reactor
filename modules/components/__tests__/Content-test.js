@@ -25,7 +25,7 @@ describe('Content', () => {
       <Content content={fromJS(content)} selection={selection} />
     );
 
-    var component = findByClass(editorContent, 'ic-Editor-Section');
+    var component = findByClass(editorContent, 'arc-Editor-Section');
     assert(component);
   });
 });

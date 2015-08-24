@@ -22,7 +22,7 @@ describe('MarkupParser', () => {
 
     describe('with single tags', () => {
       it('should parse out strong', () => {
-        var html = 'a <strong class="ic-Editor-Block__strong">string</strong> of text';
+        var html = 'a <strong class="arc-Editor-Block__strong">string</strong> of text';
         var node = createNode(html);
         var markups  = {"strong": [{"range": [2,8]}]};
         var parser = new MarkupParser(node);
@@ -31,7 +31,7 @@ describe('MarkupParser', () => {
       });
 
       it('should parse out em', () => {
-        var html = 'a <em class="ic-Editor-Block__em">string</em> of text';
+        var html = 'a <em class="arc-Editor-Block__em">string</em> of text';
         var node = createNode(html);
         var markups  = {"em": [{"range": [2,8]}]};
         var parser = new MarkupParser(node);
@@ -40,7 +40,7 @@ describe('MarkupParser', () => {
       });
 
       it('should parse out link', () => {
-        var html = 'a <a class=\"ic-Editor-Block__a\" href=\"http://example.com\">string</a> of text';
+        var html = 'a <a class=\"arc-Editor-Block__a\" href=\"http://example.com\">string</a> of text';
         var node = createNode(html);
         var markups  = {"a": [{"range": [2,8], "value": "http://example.com"}]};
         var parser = new MarkupParser(node);
@@ -62,9 +62,9 @@ describe('MarkupParser', () => {
 
     describe('with nested tags', () => {
       it('should parse out markup', () => {
-        var html = 'a <a class="ic-Editor-Block__a" href="http://example.com">' +
-                      '<strong class="ic-Editor-Block__strong">' +
-                        '<em class="ic-Editor-Block__em">' +
+        var html = 'a <a class="arc-Editor-Block__a" href="http://example.com">' +
+                      '<strong class="arc-Editor-Block__strong">' +
+                        '<em class="arc-Editor-Block__em">' +
                           'string' +
                         '</em>' +
                         '</strong>' +

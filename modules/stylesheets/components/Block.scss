@@ -1,33 +1,33 @@
-.ic-Editor-Block--first {
+.arc-Editor-Block--first {
   margin-top: 0;
   padding-top: 0;
 }
-.ic-Editor-Block--centered {
+.arc-Editor-Block--centered {
   text-align: center;
 }
 
 // block
-.ic-Editor-Block--header {
+.arc-Editor-Block--header {
   margin: 0;
   margin-top: 40px;
   letter-spacing: -0.02em;
   font-family: $header-font;
 }
-.ic-Editor-Block--h2 {
+.arc-Editor-Block--h2 {
   margin-left: -3px;
   margin-bottom: 8px;
   font-weight: 700;
   font-size: 60px;
   line-height: 1;
 }
-.ic-Editor-Block--h3 {
+.arc-Editor-Block--h3 {
   margin-left: -1.8px;
   margin-bottom: 4px;
   font-weight: 700;
   font-size: 36px;
   line-height: 1.2;
 }
-.ic-Editor-Block--h4 {
+.arc-Editor-Block--h4 {
   margin-bottom: 6px;
   margin-left: -1.5px;
   font-weight: 600;
@@ -35,18 +35,18 @@
   line-height: 1.2;
 }
 @media (max-width: 767px) {
-  .ic-Editor-Block--h2 {
+  .arc-Editor-Block--h2 {
     font-size: 36px;
   }
-  .ic-Editor-Block--h3 {
+  .arc-Editor-Block--h3 {
     font-size: 26px;
   }
-  .ic-Editor-Block--h4 {
+  .arc-Editor-Block--h4 {
     font-size: 20px;
   }
 }
 
-.ic-Editor-Block--pre {
+.arc-Editor-Block--pre {
   font-family: Menlo, Monaco, "Courier New", Courier, monospace;
   font-size: 16px;
   background: rgba(0,0,0,0.05);
@@ -55,34 +55,34 @@
   white-space: pre-wrap;
 }
 @media (max-width: 767px) {
-  .ic-Editor-Block--pre {
+  .arc-Editor-Block--pre {
     font-size: 14px;
   }
 }
 
 
-.ic-Editor-Block--p,
-.ic-Editor-Block--blockquote,
-.ic-Editor-Block--list {
+.arc-Editor-Block--p,
+.arc-Editor-Block--blockquote,
+.arc-Editor-Block--list {
   margin: 0;
   margin-bottom: 30px;
   font-size: 20px;
 }
-.ic-Editor-Block--p {
+.arc-Editor-Block--p {
   font-weight: 300;
   line-height: 1.5;
 }
 @media (max-width: 767px) {
-  .ic-Editor-Block--p,
-  .ic-Editor-Block--blockquote,
-  .ic-Editor-Block--list {
+  .arc-Editor-Block--p,
+  .arc-Editor-Block--blockquote,
+  .arc-Editor-Block--list {
     font-size: 18px;
   }
 }
 
 
 // quotes
-.ic-Editor-Block--blockquote {
+.arc-Editor-Block--blockquote {
   quotes: none;
   font-weight: 400;
   font-style: italic;
@@ -91,12 +91,12 @@
   margin-left: -23px;
   padding-bottom: 3px;
 }
-.ic-Editor-Block--blockquote:before,
-.ic-Editor-Block--blockquote:after {
+.arc-Editor-Block--blockquote:before,
+.arc-Editor-Block--blockquote:after {
   content: '';
   content: none;
 }
-.ic-Editor-Block--blockquote[data-align="center"] {
+.arc-Editor-Block--blockquote[data-align="center"] {
   margin: 48px -160px;
   border-left: none;
   padding: 0;
@@ -112,12 +112,12 @@
   }
 }
 @media (max-width: 767px) {
-  .ic-Editor-Block--blockquote {
+  .arc-Editor-Block--blockquote {
     padding-left: 17px;
     margin-left: -20px;
   }
 
-  .ic-Editor-Block--blockquote[data-align="center"] {
+  .arc-Editor-Block--blockquote[data-align="center"] {
     line-height: 1.4;
     margin: 43px 0;
     padding-left: 0;
@@ -125,23 +125,23 @@
 }
 
 // lists
-.ic-Editor-Block--list {
+.arc-Editor-Block--list {
   padding: 0;
   counter-reset: post;
   list-style: none;
   list-style-image: none;
   font-weight: 200;
 }
-.ic-Editor-Block--header +.ic-Editor-Block--list {
+.arc-Editor-Block--header +.arc-Editor-Block--list {
   margin-top: 10px;
 }
 
-.ic-Editor-Block--li {
+.arc-Editor-Block--li {
   margin-left: 30px;
   margin-bottom: 12px;
   padding-top: 2px;
 }
-.ic-Editor-Block--li:before {
+.arc-Editor-Block--li:before {
   position: absolute;
   display: inline-block;
   box-sizing: border-box;
@@ -150,31 +150,31 @@
   text-align: right;
 }
 
-.ic-Editor-Block--ul>.ic-Editor-Block--li:before {
+.arc-Editor-Block--ul>.arc-Editor-Block--li:before {
   padding-top: 6px;
   padding-right: 15px;
   font-size: 14.3px;
   content: '•';
 }
-.ic-Editor-Block--ol>.ic-Editor-Block--li:before {
+.arc-Editor-Block--ol>.arc-Editor-Block--li:before {
   padding-right: 12px;
   counter-increment: post;
   content: counter(post) ".";
 }
 
 // meta
-.ic-Editor-Block[data-align="center"] {
+.arc-Editor-Block[data-align="center"] {
   text-align: center;
 }
 
 // inline
-.ic-Editor-Block__strong {
+.arc-Editor-Block__strong {
   font-weight: bold;
 }
-.ic-Editor-Block__em {
+.arc-Editor-Block__em {
   font-style: italic;
 }
-.ic-Editor-Block__a,
-.ic-Editor-Block__a:visited {
+.arc-Editor-Block__a,
+.arc-Editor-Block__a:visited {
   color: $link-color;
 }

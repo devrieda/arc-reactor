@@ -1,14 +1,14 @@
-.ic-Editor-Bar {
+.arc-Editor-Bar {
   position: absolute;
   display: none;
   z-index: 500;
 }
-.ic-Editor-Bar--active {
+.arc-Editor-Bar--active {
   display: inline-block;
 }
 
 // trigger button
-.ic-Editor-Bar__trigger {
+.arc-Editor-Bar__trigger {
   display: block;
   width: 18px;
   height: 18px;
@@ -27,11 +27,11 @@
   transition: -webkit-transform 250ms;
   transition: transform 250ms;
 }
-.ic-Editor-Bar__trigger:hover,
-.ic-Editor-Bar__trigger--active {
+.arc-Editor-Bar__trigger:hover,
+.arc-Editor-Bar__trigger--active {
   border-color: #666;
 }
-.ic-Editor-Bar__trigger--active {
+.arc-Editor-Bar__trigger--active {
   transition: -webkit-transform 250ms;
   transition: transform 250ms;
   -webkit-transform: rotate(45deg);
@@ -39,20 +39,20 @@
   transform: rotate(45deg);
 }
 
-.ic-Editor-Bar__trigger-icon {
+.arc-Editor-Bar__trigger-icon {
   color: #bbb;
   text-align: center;
   font-size: 16px;
 }
-.ic-Editor-Bar__trigger:hover .ic-Editor-Bar__trigger-icon,
-.ic-Editor-Bar__trigger-icon--active {
+.arc-Editor-Bar__trigger:hover .arc-Editor-Bar__trigger-icon,
+.arc-Editor-Bar__trigger-icon--active {
   color: #666;
 }
-.ic-Editor-Bar__trigger-text {
+.arc-Editor-Bar__trigger-text {
   @include screenreader;
 }
 
-.ic-Editor-Bar__menu-items {
+.arc-Editor-Bar__menu-items {
   position: relative;
   left: 69px;
   top: -38px;
@@ -62,13 +62,13 @@
   list-style: none;
   white-space: nowrap;
 }
-.ic-Editor-Bar__menu-items--active {
+.arc-Editor-Bar__menu-items--active {
   opacity: 100;
   display: block;
   visibility: visible;
 }
 
-.ic-Editor-Bar__menu-item {
+.arc-Editor-Bar__menu-item {
   display: inline-block;
   text-align: center;
   vertical-align: middle;

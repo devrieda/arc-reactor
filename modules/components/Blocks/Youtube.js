@@ -65,8 +65,8 @@ var Youtube = React.createClass({
   render() {
     var selected = this.props.guids.anchor === this.props.id;
     var classNames = cx({
-      'ic-Editor-Figure__iframe': true,
-      'ic-Editor-Figure__iframe--selected': selected,
+      'arc-Editor-Figure__iframe': true,
+      'arc-Editor-Figure__iframe--selected': selected,
     });
 
     return (

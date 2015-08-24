@@ -76,12 +76,12 @@ var LinkMenu = React.createClass({
     };
 
     return (
-      <div className="ic-Editor-LinkMenu"
+      <div className="arc-Editor-LinkMenu"
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
       >
-        <div ref="content" className="ic-Editor-LinkMenu__content" style={styles}>
-          <a className="ic-Editor-LinkMenu__a" href={this.props.value}>
+        <div ref="content" className="arc-Editor-LinkMenu__content" style={styles}>
+          <a className="arc-Editor-LinkMenu__a" href={this.props.value}>
             {this.props.value}
           </a>
         </div>

@@ -26,7 +26,7 @@ describe('Menu', () => {
       </Menu>
     );
 
-    var menuComponent = findByClass(menu, 'ic-Editor-Menu');
+    var menuComponent = findByClass(menu, 'arc-Editor-Menu');
     assert(menuComponent);
   });
 
@@ -44,7 +44,7 @@ describe('Menu', () => {
       </Menu>
     );
 
-    var button = findByClass(menu, 'ic-Editor-MenuButton--strong');
+    var button = findByClass(menu, 'arc-Editor-MenuButton--strong');
     assert(button);
   });
 
@@ -63,10 +63,10 @@ describe('Menu', () => {
       </Menu>
     );
 
-    var button = findByClass(menu, 'ic-Editor-MenuButton--a');
+    var button = findByClass(menu, 'arc-Editor-MenuButton--a');
     click(button);
 
-    var component = findByClass(menu, 'ic-Editor-Menu__linkinput--active');
+    var component = findByClass(menu, 'arc-Editor-Menu__linkinput--active');
     assert(component);
   });
 
@@ -84,12 +84,12 @@ describe('Menu', () => {
       </Menu>
     );
 
-    var button = findByClass(menu, 'ic-Editor-MenuButton--a');
+    var button = findByClass(menu, 'arc-Editor-MenuButton--a');
     click(button);
     input(button, "http://google.com");
     keyUp(button, {keyCode: 13});
 
-    var component = findByClass(menu, 'ic-Editor-Menu--active');
+    var component = findByClass(menu, 'arc-Editor-Menu--active');
     assert(component);
   });
 
@@ -133,7 +133,7 @@ describe('Menu', () => {
       </Menu>
     );
 
-    assert(React.findDOMNode(menu).classList.contains('ic-Editor-Menu--active'));
+    assert(React.findDOMNode(menu).classList.contains('arc-Editor-Menu--active'));
   });
 
   it('should build styles based off bounds', () => {

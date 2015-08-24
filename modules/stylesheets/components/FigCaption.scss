@@ -1,4 +1,4 @@
-.ic-Editor-FigCaption {
+.arc-Editor-FigCaption {
   min-height: 30px;
   min-width: 150px;
   position: absolute;
@@ -14,10 +14,10 @@
   outline: 0;
   z-index: 401;
 }
-.ic-Editor-FigCaption--empty {
+.arc-Editor-FigCaption--empty {
   color: rgba(0,0,0,0.3);
 }
-.ic-Editor-FigCaption:before {
+.arc-Editor-FigCaption:before {
   width: 25%;
   margin-left: 75%;
   border-top: 1px solid rgba(0,0,0,0.15);
@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 1199px) {
-  .ic-Editor-FigCaption {
+  .arc-Editor-FigCaption {
     position: relative;
     width: 100%;
     text-align: center;
@@ -35,7 +35,7 @@
     margin-top: 10px;
   }
 
-  .ic-Editor-FigCaption:before {
+  .arc-Editor-FigCaption:before {
     display: none;
   }
 }

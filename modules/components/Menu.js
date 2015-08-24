@@ -69,19 +69,19 @@ var Menu = React.createClass({
   },
 
   menuClasses() {
-    return cx('ic-Editor-Menu', {
-      'ic-Editor-Menu--active': this.props.selection.showMenuButtons(),
-      'ic-Editor-Menu--link': this.state.inputMode
+    return cx('arc-Editor-Menu', {
+      'arc-Editor-Menu--active': this.props.selection.showMenuButtons(),
+      'arc-Editor-Menu--link': this.state.inputMode
     });
   },
   itemsClasses() {
-    return cx('ic-Editor-Menu__items', {
-      'ic-Editor-Menu__items--active': !this.state.inputMode
+    return cx('arc-Editor-Menu__items', {
+      'arc-Editor-Menu__items--active': !this.state.inputMode
     });
   },
   linkClasses() {
-    return cx('ic-Editor-Menu__linkinput', {
-      'ic-Editor-Menu__linkinput--active': this.state.inputMode
+    return cx('arc-Editor-Menu__linkinput', {
+      'arc-Editor-Menu__linkinput--active': this.state.inputMode
     });
   },
 
@@ -117,7 +117,7 @@ var Menu = React.createClass({
       // some buttons may not be visible based on the selection
       if (cloned.type.isVisible(this.props.content, this.props.selection)) {
         buttons.push(
-          <li className="ic-Editor-Menu__item" key={`button_${i}`}>
+          <li className="arc-Editor-Menu__item" key={`button_${i}`}>
             {cloned}
           </li>
         );
@@ -129,7 +129,7 @@ var Menu = React.createClass({
   render() {
     return (
       <div ref="menu" className={this.menuClasses()} style={this.menuStyles()}>
-        <div className="ic-Editor-Menu__inner">
+        <div className="arc-Editor-Menu__inner">
           <ul className={this.itemsClasses()}>
             {this.renderButtons()}
           </ul>
@@ -138,24 +138,24 @@ var Menu = React.createClass({
             <input
               type="text"
               ref="linkInput"
-              className="ic-Editor-Menu__linkinput-field"
+              className="arc-Editor-Menu__linkinput-field"
               placeholder="Paste or type a link"
               onKeyUp={this.handleOnKeyUp}
               onKeyDown={this.handleOnKeyDown} />
 
-            <button className="ic-Editor-Menu__linkinput_button ic-Editor-MenuButton"
+            <button className="arc-Editor-Menu__linkinput_button arc-Editor-MenuButton"
               onClick={this.handleCancelInput}
             >
-              <i className="ic-Editor-MenuButton__icon fa fa-times"></i>
-              <span className="ic-Editor-MenuButton__icon-text ic-Editor-MenuButton__icon-text--sr">
+              <i className="arc-Editor-MenuButton__icon fa fa-times"></i>
+              <span className="arc-Editor-MenuButton__icon-text arc-Editor-MenuButton__icon-text--sr">
                 Close
               </span>
             </button>
           </div>
         </div>
 
-        <div className="ic-Editor-Menu__arrow-clip">
-          <span className="ic-Editor-Menu__arrow"></span>
+        <div className="arc-Editor-Menu__arrow-clip">
+          <span className="arc-Editor-Menu__arrow"></span>
         </div>
       </div>
     );

@@ -26,7 +26,7 @@ describe('Bar', () => {
       </Bar>
     );
 
-    var barComponent = findByClass(bar, 'ic-Editor-Bar');
+    var barComponent = findByClass(bar, 'arc-Editor-Bar');
     assert(barComponent);
   });
 });

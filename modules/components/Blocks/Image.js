@@ -58,13 +58,13 @@ var Image = React.createClass({
 
   render() {
     var selected = this.props.guids.anchor === this.props.id;
-    var classNames = cx('ic-Editor-Figure__image', {
-      'ic-Editor-Figure__image--selected': selected,
+    var classNames = cx('arc-Editor-Figure__image', {
+      'arc-Editor-Figure__image--selected': selected,
     });
 
     return (
       <Figure id={this.props.id} text={this.props.text} ref="figure">
-        <div className="ic-Editor-Figure__placeholder"
+        <div className="arc-Editor-Figure__placeholder"
           style={this.getDimensions()}
         >
           <div style={{ paddingBottom: this.getAspectRatio() * 100 + '%' }}></div>

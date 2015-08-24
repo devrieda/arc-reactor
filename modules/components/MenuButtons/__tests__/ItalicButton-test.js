@@ -22,7 +22,7 @@ describe('ItalicButton', () => {
       <ItalicButton content={fromJS(content)} selection={selection} />
     );
 
-    var button = findByClass(component, 'ic-Editor-MenuButton--em');
+    var button = findByClass(component, 'arc-Editor-MenuButton--em');
     assert(button);
   });
 

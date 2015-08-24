@@ -21,24 +21,24 @@ class ClipboardHandler {
     return;
 
     // TODO - hook up multiline paste
-    this.elt   = e.target;
-    this.saved = this.elt.innerHTML;
+    // this.elt   = e.target;
+    // this.saved = this.elt.innerHTML;
 
-    // webkit
-    var pasted;
-    if (e && e.clipboardData && e.clipboardData.getData) {
-      pasted = this._handleWebkitPaste(e);
+    // // webkit
+    // var pasted;
+    // if (e && e.clipboardData && e.clipboardData.getData) {
+    //   pasted = this._handleWebkitPaste(e);
 
-    // others
-    } else {
-      this.elt.innerHTML = '';
-      pasted = this._waitForPaste(e);
-    }
+    // // others
+    // } else {
+    //   this.elt.innerHTML = '';
+    //   pasted = this._waitForPaste(e);
+    // }
 
-    // TODO - format content with pasted data
-    console.log('paste', pasted);
-    e.preventDefault();
-    e.stopPropagation();
+    // // TODO - format content with pasted data
+    // console.log('paste', pasted);
+    // e.preventDefault();
+    // e.stopPropagation();
   }
 
   _handleWebkitPaste(e) {

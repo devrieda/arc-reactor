@@ -26,7 +26,7 @@ describe('BaseBlock', () => {
         <Block type={'p'} text={''} />
       );
       var dom = React.findDOMNode(block);
-      assert(dom.classList.contains('ic-Editor-Block--empty'));
+      assert(dom.classList.contains('arc-Editor-Block--empty'));
     });
 
     it('doesnt add empty class if there is text', () => {
@@ -34,7 +34,7 @@ describe('BaseBlock', () => {
         <Block type={'p'} text={'hey'} />
       );
       var dom = React.findDOMNode(block);
-      assert(!dom.classList.contains('ic-Editor-Block--empty'));
+      assert(!dom.classList.contains('arc-Editor-Block--empty'));
     });
 
     it('doesnt add empty class if there are sub-blocks', () => {
@@ -46,7 +46,7 @@ describe('BaseBlock', () => {
         <Block type={'p'} text={''} blocks={Immutable.fromJS(blocks)} />
       );
       var dom = React.findDOMNode(block);
-      assert(!dom.classList.contains('ic-Editor-Block--empty'));
+      assert(!dom.classList.contains('arc-Editor-Block--empty'));
     });
 
     it('adds header class if h2, h3, h4', () => {
@@ -54,7 +54,7 @@ describe('BaseBlock', () => {
         <Block type={'h2'} text={'hey'} />
       );
       var dom = React.findDOMNode(block);
-      assert(dom.classList.contains('ic-Editor-Block--header'));
+      assert(dom.classList.contains('arc-Editor-Block--header'));
     });
 
     it('doesnt add header class for lists', () => {
@@ -62,7 +62,7 @@ describe('BaseBlock', () => {
         <Block type={'ol'} text={'hey'} />
       );
       var dom = React.findDOMNode(block);
-      assert(!dom.classList.contains('ic-Editor-Block--header'));
+      assert(!dom.classList.contains('arc-Editor-Block--header'));
     });
 
     it('adds list class if ol, ul', () => {
@@ -70,7 +70,7 @@ describe('BaseBlock', () => {
         <Block type={'ol'} text={'hey'} blocks={Immutable.List()} />
       );
       var dom = React.findDOMNode(block);
-      assert(dom.classList.contains('ic-Editor-Block--list'));
+      assert(dom.classList.contains('arc-Editor-Block--list'));
     });
 
     it('doesnt add list class for headers', () => {
@@ -78,7 +78,7 @@ describe('BaseBlock', () => {
         <Block type={'h2'} text={'hey'} />
       );
       var dom = React.findDOMNode(block);
-      assert(!dom.classList.contains('ic-Editor-Block--list'));
+      assert(!dom.classList.contains('arc-Editor-Block--list'));
     });
 
     it('adds first class if first block', () => {
@@ -86,7 +86,7 @@ describe('BaseBlock', () => {
         <Block type={'p'} text={'hey'} meta={Immutable.Map({first: true})}/>
       );
       var dom = React.findDOMNode(block);
-      assert(dom.classList.contains('ic-Editor-Block--first'));
+      assert(dom.classList.contains('arc-Editor-Block--first'));
     });
 
     it('doesnt add first class if not first block', () => {
@@ -94,7 +94,7 @@ describe('BaseBlock', () => {
         <Block type={'p'} text={'hey'} />
       );
       var dom = React.findDOMNode(block);
-      assert(!dom.classList.contains('ic-Editor-Block--first'));
+      assert(!dom.classList.contains('arc-Editor-Block--first'));
     });
 
     it('adds id class', () => {
@@ -102,7 +102,7 @@ describe('BaseBlock', () => {
         <Block id={'0000'} type={'p'} text={'hey'} />
       );
       var dom = React.findDOMNode(block);
-      assert(dom.classList.contains('ic-Editor-Block--0000'));
+      assert(dom.classList.contains('arc-Editor-Block--0000'));
     });
 
     it('adds block type class', () => {
@@ -110,7 +110,7 @@ describe('BaseBlock', () => {
         <Block type={'h2'} text={'hey'} />
       );
       var dom = React.findDOMNode(block);
-      assert(dom.classList.contains('ic-Editor-Block--h2'));
+      assert(dom.classList.contains('arc-Editor-Block--h2'));
     });
   });
 
@@ -124,7 +124,7 @@ describe('BaseBlock', () => {
       var block = render(
         <Block type={'ol'} text={'hey'} blocks={Immutable.fromJS(blocks)} />
       );
-      var component = findByClass(block, 'ic-Editor-Block--li');
+      var component = findByClass(block, 'arc-Editor-Block--li');
       assert(component);
     });
 
@@ -146,7 +146,7 @@ describe('BaseBlock', () => {
       var block = render(
         <Block type={'p'} text={'hey there'} markups={Immutable.fromJS(markups)} />
       );
-      var formatted = 'hey <em class="ic-Editor-Block__em">there</em>';
+      var formatted = 'hey <em class="arc-Editor-Block__em">there</em>';
       expect(React.findDOMNode(block).innerHTML).toBe(formatted);
     });
   });

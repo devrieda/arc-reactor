@@ -20,7 +20,7 @@ describe('Figure', () => {
       <Figure id='0000' type='figure' text="caption" meta={meta} />
     );
 
-    var figureComponent = findByClass(figure, 'ic-Editor-Figure');
+    var figureComponent = findByClass(figure, 'arc-Editor-Figure');
     assert(figureComponent);
   });
 });

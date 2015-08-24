@@ -11,17 +11,17 @@ describe('Selection', () => {
   // <p>and more</p>
   function createNode() {
     div = document.createElement('div');
-    div.setAttribute('class', 'ic-Editor-Content');
+    div.setAttribute('class', 'arc-Editor-Content');
     div.setAttribute('data-top', 'true');
 
     p1 = document.createElement('p');
-    p1.setAttribute('class', 'ic-Editor-Block ic-Editor-Block--0101');
+    p1.setAttribute('class', 'arc-Editor-Block arc-Editor-Block--0101');
     p1.setAttribute('name',  '0101');
     p1.setAttribute('data-align', 'center');
     p1.setAttribute('data-block', 'true');
 
     p2 = document.createElement('p');
-    p2.setAttribute('class', 'ic-Editor-Block ic-Editor-Block--0102');
+    p2.setAttribute('class', 'arc-Editor-Block arc-Editor-Block--0102');
     p2.setAttribute('name',  '0102');
     p2.setAttribute('data-block',  'true');
 

@@ -26,9 +26,9 @@ var Figure = React.createClass({
   },
 
   render() {
-    var classNames = cx('ic-Editor-Figure', {
-      'ic-Editor-Figure--outset-left': false,
-      'ic-Editor-Figure--inset-left': false
+    var classNames = cx('arc-Editor-Figure', {
+      'arc-Editor-Figure--outset-left': false,
+      'arc-Editor-Figure--inset-left': false
     });
 
     return (
@@ -40,11 +40,11 @@ var Figure = React.createClass({
         onDragStart={this.preventDrag}
         className={classNames}
       >
-        <div data-figure="true" className="ic-Editor-Figure__wrapper" data-blockid={this.props.id}>
+        <div data-figure="true" className="arc-Editor-Figure__wrapper" data-blockid={this.props.id}>
           {this.props.children}
         </div>
 
-        {false && <div className="ic-Editor-Figure__focus" children=" " />}
+        {false && <div className="arc-Editor-Figure__focus" children=" " />}
         {false && <FigCaption text={this.props.text} />}
       </figure>
     );

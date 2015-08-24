@@ -150,7 +150,7 @@ var Editor = React.createClass({
     var { content, selection, linkState } = EditorStore.get();
 
     return (
-      <div className="ic-Editor"
+      <div className="arc-Editor"
         onMouseUp={this.handleClick}
         onKeyUp={this.handleKeyUp}
         onKeyDown={this.handleKeyDown}

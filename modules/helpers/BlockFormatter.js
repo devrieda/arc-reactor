@@ -3,7 +3,7 @@ var RangeSet = require('./RangeSet');
 
 var { Map, List, fromJS } = require('immutable');
 
-var CLASS_NAME_PREFIX = "ic-Editor-Block";
+var CLASS_NAME_PREFIX = "arc-Editor-Block";
 var INLINE_TAGS = ['a', 'strong', 'em'];
 
 // Formats text with inline markup based on the markup begin/end indices. We

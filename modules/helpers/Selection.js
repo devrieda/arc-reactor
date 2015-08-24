@@ -113,12 +113,12 @@ class Selection {
     this.bounds = this._bounds();
     if (!old) return true;
 
-    return old.height != this.bounds.height ||
-           old.width  != this.bounds.width ||
-           old.top    != this.bounds.top ||
-           old.right  != this.bounds.right ||
-           old.left   != this.bounds.left ||
-           old.bottom != this.bounds.bottom
+    return old.height !== this.bounds.height ||
+           old.width  !== this.bounds.width ||
+           old.top    !== this.bounds.top ||
+           old.right  !== this.bounds.right ||
+           old.left   !== this.bounds.left ||
+           old.bottom !== this.bounds.bottom;
   }
 
   _bounds() {

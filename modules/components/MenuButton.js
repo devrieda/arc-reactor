@@ -44,23 +44,23 @@ var MenuButton = React.createClass({
 
   buttonClasses(active) {
     var classes = {
-      'ic-Editor-MenuButton--active': active,
+      'arc-Editor-MenuButton--active': active,
     };
-    classes[`ic-Editor-MenuButton--${this.props.type}`] = true;
-    return cx('ic-Editor-MenuButton', classes);
+    classes[`arc-Editor-MenuButton--${this.props.type}`] = true;
+    return cx('arc-Editor-MenuButton', classes);
   },
 
   iconClasses(active) {
     var iconClass = {
-      'ic-Editor-MenuButton__icon--active': active,
+      'arc-Editor-MenuButton__icon--active': active,
     };
     iconClass[this.props.icon] = true;
-    return cx('ic-Editor-MenuButton__icon fa', iconClass);
+    return cx('arc-Editor-MenuButton__icon fa', iconClass);
   },
 
   textClasses() {
-    return cx('ic-Editor-MenuButton__icon-text', {
-      'ic-Editor-MenuButton__icon-text--sr': this.props.icon
+    return cx('arc-Editor-MenuButton__icon-text', {
+      'arc-Editor-MenuButton__icon-text--sr': this.props.icon
     });
   },
 

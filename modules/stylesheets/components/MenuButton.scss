@@ -1,4 +1,4 @@
-.ic-Editor-MenuButton {
+.arc-Editor-MenuButton {
   display: block;
   background: rgba(0,0,0,0);
   border: 0;
@@ -13,23 +13,23 @@
   outline: none;
 }
 
-.ic-Editor-MenuButton__icon {
+.arc-Editor-MenuButton__icon {
   color: $button-text-off-color;
   font-size: 17px;
   line-height: 42px;
 }
 
-.ic-Editor-MenuButton__icon-text {
+.arc-Editor-MenuButton__icon-text {
   font-weight: bold;
   line-height: 42px;
 }
-.ic-Editor-MenuButton__icon-text--sr {
+.arc-Editor-MenuButton__icon-text--sr {
   @include screenreader;
 }
 
-.ic-Editor-MenuButton:hover,
-.ic-Editor-MenuButton--active,
-.ic-Editor-MenuButton__icon--active {
+.arc-Editor-MenuButton:hover,
+.arc-Editor-MenuButton--active,
+.arc-Editor-MenuButton__icon--active {
   color: $button-text-on-color;
   transition: background-color 0.2s ease-in-out;
   background-color: $button-on-color;

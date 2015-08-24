@@ -18,7 +18,7 @@ describe('BlockFormatter', () => {
     it('formats text with single strong tag', () => {
       var format = new BlockFormatter('a string of text');
 
-      var expected = 'a <strong class="ic-Editor-Block__strong">string</strong> of text';
+      var expected = 'a <strong class="arc-Editor-Block__strong">string</strong> of text';
       var markups  = fromJS({"strong": [{"range": [2,8]}]});
       expect(format.applyMarkup(markups)).toBe(expected);
     });
@@ -26,7 +26,7 @@ describe('BlockFormatter', () => {
     it('formats text with single em tag', () => {
       var format = new BlockFormatter('a string of text');
 
-      var expected = 'a <em class="ic-Editor-Block__em">string</em> of text';
+      var expected = 'a <em class="arc-Editor-Block__em">string</em> of text';
       var markups  = fromJS({"em": [{"range": [2,8]}]});
       expect(format.applyMarkup(markups)).toBe(expected);
     });
@@ -34,7 +34,7 @@ describe('BlockFormatter', () => {
     it('formats text with single link tag', () => {
       var format = new BlockFormatter('a string of text');
 
-      var expected = 'a <a class=\"ic-Editor-Block__a\" href=\"http://example.com\">string</a> of text';
+      var expected = 'a <a class=\"arc-Editor-Block__a\" href=\"http://example.com\">string</a> of text';
       var markups  = fromJS({"a": [{"range": [2,8], "value": "http://example.com"}]});
 
       expect(format.applyMarkup(markups)).toBe(expected);
@@ -43,9 +43,9 @@ describe('BlockFormatter', () => {
     it('formats text with strong, em, and tag', () => {
       var format = new BlockFormatter('a string of text');
 
-      var expected = 'a <a class="ic-Editor-Block__a" href="http://example.com">' +
-                       '<strong class="ic-Editor-Block__strong">' +
-                         '<em class="ic-Editor-Block__em">' +
+      var expected = 'a <a class="arc-Editor-Block__a" href="http://example.com">' +
+                       '<strong class="arc-Editor-Block__strong">' +
+                         '<em class="arc-Editor-Block__em">' +
                            'string' +
                          '</em>' +
                          '</strong>' +

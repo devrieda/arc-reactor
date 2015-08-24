@@ -15,7 +15,7 @@ describe('Section', () => {
       <Section id={'0000'} blocks={Immutable.List()} meta={Immutable.Map({first: true})} />
     );
     var dom = React.findDOMNode(section);
-    assert(dom.classList.contains('ic-Editor-Section--first'));
+    assert(dom.classList.contains('arc-Editor-Section--first'));
   });
 
   it('should not set class name if not first section', () => {
@@ -23,7 +23,7 @@ describe('Section', () => {
       <Section id={'0000'} blocks={Immutable.List()} />
     );
     var dom = React.findDOMNode(section);
-    assert(!dom.classList.contains('ic-Editor-Section--first'));
+    assert(!dom.classList.contains('arc-Editor-Section--first'));
   });
 
   // rendering
@@ -36,7 +36,7 @@ describe('Section', () => {
       <Section id={'0000'} blocks={Immutable.fromJS(blocks)} />
     );
 
-    var component = findByClass(section, 'ic-Editor-Block--p');
+    var component = findByClass(section, 'arc-Editor-Block--p');
     assert(component);
   });
 });

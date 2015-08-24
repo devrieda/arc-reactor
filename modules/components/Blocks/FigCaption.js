@@ -102,8 +102,8 @@ var FigCaption = React.createClass({
   },
 
   render() {
-    var capClass = cx('ic-Editor-FigCaption', {
-      'ic-Editor-FigCaption--empty': this.state.empty
+    var capClass = cx('arc-Editor-FigCaption', {
+      'arc-Editor-FigCaption--empty': this.state.empty
     });
 
     var attr = {
@@ -120,7 +120,7 @@ var FigCaption = React.createClass({
 
     if (this.state.empty) {
       attr.children = (
-        <span className='ic-Editor-FigCaption__placeholder' data-caption="true">
+        <span className='arc-Editor-FigCaption__placeholder' data-caption="true">
           {PLACEHOLDER}
         </span>
       );

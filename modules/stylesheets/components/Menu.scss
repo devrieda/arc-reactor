@@ -1,9 +1,9 @@
-.ic-Editor-Menu {
+.arc-Editor-Menu {
   position: absolute;
   display: none;
   z-index: 500;
 }
-.ic-Editor-Menu--active {
+.arc-Editor-Menu--active {
   display: inline-block;
   -webkit-transition: top 75ms ease-out, left 75ms ease-out;
   transition: top 75ms ease-out, left 75ms ease-out;
@@ -11,31 +11,31 @@
   animation: pop-upwards 180ms forwards linear;
 }
 
-.ic-Editor-Menu__inner {
+.arc-Editor-Menu__inner {
   position: relative;
   height: 43px;
   box-shadow: 0 1px 3px -1px rgba(0,0,0,0.8),inset 0 0 1px rgba(255,255,255,0.07),inset 0 0 2px rgba(255,255,255,0.15);
   background-color: $menu-color;
 }
 
-.ic-Editor-Menu__items {
+.arc-Editor-Menu__items {
   margin: 0;
   padding: 0;
   visibility: hidden;
   white-space: nowrap;
 }
-.ic-Editor-Menu__items--active {
+.arc-Editor-Menu__items--active {
   display: block;
   visibility: visible;
 }
-.ic-Editor-Menu__item {
+.arc-Editor-Menu__item {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
 }
 
 
-.ic-Editor-Menu__linkinput {
+.arc-Editor-Menu__linkinput {
   display: none;
   position: absolute;
   top: 0;
@@ -43,12 +43,12 @@
   right: 0;
   bottom: 0;
 }
-.ic-Editor-Menu__linkinput--active {
+.arc-Editor-Menu__linkinput--active {
   display: block;
   animation: pop-upwards 180ms forwards linear;
 }
 
-.ic-Editor-Menu__linkinput-field {
+.arc-Editor-Menu__linkinput-field {
   background: rgba(0,0,0,0);
   position: absolute;
   top: 0;
@@ -78,19 +78,19 @@
   }
 }
 
-.ic-Editor-Menu__linkinput_button {
+.arc-Editor-Menu__linkinput_button {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-.ic-Editor-Menu__arrow-clip {
+.arc-Editor-Menu__arrow-clip {
   position: absolute;
   bottom: -9px;
   left: 50%;
   margin-left: -12px;
 }
-.ic-Editor-Menu__arrow {
+.arc-Editor-Menu__arrow {
   display: block;
   width: 0;
   height: 0;

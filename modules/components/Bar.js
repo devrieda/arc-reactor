@@ -120,26 +120,26 @@ var Bar = React.createClass({
 
   // class names
   barClasses() {
-    return cx('ic-Editor-Bar', {
-      'ic-Editor-Bar--active': this._isActive()
+    return cx('arc-Editor-Bar', {
+      'arc-Editor-Bar--active': this._isActive()
     });
   },
 
   triggerClasses() {
-    return cx('ic-Editor-Bar__trigger', {
-      'ic-Editor-Bar__trigger--active': this.state.open
+    return cx('arc-Editor-Bar__trigger', {
+      'arc-Editor-Bar__trigger--active': this.state.open
     });
   },
 
   iconClasses() {
-    return cx('ic-Editor-Bar__trigger-icon fa fa-plus', {
-      'ic-Editor-Bar__trigger-icon--active': this.state.open
+    return cx('arc-Editor-Bar__trigger-icon fa fa-plus', {
+      'arc-Editor-Bar__trigger-icon--active': this.state.open
     });
   },
 
   menuClasses() {
-    return cx('ic-Editor-Bar__menu-items', {
-      'ic-Editor-Bar__menu-items--active': this.state.open
+    return cx('arc-Editor-Bar__menu-items', {
+      'arc-Editor-Bar__menu-items--active': this.state.open
     });
   },
 
@@ -155,7 +155,7 @@ var Bar = React.createClass({
       });
 
       buttons.push(
-        <li className="ic-Editor-Bar__menu-item" key={`button_${i}`}>
+        <li className="arc-Editor-Bar__menu-item" key={`button_${i}`}>
           {cloned}
         </li>
       );
@@ -171,7 +171,7 @@ var Bar = React.createClass({
           onClick={this.handleClickTrigger}
         >
           <i className={this.iconClasses()}></i>
-          <span className="ic-Editor-Bar__trigger-text">Show Menu</span>
+          <span className="arc-Editor-Bar__trigger-text">Show Menu</span>
         </button>
 
         {this._isActive() &&

@@ -17,7 +17,7 @@ describe('FigCaption', () => {
       <FigCaption text={text} figSelected={figSelected} />
     );
 
-    var captionComponent = findByClass(caption, 'ic-Editor-FigCaption');
+    var captionComponent = findByClass(caption, 'arc-Editor-FigCaption');
     assert(captionComponent);
   });
 });

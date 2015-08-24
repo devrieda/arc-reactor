@@ -71,18 +71,18 @@ var Section = React.createClass({
       return this._renderBlock(block);
     });
 
-    var classNames = cx('ic-Editor-Section', {
-      'ic-Editor-Section--first': this.props.meta.get('first')
+    var classNames = cx('arc-Editor-Section', {
+      'arc-Editor-Section--first': this.props.meta.get('first')
     });
 
     return (
       <section className={classNames} name={this.props.id}>
-        <div contentEditable="false" className="ic-Editor-Section__divider">
-          <hr className="ic-Editor-Section__hr" />
+        <div contentEditable="false" className="arc-Editor-Section__divider">
+          <hr className="arc-Editor-Section__hr" />
         </div>
 
-        <div className="ic-Editor-Section__content">
-          <div className="ic-Editor-Section__inner">
+        <div className="arc-Editor-Section__content">
+          <div className="arc-Editor-Section__inner">
             {blocks}
           </div>
         </div>

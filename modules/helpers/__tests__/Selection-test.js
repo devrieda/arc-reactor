@@ -109,6 +109,17 @@ describe('Selection', () => {
       assert(!selection.reselect());
     });
 
+    it('doesnt reselect range if range hasnt changed', () => {
+      createNode();
+      var sel = createSelection(thisIs, thisIs, 0, 4);
+      var selection = new Selection(sel);
+      selection.selType = 'Caret';
+
+      selection.anchor.focusOn('0101', 0);
+      selection.focus.focusOn('0101', 4);
+      assert(!selection.reselect());
+    });
+
     it('reselects range for range text nodes', () => {
       createNode();
       var sel = createSelection(thisIs, thisIs, 0, 0);

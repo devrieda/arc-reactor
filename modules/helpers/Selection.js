@@ -60,6 +60,9 @@ class Selection {
     var end   = this.focus.textNodeOffset();
     if (!start.node || !end.node) { return false; }
 
+    // ignore reselects if nothing has changed
+    if (!this._rangeHasChanged(start, end)) { return false; }
+
     this._setRange(start.node, end.node, start.offset, end.offset);
     return this._initBounds();
   }
@@ -125,6 +128,14 @@ class Selection {
     if (!this.selection.anchorNode) { return {}; }
     var range = this.selection.getRangeAt(0);
     return range.getBoundingClientRect();
+  }
+
+  _rangeHasChanged(start, end) {
+    var { anchorNode, focusNode, anchorOffset, focusOffset } = this.selection;
+    return anchorNode != start.node ||
+           focusNode != end.node ||
+           anchorOffset != start.offset ||
+           focusOffset != end.offset;
   }
 
   // reconstituting selection of node from guids & offsets

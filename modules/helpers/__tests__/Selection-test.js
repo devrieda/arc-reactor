@@ -98,15 +98,26 @@ describe('Selection', () => {
       assert(!selection.reselect());
     });
 
-    it('doesnt reselect range for text nodes', () => {
+    it('doesnt reselect range for collapsed text nodes', () => {
       createNode();
       var sel = createSelection(thisIs, thisIs, 0, 0);
       var selection = new Selection(sel);
       selection.selType = 'Range';
 
       selection.anchor.focusOn('0101', 9);
-      selection.focus.focusOn('0101', 12);
+      selection.focus.focusOn('0101', 9);
       assert(!selection.reselect());
+    });
+
+    it('reselects range for range text nodes', () => {
+      createNode();
+      var sel = createSelection(thisIs, thisIs, 0, 0);
+      var selection = new Selection(sel);
+      selection.selType = 'Range';
+
+      selection.anchor.focusOn('0101', 4);
+      selection.focus.focusOn('0101', 9);
+      assert(selection.reselect());
     });
 
     it('reinitializes bounds after selection', () => {

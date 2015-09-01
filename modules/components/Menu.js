@@ -94,7 +94,7 @@ var Menu = React.createClass({
     if (!bounds.top && !bounds.left) { return {}; }
 
     var buttonHeight = 50;
-    var menuWidth = Object.keys(this.renderButtons()).length * 38;
+    var menuWidth = Object.keys(this.renderButtons()).length * 43;
 
     return {
       top: window.pageYOffset + bounds.top - buttonHeight,

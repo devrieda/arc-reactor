@@ -127,7 +127,25 @@ class Selection {
   _bounds() {
     if (!this.selection.anchorNode) { return {}; }
     var range = this.selection.getRangeAt(0);
-    return range.getBoundingClientRect();
+    var rect  = range.getBoundingClientRect();
+
+    // ie doubles these for some reason... i'm sure there is a better way
+    // than sniffing to do this, but let's get ie just working first m'kay
+    if (this._isIE()) {
+      rect = {
+        height: rect.height / 2.0,
+        width: rect.width / 2.0,
+        top: rect.top / 2.0,
+        right: rect.right / 2.0,
+        left: rect.left / 2.0,
+        bottom: rect.bottom / 2.0
+      }
+    }
+    return rect;
+  }
+
+  _isIE(v) {
+    return RegExp('msie' + (!isNaN(v)?('\\s'+v):''), 'i').test(navigator.userAgent);
   }
 
   _rangeHasChanged(start, end) {

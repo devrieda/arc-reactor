@@ -12,7 +12,7 @@
   "scripts": {
     "build": "scripts/build.sh",
     "watch": "babel ./modules --watch -d lib",
-    "examples": "webpack-dev-server --config examples/webpack.config.js --no-info --content-base examples --inline",
+    "examples": "webpack-dev-server --config examples/webpack.config.js --no-info --content-base examples --inline --host 0.0.0.0",
     "prepublish": "npm run build",
     "test": "eslint modules && karma start"
   },

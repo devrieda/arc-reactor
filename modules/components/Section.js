@@ -82,8 +82,10 @@ var Section = React.createClass({
         </div>
 
         <div className="arc-Editor-Section__content">
-          <div className="arc-Editor-Section__inner">
-            {blocks}
+          <div className="arc-Editor-Section__width" contentEditable="false">
+            <div className="arc-Editor-Section__inner" contentEditable="true">
+              {blocks}
+            </div>
           </div>
         </div>
       </section>

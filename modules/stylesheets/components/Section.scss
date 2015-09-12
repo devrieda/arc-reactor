@@ -36,10 +36,12 @@
   font-size: $base-font-size;
   line-height: 1.5;
 }
-.arc-Editor-Section__inner {
+.arc-Editor-Section__width {
   width: $max-width;
   position: relative;
   margin: 0 auto;
+}
+.arc-Editor-Section__inner {
 }
 @media (max-width: 767px) {
   .arc-Editor-Section__divider {
@@ -47,7 +49,7 @@
     margin-left: 20px;
     margin-right: 25px;
   }
-  .arc-Editor-Section__inner {
+  .arc-Editor-Section__width {
     width: auto;
     margin-left: 20px;
     margin-right: 25px;

@@ -2,7 +2,6 @@ var React = require('react/addons');
 var Immutable = require('immutable');
 var cx = require("classnames");
 
-var cloneWithProps = React.addons.cloneWithProps;
 var { object, func, instanceOf } = React.PropTypes;
 
 var Menu = React.createClass({
@@ -107,7 +106,8 @@ var Menu = React.createClass({
     var buttons = [];
     React.Children.forEach(this.props.children, (child, i) => {
       var refName = `button_${child.props.type}`;
-      var cloned = cloneWithProps(child, {
+
+      var cloned = React.cloneElement(child, {
         content: this.props.content,
         selection: this.props.selection,
         onSetValue: this.handleSetValue.bind(this, child, refName),

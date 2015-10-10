@@ -12,7 +12,7 @@ class UndoKey extends BaseKey {
     return 'undo-key';
   }
 
-  // meta+b
+  // meta+z
   matches(event) {
     if (!event.metaKey && !event.ctrlKey) { return false; }
     if (event.altKey || event.shiftKey) { return false; }

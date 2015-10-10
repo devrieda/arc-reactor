@@ -36,11 +36,6 @@
   font-size: $base-font-size;
   line-height: 1.5;
 }
-.arc-Editor-Section__width {
-  width: $max-width;
-  position: relative;
-  margin: 0 auto;
-}
 .arc-Editor-Section__inner {
   outline: none;
 }
@@ -50,8 +45,7 @@
     margin-left: 20px;
     margin-right: 25px;
   }
-  .arc-Editor-Section__width {
-    width: auto;
+  .arc-Editor-Section__inner {
     margin-left: 20px;
     margin-right: 25px;
   }

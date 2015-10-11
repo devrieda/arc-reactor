@@ -145,7 +145,7 @@ var Editor = React.createClass({
     // update if selection changed
     if (results.block) {
       var { selection } = this.state;
-      selection.focusOn(results.block, results.offset)
+      selection.focusOn(results.block, results.offset);
       newState.selection = selection;
     }
 

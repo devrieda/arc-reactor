@@ -4,14 +4,14 @@ var ContentFinder = require('../ContentFinder');
 var Guid = require('../Guid');
 
 class AppendBlock {
-  constructor(map) {
-    this.map = map;
+  constructor(content) {
+    this.content = content;
   }
 
   execute(guids) {
     var guid  = guids.anchor;
     var path  = this._finder().findPath(guid);
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
     var text  = block.get("text");
     var starts = text.substring(0, 1);
     var newBlock;
@@ -33,28 +33,28 @@ class AppendBlock {
       newBlock = this._insertBlock('p', 'after', guid);
     }
 
-    return { content: this.map, block: newBlock, offset: 0 };
+    return { content: this.content, block: newBlock, offset: 0 };
   }
 
   _createList(guid, starts) {
     var type = starts === '1' ? 'ol' : 'ul';
 
     var path  = this._finder().findPath(guid);
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
 
     // remove text off ul node (we'll move it to the li)
     var text = block.get("text");
-    this.map = this.map.deleteIn(path.concat("text"));
+    this.content = this.content.deleteIn(path.concat("text"));
 
     // update type to parent list
-    this.map = this.map.setIn(path.concat("type"), type);
+    this.content = this.content.setIn(path.concat("type"), type);
 
     var items = Immutable.List([
       this._newBlock('li', text.replace(/^[-*\d]\.?\s?/g, '')),
       this._newBlock('li', '')
     ]);
 
-    this.map = this.map.setIn(path.concat("blocks"), items);
+    this.content = this.content.setIn(path.concat("blocks"), items);
     return items.get(1);
   }
 
@@ -64,7 +64,7 @@ class AppendBlock {
 
   _finishList(guid) {
     var path = this._finder().findParentPath(guid);
-    var parentGuid = this.map.getIn(path).get("id");
+    var parentGuid = this.content.getIn(path).get("id");
 
     this._removeBlock(guid);
     return this._insertBlock('p', 'after', parentGuid);
@@ -72,22 +72,22 @@ class AppendBlock {
 
   _insertBlock(type, position, guid, text) {
     var path   = this._finder().findBlocksPath(guid);
-    var blocks = this.map.getIn(path);
+    var blocks = this.content.getIn(path);
     var index  = this._finder().findBlockPosition(guid);
 
     var block = this._newBlock(type, text || "");
     index = position === 'after' ? index + 1 : index;
 
-    this.map = this.map.setIn(path, blocks.splice(index, 0, block));
+    this.content = this.content.setIn(path, blocks.splice(index, 0, block));
     return block;
   }
 
   _removeBlock(guid) {
     var path = this._finder().findBlocksPath(guid);
-    var blocks = this.map.getIn(path);
+    var blocks = this.content.getIn(path);
     var index  = this._finder().findBlockPosition(guid);
 
-    this.map = this.map.setIn(path, blocks.delete(index));
+    this.content = this.content.setIn(path, blocks.delete(index));
   }
 
   _newBlock(type, text) {
@@ -95,7 +95,7 @@ class AppendBlock {
   }
 
   _finder() {
-    return new ContentFinder(this.map);
+    return new ContentFinder(this.content);
   }
 }
 

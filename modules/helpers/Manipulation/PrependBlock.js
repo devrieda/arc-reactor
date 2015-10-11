@@ -4,29 +4,29 @@ var ContentFinder = require('../ContentFinder');
 var Guid = require('../Guid');
 
 class PrependBlock {
-  constructor(map) {
-    this.map = map;
+  constructor(content) {
+    this.content = content;
   }
 
   execute(guids) {
     var guid = guids.anchor;
 
     var path  = this._finder().findPath(guid);
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
 
     this._insertBlock('p', 'before', guid);
-    return { content: this.map, block: block, offset: 0 };
+    return { content: this.content, block: block, offset: 0 };
   }
 
   _insertBlock(type, position, guid, text) {
     var path   = this._finder().findBlocksPath(guid);
-    var blocks = this.map.getIn(path);
+    var blocks = this.content.getIn(path);
     var index  = this._finder().findBlockPosition(guid);
 
     var block = this._newBlock(type, text || "");
     index = position === 'after' ? index + 1 : index;
 
-    this.map = this.map.setIn(path, blocks.splice(index, 0, block));
+    this.content = this.content.setIn(path, blocks.splice(index, 0, block));
     return block;
   }
 
@@ -35,7 +35,7 @@ class PrependBlock {
   }
 
   _finder() {
-    return new ContentFinder(this.map);
+    return new ContentFinder(this.content);
   }
 }
 

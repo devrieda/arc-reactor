@@ -4,8 +4,8 @@ var ContentFinder = require('../ContentFinder');
 var RangeSet = require('../RangeSet');
 
 class ToggleMarkup {
-  constructor(map) {
-    this.map = map;
+  constructor(content) {
+    this.content = content;
   }
 
   execute(guids, offsets, options) {
@@ -23,7 +23,7 @@ class ToggleMarkup {
       this._toggleMultiBlockMarkup(paths, offsets, type, value);
     }
 
-    return { content: this.map };
+    return { content: this.content };
   }
 
   /**
@@ -45,7 +45,7 @@ class ToggleMarkup {
   _toggleMultiBlockMarkup(paths, offsets, type, value) {
     // check if everything is selected
     var withMarkup = paths.filter( (path, i) => {
-      var block = this.map.getIn(path);
+      var block = this.content.getIn(path);
 
       if (i === 0) {
         return this._hasMarkup(
@@ -67,7 +67,7 @@ class ToggleMarkup {
 
     // perform toggle
     paths.forEach( (path, i) => {
-      var block = this.map.getIn(path);
+      var block = this.content.getIn(path);
 
       if (i === 0) {
         this._toggleBlockMarkup(
@@ -88,7 +88,7 @@ class ToggleMarkup {
 
   // check if the path has the given markup offsets range
   _hasMarkup(path, offsets, type, value) {
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
 
     var markup = this._newMarkupRange(offsets, value);
     var set = this._getRangeSet(block, type);
@@ -97,7 +97,7 @@ class ToggleMarkup {
 
   // add or remove markup for a block
   _toggleBlockMarkup(remove, path, offsets, type, value) {
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
     var markups = this._getCurrentBlockMarkups(block, type);
 
     var markup = this._newMarkupRange(offsets, value);
@@ -109,7 +109,7 @@ class ToggleMarkup {
       markups = markups.set(type, Immutable.fromJS(set.add(markup)));
     }
 
-    this.map = this.map.setIn(path.concat('markups'), markups);
+    this.content = this.content.setIn(path.concat('markups'), markups);
   }
 
   _newMarkupRange(offsets, value) {
@@ -133,7 +133,7 @@ class ToggleMarkup {
   }
 
   _finder() {
-    return new ContentFinder(this.map);
+    return new ContentFinder(this.content);
   }
 }
 

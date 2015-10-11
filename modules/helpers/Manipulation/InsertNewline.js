@@ -1,13 +1,13 @@
 var ContentFinder = require('../ContentFinder');
 
 class InsertNewline {
-  constructor(map) {
-    this.map = map;
+  constructor(content) {
+    this.content = content;
   }
 
   execute(guids, offsets) {
     var path = this._finder().findPath(guids.anchor);
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
     var text = block.get('text');
 
     var begin = text.substring(0, offsets.anchor);
@@ -15,13 +15,13 @@ class InsertNewline {
 
     // need two newlines if there is no newline at the end yet
     end = end === '' ? "\n\n" : `\n${end}`;
-    this.map = this.map.setIn(path.concat('text'), begin + end);
+    this.content = this.content.setIn(path.concat('text'), begin + end);
 
-    return { content: this.map, block: block, offset: offsets.focus + 1 };
+    return { content: this.content, block: block, offset: offsets.focus + 1 };
   }
 
   _finder() {
-    return new ContentFinder(this.map);
+    return new ContentFinder(this.content);
   }
 }
 

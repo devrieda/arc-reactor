@@ -4,8 +4,8 @@ var ContentFinder = require('../ContentFinder');
 var Guid = require('../Guid');
 
 class SplitBlock {
-  constructor(map) {
-    this.map = map;
+  constructor(content) {
+    this.content = content;
   }
 
   execute(guids, offsets) {
@@ -14,10 +14,10 @@ class SplitBlock {
     var last  = range.pop();
 
     var anchorPath = this._finder().findPath(first);
-    var anchor = this.map.getIn(anchorPath);
+    var anchor = this.content.getIn(anchorPath);
 
     var focusPath  = last ? this._finder().findPath(last) : anchorPath;
-    var focus  = this.map.getIn(focusPath);
+    var focus  = this.content.getIn(focusPath);
 
     // delete the rest
     range.forEach( (guid) => { this._removeBlock(guid); });
@@ -28,33 +28,33 @@ class SplitBlock {
 
     // split and reset the anchor text
     var newText = anchor.get("text").substring(0, offsets.anchor);
-    this.map = this.map.setIn(anchorPath.concat("text"), newText);
+    this.content = this.content.setIn(anchorPath.concat("text"), newText);
 
     if (anchor.get('id') !== focus.get('id')) {
       this._removeBlock(focus.get('id'));
     }
     var newBlock = this._insertBlock(type, 'after', guids.anchor, end);
 
-    return { content: this.map, block: newBlock, offset: 0 };
+    return { content: this.content, block: newBlock, offset: 0 };
   }
 
   _removeBlock(guid) {
     var path = this._finder().findBlocksPath(guid);
-    var blocks = this.map.getIn(path);
+    var blocks = this.content.getIn(path);
     var index  = this._finder().findBlockPosition(guid);
 
-    this.map = this.map.setIn(path, blocks.delete(index));
+    this.content = this.content.setIn(path, blocks.delete(index));
   }
 
   _insertBlock(type, position, guid, text) {
     var path   = this._finder().findBlocksPath(guid);
-    var blocks = this.map.getIn(path);
+    var blocks = this.content.getIn(path);
     var index  = this._finder().findBlockPosition(guid);
 
     var block = this._newBlock(type, text || "");
     index = position === 'after' ? index + 1 : index;
 
-    this.map = this.map.setIn(path, blocks.splice(index, 0, block));
+    this.content = this.content.setIn(path, blocks.splice(index, 0, block));
     return block;
   }
 
@@ -63,7 +63,7 @@ class SplitBlock {
   }
 
   _finder() {
-    return new ContentFinder(this.map);
+    return new ContentFinder(this.content);
   }
 }
 

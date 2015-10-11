@@ -1,8 +1,8 @@
 var ContentFinder = require('../ContentFinder');
 
 class InsertImage {
-  constructor(map) {
-    this.map = map;
+  constructor(content) {
+    this.content = content;
   }
 
   execute(guids, _offsets, options, callback) {
@@ -10,18 +10,18 @@ class InsertImage {
 
     var guid = guids.anchor;
     var path  = this._finder().findPath(guid);
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
     block = block.set('text', 'inserting image...');
 
     this.loadImage(path, src, callback);
 
-    this.map = this.map.setIn(path, block);
-    return { content: this.map, block: block, offset: 0 };
+    this.content = this.content.setIn(path, block);
+    return { content: this.content, block: block, offset: 0 };
   }
 
   // need to fetch the image to get the dimensions
   loadImage(path, src, callback) {
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
 
     var img = new Image();
     img.onload = () => {
@@ -34,14 +34,14 @@ class InsertImage {
           height: img.height
         }
       });
-      var map = this.map.setIn(path, block);
-      callback({ content: map, block: block, offset: 0 });
+      var content = this.content.setIn(path, block);
+      callback({ content: content, block: block, offset: 0 });
     };
     img.src = src;
   }
 
   _finder() {
-    return new ContentFinder(this.map);
+    return new ContentFinder(this.content);
   }
 }
 

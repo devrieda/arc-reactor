@@ -1,8 +1,8 @@
 var ContentFinder = require('../ContentFinder');
 
 class InsertYoutube {
-  constructor(map) {
-    this.map = map;
+  constructor(content) {
+    this.content = content;
   }
 
   execute(guids, _offsets, options) {
@@ -10,7 +10,7 @@ class InsertYoutube {
 
     var guid  = guids.anchor;
     var path  = this._finder().findPath(guid);
-    var block = this.map.getIn(path);
+    var block = this.content.getIn(path);
 
     var youTubeId = this._parseYouTube(src);
     if (youTubeId) {
@@ -23,8 +23,8 @@ class InsertYoutube {
       });
     }
 
-    this.map = this.map.setIn(path, block);
-    return { content: this.map, block: block, offset: 0 };
+    this.content = this.content.setIn(path, block);
+    return { content: this.content, block: block, offset: 0 };
   }
 
   // Will match these formats:
@@ -48,7 +48,7 @@ class InsertYoutube {
   }
 
   _finder() {
-    return new ContentFinder(this.map);
+    return new ContentFinder(this.content);
   }
 }
 

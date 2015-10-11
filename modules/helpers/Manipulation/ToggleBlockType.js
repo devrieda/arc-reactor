@@ -4,8 +4,8 @@ var Guid = require('../Guid');
 var { Map } = require('immutable');
 
 class ToggleBlockType {
-  constructor(map) {
-    this.map = map;
+  constructor(content) {
+    this.content = content;
   }
 
   execute(guids, offsets, options) {
@@ -18,20 +18,20 @@ class ToggleBlockType {
 
     // find list of blocks that don't match our type
     var notOfType = paths.filter( (path) => {
-      var block = this.map.getIn(path);
+      var block = this.content.getIn(path);
       return block.get("type") !== tagName;
     });
 
     // some blocks don't match, switch them
     if (notOfType.length > 0) {
-      var type = this.map.getIn(notOfType[0].concat("type"));
+      var type = this.content.getIn(notOfType[0].concat("type"));
       this._changeBlockTypes(range, tagName);
-      return { content: this.map, oldType: type, newType: tagName };
+      return { content: this.content, oldType: type, newType: tagName };
 
     // all blocks already match, so switch them back to a paragraph
     } else {
       this._changeBlockTypes(range, 'p');
-      return { content: this.map, oldType: tagName, newType: 'p' };
+      return { content: this.content, oldType: tagName, newType: 'p' };
     }
   }
 
@@ -41,7 +41,7 @@ class ToggleBlockType {
   _changeBlockTypes(guids, type) {
     guids.forEach( (guid) => {
       var path = this._finder().findPath(guid);
-      var oldType = this.map.getIn(path.concat("type"));
+      var oldType = this.content.getIn(path.concat("type"));
       if (oldType === 'li') {
         this._changeListType(path, type);
       } else {
@@ -64,7 +64,7 @@ class ToggleBlockType {
     var parentPath = path.slice(0, -2);
     var position   = path[path.length-1];
     var parentPos  = path[path.length-3];
-    var parent     = this.map.getIn(parentPath);
+    var parent     = this.content.getIn(parentPath);
     var listItems  = parent.get("blocks");
 
     var before = listItems.slice(0, position);
@@ -73,33 +73,33 @@ class ToggleBlockType {
 
     // reassign preceeding elements to list
     if (before.size > 0) {
-      this.map = this.map.setIn(parentPath, parent.set("blocks", before));
+      this.content = this.content.setIn(parentPath, parent.set("blocks", before));
       parentPos++;
     } else {
-      var beforeBlocks = this.map.getIn(blocksPath).delete(parentPos);
-      this.map = this.map.setIn(blocksPath, beforeBlocks);
+      var beforeBlocks = this.content.getIn(blocksPath).delete(parentPos);
+      this.content = this.content.setIn(blocksPath, beforeBlocks);
     }
 
     // create an element with new type
     var typeBlock = item.set("type", type);
-    var typeBlocks = this.map.getIn(blocksPath).splice(parentPos, 0, typeBlock);
+    var typeBlocks = this.content.getIn(blocksPath).splice(parentPos, 0, typeBlock);
     parentPos++;
-    this.map = this.map.setIn(blocksPath, typeBlocks);
+    this.content = this.content.setIn(blocksPath, typeBlocks);
 
     // append new list with remaining items
     if (after.size > 0) {
       var afterBlock = Map({id: Guid.unique(), type: "ul", blocks: after});
-      var afterBlocks = this.map.getIn(blocksPath).splice(parentPos, 0, afterBlock);
-      this.map = this.map.setIn(blocksPath, afterBlocks);
+      var afterBlocks = this.content.getIn(blocksPath).splice(parentPos, 0, afterBlock);
+      this.content = this.content.setIn(blocksPath, afterBlocks);
     }
   }
 
   _changeBlockType(path, type) {
-    this.map = this.map.setIn(path.concat("type"), type);
+    this.content = this.content.setIn(path.concat("type"), type);
   }
 
   _finder() {
-    return new ContentFinder(this.map);
+    return new ContentFinder(this.content);
   }
 }
 

@@ -139,7 +139,7 @@ class Selection {
         right: rect.right / 2.0,
         left: rect.left / 2.0,
         bottom: rect.bottom / 2.0
-      }
+      };
     }
     return rect;
   }
@@ -150,10 +150,10 @@ class Selection {
 
   _rangeHasChanged(start, end) {
     var { anchorNode, focusNode, anchorOffset, focusOffset } = this.selection;
-    return anchorNode != start.node ||
-           focusNode != end.node ||
-           anchorOffset != start.offset ||
-           focusOffset != end.offset;
+    return anchorNode !== start.node ||
+           focusNode !== end.node ||
+           anchorOffset !== start.offset ||
+           focusOffset !== end.offset;
   }
 
   // reconstituting selection of node from guids & offsets

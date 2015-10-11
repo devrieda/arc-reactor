@@ -40,7 +40,7 @@ class ReturnKey extends BaseKey {
 
     // photo
     } else if (text.match(/^http.+(gif|png|jpe?g)$/)) {
-      var cb = (results) => { this._asyncComplete(results, callback); };
+      var cb = (results) => { this._complete(results, callback, false); };
       results = this._insertImage().execute(guids, offsets, { src: text }, cb);
 
     // video
@@ -64,32 +64,22 @@ class ReturnKey extends BaseKey {
       results = this._splitBlock().execute(guids, offsets);
     }
 
-    this._complete(results, callback);
+    this._complete(results, callback, true);
   }
 
-  _complete(results, callback) {
-    this.focusResults(results);
-
+  _complete(results, callback, prevent) {
     var content = results ? results.content : this.content;
     this.saveHistory(content);
 
+    var block  = results && results.block ? results.block.get('id') : null;
+    var offset = results && results.block ? results.offset : null;
+
     callback({
       content: content,
-      selection: this.selection,
+      block: block,
+      offset: offset,
       stopPropagation: true,
-      preventDefault: true,
-      emit: true
-    });
-  }
-
-  _asyncComplete(results, callback) {
-    this.saveHistory(results.content);
-
-    callback({
-      content: results.content,
-      selection: this.selection,
-      preventDefault: false,
-      stopPropagation: true,
+      preventDefault: prevent,
       emit: true
     });
   }

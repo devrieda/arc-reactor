@@ -140,10 +140,16 @@ var Editor = React.createClass({
   _updateResults(results) {
     if (!results) { return; }
 
-    EditorStore.set({
-      content: results.content,
-      selection: results.selection
-    }, results.emit);
+    var newState = { content: results.content };
+
+    // update if selection changed
+    if (results.block) {
+      var { selection } = this.state;
+      selection.focusOn(results.block, results.offset)
+      newState.selection = selection;
+    }
+
+    EditorStore.set(newState, results.emit);
   },
 
   render() {

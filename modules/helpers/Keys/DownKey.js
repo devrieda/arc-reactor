@@ -48,13 +48,15 @@ class DownKey extends BaseKey {
   }
 
   _complete(results, callback) {
-    this.focusResults(results);
-
     this.saveHistory(results.content);
+
+    var block  = results && results.block ? results.block.get('id') : null;
+    var offset = results && results.block ? results.offset : null;
 
     callback({
       content: results.content,
-      selection: this.selection,
+      block: block,
+      offset: offset,
       stopPropagation: true,
       preventDefault: true,
       emit: true

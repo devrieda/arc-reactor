@@ -23,11 +23,11 @@ class RedoKey extends BaseKey {
 
   down(callback) {
     var { content, position } = History.getInstance().redo();
-    this.selection.focusOn(position.guid, position.offset);
 
     callback({
       content: content,
-      selection: this.selection,
+      block: position.guid,
+      offset: position.offset,
       stopPropagation: true,
       preventDefault: true,
       emit: true

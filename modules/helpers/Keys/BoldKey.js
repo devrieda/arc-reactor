@@ -34,7 +34,8 @@ class BoldKey extends BaseKey {
 
     callback({
       content: results.content,
-      selection: this.selection,
+      block: null,
+      offset: null,
       stopPropagation: true,
       preventDefault: true,
       emit: true

@@ -21,7 +21,8 @@ class BaseKey {
   defaultResponse() {
     return {
       content: this.content,
-      selection: this.selection,
+      block: null,
+      offset: null,
       stopPropagation: false,
       preventDefault: false,
       emit: false
@@ -32,12 +33,6 @@ class BaseKey {
   saveHistory(content) {
     var position = this.selection.position();
     History.getInstance().push({ content: content, position: position });
-  }
-
-  // if we need to focus on the new block
-  focusResults(results) {
-    if (!results || !results.block) { return; }
-    this.selection.focusOn(results.block.get('id'), results.offset);
   }
 }
 

@@ -63,12 +63,12 @@ class KeyCommands {
   _executeKeys(keys, event, content, selection, callback) {
     var klass = keys.shift();
     var key = new klass(content, selection);
-    var type = event.type === 'keyup' ? 'up' : 'down';
 
+    // check if the event matches they key
     if (key.matches(event)) {
+      var type = event.type === 'keyup' ? 'up' : 'down';
       key[type]( (result) => {
-        content   = result.content;
-        selection = result.selection;
+        content = result.content;
 
         // prevent event
         if (result.preventDefault) { event.preventDefault(); }
@@ -83,6 +83,7 @@ class KeyCommands {
         }
       });
 
+    // check next key in the stack
     } else if (keys.length > 0) {
       this._executeKeys(keys, event, content, selection, callback);
     }

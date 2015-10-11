@@ -22,7 +22,8 @@ class UnderlineKey extends BaseKey {
   down(callback) {
     callback({
       content: this.content,
-      selection: this.selection,
+      block: null,
+      offset: null,
       stopPropagation: true,
       preventDefault: true,
       emit: true

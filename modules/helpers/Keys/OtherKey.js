@@ -53,14 +53,16 @@ class OtherKey extends BaseKey {
   }
 
   _complete(results, callback) {
-    this.focusResults(results);
-
     var content = results ? results.content : this.content;
     this.saveHistory(content);
 
+    var block  = results && results.block ? results.block.get('id') : null;
+    var offset = results && results.block ? results.offset : null;
+
     callback({
       content: content,
-      selection: this.selection,
+      block: block,
+      offset: offset,
       stopPropagation: false,
       preventDefault: false,
       emit: false

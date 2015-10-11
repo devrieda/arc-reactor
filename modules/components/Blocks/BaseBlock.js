@@ -65,8 +65,10 @@ var BaseBlock = React.createClass({
   },
 
   // replace non-breaking spaces with unicode nbsp
+  // remove zero-width space
   _rawText() {
-    return this.props.text.replace(/^ | $/g, "\u00a0");
+    var text = this.props.text;
+    return text.replace(/^ | $/g, "\u00a0").replace(/\u200B/, '');
   },
 
   _isEmpty() {
@@ -137,7 +139,8 @@ var BaseBlock = React.createClass({
     var markups = this.props.markups || Immutable.Map();
 
     if (this._isEmpty()) {
-      attr.dangerouslySetInnerHTML = { __html: '<br />' };
+      // use zero width space so it doesn't collapse
+      attr.dangerouslySetInnerHTML = { __html: "\u200B" };
       return React.createElement(type, attr);
 
     } else if (markups.size > 0) {

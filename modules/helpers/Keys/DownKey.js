@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var AppendBlock = require('../Manipulation/AppendBlock');
 var ContentFinder = require('../ContentFinder');
 
@@ -49,11 +47,6 @@ class DownKey {
   }
 
   _complete(results, callback) {
-    History.getInstance().push({
-      content: results.content,
-      position: this.selection.position()
-    });
-
     callback({
       content: results.content,
       position: results.position,

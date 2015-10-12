@@ -1,3 +1,5 @@
+var History    = require('./History');
+
 var ReturnKey  = require('./Keys/ReturnKey');
 var DeleteKey  = require('./Keys/DeleteKey');
 var BspaceKey  = require('./Keys/BspaceKey');
@@ -67,15 +69,23 @@ class KeyCommands {
     // check if the event matches they key
     if (key.matches(event)) {
       var type = event.type === 'keyup' ? 'up' : 'down';
-      key[type]( (result) => {
-        content = result.content;
+      key[type]( (results) => {
+        content = results.content;
 
         // prevent event
-        if (result.preventDefault) { event.preventDefault(); }
+        if (results.preventDefault) { event.preventDefault(); }
 
         // stop stack here
-        if (result.stopPropagation || keys.length === 0) {
-          callback(result);
+        if (results.stopPropagation || keys.length === 0) {
+          callback(results);
+
+          // save history for everything except undo/redo
+          if (!results.skipHistory) {
+            History.getInstance().push({
+              content: results.content,
+              position: selection.position()
+            });
+          }
 
         // next in the stack
         } else {

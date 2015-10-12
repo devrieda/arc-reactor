@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var AppendBlock   = require('../Manipulation/AppendBlock');
 var PrependBlock  = require('../Manipulation/PrependBlock');
 var SplitBlock    = require('../Manipulation/SplitBlock');
@@ -75,11 +73,6 @@ class ReturnKey {
   _complete(results, callback, prevent) {
     var content = results ? results.content : this.content;
     var position = results ? results.position : null;
-
-    History.getInstance().push({
-      content: content,
-      position: this.selection.position()
-    });
 
     callback({
       content: content,

@@ -35,11 +35,6 @@ class ItalicKey {
   }
 
   _complete(results, callback) {
-    History.getInstance().push({
-      content: results.content,
-      position: this.selection.position()
-    });
-
     callback({
       content: results.content,
       position: null,

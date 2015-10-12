@@ -29,7 +29,8 @@ class RedoKey {
       position: position,
       stopPropagation: true,
       preventDefault: true,
-      emit: true
+      skipHistory: true,
+      emit: true,
     });
   }
 

@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var ToggleBlockType = require('../Manipulation/ToggleBlockType');
 
 var KEY_CODES = { '6': 54 };
@@ -35,11 +33,6 @@ class CodeKey {
   }
 
   _complete(results, callback) {
-    History.getInstance().push({
-      content: results.content,
-      position: this.selection.position()
-    });
-
     callback({
       content: results.content,
       position: null,

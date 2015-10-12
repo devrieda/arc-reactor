@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var CombineBlocks    = require('../Manipulation/CombineBlocks');
 var CombineBlockNext = require('../Manipulation/CombineBlockNext');
 var DeleteFigure     = require('../Manipulation/DeleteFigure');
@@ -45,11 +43,6 @@ class DeleteKey {
   _complete(results, callback) {
     var content = results ? results.content : this.content;
     var position = results ? results.position : null;
-
-    History.getInstance().push({
-      content: content,
-      position: this.selection.position()
-    });
 
     callback({
       content: content,

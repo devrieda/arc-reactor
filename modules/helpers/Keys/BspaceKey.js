@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var CombineBlocks    = require('../Manipulation/CombineBlocks');
 var CombineBlockPrev = require('../Manipulation/CombineBlockPrev');
 var ToggleBlockType  = require('../Manipulation/ToggleBlockType');
@@ -57,11 +55,6 @@ class BspaceKey {
   _complete(results, callback) {
     var content = results ? results.content : this.content;
     var position = results ? results.position : null;
-
-    History.getInstance().push({
-      content: content,
-      position: this.selection.position()
-    });
 
     callback({
       content: content,

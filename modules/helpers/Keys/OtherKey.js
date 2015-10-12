@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var ChangeText = require('../Manipulation/ChangeText');
 var CombineBlocks = require('../Manipulation/CombineBlocks');
 
@@ -56,11 +54,6 @@ class OtherKey {
   _complete(results, callback) {
     var content = results ? results.content : this.content;
     var position = results ? results.position : null;
-
-    History.getInstance().push({
-      content: content,
-      position: this.selection.position()
-    });
 
     callback({
       content: content,

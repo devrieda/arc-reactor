@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var ToggleCenter = require('../Manipulation/ToggleCenter');
 
 var KEY_CODES = { 'e': 69 };
@@ -35,11 +33,6 @@ class CenterKey {
   }
 
   _complete(results, callback) {
-    History.getInstance().push({
-      content: results.content,
-      position: this.selection.position()
-    });
-
     callback({
       content: results.content,
       position: null,

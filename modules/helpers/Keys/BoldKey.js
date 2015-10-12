@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var ToggleMarkup = require('../Manipulation/ToggleMarkup');
 
 var KEY_CODES = { 'b': 66 };
@@ -35,11 +33,6 @@ class BoldKey {
   }
 
   _complete(results, callback) {
-    History.getInstance().push({
-      content: results.content,
-      position: this.selection.position()
-    });
-
     callback({
       content: results.content,
       position: null,

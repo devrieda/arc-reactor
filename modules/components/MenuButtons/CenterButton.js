@@ -1,9 +1,9 @@
-var React = require('react/addons');
-var MenuButton = require('../MenuButton');
+const React = require('react/addons');
+const MenuButton = require('../MenuButton');
 
-var ToggleCenter = require('../../helpers/Manipulation/ToggleCenter');
+const ToggleCenter = require('../../helpers/Manipulation/ToggleCenter');
 
-var CenterButton = React.createClass({
+const CenterButton = React.createClass({
   statics: {
     isVisible: () => true
   },
@@ -19,11 +19,11 @@ var CenterButton = React.createClass({
   },
 
   handlePress() {
-    var guids   = this.props.selection.guids();
-    var offsets = this.props.selection.offsets();
-    var position = this.props.selection.position();
+    const guids   = this.props.selection.guids();
+    const offsets = this.props.selection.offsets();
+    const position = this.props.selection.position();
 
-    var result = this._toggleCenter().execute(guids, offsets);
+    const result = this._toggleCenter().execute(guids, offsets);
 
     return { content: result.content, position: position };
   },

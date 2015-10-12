@@ -1,11 +1,11 @@
-var assign = require("react/lib/Object.assign");
-var pick   = require("lodash.pick");
+const assign = require("react/lib/Object.assign");
+const pick   = require("lodash.pick");
 
-var _listeners = [];
-var _state = {};
-var _changed = [];
+let _listeners = [];
+let _state = {};
+let _changed = [];
 
-var EditorStore = {
+const EditorStore = {
   set(state, emit) {
     emit = emit !== false;
     _state = assign(_state, state);
@@ -26,7 +26,7 @@ var EditorStore = {
   },
 
   removeChangeListener(onChange) {
-    var index = _listeners.indexOf(onChange);
+    const index = _listeners.indexOf(onChange);
 
     if (index > -1) {
       _listeners.splice(index, 1);

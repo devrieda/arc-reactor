@@ -1,12 +1,12 @@
-var React = require('react/addons');
-var PureRenderMixin = React.addons.PureRenderMixin;
-var Immutable = require('immutable');
-var Figure = require('./Figure');
-var cx = require('classnames');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const Immutable = require('immutable');
+const Figure = require('./Figure');
+const cx = require('classnames');
 
-var { string, object, instanceOf } = React.PropTypes;
+const { string, object, instanceOf } = React.PropTypes;
 
-var Image = React.createClass({
+const Image = React.createClass({
   mixins: [PureRenderMixin],
 
   statics: {
@@ -37,16 +37,16 @@ var Image = React.createClass({
   },
 
   getAspectRatio() {
-    var height = this.props.meta.get('height');
-    var width  = this.props.meta.get('width');
+    const height = this.props.meta.get('height');
+    const width  = this.props.meta.get('width');
     return height / width;
   },
 
   getDimensions() {
-    var height = this.props.meta.get('height');
-    var width  = this.props.meta.get('width');
-    var maxWidth  = width;
-    var maxHeight = height;
+    const height = this.props.meta.get('height');
+    const width  = this.props.meta.get('width');
+    let maxWidth  = width;
+    let maxHeight = height;
 
     // scale down
     if (width > 700) {
@@ -57,8 +57,8 @@ var Image = React.createClass({
   },
 
   render() {
-    var selected = this.props.guids.anchor === this.props.id;
-    var classNames = cx('arc-Editor-Figure__image', {
+    const selected = this.props.guids.anchor === this.props.id;
+    const classNames = cx('arc-Editor-Figure__image', {
       'arc-Editor-Figure__image--selected': selected,
     });
 

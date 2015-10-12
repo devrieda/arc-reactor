@@ -1,10 +1,10 @@
-var React = require('react/addons');
-var MenuButton = require('../MenuButton');
+const React = require('react/addons');
+const MenuButton = require('../MenuButton');
 
-var ToggleMarkup = require('../../helpers/Manipulation/ToggleMarkup');
-var EditorStore = require('../../stores/EditorStore');
+const ToggleMarkup = require('../../helpers/Manipulation/ToggleMarkup');
+const EditorStore = require('../../stores/EditorStore');
 
-var LinkButton = React.createClass({
+const LinkButton = React.createClass({
   statics: {
     isVisible: () => true,
   },
@@ -21,20 +21,20 @@ var LinkButton = React.createClass({
   },
 
   setValue(value) {
-    var content = this.handlePress(value || "");
+    const content = this.handlePress(value || "");
     EditorStore.set({content: content});
   },
 
   handlePress(value) {
     value = value || "";
-    var guids   = this.props.selection.guids();
-    var offsets = this.props.selection.offsets();
-    var position = this.props.selection.position();
+    const guids   = this.props.selection.guids();
+    const offsets = this.props.selection.offsets();
+    const position = this.props.selection.position();
 
     if (value && !value.match(/^http/)) { value = "http://" + value; }
 
-    var options = { type: this.props.type, value: value };
-    var result = this._toggleMarkup().execute(guids, offsets, options);
+    const options = { type: this.props.type, value: value };
+    const result = this._toggleMarkup().execute(guids, offsets, options);
 
     return { content: result.content, position: position };
   },

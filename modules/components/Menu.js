@@ -1,10 +1,10 @@
-var React = require('react/addons');
-var Immutable = require('immutable');
-var cx = require("classnames");
+const React = require('react/addons');
+const Immutable = require('immutable');
+const cx = require("classnames");
 
-var { object, func, instanceOf } = React.PropTypes;
+const { object, func, instanceOf } = React.PropTypes;
 
-var Menu = React.createClass({
+const Menu = React.createClass({
   propTypes: {
     content: instanceOf(Immutable.Map),
     selection: object.isRequired,
@@ -46,16 +46,16 @@ var Menu = React.createClass({
 
   // handle enter key for input
   handleOnKeyDown(e) {
-    var escapeKey = 27;
+    const escapeKey = 27;
     if (e.keyCode === escapeKey) { this.handleCancelInput(); }
 
-    var returnKey = 13;
+    const returnKey = 13;
     if (e.keyCode !== returnKey) { return; }
 
     e.stopPropagation();
     e.preventDefault();
 
-    var value = e.target.value;
+    const value = e.target.value;
     this.valueButton.setValue(value);
     React.findDOMNode(this.refs.linkInput).value = "";
     this.setState({inputMode: false});
@@ -88,12 +88,12 @@ var Menu = React.createClass({
   menuStyles() {
     if (!this.props.selection.bounds) { return {}; }
 
-    var selection = this.props.selection;
-    var bounds = selection.bounds;
+    const selection = this.props.selection;
+    const bounds = selection.bounds;
     if (!bounds.top && !bounds.left) { return {}; }
 
-    var buttonHeight = 50;
-    var menuWidth = Object.keys(this.renderButtons()).length * 43;
+    const buttonHeight = 50;
+    const menuWidth = Object.keys(this.renderButtons()).length * 43;
 
     return {
       top: window.pageYOffset + bounds.top - buttonHeight,
@@ -103,11 +103,11 @@ var Menu = React.createClass({
 
   // build buttons from children
   renderButtons() {
-    var buttons = [];
+    let buttons = [];
     React.Children.forEach(this.props.children, (child, i) => {
-      var refName = `button_${child.props.type}`;
+      const refName = `button_${child.props.type}`;
 
-      var cloned = React.cloneElement(child, {
+      const cloned = React.cloneElement(child, {
         content: this.props.content,
         selection: this.props.selection,
         onSetValue: this.handleSetValue.bind(this, child, refName),

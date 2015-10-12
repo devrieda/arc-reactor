@@ -1,10 +1,10 @@
-var React = require('react/addons');
-var BarButton = require('../BarButton');
+const React = require('react/addons');
+const BarButton = require('../BarButton');
 
-var History = require('../../helpers/History');
-var InsertImage = require('../../helpers/Manipulation/InsertImage');
+const History = require('../../helpers/History');
+const InsertImage = require('../../helpers/Manipulation/InsertImage');
 
-var ImageButton = React.createClass({
+const ImageButton = React.createClass({
   getDefaultProps() {
     return {
       type: "image",
@@ -15,12 +15,12 @@ var ImageButton = React.createClass({
   },
 
   handlePress(value) {
-    var guids   = this.props.selection.guids();
-    var offsets = this.props.selection.offsets();
-    var position = this.props.selection.position();
+    const guids   = this.props.selection.guids();
+    const offsets = this.props.selection.offsets();
+    const position = this.props.selection.position();
 
-    var options = { type: this.props.type, value: value };
-    var result = this._insertFigure().execute(guids, offsets, options);
+    const options = { type: this.props.type, value: value };
+    const result = this._insertFigure().execute(guids, offsets, options);
 
     return { content: result.content, position: position };
   },

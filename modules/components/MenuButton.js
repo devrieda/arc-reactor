@@ -1,13 +1,13 @@
-var React = require('react/addons');
-var Immutable = require('immutable');
-var cx = require("classnames");
-var History = require('../helpers/History');
-var SelectedContent = require('../helpers/SelectedContent');
-var EditorStore = require('../stores/EditorStore');
+const React = require('react/addons');
+const Immutable = require('immutable');
+const cx = require("classnames");
+const History = require('../helpers/History');
+const SelectedContent = require('../helpers/SelectedContent');
+const EditorStore = require('../stores/EditorStore');
 
-var { string, bool, object, instanceOf } = React.PropTypes;
+const { string, bool, object, instanceOf } = React.PropTypes;
 
-var MenuButton = React.createClass({
+const MenuButton = React.createClass({
   propTypes: {
     type: string,
     text: string,
@@ -31,7 +31,7 @@ var MenuButton = React.createClass({
 
     // we have a value to set
     } else {
-      var { content, position } = this.props.onPress();
+      const { content, position } = this.props.onPress();
 
       // track content state and where cursor is
       History.getInstance().push({ content: content, position: position });
@@ -41,14 +41,14 @@ var MenuButton = React.createClass({
   },
 
   isActive() {
-    var selContent = new SelectedContent(
+    const selContent = new SelectedContent(
       this.props.selection, this.props.content
     );
     return selContent.isActive(this.props.type, this.props.hasValue);
   },
 
   buttonClasses(active) {
-    var classes = {
+    let classes = {
       'arc-Editor-MenuButton--active': active,
     };
     classes[`arc-Editor-MenuButton--${this.props.type}`] = true;
@@ -56,7 +56,7 @@ var MenuButton = React.createClass({
   },
 
   iconClasses(active) {
-    var iconClass = {
+    let iconClass = {
       'arc-Editor-MenuButton__icon--active': active,
     };
     iconClass[this.props.icon] = true;
@@ -70,7 +70,7 @@ var MenuButton = React.createClass({
   },
 
   render() {
-    var active = this.isActive();
+    const active = this.isActive();
 
     return (
       <button className={this.buttonClasses(active)} onClick={this.handleClick}>

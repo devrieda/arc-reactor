@@ -1,4 +1,4 @@
-var BarButtons = {
+const BarButtons = {
   Image: require('./BarButtons/ImageButton')
 };
 module.exports = BarButtons;

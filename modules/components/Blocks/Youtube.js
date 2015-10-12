@@ -1,12 +1,12 @@
-var React = require('react/addons');
-var PureRenderMixin = React.addons.PureRenderMixin;
-var Immutable = require('immutable');
-var Figure = require('./Figure');
-var cx = require('classnames');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const Immutable = require('immutable');
+const Figure = require('./Figure');
+const cx = require('classnames');
 
-var { string, object, instanceOf } = React.PropTypes;
+const { string, object, instanceOf } = React.PropTypes;
 
-var Youtube = React.createClass({
+const Youtube = React.createClass({
   mixins: [PureRenderMixin],
 
   statics: {
@@ -57,14 +57,14 @@ var Youtube = React.createClass({
 
   resizeVideo() {
     if (this.isMounted()) {
-      var width = React.findDOMNode(this.refs.figure).clientWidth;
+      const width = React.findDOMNode(this.refs.figure).clientWidth;
       this.setState({ width });
     }
   },
 
   render() {
-    var selected = this.props.guids.anchor === this.props.id;
-    var classNames = cx({
+    const selected = this.props.guids.anchor === this.props.id;
+    const classNames = cx({
       'arc-Editor-Figure__iframe': true,
       'arc-Editor-Figure__iframe--selected': selected,
     });

@@ -1,11 +1,11 @@
-var React = require('react/addons');
-var PureRenderMixin = React.addons.PureRenderMixin;
-var cx = require('classnames');
-var FigCaption = require('./FigCaption');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const cx = require('classnames');
+const FigCaption = require('./FigCaption');
 
-var { bool, string } = React.PropTypes;
+const { bool, string } = React.PropTypes;
 
-var Figure = React.createClass({
+const Figure = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -26,7 +26,7 @@ var Figure = React.createClass({
   },
 
   render() {
-    var classNames = cx('arc-Editor-Figure', {
+    const classNames = cx('arc-Editor-Figure', {
       'arc-Editor-Figure--outset-left': false,
       'arc-Editor-Figure--inset-left': false
     });

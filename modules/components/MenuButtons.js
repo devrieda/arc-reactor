@@ -1,4 +1,4 @@
-var MenuButtons = {
+const MenuButtons = {
   Bold:   require('./MenuButtons/BoldButton'),
   Italic: require('./MenuButtons/ItalicButton'),
   H1:     require('./MenuButtons/H1Button'),

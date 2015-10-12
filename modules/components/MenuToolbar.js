@@ -1,13 +1,13 @@
-var React = require('react');
-var MenuButtons = require('./MenuButtons');
+const React = require('react');
+const MenuButtons = require('./MenuButtons');
 
-var MenuToolbar = React.createClass({
+const MenuToolbar = React.createClass({
   render() {
     return <div></div>;
   }
 });
 
-var Basic = React.createClass({
+const Basic = React.createClass({
   render() {
     return (
       <MenuToolbar>

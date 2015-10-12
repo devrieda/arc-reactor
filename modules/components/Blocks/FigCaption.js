@@ -1,19 +1,19 @@
-var React = require('react/addons');
-var PureRenderMixin = React.addons.PureRenderMixin;
-var cx = require('classnames');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const cx = require('classnames');
 
-var KEY_CODES = {
+const KEY_CODES = {
   'return': 13,
   'bspace': 8,
   'delete': 46,
   'cmd':    91,
   'cmd2':   92
 };
-var PLACEHOLDER = 'Type caption for image';
+const PLACEHOLDER = 'Type caption for image';
 
-var { string } = React.PropTypes;
+const { string } = React.PropTypes;
 
-var FigCaption = React.createClass({
+const FigCaption = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -54,9 +54,9 @@ var FigCaption = React.createClass({
 
   // set our selection at the beginning of the node
   _selectTextNode() {
-    var textNode = React.findDOMNode(this.refs.caption);
-    var selection = document.getSelection();
-    var range = document.createRange();
+    const textNode = React.findDOMNode(this.refs.caption);
+    const selection = document.getSelection();
+    const range = document.createRange();
     range.setStart(textNode.firstChild, 0);
     range.setEnd(textNode.firstChild, 0);
     selection.removeAllRanges();
@@ -79,10 +79,10 @@ var FigCaption = React.createClass({
 
   _preventDeletionOutsideCaption(e) {
     // only allow deletion of actual caption text
-    var sel = document.getSelection();
-    var beg = sel.anchorOffset === 0 && sel.type === 'Caret';
+    const sel = document.getSelection();
+    const beg = sel.anchorOffset === 0 && sel.type === 'Caret';
 
-    var noBspace = beg && e.keyCode === KEY_CODES.bspace;
+    const noBspace = beg && e.keyCode === KEY_CODES.bspace;
     if (noBspace || e.keyCode === KEY_CODES.return) {
       e.preventDefault();
       e.stopPropagation();
@@ -95,18 +95,18 @@ var FigCaption = React.createClass({
   },
 
   _showPlaceholderWhenEmpty() {
-    var node = React.findDOMNode(this.refs.caption);
+    const node = React.findDOMNode(this.refs.caption);
     if (node.textContent.trim() === "") {
       this.setState({empty: true}, this._selectTextNode);
     }
   },
 
   render() {
-    var capClass = cx('arc-Editor-FigCaption', {
+    const capClass = cx('arc-Editor-FigCaption', {
       'arc-Editor-FigCaption--empty': this.state.empty
     });
 
-    var attr = {
+    let attr = {
       'ref': "caption",
       'contentEditable': "true",
       'className': capClass,

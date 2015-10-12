@@ -1,19 +1,19 @@
-var React = require('react');
-var Immutable = require('immutable');
-var Content = require('./Content');
-var Menu = require('./Menu');
-var MenuButtons = require('./MenuButtons');
-var LinkMenu = require('./LinkMenu');
-var Bar = require('./Bar');
-var BarButtons = require('./BarButtons');
+const React = require('react');
+const Immutable = require('immutable');
+const Content = require('./Content');
+const Menu = require('./Menu');
+const MenuButtons = require('./MenuButtons');
+const LinkMenu = require('./LinkMenu');
+const Bar = require('./Bar');
+const BarButtons = require('./BarButtons');
 
-var ClipboardHandler = require('../helpers/ClipboardHandler');
-var KeyCommands = require('../helpers/KeyCommands');
-var History     = require('../helpers/History');
-var Selection   = require('../helpers/Selection');
-var EditorStore = require('../stores/EditorStore');
+const ClipboardHandler = require('../helpers/ClipboardHandler');
+const KeyCommands = require('../helpers/KeyCommands');
+const History     = require('../helpers/History');
+const Selection   = require('../helpers/Selection');
+const EditorStore = require('../stores/EditorStore');
 
-var { object, func } = React.PropTypes;
+const { object, func } = React.PropTypes;
 
 /**
  * LIFECYCLE
@@ -51,7 +51,7 @@ var { object, func } = React.PropTypes;
  *   - menuChange
  *
  */
-var Editor = React.createClass({
+const Editor = React.createClass({
   propTypes: {
     content: object,
     selection: object,
@@ -70,11 +70,11 @@ var Editor = React.createClass({
   // ------ LIFECYCLE METHODS ------ //
 
   componentWillMount() {
-    var content = Immutable.fromJS(this.props.content);
-    var selection = this.props.selection;
+    const content = Immutable.fromJS(this.props.content);
+    const selection = this.props.selection;
 
     // focus on first element
-    var guid = content.getIn(['sections', 0, 'blocks', 0, 'id']);
+    const guid = content.getIn(['sections', 0, 'blocks', 0, 'id']);
     selection.focusOn(guid, 0);
 
     // setup initial store state from props
@@ -103,7 +103,7 @@ var Editor = React.createClass({
 
   // if content changed, selection may have changed
   componentDidUpdate() {
-    var { selection } = EditorStore.get();
+    const { selection } = EditorStore.get();
 
     if (selection.reselect() || selection.rebound()) {
       this._checkSelection();
@@ -131,7 +131,7 @@ var Editor = React.createClass({
     e.metaKey = this.metaKey;
 
     // execute commands that match key down
-    var { content, selection } = EditorStore.get();
+    const { content, selection } = EditorStore.get();
     this.keys.execute(e, content, selection, this._updateKeyResults);
   },
 
@@ -140,7 +140,7 @@ var Editor = React.createClass({
     if (e.keyCode === 91) { this.metaKey = false; }
 
     // execute commands that match key down
-    var { content, selection } = EditorStore.get();
+    const { content, selection } = EditorStore.get();
     this.keys.execute(e, content, selection, this._updateKeyResults);
 
     // need to check the selection to see if anything changed
@@ -151,9 +151,9 @@ var Editor = React.createClass({
   // pasting needs to modify the content
   handlePaste(e) {
     e.preventDefault();
-    var { content, selection } = EditorStore.get();
+    const { content, selection } = EditorStore.get();
 
-    var cbHandler = new ClipboardHandler(content, selection);
+    const cbHandler = new ClipboardHandler(content, selection);
     cbHandler.paste(e);
   },
 
@@ -166,7 +166,7 @@ var Editor = React.createClass({
   // ------ RENDER ------ //
 
   render() {
-    var { content, selection, linkState } = EditorStore.get();
+    const { content, selection, linkState } = EditorStore.get();
 
     return (
       <div className="arc-Editor"
@@ -206,6 +206,9 @@ var Editor = React.createClass({
     );
   },
 
+
+  // ------ STATE ------ //
+
   /**
    * Update selection state based on the document selection
    *
@@ -213,16 +216,16 @@ var Editor = React.createClass({
    * keyCode     - used to track when we're using arrow keys
    */
   _checkSelection(onlyChanges, keyCode) {
-    var target = !keyCode ? this.target : null;
-    var newSelection = new Selection(document.getSelection(), target);
-    var emit = true;
+    const target = !keyCode ? this.target : null;
+    const newSelection = new Selection(document.getSelection(), target);
+    let emit = true;
 
     // only emit if range type changes or we're using arrow keys
     if (onlyChanges) {
-      var oldRange = EditorStore.get().selection.isRange();
-      var newRange = newSelection.isRange();
-      var rangeTypeChanged = oldRange !== newRange;
-      var arrowKeys = [37, 38, 39, 40].indexOf(keyCode) !== -1;
+      const oldRange = EditorStore.get().selection.isRange();
+      const newRange = newSelection.isRange();
+      const rangeTypeChanged = oldRange !== newRange;
+      const arrowKeys = [37, 38, 39, 40].indexOf(keyCode) !== -1;
       emit = arrowKeys || rangeTypeChanged;
     }
 
@@ -242,11 +245,11 @@ var Editor = React.createClass({
   _updateKeyResults(results) {
     if (!results) { return; }
 
-    var newState = { content: results.content };
+    let newState = { content: results.content };
 
     // update if selection changed
     if (results.position && results.position.guid) {
-      var { selection } = EditorStore.get();
+      const { selection } = EditorStore.get();
       selection.focusOn(results.position.guid, results.position.offset);
       newState.selection = selection;
     }
@@ -266,7 +269,7 @@ var Editor = React.createClass({
    * Send content back to the onChange callback if it has changed
    */
   _callbackChange() {
-    var { content } = EditorStore.get();
+    const { content } = EditorStore.get();
     if (this.sentContent === content) return;
 
     this.props.onChange(content);

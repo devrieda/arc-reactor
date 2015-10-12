@@ -1,13 +1,13 @@
-var React = require('react/addons');
-var PureRenderMixin = React.addons.PureRenderMixin;
-var Immutable = require('immutable');
-var BlockFormatter = require('../../helpers/BlockFormatter');
-var EditorStore = require('../../stores/EditorStore');
-var cx = require('classnames');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const Immutable = require('immutable');
+const BlockFormatter = require('../../helpers/BlockFormatter');
+const EditorStore = require('../../stores/EditorStore');
+const cx = require('classnames');
 
-var { string, instanceOf } = React.PropTypes;
+const { string, instanceOf } = React.PropTypes;
 
-var BaseBlock = React.createClass({
+const BaseBlock = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -34,7 +34,7 @@ var BaseBlock = React.createClass({
   },
 
   handleHover(e) {
-    var node = e.target;
+    let node = e.target;
     while (node.tagName.toLowerCase() !== 'a' &&
            !node.getAttribute('data-block')) {
       node = node.parentNode;
@@ -48,10 +48,10 @@ var BaseBlock = React.createClass({
   },
 
   _handleHoverLink(node, active) {
-    var state = EditorStore.get().linkState;
+    const state = EditorStore.get().linkState;
     if (state && state.hovered) return;
 
-    var linkState = {
+    const linkState = {
       active: active,
       value: node.getAttribute("href"),
       bounds: node.getBoundingClientRect(),
@@ -60,7 +60,7 @@ var BaseBlock = React.createClass({
   },
 
   _formattedText() {
-    var formatter = new BlockFormatter(this._rawText());
+    const formatter = new BlockFormatter(this._rawText());
     return formatter.applyMarkup(this.props.markups);
   },
 
@@ -71,16 +71,16 @@ var BaseBlock = React.createClass({
   },
 
   _isEmpty() {
-    var text   = this.props.text   || "";
-    var blocks = this.props.blocks || Immutable.List();
+    const text   = this.props.text   || "";
+    const blocks = this.props.blocks || Immutable.List();
     return text.length === 0 && blocks.size === 0;
   },
 
   // build the block list-items for lists
   _getChildBlocks() {
-    var type = this.props.type;
+    const type = this.props.type;
     if (type === "ul" || type === "ol") {
-      var blocks = this.props.blocks || Immutable.List();
+      const blocks = this.props.blocks || Immutable.List();
       return blocks.map( (block) => {
         return (
           <BaseBlock
@@ -101,8 +101,8 @@ var BaseBlock = React.createClass({
   },
 
   _buildClassNames() {
-    var type = this.props.type;
-    var classNames = {
+    const type = this.props.type;
+    let classNames = {
       'arc-Editor-Block': true,
       'arc-Editor-Block--empty': this._isEmpty(),
       'arc-Editor-Block--header': ['h2', 'h3', 'h4'].indexOf(type) !== -1,
@@ -117,14 +117,14 @@ var BaseBlock = React.createClass({
 
   // add meta info to custom attributes
   _buildAttr() {
-    var attr = {
+    let attr = {
       'className': this._buildClassNames(),
       'onDragStart': (e) => { e.preventDefault(); },
       'name': this.props.id,
       'data-block': true
     };
 
-    var data = this.props.data || Immutable.Map();
+    const data = this.props.data || Immutable.Map();
     data.forEach( (val, prop) => { attr[`data-${prop}`] = val; });
     attr.onMouseOver = this.handleHover;
     attr.onMouseOut  = this.handleHover;
@@ -133,9 +133,9 @@ var BaseBlock = React.createClass({
   },
 
   render() {
-    var attr = this._buildAttr();
-    var type = this.props.type;
-    var markups = this.props.markups || Immutable.Map();
+    let attr = this._buildAttr();
+    const type = this.props.type;
+    const markups = this.props.markups || Immutable.Map();
 
     if (this._isEmpty()) {
       // use zero width space so it doesn't collapse

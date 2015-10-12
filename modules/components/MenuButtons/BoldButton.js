@@ -1,13 +1,13 @@
-var React = require('react/addons');
-var MenuButton = require('../MenuButton');
+const React = require('react/addons');
+const MenuButton = require('../MenuButton');
 
-var ToggleMarkup = require('../../helpers/Manipulation/ToggleMarkup');
-var SelectedContent = require('../../helpers/SelectedContent');
+const ToggleMarkup = require('../../helpers/Manipulation/ToggleMarkup');
+const SelectedContent = require('../../helpers/SelectedContent');
 
-var BoldButton = React.createClass({
+const BoldButton = React.createClass({
   statics: {
     isVisible: (content, selection) => {
-      var selContent = new SelectedContent(selection, content);
+      const selContent = new SelectedContent(selection, content);
       return !selContent.isHeader();
     }
   },
@@ -23,11 +23,11 @@ var BoldButton = React.createClass({
   },
 
   handlePress() {
-    var guids   = this.props.selection.guids();
-    var offsets = this.props.selection.offsets();
-    var position = this.props.selection.position();
+    const guids   = this.props.selection.guids();
+    const offsets = this.props.selection.offsets();
+    const position = this.props.selection.position();
 
-    var result = this._toggleMarkup().execute(guids, offsets, { type: this.props.type });
+    const result = this._toggleMarkup().execute(guids, offsets, { type: this.props.type });
 
     return { content: result.content, position: position };
   },

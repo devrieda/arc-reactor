@@ -1,12 +1,12 @@
-var React = require('react/addons');
-var Immutable = require('immutable');
-var ContentFinder = require('../helpers/ContentFinder');
-var cx = require("classnames");
+const React = require('react/addons');
+const Immutable = require('immutable');
+const ContentFinder = require('../helpers/ContentFinder');
+const cx = require("classnames");
 
-var cloneWithProps = React.addons.cloneWithProps;
-var { object, instanceOf } = React.PropTypes;
+const cloneWithProps = React.addons.cloneWithProps;
+const { object, instanceOf } = React.PropTypes;
 
-var Bar = React.createClass({
+const Bar = React.createClass({
   propTypes: {
     content: instanceOf(Immutable.Map),
     selection: object.isRequired,
@@ -47,30 +47,30 @@ var Bar = React.createClass({
   _recalculatePosition() {
     if (!this._isActive()) { return; }
 
-    var anchorNode = this._getAnchorNode();
-    var rect = anchorNode.getBoundingClientRect();
-    var scrollTop =  window.pageYOffset || document.documentElement.scrollTop;
+    const anchorNode = this._getAnchorNode();
+    const rect = anchorNode.getBoundingClientRect();
+    const scrollTop =  window.pageYOffset || document.documentElement.scrollTop;
 
-    var node = React.findDOMNode(this);
+    let node = React.findDOMNode(this);
     node.style.top  = rect.top + scrollTop - 5 + "px";
     node.style.left = rect.left - 70 + "px";
   },
 
   // content is empty and a new paragraph block
   _isActive() {
-    var selection = this.props.selection;
-    var isRange = selection.isRange();
-    var isBeg   = selection.begOfBlock();
+    const selection = this.props.selection;
+    const isRange = selection.isRange();
+    const isBeg   = selection.begOfBlock();
     if (isRange || !isBeg) { return false; }
 
-    var guid = selection.guids().anchor;
-    var path = new ContentFinder(this.props.content).findPath(guid);
+    const guid = selection.guids().anchor;
+    const path = new ContentFinder(this.props.content).findPath(guid);
     if (!path) { return false; }
 
-    var block = this.props.content.getIn(path);
+    const block = this.props.content.getIn(path);
 
     // first check node content directly
-    var anchorNode = this._getAnchorNode();
+    const anchorNode = this._getAnchorNode();
     if (anchorNode) {
       return anchorNode.textContent === '' && block.get('type') === 'p';
     } else {
@@ -79,8 +79,8 @@ var Bar = React.createClass({
   },
 
   _getAnchorNode() {
-    var selection = this.props.selection;
-    var guid = selection.guids().anchor;
+    const selection = this.props.selection;
+    const guid = selection.guids().anchor;
     return document.getElementsByName(guid)[0];
   },
 
@@ -92,7 +92,7 @@ var Bar = React.createClass({
 
   // toggle menu open/closed
   handleClickTrigger() {
-    var open = this.state.open;
+    const open = this.state.open;
     this.setState({open: !open});
 
     // focus on the button
@@ -105,10 +105,10 @@ var Bar = React.createClass({
 
   // send click with value when we press return
   handleOnKeyUp(e) {
-    var returnKey = 13;
+    const returnKey = 13;
     if (e.keyCode !== returnKey) { return; }
 
-    var value = e.target.value;
+    const value = e.target.value;
     this.valueButton.handleClick(e, null, value);
     React.findDOMNode(this.refs.linkInput).value = "";
     this.setState({inputMode: false});
@@ -144,10 +144,10 @@ var Bar = React.createClass({
   },
 
   renderButtons() {
-    var buttons = [];
+    let buttons = [];
     React.Children.forEach(this.props.children, (child, i) => {
-      var refName = `button_${child.props.type}`;
-      var cloned = cloneWithProps(child, {
+      const refName = `button_${child.props.type}`;
+      const cloned = cloneWithProps(child, {
         content: this.props.content,
         selection: this.props.selection,
         handleSetValue: this.handleSetValue.bind(this, child, refName),

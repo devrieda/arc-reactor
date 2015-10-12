@@ -1,9 +1,9 @@
-var React = require('react/addons');
-var MenuButton = require('../MenuButton');
+const React = require('react/addons');
+const MenuButton = require('../MenuButton');
 
-var ToggleBlockType = require('../../helpers/Manipulation/ToggleBlockType');
+const ToggleBlockType = require('../../helpers/Manipulation/ToggleBlockType');
 
-var H3Button = React.createClass({
+const H3Button = React.createClass({
   statics: {
     isVisible: () => true
   },
@@ -19,11 +19,11 @@ var H3Button = React.createClass({
   },
 
   handlePress() {
-    var guids   = this.props.selection.guids();
-    var offsets = this.props.selection.offsets();
-    var position = this.props.selection.position();
+    const guids   = this.props.selection.guids();
+    const offsets = this.props.selection.offsets();
+    const position = this.props.selection.position();
 
-    var result = this._toggleBlockType().execute(guids, offsets, { type: this.props.type });
+    const result = this._toggleBlockType().execute(guids, offsets, { type: this.props.type });
 
     return { content: result.content, position: position };
   },

@@ -1,12 +1,12 @@
-var React = require('react/addons');
-var Immutable = require('immutable');
-var cx = require("classnames");
-var History = require('../helpers/History');
-var EditorStore = require('../stores/EditorStore');
+const React = require('react/addons');
+const Immutable = require('immutable');
+const cx = require("classnames");
+const History = require('../helpers/History');
+const EditorStore = require('../stores/EditorStore');
 
-var { string, bool, object, instanceOf } = React.PropTypes;
+const { string, bool, object, instanceOf } = React.PropTypes;
 
-var BarButton = React.createClass({
+const BarButton = React.createClass({
   propTypes: {
     type: string,
     text: string,
@@ -29,7 +29,7 @@ var BarButton = React.createClass({
       this.props.handleSetValue(this);
 
     } else {
-      var { content, position } = this.props.onPress();
+      const { content, position } = this.props.onPress();
 
       // track content state and where cursor is
       History.getInstance().push({ content: content, position: position });
@@ -39,13 +39,13 @@ var BarButton = React.createClass({
   },
 
   buttonClasses() {
-    var classes = {};
+    let classes = {};
     classes[`arc-Editor-BarButton--${this.props.type}`] = true;
     return cx('arc-Editor-BarButton', classes);
   },
 
   iconClasses() {
-    var iconClass = {};
+    let iconClass = {};
     iconClass[this.props.icon] = true;
     return cx('arc-Editor-BarButton__icon fa', iconClass);
   },

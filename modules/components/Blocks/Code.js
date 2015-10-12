@@ -1,7 +1,7 @@
-var React = require('react/addons');
-var BaseBlock = require('./BaseBlock');
+const React = require('react/addons');
+const BaseBlock = require('./BaseBlock');
 
-var Code = React.createClass({
+const Code = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {

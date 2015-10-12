@@ -1,25 +1,25 @@
-var React = require('react/addons');
-var PureRenderMixin = React.addons.PureRenderMixin;
-var Immutable = require('immutable');
-var cx = require("classnames");
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const Immutable = require('immutable');
+const cx = require("classnames");
 
-var Paragraph  = require('./Blocks/Paragraph');
-var Header1    = require('./Blocks/Header1');
-var Header2    = require('./Blocks/Header2');
-var Header3    = require('./Blocks/Header3');
-var Blockquote = require('./Blocks/Blockquote');
-var List       = require('./Blocks/List');
-var Image      = require('./Blocks/Image');
-var Youtube    = require('./Blocks/Youtube');
+const Paragraph  = require('./Blocks/Paragraph');
+const Header1    = require('./Blocks/Header1');
+const Header2    = require('./Blocks/Header2');
+const Header3    = require('./Blocks/Header3');
+const Blockquote = require('./Blocks/Blockquote');
+const List       = require('./Blocks/List');
+const Image      = require('./Blocks/Image');
+const Youtube    = require('./Blocks/Youtube');
 
 // all block types
-var blockTypes = [
+const blockTypes = [
   Paragraph, Header1, Header2, Header3, Blockquote, List, Image, Youtube
 ];
 
-var { object, string, instanceOf } = React.PropTypes;
+const { object, string, instanceOf } = React.PropTypes;
 
-var Section = React.createClass({
+const Section = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -42,12 +42,12 @@ var Section = React.createClass({
 
   // find which type of block matches
   _renderBlock(block) {
-    var matching = blockTypes.filter( (BlockClass) => {
+    const matching = blockTypes.filter( (BlockClass) => {
       return BlockClass.matches(block);
     });
 
     // default to P
-    var BlockType = matching[0] || Paragraph;
+    const BlockType = matching[0] || Paragraph;
 
     return (
       <BlockType
@@ -66,12 +66,12 @@ var Section = React.createClass({
   },
 
   render() {
-    var blocks = this.props.blocks.map( (block, i) => {
+    const blocks = this.props.blocks.map( (block, i) => {
       if (i === 0) { block = block.setIn(['meta', 'first'], true); }
       return this._renderBlock(block);
     });
 
-    var classNames = cx('arc-Editor-Section', {
+    const classNames = cx('arc-Editor-Section', {
       'arc-Editor-Section--first': this.props.meta.get('first')
     });
 

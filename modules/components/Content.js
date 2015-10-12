@@ -1,11 +1,11 @@
-var React = require('react/addons');
-var PureRenderMixin = React.addons.PureRenderMixin;
-var Immutable = require('immutable');
-var Section = require('./Section');
+const React = require('react/addons');
+const PureRenderMixin = React.addons.PureRenderMixin;
+const Immutable = require('immutable');
+const Section = require('./Section');
 
-var { object, instanceOf } = React.PropTypes;
+const { object, instanceOf } = React.PropTypes;
 
-var Content = React.createClass({
+const Content = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
@@ -22,7 +22,7 @@ var Content = React.createClass({
   },
 
   render() {
-    var sections = this.props.content.get('sections').map( (sect, i) => {
+    const sections = this.props.content.get('sections').map( (sect, i) => {
       if (i === 0) { sect = sect.setIn(['meta', 'first'], true); }
 
       return (

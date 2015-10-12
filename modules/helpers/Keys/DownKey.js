@@ -50,13 +50,14 @@ class DownKey extends BaseKey {
   _complete(results, callback) {
     this.saveHistory(results.content);
 
-    var block  = results && results.block ? results.block.get('id') : null;
-    var offset = results && results.block ? results.offset : null;
+    let position = null;
+    if (results && results.guid) {
+      position = { guid: results.guid, offset: results.offset };
+    }
 
     callback({
       content: results.content,
-      block: block,
-      offset: offset,
+      position: position,
       stopPropagation: true,
       preventDefault: true,
       emit: true

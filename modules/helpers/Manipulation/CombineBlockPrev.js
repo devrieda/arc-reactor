@@ -19,7 +19,11 @@ class CombineBlockPrev {
 
     // no-op if the previous is a figure
     if (prev && prev.get("type") === "figure") {
-      return { content: this.content, block: block, offset: 0 };
+      return {
+        content: this.content,
+        guid: block.get('id'),
+        offset: 0
+      };
     }
 
     // combine sections
@@ -34,7 +38,11 @@ class CombineBlockPrev {
       // remove other section
       this.content = this.content.deleteIn(path.slice(0, 2));
 
-      return { content: this.content, block: block, offset: 0 };
+      return {
+        content: this.content,
+        guid: block.get('id'),
+        offset: 0
+      };
 
     // there is a prev block in this section to combine with
     } else if (prev) {
@@ -46,10 +54,14 @@ class CombineBlockPrev {
       this.content = this.content.setIn(prevPath.concat("text"), newText);
 
       this._removeBlock(block.get('id'));
-      return { content: this.content, block: prev, offset: offset };
+      return {
+        content: this.content,
+        guid: prev.get('id'),
+        offset: offset
+      };
 
     } else {
-      return { content: this.content, block: null, offset: 0 };
+      return { content: this.content, guid: null, offset: null };
     }
   }
 

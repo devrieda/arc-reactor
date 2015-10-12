@@ -33,7 +33,11 @@ class AppendBlock {
       newBlock = this._insertBlock('p', 'after', guid);
     }
 
-    return { content: this.content, block: newBlock, offset: 0 };
+    return {
+      content: this.content,
+      guid: newBlock.get('id'),
+      offset: 0
+    };
   }
 
   _createList(guid, starts) {

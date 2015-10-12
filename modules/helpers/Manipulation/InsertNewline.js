@@ -17,7 +17,11 @@ class InsertNewline {
     end = end === '' ? "\n\n" : `\n${end}`;
     this.content = this.content.setIn(path.concat('text'), begin + end);
 
-    return { content: this.content, block: block, offset: offsets.focus + 1 };
+    return {
+      content: this.content,
+      guid: block.get('id'),
+      offset: offsets.focus + 1
+    };
   }
 
   _finder() {

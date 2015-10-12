@@ -19,7 +19,11 @@ class ChangeText {
     });
     this.content = this.content.setIn(path, block);
 
-    return { content: this.content };
+    return {
+      content: this.content,
+      guid: null,
+      offset: null
+    };
   }
 
   _finder() {

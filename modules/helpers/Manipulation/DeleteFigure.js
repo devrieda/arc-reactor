@@ -15,7 +15,11 @@ class DeleteFigure {
 
     // clear out all the attributes, but keep the id
     block = Immutable.Map(this._newBlock('p', ''));
-    return { content: this.content.setIn(path, block), block: block, offset: 0 };
+    return {
+      content: this.content.setIn(path, block),
+      guid: block.get('id'),
+      offset: 0
+    };
   }
 
   _removeBlock(guid) {

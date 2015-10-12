@@ -26,12 +26,24 @@ class ToggleBlockType {
     if (notOfType.length > 0) {
       var type = this.content.getIn(notOfType[0].concat("type"));
       this._changeBlockTypes(range, tagName);
-      return { content: this.content, oldType: type, newType: tagName };
+      return {
+        content: this.content,
+        guid: null,
+        offset: null,
+        // oldType: type,
+        // newType: tagName
+      };
 
     // all blocks already match, so switch them back to a paragraph
     } else {
       this._changeBlockTypes(range, 'p');
-      return { content: this.content, oldType: tagName, newType: 'p' };
+      return {
+        content: this.content,
+        guid: null,
+        offset: null,
+        // oldType: tagName,
+        // newType: 'p'
+      };
     }
   }
 

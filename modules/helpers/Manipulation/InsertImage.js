@@ -16,7 +16,11 @@ class InsertImage {
     this.loadImage(path, src, callback);
 
     this.content = this.content.setIn(path, block);
-    return { content: this.content, block: block, offset: 0 };
+    return {
+      content: this.content,
+      guid: block.get('id'),
+      offset: 0
+    };
   }
 
   // need to fetch the image to get the dimensions
@@ -35,7 +39,11 @@ class InsertImage {
         }
       });
       var content = this.content.setIn(path, block);
-      callback({ content: content, block: block, offset: 0 });
+      callback({
+        content: content,
+        guid: block.get('id'),
+        offset: 0
+      });
     };
     img.src = src;
   }

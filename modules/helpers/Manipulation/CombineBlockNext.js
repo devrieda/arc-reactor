@@ -20,7 +20,11 @@ class CombineBlockNext {
 
     // no-op if the next is a figure
     if (next && next.get("type") === "figure") {
-      return { content: this.content, block: block, offset: block.get("text").length };
+      return {
+        content: this.content,
+        guid: block.get('id'),
+        offset: block.get("text").length
+      };
     }
 
     // combine sections
@@ -35,8 +39,11 @@ class CombineBlockNext {
       // remove other section
       this.content = this.content.deleteIn(nextPath.slice(0, 2));
 
-      offset = block.get("text").length;
-      return { content: this.content, block: block, offset: offset };
+      return {
+        content: this.content,
+        guid: block.get('id'),
+        offset: block.get("text").length
+      };
 
     // there is a next block in this section to combine with
     } else if (next) {
@@ -47,10 +54,18 @@ class CombineBlockNext {
       this.content = this.content.setIn(path.concat("text"), newText);
 
       this._removeBlock(next.get("id"));
-      return { content: this.content, block: next, offset: offset };
+      return {
+        content: this.content,
+        guid: next.get('id'),
+        offset: offset
+      };
 
     } else {
-      return { content: this.content, block: null, offset: 0 };
+      return {
+        content: this.content,
+        guid: null,
+        offset: null
+      };
     }
   }
 

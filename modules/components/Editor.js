@@ -234,9 +234,10 @@ var Editor = React.createClass({
    *
    * results:
    *   content - the updated content data map
-   *   block   - the new block to focus on
-   *   offset  - the cursor position to focus on in the block
-   *   emit    - should we emit the change
+   *   position:
+   *     guid - where to reposition the cursor
+   *     offset - where to reposition the cursor
+   *   emit - should we emit the change
    */
   _updateKeyResults(results) {
     if (!results) { return; }
@@ -244,9 +245,9 @@ var Editor = React.createClass({
     var newState = { content: results.content };
 
     // update if selection changed
-    if (results.block) {
+    if (results.position && results.position.guid) {
       var { selection } = EditorStore.get();
-      selection.focusOn(results.block, results.offset)
+      selection.focusOn(results.position.guid, results.position.offset);
       newState.selection = selection;
     }
 

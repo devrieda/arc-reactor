@@ -24,7 +24,11 @@ class InsertYoutube {
     }
 
     this.content = this.content.setIn(path, block);
-    return { content: this.content, block: block, offset: 0 };
+    return {
+      content: this.content,
+      guid: block.get('id'),
+      offset: 0
+    };
   }
 
   // Will match these formats:

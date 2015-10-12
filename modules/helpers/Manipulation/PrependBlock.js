@@ -15,7 +15,11 @@ class PrependBlock {
     var block = this.content.getIn(path);
 
     this._insertBlock('p', 'before', guid);
-    return { content: this.content, block: block, offset: 0 };
+    return {
+      content: this.content,
+      guid: block.get('id'),
+      offset: 0
+    };
   }
 
   _insertBlock(type, position, guid, text) {

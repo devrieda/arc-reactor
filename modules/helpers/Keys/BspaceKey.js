@@ -53,13 +53,14 @@ class BspaceKey extends BaseKey {
     var content = results ? results.content : this.content;
     this.saveHistory(content);
 
-    var block  = results && results.block ? results.block.get('id') : null;
-    var offset = results && results.block ? results.offset : null;
+    let position = null;
+    if (results && results.guid) {
+      position = { guid: results.guid, offset: results.offset };
+    }
 
     callback({
       content: content,
-      block: block,
-      offset: offset,
+      position: position,
       stopPropagation: !!results,
       preventDefault: !!results,
       emit: true

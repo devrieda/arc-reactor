@@ -25,8 +25,7 @@ class UndoKey extends BaseKey {
 
     callback({
       content: content,
-      block: position.guid,
-      offset: position.offset,
+      position: position,
       stopPropagation: true,
       preventDefault: true,
       emit: true

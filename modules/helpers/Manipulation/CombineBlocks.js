@@ -35,7 +35,11 @@ class CombineBlocks {
       this._removeEmptySections(anchorPath, focusPath);
     }
 
-    return { content: this.content, block: anchor, offset: offsets.anchor };
+    return {
+      content: this.content,
+      guid: anchor.get('id'),
+      offset: offsets.anchor
+    };
   }
 
   _removeBlock(guid) {

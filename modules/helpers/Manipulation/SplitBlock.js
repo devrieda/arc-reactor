@@ -35,7 +35,11 @@ class SplitBlock {
     }
     var newBlock = this._insertBlock(type, 'after', guids.anchor, end);
 
-    return { content: this.content, block: newBlock, offset: 0 };
+    return {
+      content: this.content,
+      guid: newBlock.get('id'),
+      offset: 0
+    };
   }
 
   _removeBlock(guid) {

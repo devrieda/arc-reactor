@@ -31,7 +31,11 @@ class ToggleCenter {
       });
     }
 
-    return { content: this.content };
+    return {
+      content: this.content,
+      guid: null,
+      offset: null
+    };
   }
 
   _finder() {

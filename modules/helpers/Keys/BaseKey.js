@@ -21,8 +21,7 @@ class BaseKey {
   defaultResponse() {
     return {
       content: this.content,
-      block: null,
-      offset: null,
+      position: null,
       stopPropagation: false,
       preventDefault: false,
       emit: false

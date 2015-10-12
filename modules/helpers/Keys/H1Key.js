@@ -34,8 +34,7 @@ class H1Key extends BaseKey {
 
     callback({
       content: results.content,
-      block: null,
-      offset: null,
+      position: null,
       stopPropagation: true,
       preventDefault: true,
       emit: true

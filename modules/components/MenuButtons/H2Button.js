@@ -1,7 +1,6 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../helpers/History');
 var ToggleBlockType = require('../../helpers/Manipulation/ToggleBlockType');
 
 var H2Button = React.createClass({
@@ -26,10 +25,7 @@ var H2Button = React.createClass({
 
     var result = this._toggleBlockType().execute(guids, offsets, { type: this.props.type });
 
-    // track content state and where cursor is
-    History.getInstance().push({content: result.content, position: position});
-
-    return result.content;
+    return { content: result.content, position: position };
   },
 
   _toggleBlockType() {

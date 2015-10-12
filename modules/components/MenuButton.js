@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var Immutable = require('immutable');
 var cx = require("classnames");
+var History = require('../helpers/History');
 var SelectedContent = require('../helpers/SelectedContent');
 var EditorStore = require('../stores/EditorStore');
 
@@ -30,7 +31,11 @@ var MenuButton = React.createClass({
 
     // we have a value to set
     } else {
-      var content = this.props.onPress();
+      var { content, position } = this.props.onPress();
+
+      // track content state and where cursor is
+      History.getInstance().push({ content: content, position: position });
+
       EditorStore.set({content: content});
     }
   },

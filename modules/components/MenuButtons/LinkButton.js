@@ -1,7 +1,6 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../helpers/History');
 var ToggleMarkup = require('../../helpers/Manipulation/ToggleMarkup');
 var EditorStore = require('../../stores/EditorStore');
 
@@ -37,10 +36,7 @@ var LinkButton = React.createClass({
     var options = { type: this.props.type, value: value };
     var result = this._toggleMarkup().execute(guids, offsets, options);
 
-    // track content state and where cursor is
-    History.getInstance().push({content: result.content, position: position});
-
-    return result.content;
+    return { content: result.content, position: position };
   },
 
   _toggleMarkup() {

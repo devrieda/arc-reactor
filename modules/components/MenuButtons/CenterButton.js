@@ -1,7 +1,6 @@
 var React = require('react/addons');
 var MenuButton = require('../MenuButton');
 
-var History = require('../../helpers/History');
 var ToggleCenter = require('../../helpers/Manipulation/ToggleCenter');
 
 var CenterButton = React.createClass({
@@ -26,10 +25,7 @@ var CenterButton = React.createClass({
 
     var result = this._toggleCenter().execute(guids, offsets);
 
-    // track content state and where cursor is
-    History.getInstance().push({content: result.content, position: position});
-
-    return result.content;
+    return { content: result.content, position: position };
   },
 
   _toggleCenter() {

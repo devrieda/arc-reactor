@@ -1,26 +1,26 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var React = require('react/addons');
-var Immutable = require('immutable');
+const React = require('react/addons');
+const Immutable = require('immutable');
 
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
 
-var Figure = require('../Figure');
+const Figure = require('../Figure');
 
 describe('Figure', () => {
 
   it('should render', () => {
-    var meta = Immutable.Map({
+    const meta = Immutable.Map({
       src: 'https://www.youtube.com/watch?v=kXzsnQax7Hs'
     });
 
-    var figure = render(
+    const figure = render(
       <Figure id='0000' type='figure' text="caption" meta={meta} />
     );
 
-    var figureComponent = findByClass(figure, 'arc-Editor-Figure');
+    const figureComponent = findByClass(figure, 'arc-Editor-Figure');
     assert(figureComponent);
   });
 });

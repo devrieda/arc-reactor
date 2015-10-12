@@ -1,27 +1,27 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var React = require('react/addons');
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
-var { fromJS } = require('immutable');
+const React = require('react/addons');
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
+const { fromJS } = require('immutable');
 
-var ImageButton = require('../ImageButton');
+const ImageButton = require('../ImageButton');
 
 describe('ImageButton', () => {
   it('should render', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       position: () => {}
     };
 
-    var component = render(
+    const component = render(
       <ImageButton content={fromJS(content)} selection={selection} />
     );
 
-    var button = findByClass(component, 'arc-Editor-BarButton--image');
+    const button = findByClass(component, 'arc-Editor-BarButton--image');
     assert(button);
   });
 });

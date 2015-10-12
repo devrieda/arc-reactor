@@ -1,21 +1,21 @@
-var expect = require('expect');
-var assert = require('assert');
+const expect = require('expect');
+const assert = require('assert');
 
-var React = require('react/addons');
-var { fromJS } = require('immutable');
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
-var { keyDown } = TestUtils.Simulate;
+const React = require('react/addons');
+const { fromJS } = require('immutable');
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
+const { keyDown } = TestUtils.Simulate;
 
-var EditorStore = require('../../stores/EditorStore');
-var Editor = require('../Editor.js');
+const EditorStore = require('../../stores/EditorStore');
+const Editor = require('../Editor.js');
 
 describe('Editor', () => {
   // state
   it('should set content state when mounted', () => {
-    var changed = () => {};
-    var content = { sections: [] };
+    const changed = () => {};
+    const content = { sections: [] };
 
     render(
       <Editor onChange={changed} content={content} />
@@ -25,11 +25,11 @@ describe('Editor', () => {
   });
 
   it('should reselect selection when updated', () => {
-    var callback = sinon.spy();
+    const callback = sinon.spy();
 
-    var changed = () => {};
-    var content = { sections: [] };
-    var selection = {
+    const changed = () => {};
+    const content = { sections: [] };
+    const selection = {
       reselect: callback,
       rebound: () => {},
       guids: () => {},
@@ -41,7 +41,7 @@ describe('Editor', () => {
       showMenuButtons: () => { return true; }
     };
 
-    var editor = render(
+    const editor = render(
       <Editor onChange={changed} selection={selection} content={content} />
     );
 
@@ -52,9 +52,9 @@ describe('Editor', () => {
 
   // actions
   it('should pass up change when content changes', () => {
-    var called = false;
-    var changed = () => { called = true; };
-    var content = { sections: [] };
+    let called = false;
+    const changed = () => { called = true; };
+    const content = { sections: [] };
 
     render(
       <Editor onChange={changed} content={content} />
@@ -66,15 +66,15 @@ describe('Editor', () => {
   });
 
   it('should delegate typing to key commands on key up', () => {
-    var changed = () => {};
-    var content = { sections: [] };
+    const changed = () => {};
+    const content = { sections: [] };
 
-    var editor = render(
+    const editor = render(
       <Editor onChange={changed} content={content} />
     );
-    var component = findByClass(editor, 'arc-Editor');
+    const component = findByClass(editor, 'arc-Editor');
 
-    var callback = sinon.spy();
+    const callback = sinon.spy();
     editor.keys = { execute: callback };
     keyDown(component, {key: "b"});
 
@@ -82,15 +82,15 @@ describe('Editor', () => {
   });
 
   it('should set meta key on key down', () => {
-    var changed = () => {};
-    var content = { sections: [] };
+    const changed = () => {};
+    const content = { sections: [] };
 
-    var editor = render(
+    const editor = render(
       <Editor onChange={changed} content={content} />
     );
 
     assert(!editor.metaKey);
-    var component = findByClass(editor, 'arc-Editor');
+    const component = findByClass(editor, 'arc-Editor');
     keyDown(component, {keyCode: 91});
     assert(editor.metaKey);
   });
@@ -98,26 +98,26 @@ describe('Editor', () => {
 
   // rendering 
   it('should render content', () => {
-    var changed = () => { };
-    var content = { sections: [] };
+    const changed = () => { };
+    const content = { sections: [] };
 
-    var editor = render(
+    const editor = render(
       <Editor onChange={changed} content={content} />
     );
 
-    var component = findByClass(editor, 'arc-Editor-Content');
+    const component = findByClass(editor, 'arc-Editor-Content');
     assert(component);
   });
 
   it('should render menu', () => {
-    var changed = () => { };
-    var content = { sections: [] };
+    const changed = () => { };
+    const content = { sections: [] };
 
-    var editor = render(
+    const editor = render(
       <Editor onChange={changed} content={content} />
     );
 
-    var menu = findByClass(editor, 'arc-Editor-Menu');
+    const menu = findByClass(editor, 'arc-Editor-Menu');
     assert(menu);
   });
 });

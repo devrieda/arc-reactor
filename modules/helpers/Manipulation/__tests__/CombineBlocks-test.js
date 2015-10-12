@@ -1,10 +1,10 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var CombineBlocks = require('../CombineBlocks');
+const { fromJS } = require('immutable');
+const CombineBlocks = require('../CombineBlocks');
 
 describe('CombineBlocks', () => {
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -30,23 +30,23 @@ describe('CombineBlocks', () => {
 
   describe('#execute', () => {
     it('should combine multiple blocks', () => {
-      var manager = new CombineBlocks(fromJS(content)); 
-      var guids = { anchor: 'c6a7', focus: 'c6a9' };
-      var offsets = { anchor: 8, focus: 6 };
-      var result = manager.execute(guids, offsets);
+      const manager = new CombineBlocks(fromJS(content)); 
+      const guids = { anchor: 'c6a7', focus: 'c6a9' };
+      const offsets = { anchor: 8, focus: 6 };
+      const result = manager.execute(guids, offsets);
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks.length).toBe(1);
       expect(blocks[0].text).toBe('You can be fatuous, Jeffrey.');
     });
 
     it('should combine multiple blocks across sections and delete empty sects', () => {
-      var manager = new CombineBlocks(fromJS(content)); 
-      var guids = { anchor: 'c6a7', focus: '0101' };
-      var offsets = { anchor: 8, focus: 10 };
-      var result = manager.execute(guids, offsets);
+      const manager = new CombineBlocks(fromJS(content)); 
+      const guids = { anchor: 'c6a7', focus: '0101' };
+      const offsets = { anchor: 8, focus: 10 };
+      const result = manager.execute(guids, offsets);
 
-      var expected = {
+      const expected = {
         "sections": [
           {
             "id": "de5f",
@@ -61,12 +61,12 @@ describe('CombineBlocks', () => {
     });
 
     it('should combine multiple blocks across sections and keep sects with blocks', () => {
-      var manager = new CombineBlocks(fromJS(content)); 
-      var guids = { anchor: 'c6a7', focus: '0011' };
-      var offsets = { anchor: 8, focus: 10 };
-      var result = manager.execute(guids, offsets);
+      const manager = new CombineBlocks(fromJS(content)); 
+      const guids = { anchor: 'c6a7', focus: '0011' };
+      const offsets = { anchor: 8, focus: 10 };
+      const result = manager.execute(guids, offsets);
 
-      var expected = {
+      const expected = {
         "sections": [
           {
             "id": "de5f",

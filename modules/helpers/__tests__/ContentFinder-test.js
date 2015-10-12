@@ -1,11 +1,11 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var ContentFinder = require('../ContentFinder');
+const { fromJS } = require('immutable');
+const ContentFinder = require('../ContentFinder');
 
 describe('ContentFinder', () => {
 
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -88,15 +88,15 @@ describe('ContentFinder', () => {
 
   describe('#findPath', () => {
     it('finds the position', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var path = finder.findPath('abcd');
+      const finder = new ContentFinder(fromJS(content));
+      const path = finder.findPath('abcd');
 
       expect(path).toEqual(['sections', 0, 'blocks', 2, 'blocks', 0]);
     });
 
     it('finds the position in later sections', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var path = finder.findPath('23ae');
+      const finder = new ContentFinder(fromJS(content));
+      const path = finder.findPath('23ae');
 
       expect(path).toEqual(['sections', 1, 'blocks', 0]);
     });
@@ -104,20 +104,20 @@ describe('ContentFinder', () => {
 
   describe('#findRange', () => {
     it('finds no results if content is empty', () => {
-      var finder = new ContentFinder(fromJS({}));
-      var guids = finder.findRange({ anchor: '667a', focus: 'abcd'});
+      const finder = new ContentFinder(fromJS({}));
+      const guids = finder.findRange({ anchor: '667a', focus: 'abcd'});
       expect(guids).toEqual([]);
     });
 
     it('finds reference to a range of blocks by guids', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var guids = finder.findRange({ anchor: '667a', focus: 'abcd'});
+      const finder = new ContentFinder(fromJS(content));
+      const guids = finder.findRange({ anchor: '667a', focus: 'abcd'});
       expect(guids).toEqual(['667a', 'ad84', 'abcd']);
     });
 
     it('drops the last block if no content in the block is selected', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var guids = finder.findRange(
+      const finder = new ContentFinder(fromJS(content));
+      const guids = finder.findRange(
         { anchor: '667a', focus: 'abce'},
         { anchor: 0, focus: 0 }
       );
@@ -125,8 +125,8 @@ describe('ContentFinder', () => {
     });
 
     it('drops the last block if it is an orphaned ul', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var guids = finder.findRange(
+      const finder = new ContentFinder(fromJS(content));
+      const guids = finder.findRange(
         { anchor: '667a', focus: 'abcd'},
         { anchor: 0, focus: 0 }
       );
@@ -136,71 +136,71 @@ describe('ContentFinder', () => {
 
   describe('#findBlockPosition', () => {
     it('finds block position by guid', () => {
-      var finder = new ContentFinder(fromJS(content));
+      const finder = new ContentFinder(fromJS(content));
 
-      var position1 = finder.findBlockPosition('667a');
+      const position1 = finder.findBlockPosition('667a');
       expect(position1).toBe(1);
 
-      var position2 = finder.findBlockPosition('ad84');
+      const position2 = finder.findBlockPosition('ad84');
       expect(position2).toBe(2);
     });
   });
 
   describe('#findPrevPath', () => {
     it('finds path to previous sibling block by guid', () => {
-      var finder = new ContentFinder(fromJS(content));
+      const finder = new ContentFinder(fromJS(content));
 
-      var path = finder.findPrevPath('667a');
+      const path = finder.findPrevPath('667a');
       expect(path).toEqual(['sections', 0, 'blocks', 0]);
     });
 
     it('finds path to previous sibling block across sections', () => {
-      var finder = new ContentFinder(fromJS(content));
+      const finder = new ContentFinder(fromJS(content));
 
-      var path = finder.findPrevPath('0101');
+      const path = finder.findPrevPath('0101');
       expect(path).toEqual(['sections', 1, 'blocks', 2]);
     });
 
     it('finds path to previous sibling block across sections with sub-blocks', () => {
-      var finder = new ContentFinder(fromJS(content));
+      const finder = new ContentFinder(fromJS(content));
 
-      var path = finder.findPrevPath('23ae');
+      const path = finder.findPrevPath('23ae');
       expect(path).toEqual(['sections', 0, 'blocks', 2, 'blocks', 1]);
     });
 
     it('finds empty path if there are no previous siblings', () => {
-      var finder = new ContentFinder(fromJS(content));
+      const finder = new ContentFinder(fromJS(content));
 
-      var path = finder.findPrevPath('56ef');
+      const path = finder.findPrevPath('56ef');
       expect(path).toEqual(null);
     });
 
     it('finds last sub-block if previous element has sub-blocks', () => {
-      var finder = new ContentFinder(fromJS(content));
+      const finder = new ContentFinder(fromJS(content));
 
-      var path = finder.findPrevPath('23af');
+      const path = finder.findPrevPath('23af');
       expect(path).toEqual(['sections', 1, 'blocks', 1, 'blocks', 0]);
     });
   });
 
   describe('#findNextPath', () => {
     it('finds path to next sibling block by guid', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var path = finder.findNextPath('56ef');
+      const finder = new ContentFinder(fromJS(content));
+      const path = finder.findNextPath('56ef');
 
       expect(path).toEqual(['sections', 0, 'blocks', 1]);
     });
 
     it('finds path to next sibling block by guid across sections', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var path = finder.findNextPath('abce');
+      const finder = new ContentFinder(fromJS(content));
+      const path = finder.findNextPath('abce');
 
       expect(path).toEqual(['sections', 1, 'blocks', 0]);
     });
 
     it('finds empty path if there are no next siblings', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var path = finder.findNextPath('0101');
+      const finder = new ContentFinder(fromJS(content));
+      const path = finder.findNextPath('0101');
 
       expect(path).toEqual(null);
     });
@@ -208,8 +208,8 @@ describe('ContentFinder', () => {
 
   describe('#findParentPath', () => {
     it('finds path to parent of a block by guid', () => {
-      var finder = new ContentFinder(fromJS(content));
-      var path = finder.findParentPath('abcd');
+      const finder = new ContentFinder(fromJS(content));
+      const path = finder.findParentPath('abcd');
 
       expect(path).toEqual(['sections', 0, 'blocks', 2]);
     });

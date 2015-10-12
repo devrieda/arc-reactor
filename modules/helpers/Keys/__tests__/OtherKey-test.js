@@ -1,7 +1,7 @@
-var OtherKey = require('../OtherKey');
+const OtherKey = require('../OtherKey');
 
 describe('OtherKey', () => {
-  var content, selection;
+  let content, selection;
 
   beforeEach( () => {
     content = {
@@ -12,7 +12,7 @@ describe('OtherKey', () => {
 
   describe('#matches', () => {
     it('always matches event', () => {
-      var key = new OtherKey(content, selection);
+      const key = new OtherKey(content, selection);
       assert(key.matches({}));
     });
   });

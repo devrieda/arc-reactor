@@ -1,9 +1,9 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var History = require('../History');
+const History = require('../History');
 
 describe('History', () => {
-  var state1, state2, state3;
+  let state1, state2, state3;
 
   beforeEach( () => {
     state1 = { a: 1 };
@@ -13,7 +13,7 @@ describe('History', () => {
 
   describe('#push', () => {
     it('adds history onto the stack', () => {
-      var history = new History();
+      const history = new History();
       history.push(state1, true);
       history.push(state2, true);
 
@@ -21,7 +21,7 @@ describe('History', () => {
     });
 
     it('overwrites previous history if we did an undo', () => {
-      var history = new History();
+      const history = new History();
       history.push(state1, true);
       history.push(state2, true);
       history.undo(); // totally undo state2
@@ -38,7 +38,7 @@ describe('History', () => {
 
   describe('#undo', () => {
     it('returns the previous state', () => {
-      var history = new History();
+      const history = new History();
       history.push(state1, true);
       history.push(state2, true);
       history.undo();
@@ -49,7 +49,7 @@ describe('History', () => {
 
   describe('#redo', () => {
     it('returns the next state', () => {
-      var history = new History();
+      const history = new History();
       history.push(state1, true);
       history.push(state2, true);
       history.undo();

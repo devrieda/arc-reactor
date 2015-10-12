@@ -1,18 +1,18 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var React = require('react/addons');
-var { fromJS } = require('immutable');
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
+const React = require('react/addons');
+const { fromJS } = require('immutable');
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
 
-var Bar = require('../Bar');
-var BarButtons = require('../BarButtons.js');
+const Bar = require('../Bar');
+const BarButtons = require('../BarButtons.js');
 
 describe('Bar', () => {
   it('should render', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       isRange: () => { return false; },
@@ -20,13 +20,13 @@ describe('Bar', () => {
       showMenuButtons: () => { return true; }
     };
 
-    var bar = render(
+    const bar = render(
       <Bar content={fromJS(content)} selection={selection}>
         <BarButtons.Image />
       </Bar>
     );
 
-    var barComponent = findByClass(bar, 'arc-Editor-Bar');
+    const barComponent = findByClass(bar, 'arc-Editor-Bar');
     assert(barComponent);
   });
 });

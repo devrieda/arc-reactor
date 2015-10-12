@@ -1,23 +1,23 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var React = require('react/addons');
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
+const React = require('react/addons');
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
 
-var FigCaption = require('../FigCaption');
+const FigCaption = require('../FigCaption');
 
 describe('FigCaption', () => {
 
   it('should render', () => {
-    var text = '';
-    var figSelected = false;
+    const text = '';
+    const figSelected = false;
 
-    var caption = render(
+    const caption = render(
       <FigCaption text={text} figSelected={figSelected} />
     );
 
-    var captionComponent = findByClass(caption, 'arc-Editor-FigCaption');
+    const captionComponent = findByClass(caption, 'arc-Editor-FigCaption');
     assert(captionComponent);
   });
 });

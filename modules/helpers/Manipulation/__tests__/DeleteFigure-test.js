@@ -1,10 +1,10 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var DeleteFigure = require('../DeleteFigure');
+const { fromJS } = require('immutable');
+const DeleteFigure = require('../DeleteFigure');
 
 describe('DeleteFigure', () => {
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -26,13 +26,13 @@ describe('DeleteFigure', () => {
 
   describe('#execute', () => {
     it('should convert a figure to a paragraph', () => {
-      var manager = new DeleteFigure(fromJS(content));
+      const manager = new DeleteFigure(fromJS(content));
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 0 };
-      var result = manager.execute(guids, offsets);
+      const guids = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 0 };
+      const result = manager.execute(guids, offsets);
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks.length).toBe(1);
       expect(blocks[0].text).toBe('');
       expect(blocks[0].type).toBe('p');

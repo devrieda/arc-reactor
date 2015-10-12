@@ -1,106 +1,106 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var React = require('react/addons');
-var { fromJS } = require('immutable');
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
-var { click, input, keyUp } = TestUtils.Simulate;
+const React = require('react/addons');
+const { fromJS } = require('immutable');
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
+const { click, input, keyUp } = TestUtils.Simulate;
 
-var Menu = require('../Menu.js');
-var MenuButtons = require('../MenuButtons.js');
+const Menu = require('../Menu.js');
+const MenuButtons = require('../MenuButtons.js');
 
 describe('Menu', () => {
 
   it('should render', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       showMenuButtons: () => { return true; }
     };
 
-    var menu = render(
+    const menu = render(
       <Menu content={fromJS(content)} selection={selection}>
         <MenuButtons.Bold />
       </Menu>
     );
 
-    var menuComponent = findByClass(menu, 'arc-Editor-Menu');
+    const menuComponent = findByClass(menu, 'arc-Editor-Menu');
     assert(menuComponent);
   });
 
   it('should render buttons', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       showMenuButtons: () => { return true; }
     };
 
-    var menu = render(
+    const menu = render(
       <Menu content={fromJS(content)} selection={selection}>
         <MenuButtons.Bold />
       </Menu>
     );
 
-    var button = findByClass(menu, 'arc-Editor-MenuButton--strong');
+    const button = findByClass(menu, 'arc-Editor-MenuButton--strong');
     assert(button);
   });
 
   // events
   it('should switch to input mode when clicking button that requires value', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       showMenuButtons: () => { return true; }
     };
 
-    var menu = render(
+    const menu = render(
       <Menu content={fromJS(content)} selection={selection}>
         <MenuButtons.Link />
       </Menu>
     );
 
-    var button = findByClass(menu, 'arc-Editor-MenuButton--a');
+    const button = findByClass(menu, 'arc-Editor-MenuButton--a');
     click(button);
 
-    var component = findByClass(menu, 'arc-Editor-Menu__linkinput--active');
+    const component = findByClass(menu, 'arc-Editor-Menu__linkinput--active');
     assert(component);
   });
 
   it('should switch back to button mode when entering input value', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       showMenuButtons: () => { return true; }
     };
 
-    var menu = render(
+    const menu = render(
       <Menu content={fromJS(content)} selection={selection}>
         <MenuButtons.Link />
       </Menu>
     );
 
-    var button = findByClass(menu, 'arc-Editor-MenuButton--a');
+    const button = findByClass(menu, 'arc-Editor-MenuButton--a');
     click(button);
     input(button, "http://google.com");
     keyUp(button, {keyCode: 13});
 
-    var component = findByClass(menu, 'arc-Editor-Menu--active');
+    const component = findByClass(menu, 'arc-Editor-Menu--active');
     assert(component);
   });
 
   it('should check whether button is visible', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       showMenuButtons: () => { return true; }
     };
-    var bold = <MenuButtons.Bold />;
+    const bold = <MenuButtons.Bold />;
     sinon.stub(bold.type, "isVisible", () => true);
 
     render(
@@ -116,8 +116,8 @@ describe('Menu', () => {
 
   // classes
   it('should be active if text is selected', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       text: 'hey',
       types: ['p'],
       guids: () => { return { anchor: '', focus: '' }; },
@@ -127,7 +127,7 @@ describe('Menu', () => {
       showMenuButtons: () => { return true; }
     };
 
-    var menu = render(
+    const menu = render(
       <Menu content={fromJS(content)} selection={selection}>
         <MenuButtons.Bold />
       </Menu>
@@ -137,8 +137,8 @@ describe('Menu', () => {
   });
 
   it('should build styles based off bounds', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       text: 'hey',
       types: ['p'], 
       guids: () => { return { anchor: '', focus: '' }; },
@@ -149,13 +149,13 @@ describe('Menu', () => {
       showMenuButtons: () => { return true; }
     };
 
-    var menu = render(
+    const menu = render(
       <Menu content={fromJS(content)} selection={selection}>
         <MenuButtons.Bold />
       </Menu>
     );
 
-    var styles = menu.menuStyles();
+    const styles = menu.menuStyles();
     assert(styles.top);
     assert(styles.left);
   });

@@ -1,10 +1,10 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var CombineBlockNext = require('../CombineBlockNext');
+const { fromJS } = require('immutable');
+const CombineBlockNext = require('../CombineBlockNext');
 
 describe('CombineBlockNext', () => {
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -19,24 +19,24 @@ describe('CombineBlockNext', () => {
 
   describe('#execute', () => {
     it('should combine given block with next sibling', () => {
-      var block1 = {
+      const block1 = {
         "id": "c6a8",
         "type": "p",
         "text": "cable? "
       };
-      var block2 = {
+      const block2 = {
         "id": "c6a9",
         "type": "p",
         "text": "Don't be fatuous"
       };
       content.sections[0].blocks = [block1, block2];
-      var manager = new CombineBlockNext(fromJS(content));
+      const manager = new CombineBlockNext(fromJS(content));
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 0 };
-      var result = manager.execute(guids, offsets);
+      const guids = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 0 };
+      const result = manager.execute(guids, offsets);
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks.length).toBe(1);
       expect(blocks[0].text).toBe('cable? Don\'t be fatuous');
     });
@@ -59,13 +59,13 @@ describe('CombineBlockNext', () => {
         ]
       };
 
-      var manager = new CombineBlockNext(fromJS(content));
+      const manager = new CombineBlockNext(fromJS(content));
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 0 };
-      var result = manager.execute(guids, offsets);
+      const guids = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 0 };
+      const result = manager.execute(guids, offsets);
 
-      var expected = {
+      const expected = {
         "sections": [
           {
             "id": "0001",
@@ -81,19 +81,19 @@ describe('CombineBlockNext', () => {
     });
 
     it('should noop if no next sibling', () => {
-      var block = {
+      const block = {
         "id": "c6a8",
         "type": "p",
         "text": "cable?"
       };
       content.sections[0].blocks = [block];
-      var manager = new CombineBlockNext(fromJS(content));
+      const manager = new CombineBlockNext(fromJS(content));
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 0 };
-      var result = manager.execute(guids, offsets);
+      const guids = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 0 };
+      const result = manager.execute(guids, offsets);
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks.length).toBe(1);
       expect(blocks[0].text).toBe('cable?');
     });

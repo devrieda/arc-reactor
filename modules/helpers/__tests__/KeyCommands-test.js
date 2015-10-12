@@ -1,8 +1,8 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var KeyCommands = require('../KeyCommands');
+const KeyCommands = require('../KeyCommands');
 
-var specialStub = sinon.spy();
+const specialStub = sinon.spy();
 class SpecialKey {
   static getName() {
     return 'special-key';
@@ -25,7 +25,7 @@ class SpecialKey {
   }
 }
 
-var magicStub = sinon.spy();
+const magicStub = sinon.spy();
 class MagicKey {
   static getName() {
     return 'magic-key';
@@ -51,53 +51,53 @@ class MagicKey {
 describe('KeyCommands', () => {
   describe('.constructor', () => {
     it('should install default commands', () => {
-      var keys = new KeyCommands();
+      const keys = new KeyCommands();
       expect(keys.getKeys().length > 0).toBe(true);
     });
   });
 
   describe('.getInstance', () => {
     it('should get singleton instance of the commands', () => {
-      var keys = KeyCommands.getInstance();
+      const keys = KeyCommands.getInstance();
       expect(keys.getKeys().length > 0).toBe(true);
 
-      var keys2 = KeyCommands.getInstance();
+      const keys2 = KeyCommands.getInstance();
       expect(keys).toBe(keys2);
     });
   });
 
   describe('#use', () => {
     it('should add command to stack', () => {
-      var keys = new KeyCommands();
-      var before = keys.getKeys().length;
+      const keys = new KeyCommands();
+      const before = keys.getKeys().length;
 
       keys.use(SpecialKey);
 
-      var list = keys.getKeys();
+      const list = keys.getKeys();
 
       expect(list.length - before).toEqual(1);
       expect(list[list.length - 1]).toBe(SpecialKey);
     });
 
     it('should insert command before another in stack', () => {
-      var keys = new KeyCommands();
-      var before = keys.getKeys().length;
+      const keys = new KeyCommands();
+      const before = keys.getKeys().length;
 
       keys.use(SpecialKey, { before: 'return-key' });
 
-      var list = keys.getKeys();
+      const list = keys.getKeys();
 
       expect(list.length - before).toEqual(1);
       expect(list[0]).toBe(SpecialKey);
     });
 
     it('should insert command after another in stack', () => {
-      var keys = new KeyCommands();
-      var before = keys.getKeys().length;
+      const keys = new KeyCommands();
+      const before = keys.getKeys().length;
 
       keys.use(SpecialKey, { after: 'return-key' });
 
-      var list = keys.getKeys();
+      const list = keys.getKeys();
 
       expect(list.length - before).toEqual(1);
       expect(list[1]).toBe(SpecialKey);
@@ -106,7 +106,7 @@ describe('KeyCommands', () => {
 
   describe('#execute', () => {
     it('should execute first command that matches', (done) => {
-      var keys = new KeyCommands();
+      const keys = new KeyCommands();
       keys.use(SpecialKey, { before: 'return-key' });
       keys.use(MagicKey,   { after:  'special-key' });
 
@@ -118,7 +118,7 @@ describe('KeyCommands', () => {
     });
 
     it('should return changed content and selection', (done) => {
-      var keys = new KeyCommands();
+      const keys = new KeyCommands();
       keys.use(SpecialKey, { before: 'return-key' });
 
       keys.execute({type: 'down'}, {}, {}, function(results) {

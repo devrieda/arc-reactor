@@ -1,10 +1,10 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var InsertImage = require('../InsertImage');
+const { fromJS } = require('immutable');
+const InsertImage = require('../InsertImage');
 
 describe('InsertImage', () => {
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -25,30 +25,30 @@ describe('InsertImage', () => {
 
   describe('#execute', () => {
     it('should set content to inserting image... immediately', () => {
-      var manager = new InsertImage(fromJS(content));
+      const manager = new InsertImage(fromJS(content));
       sinon.stub(manager, 'loadImage', Function.prototype);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 0 };
+      const guids = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 0 };
 
-      var options = { src: 'http://example.com/foo.png' };
-      var callback = Function.prototype;
-      var result = manager.execute(guids, offsets, options, callback);
+      const options = { src: 'http://example.com/foo.png' };
+      const callback = Function.prototype;
+      const result = manager.execute(guids, offsets, options, callback);
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks.length).toBe(1);
       expect(blocks[0].text).toBe('inserting image...');
     });
 
     it('should request to load image', () => {
-      var manager = new InsertImage(fromJS(content));
+      const manager = new InsertImage(fromJS(content));
       sinon.stub(manager, 'loadImage', Function.prototype);
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 0 };
+      const guids = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 0 };
 
-      var options = { src: 'http://example.com/foo.png' };
-      var callback = Function.prototype;
+      const options = { src: 'http://example.com/foo.png' };
+      const callback = Function.prototype;
       manager.execute(guids, offsets, options, callback);
 
       expect(manager.loadImage.called).toBe(true);

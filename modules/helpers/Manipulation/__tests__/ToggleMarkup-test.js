@@ -1,10 +1,10 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var ToggleMarkup = require('../ToggleMarkup');
+const { fromJS } = require('immutable');
+const ToggleMarkup = require('../ToggleMarkup');
 
 describe('ToggleMarkup', () => {
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -19,54 +19,54 @@ describe('ToggleMarkup', () => {
 
   describe('#execute', () => {
     it('should add markup for a single block', () => {
-      var block = {
+      const block = {
         "id": "c6a8",
         "type": "p",
         "text": "this is my formatted text"
       };
       content.sections[0].blocks = [block];
-      var manager = new ToggleMarkup(fromJS(content));
+      const manager = new ToggleMarkup(fromJS(content));
 
-      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 4 };
-      var result = manager.execute(guids, offsets, { type: 'strong' });
+      const guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 4 };
+      const result = manager.execute(guids, offsets, { type: 'strong' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].markups).toEqual({"strong":[{"range": [0,4]}]});
     });
 
     it('should add markup across multiple blocks', () => {
-      var block1 = {
+      const block1 = {
         "id": "c6a7",
         "type": "p",
         "text": "You can imagine where it goes from here."
       };
-      var block2 = {
+      const block2 = {
         "id": "c6a8",
         "type": "p",
         "text": "He fixes the cable?"
       };
-      var block3 = {
+      const block3 = {
         "id": "c6a9",
         "type": "p",
         "text": "Don't be fatuous, Jeffrey."
       };
 
       content.sections[0].blocks = [block1, block2, block3];
-      var manager = new ToggleMarkup(fromJS(content));
+      const manager = new ToggleMarkup(fromJS(content));
 
-      var guids = { anchor: 'c6a7', focus: 'c6a9' };
-      var offsets = { anchor: 2, focus: 4 };
-      var result = manager.execute(guids, offsets, { type: 'strong' });
+      const guids = { anchor: 'c6a7', focus: 'c6a9' };
+      const offsets = { anchor: 2, focus: 4 };
+      const result = manager.execute(guids, offsets, { type: 'strong' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].markups).toEqual({"strong":[{"range": [2,40]}]});
       expect(blocks[1].markups).toEqual({"strong":[{"range": [0,19]}]});
       expect(blocks[2].markups).toEqual({"strong":[{"range": [0,4]}]});
     });
 
     it('should remove markup for a single block', () => {
-      var block = {
+      const block = {
         "id": "c6a8",
         "type": "p",
         "text": "this is my formatted text",
@@ -77,18 +77,18 @@ describe('ToggleMarkup', () => {
         }
       };
       content.sections[0].blocks = [block];
-      var manager = new ToggleMarkup(fromJS(content));
+      const manager = new ToggleMarkup(fromJS(content));
 
-      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 4 };
-      var result = manager.execute(guids, offsets, { type: 'strong' });
+      const guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 4 };
+      const result = manager.execute(guids, offsets, { type: 'strong' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].markups).toEqual({"strong":[]});
     });
 
     it('should remove markup across multiple blocks', () => {
-      var block1 = {
+      const block1 = {
         "id": "c6a7",
         "type": "p",
         "text": "You can imagine where it goes from here.",
@@ -98,7 +98,7 @@ describe('ToggleMarkup', () => {
           }]
         }
       };
-      var block2 = {
+      const block2 = {
         "id": "c6a8",
         "type": "p",
         "text": "He fixes the cable?",
@@ -108,7 +108,7 @@ describe('ToggleMarkup', () => {
           }]
         }
       };
-      var block3 = {
+      const block3 = {
         "id": "c6a9",
         "type": "p",
         "text": "Don't be fatuous, Jeffrey.",
@@ -120,13 +120,13 @@ describe('ToggleMarkup', () => {
       };
 
       content.sections[0].blocks = [block1, block2, block3];
-      var manager = new ToggleMarkup(fromJS(content));
+      const manager = new ToggleMarkup(fromJS(content));
 
-      var guids = { anchor: 'c6a7', focus: 'c6a9' };
-      var offsets = { anchor: 2, focus: 4 };
-      var result = manager.execute(guids, offsets, { type: 'strong' });
+      const guids = { anchor: 'c6a7', focus: 'c6a9' };
+      const offsets = { anchor: 2, focus: 4 };
+      const result = manager.execute(guids, offsets, { type: 'strong' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].markups).toEqual({"strong":[]});
       expect(blocks[1].markups).toEqual({"strong":[]});
       expect(blocks[2].markups).toEqual({"strong":[]});

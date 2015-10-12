@@ -1,10 +1,10 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var CombineBlockPrev = require('../CombineBlockPrev');
+const { fromJS } = require('immutable');
+const CombineBlockPrev = require('../CombineBlockPrev');
 
 describe('CombineBlockPrev', () => {
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -19,24 +19,24 @@ describe('CombineBlockPrev', () => {
 
   describe('#execute', () => {
     it('should combine given block with previous sibling', () => {
-      var block1 = {
+      const block1 = {
         "id": "c6a8",
         "type": "p",
         "text": "cable? "
       };
-      var block2 = {
+      const block2 = {
         "id": "c6a9",
         "type": "p",
         "text": "Don't be fatuous"
       };
       content.sections[0].blocks = [block1, block2];
-      var manager = new CombineBlockPrev(fromJS(content));
+      const manager = new CombineBlockPrev(fromJS(content));
 
-      var guids = { anchor: 'c6a9', focus: 'c6a9' };
-      var offsets = { anchor: 0, focus: 0 };
-      var result = manager.execute(guids, offsets);
+      const guids = { anchor: 'c6a9', focus: 'c6a9' };
+      const offsets = { anchor: 0, focus: 0 };
+      const result = manager.execute(guids, offsets);
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks.length).toBe(1);
       expect(blocks[0].text).toBe('cable? Don\'t be fatuous');
     });
@@ -59,13 +59,13 @@ describe('CombineBlockPrev', () => {
         ]
       };
 
-      var manager = new CombineBlockPrev(fromJS(content));
+      const manager = new CombineBlockPrev(fromJS(content));
 
-      var guids = { anchor: 'c6a9', focus: 'c6a9' };
-      var offsets = { anchor: 0, focus: 0 };
-      var result = manager.execute(guids, offsets);
+      const guids = { anchor: 'c6a9', focus: 'c6a9' };
+      const offsets = { anchor: 0, focus: 0 };
+      const result = manager.execute(guids, offsets);
 
-      var expected = {
+      const expected = {
         "sections": [
           {
             "id": "0001",
@@ -81,19 +81,19 @@ describe('CombineBlockPrev', () => {
     });
 
     it('should noop if no previous sibling', () => {
-      var block = {
+      const block = {
         "id": "c6a8",
         "type": "p",
         "text": "cable?"
       };
       content.sections[0].blocks = [block];
-      var manager = new CombineBlockPrev(fromJS(content));
+      const manager = new CombineBlockPrev(fromJS(content));
 
-      var guids = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 0 };
-      var result = manager.execute(guids, offsets);
+      const guids = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 0 };
+      const result = manager.execute(guids, offsets);
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks.length).toBe(1);
       expect(blocks[0].text).toBe('cable?');
     });

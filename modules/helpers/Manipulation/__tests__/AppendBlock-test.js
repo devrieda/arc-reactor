@@ -1,10 +1,10 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var AppendBlock = require('../AppendBlock');
+const { fromJS } = require('immutable');
+const AppendBlock = require('../AppendBlock');
 
 describe('AppendBlock', () => {
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -19,55 +19,55 @@ describe('AppendBlock', () => {
 
   describe('#execute', () => {
     it('should start an ordered list if text starts with number', () => {
-      var block = {
+      const block = {
         "id": "c6a7",
         "type": "p",
         "text": "1. starting a list"
       };
       content.sections[0].blocks = [block];
-      var manager = new AppendBlock(fromJS(content));
-      var result = manager.execute({ anchor: 'c6a7' });
+      const manager = new AppendBlock(fromJS(content));
+      const result = manager.execute({ anchor: 'c6a7' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].type).toBe('ol');
       expect(blocks[0].blocks[0].type).toBe('li');
       expect(blocks[0].blocks[0].text).toBe('starting a list');
     });
 
     it('should start an unordered list if text starts with *', () => {
-      var block = {
+      const block = {
         "id": "c6a7",
         "type": "p",
         "text": "* starting a list"
       };
       content.sections[0].blocks = [block];
-      var manager = new AppendBlock(fromJS(content));
-      var result = manager.execute({ anchor: 'c6a7' });
+      const manager = new AppendBlock(fromJS(content));
+      const result = manager.execute({ anchor: 'c6a7' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].type).toBe('ul');
       expect(blocks[0].blocks[0].type).toBe('li');
       expect(blocks[0].blocks[0].text).toBe('starting a list');
     });
 
     it('should start an unordered list if text starts with -', () => {
-      var block = {
+      const block = {
         "id": "c6a7",
         "type": "p",
         "text": "- starting a list"
       };
       content.sections[0].blocks = [block];
-      var manager = new AppendBlock(fromJS(content));
-      var result = manager.execute({ anchor: 'c6a7' });
+      const manager = new AppendBlock(fromJS(content));
+      const result = manager.execute({ anchor: 'c6a7' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].type).toBe('ul');
       expect(blocks[0].blocks[0].type).toBe('li');
       expect(blocks[0].blocks[0].text).toBe('starting a list');
     });
 
     it('should add item to a list', () => {
-      var block = {
+      const block = {
         "id": "c6a7",
         "type": "ul",
         "text": "",
@@ -80,16 +80,16 @@ describe('AppendBlock', () => {
         ]
       };
       content.sections[0].blocks = [block];
-      var manager = new AppendBlock(fromJS(content));
-      var result = manager.execute({ anchor: '56ed' });
+      const manager = new AppendBlock(fromJS(content));
+      const result = manager.execute({ anchor: '56ed' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].blocks.length).toBe(2);
       expect(blocks[0].blocks[1].type).toBe('li');
     });
 
     it('should finish a list', () => {
-      var block = {
+      const block = {
         "id": "c6a7",
         "type": "ul",
         "text": "",
@@ -107,10 +107,10 @@ describe('AppendBlock', () => {
         ]
       };
       content.sections[0].blocks = [block];
-      var manager = new AppendBlock(fromJS(content));
-      var result = manager.execute({ anchor: '1212' });
+      const manager = new AppendBlock(fromJS(content));
+      const result = manager.execute({ anchor: '1212' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].blocks.length).toBe(1);
 
       // added it to the top level as a new paragraph instead
@@ -119,17 +119,17 @@ describe('AppendBlock', () => {
     });
 
     it('should create a new paragraph', () => {
-      var block = {
+      const block = {
         "id": "c6a7",
         "type": "h1",
         "text": "this is a header"
       };
       content.sections[0].blocks = [block];
 
-      var manager = new AppendBlock(fromJS(content));
-      var result = manager.execute({ anchor: 'c6a7' });
+      const manager = new AppendBlock(fromJS(content));
+      const result = manager.execute({ anchor: 'c6a7' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks.length).toBe(2);
       expect(blocks[1].type).toBe('p');
     });

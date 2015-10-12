@@ -1,14 +1,14 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var Guid = require('../Guid');
+const Guid = require('../Guid');
 
 describe('Guid', function() {
 
   describe('#unique', () => {
 
     it('generates a unique guid', function() {
-      var id1 = Guid.unique();
-      var id2 = Guid.unique();
+      const id1 = Guid.unique();
+      const id2 = Guid.unique();
       expect(id1).toNotBe(id2);
     });
   });

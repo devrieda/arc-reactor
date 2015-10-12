@@ -1,7 +1,7 @@
-var BspaceKey = require('../BspaceKey');
+const BspaceKey = require('../BspaceKey');
 
 describe('BspaceKey', () => {
-  var content, selection;
+  let content, selection;
 
   beforeEach( () => {
     content = {
@@ -12,15 +12,15 @@ describe('BspaceKey', () => {
 
   describe('#matches', () => {
     it('matches event for bspace key', () => {
-      var event = { keyCode: 8 };
-      var key = new BspaceKey(content, selection);
+      const event = { keyCode: 8 };
+      const key = new BspaceKey(content, selection);
 
       assert(key.matches(event));
     });
 
     it("doesn't match event if not bspace", () => {
-      var event = {};
-      var key = new BspaceKey(content, selection);
+      const event = {};
+      const key = new BspaceKey(content, selection);
 
       assert(!key.matches(event));
     });

@@ -1,7 +1,7 @@
-var DeleteKey = require('../DeleteKey');
+const DeleteKey = require('../DeleteKey');
 
 describe('DeleteKey', () => {
-  var content, selection;
+  let content, selection;
 
   beforeEach( () => {
     content = {
@@ -12,15 +12,15 @@ describe('DeleteKey', () => {
 
   describe('#matches', () => {
     it('matches event for delete key', () => {
-      var event = { keyCode: 46 };
-      var key = new DeleteKey(content, selection);
+      const event = { keyCode: 46 };
+      const key = new DeleteKey(content, selection);
 
       assert(key.matches(event));
     });
 
     it("doesn't match event if not delete", () => {
-      var event = {};
-      var key = new DeleteKey(content, selection);
+      const event = {};
+      const key = new DeleteKey(content, selection);
 
       assert(!key.matches(event));
     });

@@ -1,44 +1,44 @@
-var expect = require('expect');
-var assert = require('assert');
+const expect = require('expect');
+const assert = require('assert');
 
-var RangeSet = require('../RangeSet');
+const RangeSet = require('../RangeSet');
 
 describe('RangeSet', () => {
 
   describe('#includes', () => {
     it('is false for empty set', () => {
-      var set = new RangeSet();
+      const set = new RangeSet();
       assert( !set.includes({"range": [0,2]}) );
     });
     it('is false for overlapping range', () => {
-      var set = new RangeSet([{"range": [0,2]}]);
+      const set = new RangeSet([{"range": [0,2]}]);
       assert( !set.includes({"range": [0,10]}) );
     });
     it('is false for overlapping two ranges', () => {
-      var set = new RangeSet([{"range": [0,2]},{"range": [4,8]}]);
+      const set = new RangeSet([{"range": [0,2]},{"range": [4,8]}]);
       assert( !set.includes({"range": [1,5]}) );
     });
     it('is true for exact range', () => {
-      var set = new RangeSet([{"range": [2,4]}]);
+      const set = new RangeSet([{"range": [2,4]}]);
       assert( set.includes({"range": [2,4]}) );
     });
     it('is true for containing range', () => {
-      var set = new RangeSet([{"range": [0,10]}]);
+      const set = new RangeSet([{"range": [0,10]}]);
       assert( set.includes({"range": [2,4]}) );
     });
     it('is false if contains but value doesnt match', () => {
-      var set = new RangeSet([{"range": [2,4], "value": "foo"}]);
+      const set = new RangeSet([{"range": [2,4], "value": "foo"}]);
       assert( !set.includes({"range": [2,4], "value": "bar"}) );
     });
     it('is true if contains and value matches', () => {
-      var set = new RangeSet([{"range": [2,4], "value": "foo"}]);
+      const set = new RangeSet([{"range": [2,4], "value": "foo"}]);
       assert( set.includes({"range": [2,4], "value": "foo"}) );
     });
   });
 
   describe('#overlaps', () => {
     it('is false when the ranges dont overlap', () => {
-      var set = new RangeSet([{"range": [5,10]}]);
+      const set = new RangeSet([{"range": [5,10]}]);
 
       assert( !set.overlaps({"range": [0,5]}) );
       assert( !set.overlaps({"range": [10,12]}) );
@@ -46,59 +46,59 @@ describe('RangeSet', () => {
     });
 
     it('is true when the ranges overlap', () => {
-      var set = new RangeSet([{"range": [6,10]}]);
+      const set = new RangeSet([{"range": [6,10]}]);
 
       assert( set.overlaps({"range": [4,7]}) );
       assert( set.overlaps({"range": [8,12]}) );
     });
 
     it('is true when the range is included', () => {
-      var set = new RangeSet([{"range": [0,10]}]);
+      const set = new RangeSet([{"range": [0,10]}]);
       assert( set.overlaps({"range": [2,4]}) );
     });
   });
 
   describe('#add', () => {
     it('adds a range to an empty set', () => {
-      var set = new RangeSet();
-      var result = set.add({"range": [0,2]});
+      const set = new RangeSet();
+      const result = set.add({"range": [0,2]});
 
       expect(result).toEqual([{"range": [0,2]}]);
     });
     it('adds to a non-overlapping range', () => {
-      var set = new RangeSet([{"range": [0,2]}]);
-      var result = set.add({"range": [5,10]});
+      const set = new RangeSet([{"range": [0,2]}]);
+      const result = set.add({"range": [5,10]});
 
       expect(result).toEqual([{"range": [0,2]},{"range": [5,10]}]);
     });
     it('adds to an overlapping range', () => {
-      var set = new RangeSet([{"range": [0,2]}]);
-      var result = set.add({"range": [0,10]});
+      const set = new RangeSet([{"range": [0,2]}]);
+      const result = set.add({"range": [0,10]});
 
       expect(result).toEqual([{"range": [0,10]}]);
     });
     it('adds to two overlapping ranges', () => {
-      var set = new RangeSet([{"range": [0,2]},{"range": [4,8]}]);
-      var result = set.add({"range": [1,5]});
+      const set = new RangeSet([{"range": [0,2]},{"range": [4,8]}]);
+      const result = set.add({"range": [1,5]});
 
       expect(result).toEqual([{"range": [0,8]}]);
     });
     it('no-ops if exact range exists', () => {
-      var set = new RangeSet([{"range": [2,4]}]);
-      var result = set.add({"range": [2,4]});
+      const set = new RangeSet([{"range": [2,4]}]);
+      const result = set.add({"range": [2,4]});
 
       expect(result).toEqual([{"range": [2,4]}]);
     });
     it('no-ops if overlaops with range', () => {
-      var set = new RangeSet([{"range": [0,10]}]);
-      var result = set.add({"range": [2,4]});
+      const set = new RangeSet([{"range": [0,10]}]);
+      const result = set.add({"range": [2,4]});
 
       expect(result).toEqual([{"range": [0,10]}]);
     });
     it('adds ranges with values', () => {
-      var set = new RangeSet([{"range": [0,2], "value": "foo"},
+      const set = new RangeSet([{"range": [0,2], "value": "foo"},
                               {"range": [4,8], "value": "bar"}]);
-      var result = set.add({"range": [1,5], "value": "baz"});
+      const result = set.add({"range": [1,5], "value": "baz"});
 
       expect(result).toEqual([{"range": [0,1], "value": "foo"},
                               {"range": [1,5], "value": "baz"},
@@ -108,14 +108,14 @@ describe('RangeSet', () => {
 
   describe('#remove', () => {
     it('no-ops for an empty set', () => {
-      var set = new RangeSet();
-      var result = set.remove({"range": [0,2]});
+      const set = new RangeSet();
+      const result = set.remove({"range": [0,2]});
 
       expect(result).toEqual([]);
     });
     it('removes from an overlapping range', () => {
-      var set = new RangeSet([{"range": [0,2]}]);
-      var result = set.remove({"range": [0,10]});
+      const set = new RangeSet([{"range": [0,2]}]);
+      const result = set.remove({"range": [0,10]});
 
       expect(result).toEqual([]);
     });
@@ -125,8 +125,8 @@ describe('RangeSet', () => {
     //  xxxx
     // x    xxx
     it('removes from two overlapping ranges', () => {
-      var set = new RangeSet([{"range": [0,2]},{"range": [4,8]}]);
-      var result = set.remove({"range": [1,5]});
+      const set = new RangeSet([{"range": [0,2]},{"range": [4,8]}]);
+      const result = set.remove({"range": [1,5]});
 
       expect(result).toEqual([{"range": [0,1]},{"range": [5,8]}]);
     });
@@ -135,8 +135,8 @@ describe('RangeSet', () => {
     //   xx
     //   xx
     it('removes if exact range exists', () => {
-      var set = new RangeSet([{"range": [2,4]}]);
-      var result = set.remove({"range": [2,4]});
+      const set = new RangeSet([{"range": [2,4]}]);
+      const result = set.remove({"range": [2,4]});
 
       expect(result).toEqual([]);
     });
@@ -146,8 +146,8 @@ describe('RangeSet', () => {
     //   xx
     // xx  xxxxxx
     it('removes if overlaops with range', () => {
-      var set = new RangeSet([{"range": [0,10]}]);
-      var result = set.remove({"range": [2,4]});
+      const set = new RangeSet([{"range": [0,10]}]);
+      const result = set.remove({"range": [2,4]});
 
       expect(result).toEqual([{"range": [0,2]},{"range": [4,10]}]);
     });
@@ -155,36 +155,36 @@ describe('RangeSet', () => {
 
   describe('#intersect', () => {
     it('returns empty collection if there is no set', () => {
-      var set = new RangeSet();
-      var result = set.intersect({"range": [6,8]});
+      const set = new RangeSet();
+      const result = set.intersect({"range": [6,8]});
 
       expect(result).toEqual([]);
     });
 
     it('returns empty collection if there is no intersection', () => {
-      var set = new RangeSet([{"range": [2,4]}]);
-      var result = set.intersect({"range": [6,8]});
+      const set = new RangeSet([{"range": [2,4]}]);
+      const result = set.intersect({"range": [6,8]});
 
       expect(result).toEqual([]);
     });
 
     it('returns intersecting elements', () => {
-      var set = new RangeSet([{"range": [0,10]}]);
-      var result = set.intersect({"range": [2,4]});
+      const set = new RangeSet([{"range": [0,10]}]);
+      const result = set.intersect({"range": [2,4]});
 
       expect(result).toEqual([{"range": [2,4]}]);
     });
 
     it('returns multiple intersecting ranges', () => {
-      var set = new RangeSet([{"range": [0,5]}, {"range": [8,12]}]);
-      var result = set.intersect({"range": [4,10]});
+      const set = new RangeSet([{"range": [0,5]}, {"range": [8,12]}]);
+      const result = set.intersect({"range": [4,10]});
 
       expect(result).toEqual([{"range":[4,5]},{"range":[8,10]}]);
     });
 
     it('returns every intersecting range chunk', () => {
-      var set = new RangeSet([{"range": [15,19]}, {"range": [10,15]}]);
-      var result = set.intersect({"range": [0,20]});
+      const set = new RangeSet([{"range": [15,19]}, {"range": [10,15]}]);
+      const result = set.intersect({"range": [0,20]});
 
       expect(result).toEqual([
         {"range":[15,19]}, {"range":[10,15]}

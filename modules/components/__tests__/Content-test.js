@@ -1,31 +1,31 @@
-var assert = require('assert');
+const assert = require('assert');
 
-var React = require('react/addons');
-var { fromJS } = require('immutable');
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
+const React = require('react/addons');
+const { fromJS } = require('immutable');
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
 
-var Content = require('../Content.js');
+const Content = require('../Content.js');
 
 describe('Content', () => {
 
   // rendering
   it('should render sections', () => {
-    var content = {sections: [
+    const content = {sections: [
       { "id": "0000", "blocks": [] }
     ]};
 
-    var selection = {
+    const selection = {
       guids: () => { return { anchor: "", focus: "" }; },
       offsets: () => { return { anchor: "", focus: "" }; }
     };
 
-    var editorContent = render(
+    const editorContent = render(
       <Content content={fromJS(content)} selection={selection} />
     );
 
-    var component = findByClass(editorContent, 'arc-Editor-Section');
+    const component = findByClass(editorContent, 'arc-Editor-Section');
     assert(component);
   });
 });

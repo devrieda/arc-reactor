@@ -1,7 +1,7 @@
-var ReturnKey = require('../ReturnKey');
+const ReturnKey = require('../ReturnKey');
 
 describe('ReturnKey', () => {
-  var content, selection;
+  let content, selection;
 
   beforeEach( () => {
     content = {
@@ -12,22 +12,22 @@ describe('ReturnKey', () => {
 
   describe('#matches', () => {
     it('matches event for delete key', () => {
-      var event = { keyCode: 13 };
-      var key = new ReturnKey(content, selection);
+      const event = { keyCode: 13 };
+      const key = new ReturnKey(content, selection);
 
       assert(key.matches(event));
     });
 
     it('matches event for ctrl+m', () => {
-      var event = { ctrlKey: true, keyCode: 77 };
-      var key = new ReturnKey(content, selection);
+      const event = { ctrlKey: true, keyCode: 77 };
+      const key = new ReturnKey(content, selection);
 
       assert(key.matches(event));
     });
 
     it("doesn't match event if not delete", () => {
-      var event = {};
-      var key = new ReturnKey(content, selection);
+      const event = {};
+      const key = new ReturnKey(content, selection);
 
       assert(!key.matches(event));
     });

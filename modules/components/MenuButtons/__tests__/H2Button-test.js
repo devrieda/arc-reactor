@@ -1,34 +1,34 @@
-var expect = require('expect');
-var assert = require('assert');
+const expect = require('expect');
+const assert = require('assert');
 
-var React = require('react/addons');
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
-var { fromJS } = require('immutable');
+const React = require('react/addons');
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
+const { fromJS } = require('immutable');
 
-var H2Button = require('../H2Button');
+const H2Button = require('../H2Button');
 
 describe('H2Button', () => {
   it('should render', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       position: () => {}
     };
 
-    var component = render(
+    const component = render(
       <H2Button content={fromJS(content)} selection={selection} />
     );
 
-    var button = findByClass(component, 'arc-Editor-MenuButton--h3');
+    const button = findByClass(component, 'arc-Editor-MenuButton--h3');
     assert(button);
   });
 
   it('should be visible', () => {
-    var content = { sections: [] };
-    var selection = {
+    const content = { sections: [] };
+    const selection = {
       guids: () => {},
       offsets: () => {},
       position: () => {}
@@ -38,7 +38,7 @@ describe('H2Button', () => {
   });
 
   it("should modify content with handlePress", () => {
-    var content = {
+    const content = {
       sections: [{
         id: "aaaa",
         blocks: [
@@ -46,17 +46,17 @@ describe('H2Button', () => {
         ]
       }]
     };
-    var selection = {
+    const selection = {
       guids: () => { return { anchor: '0000', focus: '0000' }; },
       offsets: () => { return { anchor: 0, focus: 1 }; },
       position: () => {}
     };
 
-    var component = render(
+    const component = render(
       <H2Button content={fromJS(content)} selection={selection} />
     );
 
-    var result = component.handlePress().content.toJS();
+    const result = component.handlePress().content.toJS();
     expect(result.sections[0].blocks[0].type).toEqual('h3');
   });
 });

@@ -1,20 +1,20 @@
-var expect = require('expect');
-var assert = require('assert');
+const expect = require('expect');
+const assert = require('assert');
 
-var React = require('react/addons');
-var Immutable = require('immutable');
-var TestUtils = React.addons.TestUtils;
-var findByClass = TestUtils.findRenderedDOMComponentWithClass;
-var render = TestUtils.renderIntoDocument;
+const React = require('react/addons');
+const Immutable = require('immutable');
+const TestUtils = React.addons.TestUtils;
+const findByClass = TestUtils.findRenderedDOMComponentWithClass;
+const render = TestUtils.renderIntoDocument;
 
-var Block = require('../BaseBlock.js');
+const Block = require('../BaseBlock.js');
 
 describe('BaseBlock', () => {
   it('adds data align for centered text', () => {
-    var block = render(
+    const block = render(
       <Block type={'p'} text={''} data={Immutable.Map({ align: 'center'})} />
     );
-    var dom = React.findDOMNode(block);
+    const dom = React.findDOMNode(block);
 
     expect(dom.dataset.align).toBe('center');
   });
@@ -22,94 +22,94 @@ describe('BaseBlock', () => {
   // class names
   describe('building class names', () => {
     it('adds empty class if no text or blocks', () => {
-      var block = render(
+      const block = render(
         <Block type={'p'} text={''} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(dom.classList.contains('arc-Editor-Block--empty'));
     });
 
     it('doesnt add empty class if there is text', () => {
-      var block = render(
+      const block = render(
         <Block type={'p'} text={'hey'} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(!dom.classList.contains('arc-Editor-Block--empty'));
     });
 
     it('doesnt add empty class if there are sub-blocks', () => {
-      var blocks = [
+      const blocks = [
         {"id": "0000", "text": "foo"}
       ];
 
-      var block = render(
+      const block = render(
         <Block type={'p'} text={''} blocks={Immutable.fromJS(blocks)} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(!dom.classList.contains('arc-Editor-Block--empty'));
     });
 
     it('adds header class if h2, h3, h4', () => {
-      var block = render(
+      const block = render(
         <Block type={'h2'} text={'hey'} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(dom.classList.contains('arc-Editor-Block--header'));
     });
 
     it('doesnt add header class for lists', () => {
-      var block = render(
+      const block = render(
         <Block type={'ol'} text={'hey'} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(!dom.classList.contains('arc-Editor-Block--header'));
     });
 
     it('adds list class if ol, ul', () => {
-      var block = render(
+      const block = render(
         <Block type={'ol'} text={'hey'} blocks={Immutable.List()} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(dom.classList.contains('arc-Editor-Block--list'));
     });
 
     it('doesnt add list class for headers', () => {
-      var block = render(
+      const block = render(
         <Block type={'h2'} text={'hey'} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(!dom.classList.contains('arc-Editor-Block--list'));
     });
 
     it('adds first class if first block', () => {
-      var block = render(
+      const block = render(
         <Block type={'p'} text={'hey'} meta={Immutable.Map({first: true})}/>
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(dom.classList.contains('arc-Editor-Block--first'));
     });
 
     it('doesnt add first class if not first block', () => {
-      var block = render(
+      const block = render(
         <Block type={'p'} text={'hey'} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(!dom.classList.contains('arc-Editor-Block--first'));
     });
 
     it('adds id class', () => {
-      var block = render(
+      const block = render(
         <Block id={'0000'} type={'p'} text={'hey'} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(dom.classList.contains('arc-Editor-Block--0000'));
     });
 
     it('adds block type class', () => {
-      var block = render(
+      const block = render(
         <Block type={'h2'} text={'hey'} />
       );
-      var dom = React.findDOMNode(block);
+      const dom = React.findDOMNode(block);
       assert(dom.classList.contains('arc-Editor-Block--h2'));
     });
   });
@@ -117,19 +117,19 @@ describe('BaseBlock', () => {
   // rendering
   describe('rendering', () => {
     it('shows child list items', () => {
-      var blocks = [
+      const blocks = [
         {"id": "0000", "type": "li", "text": "foo"}
       ];
 
-      var block = render(
+      const block = render(
         <Block type={'ol'} text={'hey'} blocks={Immutable.fromJS(blocks)} />
       );
-      var component = findByClass(block, 'arc-Editor-Block--li');
+      const component = findByClass(block, 'arc-Editor-Block--li');
       assert(component);
     });
 
     it('shows line break if empty', () => {
-      var block = render(
+      const block = render(
         <Block type={'p'} text={''} />
       );
       expect(React.findDOMNode(block).innerHTML).toBe('<br>');
@@ -139,14 +139,14 @@ describe('BaseBlock', () => {
   // markup
   describe('with markup', () => {
     it('builds inline formatting', () => {
-      var markups = {
+      const markups = {
         "em": [{"range": [4,9]}]
       };
 
-      var block = render(
+      const block = render(
         <Block type={'p'} text={'hey there'} markups={Immutable.fromJS(markups)} />
       );
-      var formatted = 'hey <em class="arc-Editor-Block__em">there</em>';
+      const formatted = 'hey <em class="arc-Editor-Block__em">there</em>';
       expect(React.findDOMNode(block).innerHTML).toBe(formatted);
     });
   });

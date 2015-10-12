@@ -1,10 +1,10 @@
-var expect = require('expect');
+const expect = require('expect');
 
-var { fromJS } = require('immutable');
-var ToggleBlockType = require('../ToggleBlockType');
+const { fromJS } = require('immutable');
+const ToggleBlockType = require('../ToggleBlockType');
 
 describe('ToggleBlockType', () => {
-  var content;
+  let content;
 
   beforeEach(() => {
     content = {
@@ -19,36 +19,36 @@ describe('ToggleBlockType', () => {
 
   describe('#execute with a single block', () => {
     it('adds a block type', () => {
-      var block = {
+      const block = {
         "id": "c6a8",
         "type": "p",
         "text": "a"
       };
       content.sections[0].blocks = [block];
-      var manager = new ToggleBlockType(fromJS(content));
+      const manager = new ToggleBlockType(fromJS(content));
 
-      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 1 };
-      var result = manager.execute(guids, offsets, { type: 'h1' });
+      const guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 1 };
+      const result = manager.execute(guids, offsets, { type: 'h1' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].type).toBe('h1');
     });
 
     it('removes a block type', () => {
-      var block = {
+      const block = {
         "id": "c6a8",
         "type": "h1",
         "text": "a"
       };
       content.sections[0].blocks = [block];
-      var manager = new ToggleBlockType(fromJS(content));
+      const manager = new ToggleBlockType(fromJS(content));
 
-      var guids   = { anchor: 'c6a8', focus: 'c6a8' };
-      var offsets = { anchor: 0, focus: 1 };
-      var result = manager.execute(guids, offsets, { type: 'h1' });
+      const guids   = { anchor: 'c6a8', focus: 'c6a8' };
+      const offsets = { anchor: 0, focus: 1 };
+      const result = manager.execute(guids, offsets, { type: 'h1' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].type).toBe('p');
     });
 
@@ -63,7 +63,7 @@ describe('ToggleBlockType', () => {
      *            p
      */
     it('adds a block type to a list item', () => {
-      var blocks = [
+      const blocks = [
         {
           "id": "1000",
           "type": "p",
@@ -102,12 +102,12 @@ describe('ToggleBlockType', () => {
         }
       ];
       content.sections[0].blocks = blocks;
-      var manager = new ToggleBlockType(fromJS(content));
+      const manager = new ToggleBlockType(fromJS(content));
 
-      var guids   = { anchor: '0002', focus: '0002' };
-      var offsets = { anchor: 0, focus: 1 };
-      var result = manager.execute(guids, offsets, { type: 'h3' });
-      var resultBlocks = result.content.toJS().sections[0].blocks;
+      const guids   = { anchor: '0002', focus: '0002' };
+      const offsets = { anchor: 0, focus: 1 };
+      const result = manager.execute(guids, offsets, { type: 'h3' });
+      const resultBlocks = result.content.toJS().sections[0].blocks;
 
       expect(resultBlocks.length).toEqual(5);
       expect(resultBlocks[0].type).toBe('p');
@@ -124,70 +124,70 @@ describe('ToggleBlockType', () => {
   describe('#execute with multiple blocks', () => {
 
     it('adds a block type', () => {
-      var block1 = {
+      const block1 = {
         "id": "c6a8",
         "type": "p",
         "text": "a"
       };
-      var block2 = {
+      const block2 = {
         "id": "c6a9",
         "type": "p",
         "text": "b"
       };
       content.sections[0].blocks = [block1, block2];
-      var manager = new ToggleBlockType(fromJS(content));
+      const manager = new ToggleBlockType(fromJS(content));
 
-      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
-      var offsets = { anchor: 0, focus: 1 };
-      var result = manager.execute(guids, offsets, { type: 'h1' });
+      const guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      const offsets = { anchor: 0, focus: 1 };
+      const result = manager.execute(guids, offsets, { type: 'h1' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].type).toBe('h1');
       expect(blocks[1].type).toBe('h1');
     });
 
     it('removes block type across multiple blocks', () => {
-      var block1 = {
+      const block1 = {
         "id": "c6a8",
         "type": "h1",
         "text": "a"
       };
-      var block2 = {
+      const block2 = {
         "id": "c6a9",
         "type": "h1",
         "text": "b"
       };
       content.sections[0].blocks = [block1, block2];
-      var manager = new ToggleBlockType(fromJS(content));
+      const manager = new ToggleBlockType(fromJS(content));
 
-      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
-      var offsets = { anchor: 0, focus: 1 };
-      var result = manager.execute(guids, offsets, { type: 'h1' });
+      const guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      const offsets = { anchor: 0, focus: 1 };
+      const result = manager.execute(guids, offsets, { type: 'h1' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].type).toBe('p');
       expect(blocks[1].type).toBe('p');
     });
 
     it('adds block type to all blocks if a single one isnt formatted', () => {
-      var block1 = {
+      const block1 = {
         "id": "c6a8",
         "type": "h1",
         "text": "a"
       };
-      var block2 = {
+      const block2 = {
         "id": "c6a9",
         "type": "h1",
         "text": "b"
       };
       content.sections[0].blocks = [block1, block2];
-      var manager = new ToggleBlockType(fromJS(content));
+      const manager = new ToggleBlockType(fromJS(content));
 
-      var guids   = { anchor: 'c6a8', focus: 'c6a9' };
-      var offsets = { anchor: 0, focus: 1 };
-      var result = manager.execute(guids, offsets, { type: 'h1' });
+      const guids   = { anchor: 'c6a8', focus: 'c6a9' };
+      const offsets = { anchor: 0, focus: 1 };
+      const result = manager.execute(guids, offsets, { type: 'h1' });
 
-      var blocks = result.content.toJS().sections[0].blocks;
+      const blocks = result.content.toJS().sections[0].blocks;
       expect(blocks[0].type).toBe('p');
       expect(blocks[1].type).toBe('p');
     });
@@ -203,7 +203,7 @@ describe('ToggleBlockType', () => {
      *            p
      */
     it('adds a block type to a multiplelist item', () => {
-      var blocks = [
+      const blocks = [
         {
           "id": "1000",
           "type": "p",
@@ -242,12 +242,12 @@ describe('ToggleBlockType', () => {
         }
       ];
       content.sections[0].blocks = blocks;
-      var manager = new ToggleBlockType(fromJS(content));
+      const manager = new ToggleBlockType(fromJS(content));
 
-      var guids   = { anchor: '0001', focus: '0002' };
-      var offsets = { anchor: 0, focus: 1 };
-      var result = manager.execute(guids, offsets, { type: 'h3' });
-      var resultBlocks = result.content.toJS().sections[0].blocks;
+      const guids   = { anchor: '0001', focus: '0002' };
+      const offsets = { anchor: 0, focus: 1 };
+      const result = manager.execute(guids, offsets, { type: 'h3' });
+      const resultBlocks = result.content.toJS().sections[0].blocks;
 
       expect(resultBlocks.length).toEqual(6);
       expect(resultBlocks[0].type).toBe('p');

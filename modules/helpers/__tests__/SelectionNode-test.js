@@ -1,10 +1,10 @@
-var expect = require('expect');
-var assert = require('assert');
+const expect = require('expect');
+const assert = require('assert');
 
-var SelectionNode = require('../SelectionNode');
+const SelectionNode = require('../SelectionNode');
 
 describe('SelectionNode', () => {
-  var div, p1, p2, thisIs, strong, em, some, text, andMore;
+  let div, p1, p2, thisIs, strong, em, some, text, andMore;
 
   // this is some text
   // <p>this is <strong><em>some</em></strong> text</p>
@@ -53,42 +53,42 @@ describe('SelectionNode', () => {
 
     it('sets the node', () => {
       createNode();
-      var sn = new SelectionNode(em, 0);
+      const sn = new SelectionNode(em, 0);
 
       expect(sn.node).toBe(em);
     });
 
     it('sets the offset', () => {
       createNode();
-      var sn = new SelectionNode(em, 1);
+      const sn = new SelectionNode(em, 1);
 
       expect(sn.offset).toBe(1);
     });
 
     it('sets the domNode', () => {
       createNode();
-      var sn = new SelectionNode(thisIs, 1);
+      const sn = new SelectionNode(thisIs, 1);
 
       expect(sn.domNode).toBe(p1);
     });
 
     it('sets the block node', () => {
       createNode();
-      var sn = new SelectionNode(some, 1);
+      const sn = new SelectionNode(some, 1);
 
       expect(sn.blockNode).toBe(p1);
     });
 
     it('sets the guid', () => {
       createNode();
-      var sn = new SelectionNode(text, 1);
+      const sn = new SelectionNode(text, 1);
 
       expect(sn.guid).toBe('0101');
     });
 
     it('sets the block offset', () => {
       createNode();
-      var sn = new SelectionNode(some, 1);
+      const sn = new SelectionNode(some, 1);
 
       expect(sn.blockOffset).toBe(9);
     });
@@ -99,8 +99,8 @@ describe('SelectionNode', () => {
 
     it('finds text node offset for block node', () => {
       createNode();
-      var sn = new SelectionNode(some, 1);
-      var nodeOffset = sn.textNodeOffset();
+      const sn = new SelectionNode(some, 1);
+      const nodeOffset = sn.textNodeOffset();
 
       expect(nodeOffset.node.text).toBe(some.text);
       expect(nodeOffset.offset).toBe(1);
@@ -112,9 +112,9 @@ describe('SelectionNode', () => {
 
   //   it('finds all upstream node tag types', () => {
   //     createNode();
-  //     var sn = new SelectionNode(some, 1);
+  //     const sn = new SelectionNode(some, 1);
 
-  //     var types = sn.types();
+  //     const types = sn.types();
   //     expect(types[0]).toBe('em');
   //     expect(types[1]).toBe('strong');
   //     expect(types[2]).toBe('p');
@@ -128,11 +128,11 @@ describe('SelectionNode', () => {
   //     createNode();
 
   //     // no align=center
-  //     var sn = new SelectionNode(p2, 0);
+  //     const sn = new SelectionNode(p2, 0);
   //     assert(!sn.isCenter(sn));
 
   //     // has align=center
-  //     var sn = new SelectionNode(p1, 0);
+  //     const sn = new SelectionNode(p1, 0);
   //     assert(sn.isCenter(sn));
   //   })
 
@@ -140,8 +140,8 @@ describe('SelectionNode', () => {
   //     createNode();
 
   //     // only one is centered
-  //     var sn1 = new SelectionNode(p1, 0);
-  //     var sn2 = new SelectionNode(p2, 0);
+  //     const sn1 = new SelectionNode(p1, 0);
+  //     const sn2 = new SelectionNode(p2, 0);
   //     assert(!sn1.isCenter(sn2));
 
   //     // both are centered
@@ -157,15 +157,15 @@ describe('SelectionNode', () => {
       createNode();
 
       // add another block to focus on
-      var p = document.createElement('p');
+      const p = document.createElement('p');
       p.setAttribute('class', 'arc-Editor-Block arc-Editor-Block--0102');
       p.setAttribute('name',  '0102');
-      var text = document.createTextNode('text');
+      const text = document.createTextNode('text');
       p.appendChild(text);
 
       div.appendChild(p);
 
-      var sn = new SelectionNode(p1, 0);
+      const sn = new SelectionNode(p1, 0);
       expect(sn.guid).toBe('0101');
 
       sn.focusOn('0102', 0);
@@ -179,13 +179,13 @@ describe('SelectionNode', () => {
     // beg/end of block
     it('finds if cursor is at the beginning of a block', () => {
       createNode();
-      var sn = new SelectionNode(thisIs, 0);
+      const sn = new SelectionNode(thisIs, 0);
 
       assert(sn.begOfBlock());
     });
     it('finds if cursor is not at the beginning of a block', () => {
       createNode();
-      var sn = new SelectionNode(thisIs, 1);
+      const sn = new SelectionNode(thisIs, 1);
 
       assert(!sn.begOfBlock());
     });
@@ -195,13 +195,13 @@ describe('SelectionNode', () => {
 
     it('finds if cursor is at the end of a block', () => {
       createNode();
-      var sn = new SelectionNode(text, 5);
+      const sn = new SelectionNode(text, 5);
 
       assert(sn.endOfBlock());
     });
     it('finds if cursor is not at the end of a block', () => {
       createNode();
-      var sn = new SelectionNode(text, 0);
+      const sn = new SelectionNode(text, 0);
 
       assert(!sn.endOfBlock());
     });

@@ -1,10 +1,10 @@
-var expect = require('expect');
-var assert = require('assert');
+const expect = require('expect');
+const assert = require('assert');
 
-var Selection = require('../Selection');
+const Selection = require('../Selection');
 
 describe('Selection', () => {
-  var div, p1, p2, thisIs, strong, em, some, text, andMore;
+  let div, p1, p2, thisIs, strong, em, some, text, andMore;
 
   // this is some text
   // <p>this is <strong><em>some</em></strong> text</p>
@@ -49,11 +49,11 @@ describe('Selection', () => {
     return div;
   }
   function createSelection(startNode, endNode, startOffset, endOffset) {
-    var range = document.createRange();
+    const range = document.createRange();
     range.setStart(startNode, startOffset);
     range.setEnd(endNode, endOffset);
 
-    var selection = document.getSelection();
+    const selection = document.getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
     return selection;
@@ -63,9 +63,9 @@ describe('Selection', () => {
 
     it('sets text from doc selection', () => {
       createNode();
-      var sel = createSelection(some, some, 0, 4);
+      const sel = createSelection(some, some, 0, 4);
 
-      var selection = new Selection(sel);
+      const selection = new Selection(sel);
       expect(selection.text).toBe('some');
     });
   });
@@ -74,8 +74,8 @@ describe('Selection', () => {
 
     it('doesnt reselect if there is no anchor or focus', () => {
       createNode();
-      var sel = createSelection(some, some, 0, 4);
-      var selection = new Selection(sel);
+      const sel = createSelection(some, some, 0, 4);
+      const selection = new Selection(sel);
 
       selection.anchor = false;
       assert(!selection.reselect());
@@ -83,16 +83,16 @@ describe('Selection', () => {
 
     it('doesnt reselect if there is a selection range', () => {
       createNode();
-      var sel = createSelection(some, some, 0, 4);
-      var selection = new Selection(sel);
+      const sel = createSelection(some, some, 0, 4);
+      const selection = new Selection(sel);
 
       assert(!selection.reselect());
     });
 
     it('doesnt reselect if no start or end is found', () => {
       createNode();
-      var sel = createSelection(some, some, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(some, some, 0, 0);
+      const selection = new Selection(sel);
       selection.anchor.guid = 'foo';
 
       assert(!selection.reselect());
@@ -100,8 +100,8 @@ describe('Selection', () => {
 
     it('doesnt reselect range for collapsed text nodes', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, thisIs, 0, 0);
+      const selection = new Selection(sel);
       selection.selType = 'Range';
 
       selection.anchor.focusOn('0101', 9);
@@ -111,8 +111,8 @@ describe('Selection', () => {
 
     it('doesnt reselect range if range hasnt changed', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 4);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, thisIs, 0, 4);
+      const selection = new Selection(sel);
       selection.selType = 'Caret';
 
       selection.anchor.focusOn('0101', 0);
@@ -122,8 +122,8 @@ describe('Selection', () => {
 
     it('reselects range for range text nodes', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, thisIs, 0, 0);
+      const selection = new Selection(sel);
       selection.selType = 'Range';
 
       selection.anchor.focusOn('0101', 4);
@@ -133,17 +133,17 @@ describe('Selection', () => {
 
     it('reinitializes bounds after selection', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, thisIs, 0, 0);
+      const selection = new Selection(sel);
       selection.selType = 'Range';
 
-      var boundsBefore = selection.bounds;
+      const boundsBefore = selection.bounds;
 
       selection.anchor.focusOn('0101', 9);
       selection.focus.focusOn('0101', 12);
       selection.reselect();
 
-      var boundsAfter = selection.bounds;
+      const boundsAfter = selection.bounds;
 
       expect(boundsBefore.height).toNotBe(boundsAfter.height);
       expect(boundsBefore.width).toNotBe(boundsAfter.width);
@@ -157,11 +157,11 @@ describe('Selection', () => {
 
     it('focuses on given guid and offset', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, thisIs, 0, 0);
+      const selection = new Selection(sel);
 
-      var anchorCallback = sinon.spy();
-      var focusCallback  = sinon.spy();
+      const anchorCallback = sinon.spy();
+      const focusCallback  = sinon.spy();
       selection.anchor.focusOn = anchorCallback;
       selection.focus.focusOn  = focusCallback;
 
@@ -176,10 +176,10 @@ describe('Selection', () => {
   describe('#guids', () => {
 
     it('finds anchor and focus guids', () => {
-      var sel = createSelection(thisIs, andMore, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, andMore, 0, 0);
+      const selection = new Selection(sel);
 
-      var guids = selection.guids();
+      const guids = selection.guids();
       expect(guids.anchor).toBe('0101');
       expect(guids.focus).toBe('0102');
     });
@@ -189,10 +189,10 @@ describe('Selection', () => {
   describe('#offsets', () => {
 
     it('finds anchor and focus block offsets', () => {
-      var sel = createSelection(thisIs, andMore, 1, 2);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, andMore, 1, 2);
+      const selection = new Selection(sel);
 
-      var offsets = selection.offsets();
+      const offsets = selection.offsets();
       expect(offsets.anchor).toBe(1);
       expect(offsets.focus).toBe(2);
     });
@@ -201,10 +201,10 @@ describe('Selection', () => {
   describe('#position', () => {
     it('gives the anchor guid and offset', () => {
       createNode();
-      var sel = createSelection(thisIs, andMore, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, andMore, 0, 0);
+      const selection = new Selection(sel);
 
-      var position = selection.position();
+      const position = selection.position();
       expect(position.guid).toBe('0101');
       expect(position.offset).toBe(0);
     });
@@ -215,15 +215,20 @@ describe('Selection', () => {
 
     it('finds if the doc selection was a range', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 0);
-      var selection = new Selection(sel);
 
-      assert(!selection.isRange());
-
-      sel = createSelection(thisIs, thisIs, 0, 8);
-      selection = new Selection(sel);
+      const sel = createSelection(thisIs, thisIs, 0, 8);
+      const selection = new Selection(sel);
 
       assert(selection.isRange());
+    });
+
+    it('finds if the doc selection was not a range', () => {
+      createNode();
+
+      const sel = createSelection(thisIs, thisIs, 0, 0);
+      const selection = new Selection(sel);
+
+      assert(!selection.isRange());
     });
   });
 
@@ -232,15 +237,18 @@ describe('Selection', () => {
 
     it('finds if the selection crosses multiple blocks', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 0);
-      var selection = new Selection(sel);
-
-      assert(!selection.crossBlock());
-
-      sel = createSelection(thisIs, andMore, 0, 0);
-      selection = new Selection(sel);
+      const sel = createSelection(thisIs, andMore, 0, 0);
+      const selection = new Selection(sel);
 
       assert(selection.crossBlock());
+    });
+
+    it('finds if the selection doesnt cross multiple blocks', () => {
+      createNode();
+      const sel = createSelection(thisIs, thisIs, 0, 0);
+      const selection = new Selection(sel);
+
+      assert(!selection.crossBlock());
     });
   });
 
@@ -248,10 +256,10 @@ describe('Selection', () => {
 
     it('finds if the cursor is at the beginning of a block', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, thisIs, 0, 0);
+      const selection = new Selection(sel);
 
-      var anchorCallback = sinon.spy();
+      const anchorCallback = sinon.spy();
       selection.anchor.begOfBlock = anchorCallback;
 
       selection.begOfBlock();
@@ -264,10 +272,10 @@ describe('Selection', () => {
 
     it('finds if the cursor is at the end of a block', () => {
       createNode();
-      var sel = createSelection(thisIs, thisIs, 0, 0);
-      var selection = new Selection(sel);
+      const sel = createSelection(thisIs, thisIs, 0, 0);
+      const selection = new Selection(sel);
 
-      var focusCallback = sinon.spy();
+      const focusCallback = sinon.spy();
       selection.focus.endOfBlock = focusCallback;
 
       selection.endOfBlock();

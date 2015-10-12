@@ -1,7 +1,7 @@
-var BoldKey = require('../BoldKey');
+const BoldKey = require('../BoldKey');
 
 describe('BoldKey', () => {
-  var content, selection;
+  let content, selection;
 
   beforeEach( () => {
     content = {
@@ -31,29 +31,29 @@ describe('BoldKey', () => {
 
   describe('#matches', () => {
     it('matches event for meta and b', () => {
-      var event = { metaKey: true, keyCode: 66 };
-      var key = new BoldKey(content, selection);
+      const event = { metaKey: true, keyCode: 66 };
+      const key = new BoldKey(content, selection);
 
       assert(key.matches(event));
     });
 
     it('matches event for ctrl and b', () => {
-      var event = { ctrlKey: true, keyCode: 66 };
-      var key = new BoldKey(content, selection);
+      const event = { ctrlKey: true, keyCode: 66 };
+      const key = new BoldKey(content, selection);
 
       assert(key.matches(event));
     });
 
     it("doesn't match event if meta or ctrl is not", () => {
-      var event = { keyCode: 66 };
-      var key = new BoldKey(content, selection);
+      const event = { keyCode: 66 };
+      const key = new BoldKey(content, selection);
 
       assert(!key.matches(event));
     });
 
     it("doesn't match event if alt is pressed", () => {
-      var event = { metaKey: true, altKey: true, keyCode: 66 };
-      var key = new BoldKey(content, selection);
+      const event = { metaKey: true, altKey: true, keyCode: 66 };
+      const key = new BoldKey(content, selection);
 
       assert(!key.matches(event));
     });

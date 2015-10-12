@@ -56,7 +56,7 @@ describe('LinkButton', () => {
       <LinkButton content={fromJS(content)} selection={selection} />
     );
 
-    var result = component.handlePress('http://google.com').toJS();
+    var result = component.handlePress('http://google.com').content.toJS();
     var expected = [{"range":[0,1], "value": "http://google.com"}];
     expect(result.sections[0].blocks[0].markups.a).toEqual(expected);
   });
@@ -80,7 +80,7 @@ describe('LinkButton', () => {
       <LinkButton content={fromJS(content)} selection={selection} />
     );
 
-    var result = component.handlePress('google.com').toJS();
+    var result = component.handlePress('google.com').content.toJS();
     var expected = [{"range":[0,1], "value": "http://google.com"}];
     expect(result.sections[0].blocks[0].markups.a).toEqual(expected);
   });

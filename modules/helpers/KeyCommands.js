@@ -1,5 +1,4 @@
 var History    = require('./History');
-
 var ReturnKey  = require('./Keys/ReturnKey');
 var DeleteKey  = require('./Keys/DeleteKey');
 var BspaceKey  = require('./Keys/BspaceKey');
@@ -78,14 +77,7 @@ class KeyCommands {
         // stop stack here
         if (results.stopPropagation || keys.length === 0) {
           callback(results);
-
-          // save history for everything except undo/redo
-          if (!results.skipHistory) {
-            History.getInstance().push({
-              content: results.content,
-              position: selection.position()
-            });
-          }
+          this._saveHistory(results, selection);
 
         // next in the stack
         } else {
@@ -101,6 +93,16 @@ class KeyCommands {
 
   getKeys() {
     return this.keys;
+  }
+
+  // save history for everything except undo/redo
+  _saveHistory(results, selection) {
+    if (results.skipHistory) { return; }
+
+    History.getInstance().push({
+      content: results.content,
+      position: selection.position()
+    });
   }
 
   _insertKey(keyObj, before, after) {

@@ -56,7 +56,7 @@ describe('CenterButton', () => {
       <CenterButton content={fromJS(content)} selection={selection} />
     );
 
-    var result = component.handlePress().toJS();
+    var result = component.handlePress().content.toJS();
     expect(result.sections[0].blocks[0].data).toEqual({align: 'center'});
   });
 });

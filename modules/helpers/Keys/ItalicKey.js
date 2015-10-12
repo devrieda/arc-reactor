@@ -1,5 +1,3 @@
-var History = require('../History');
-
 var ToggleMarkup = require('../Manipulation/ToggleMarkup');
 
 var KEY_CODES = { 'i': 73 };

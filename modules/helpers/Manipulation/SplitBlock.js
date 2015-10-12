@@ -37,8 +37,10 @@ class SplitBlock {
 
     return {
       content: this.content,
-      guid: newBlock.get('id'),
-      offset: 0
+      position: {
+        guid: newBlock.get('id'),
+        offset: 0
+      }
     };
   }
 

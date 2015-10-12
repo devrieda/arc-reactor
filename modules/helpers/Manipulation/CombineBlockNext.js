@@ -22,8 +22,10 @@ class CombineBlockNext {
     if (next && next.get("type") === "figure") {
       return {
         content: this.content,
-        guid: block.get('id'),
-        offset: block.get("text").length
+        position: {
+          guid: block.get('id'),
+          offset: block.get("text").length
+        }
       };
     }
 
@@ -41,8 +43,10 @@ class CombineBlockNext {
 
       return {
         content: this.content,
-        guid: block.get('id'),
-        offset: block.get("text").length
+        position: {
+          guid: block.get('id'),
+          offset: block.get("text").length
+        }
       };
 
     // there is a next block in this section to combine with
@@ -54,17 +58,19 @@ class CombineBlockNext {
       this.content = this.content.setIn(path.concat("text"), newText);
 
       this._removeBlock(next.get("id"));
+
       return {
         content: this.content,
-        guid: next.get('id'),
-        offset: offset
+        position: {
+          guid: block.get('id'),
+          offset: offset
+        }
       };
 
     } else {
       return {
         content: this.content,
-        guid: null,
-        offset: null
+        position: null
       };
     }
   }

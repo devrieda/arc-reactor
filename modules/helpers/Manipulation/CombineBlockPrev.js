@@ -21,8 +21,10 @@ class CombineBlockPrev {
     if (prev && prev.get("type") === "figure") {
       return {
         content: this.content,
-        guid: block.get('id'),
-        offset: 0
+        position: {
+          guid: block.get('id'),
+          offset: 0
+        }
       };
     }
 
@@ -40,8 +42,10 @@ class CombineBlockPrev {
 
       return {
         content: this.content,
-        guid: block.get('id'),
-        offset: 0
+        position: {
+          guid: block.get('id'),
+          offset: 0
+        }
       };
 
     // there is a prev block in this section to combine with
@@ -56,12 +60,14 @@ class CombineBlockPrev {
       this._removeBlock(block.get('id'));
       return {
         content: this.content,
-        guid: prev.get('id'),
-        offset: offset
+        position: {
+          guid: prev.get('id'),
+          offset: offset
+        }
       };
 
     } else {
-      return { content: this.content, guid: null, offset: null };
+      return { content: this.content, position: null };
     }
   }
 

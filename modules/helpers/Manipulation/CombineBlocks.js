@@ -37,8 +37,10 @@ class CombineBlocks {
 
     return {
       content: this.content,
-      guid: anchor.get('id'),
-      offset: offsets.anchor
+      position: {
+        guid: anchor.get('id'),
+        offset: offsets.anchor
+      }
     };
   }
 

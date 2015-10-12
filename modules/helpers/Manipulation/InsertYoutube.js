@@ -26,8 +26,10 @@ class InsertYoutube {
     this.content = this.content.setIn(path, block);
     return {
       content: this.content,
-      guid: block.get('id'),
-      offset: 0
+      position: {
+        guid: block.get('id'),
+        offset: 0
+      }
     };
   }
 

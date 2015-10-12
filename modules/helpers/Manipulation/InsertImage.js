@@ -18,8 +18,10 @@ class InsertImage {
     this.content = this.content.setIn(path, block);
     return {
       content: this.content,
-      guid: block.get('id'),
-      offset: 0
+      position: {
+        guid: block.get('id'),
+        offset: 0
+      }
     };
   }
 
@@ -41,8 +43,10 @@ class InsertImage {
       var content = this.content.setIn(path, block);
       callback({
         content: content,
-        guid: block.get('id'),
-        offset: 0
+        position: {
+          guid: block.get('id'),
+          offset: 0
+        }
       });
     };
     img.src = src;

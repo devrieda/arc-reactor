@@ -21,8 +21,7 @@ class ChangeText {
 
     return {
       content: this.content,
-      guid: null,
-      offset: null
+      position: null
     };
   }
 

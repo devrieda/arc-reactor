@@ -17,8 +17,10 @@ class PrependBlock {
     this._insertBlock('p', 'before', guid);
     return {
       content: this.content,
-      guid: block.get('id'),
-      offset: 0
+      position: {
+        guid: block.get('id'),
+        offset: 0
+      }
     };
   }
 

@@ -19,8 +19,10 @@ class InsertNewline {
 
     return {
       content: this.content,
-      guid: block.get('id'),
-      offset: offsets.focus + 1
+      position: {
+        guid: block.get('id'),
+        offset: offsets.focus + 1
+      }
     };
   }
 

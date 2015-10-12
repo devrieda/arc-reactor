@@ -23,11 +23,7 @@ class ToggleMarkup {
       this._toggleMultiBlockMarkup(paths, offsets, type, value);
     }
 
-    return {
-      content: this.content,
-      guid: null,
-      offset: null
-    };
+    return { content: this.content, position: null };
   }
 
   /**

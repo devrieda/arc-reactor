@@ -35,7 +35,6 @@ class OtherKey extends BaseKey {
   }
 
   up(callback) {
-    console.log(this.selection.guids())
     var guids = this.selection.guids();
     var offsets = this.selection.offsets();
 
@@ -55,12 +54,8 @@ class OtherKey extends BaseKey {
 
   _complete(results, callback) {
     var content = results ? results.content : this.content;
+    var position = results ? results.position : null;
     this.saveHistory(content);
-
-    let position = null;
-    if (results && results.guid) {
-      position = { guid: results.guid, offset: results.offset };
-    }
 
     callback({
       content: content,

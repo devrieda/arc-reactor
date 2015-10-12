@@ -17,8 +17,10 @@ class DeleteFigure {
     block = Immutable.Map(this._newBlock('p', ''));
     return {
       content: this.content.setIn(path, block),
-      guid: block.get('id'),
-      offset: 0
+      position: {
+        guid: block.get('id'),
+        offset: 0
+      }
     };
   }
 

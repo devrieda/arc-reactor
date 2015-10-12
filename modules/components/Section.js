@@ -2,20 +2,7 @@ const React = require('react/addons');
 const PureRenderMixin = React.addons.PureRenderMixin;
 const Immutable = require('immutable');
 const cx = require("classnames");
-
-const Paragraph  = require('./Blocks/Paragraph');
-const Header1    = require('./Blocks/Header1');
-const Header2    = require('./Blocks/Header2');
-const Header3    = require('./Blocks/Header3');
-const Blockquote = require('./Blocks/Blockquote');
-const List       = require('./Blocks/List');
-const Image      = require('./Blocks/Image');
-const Youtube    = require('./Blocks/Youtube');
-
-// all block types
-const blockTypes = [
-  Paragraph, Header1, Header2, Header3, Blockquote, List, Image, Youtube
-];
+const Blocks = require("../helpers/Integration/Blocks");
 
 const { object, string, instanceOf } = React.PropTypes;
 
@@ -42,12 +29,12 @@ const Section = React.createClass({
 
   // find which type of block matches
   _renderBlock(block) {
-    const matching = blockTypes.filter( (BlockClass) => {
+    const matching = Blocks.filter( (BlockClass) => {
       return BlockClass.matches(block);
     });
 
-    // default to P
-    const BlockType = matching[0] || Paragraph;
+    // default to Paragraph (first block)
+    const BlockType = matching[0] || Blocks[0];
 
     return (
       <BlockType

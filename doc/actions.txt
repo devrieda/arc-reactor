@@ -106,6 +106,10 @@ direct
       middle,end
         - deleteChar
 
+  down
+    figure selected
+      - appendBlock
+
   other
     range
       cross
@@ -136,6 +140,17 @@ direct
     ctrl-h: delete key
 
     http://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
+
+Base Plugins
+  - blockquote
+  - headers
+  - bold
+  - italics
+  - anchor
+  - images
+  - video
+  - code
+  - center
 
 Plugin integration points
   - key commands

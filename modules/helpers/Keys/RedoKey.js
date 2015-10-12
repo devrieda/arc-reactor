@@ -1,11 +1,11 @@
 var History = require('../History');
-var BaseKey = require('./BaseKey');
 
 var KEY_CODES = { 'z': 90, 'y': 89  };
 
-class RedoKey extends BaseKey {
+class RedoKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -31,6 +31,10 @@ class RedoKey extends BaseKey {
       preventDefault: true,
       emit: true
     });
+  }
+
+  up(callback) {
+    callback({ content: this.content });
   }
 }
 

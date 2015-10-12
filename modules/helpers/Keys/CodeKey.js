@@ -1,12 +1,13 @@
-var BaseKey = require('./BaseKey');
+var History = require('../History');
 
 var ToggleBlockType = require('../Manipulation/ToggleBlockType');
 
 var KEY_CODES = { '6': 54 };
 
-class CodeKey extends BaseKey {
+class CodeKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -29,8 +30,15 @@ class CodeKey extends BaseKey {
     this._complete(results, callback);
   }
 
+  up(callback) {
+    callback({ content: this.content });
+  }
+
   _complete(results, callback) {
-    this.saveHistory(results.content);
+    History.getInstance().push({
+      content: results.content,
+      position: this.selection.position()
+    });
 
     callback({
       content: results.content,

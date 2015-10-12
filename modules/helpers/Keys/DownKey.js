@@ -1,13 +1,14 @@
-var BaseKey = require('./BaseKey');
+var History = require('../History');
 
 var AppendBlock = require('../Manipulation/AppendBlock');
 var ContentFinder = require('../ContentFinder');
 
 var KEY_CODES = { 'down': 40 };
 
-class DownKey extends BaseKey {
+class DownKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -22,12 +23,12 @@ class DownKey extends BaseKey {
     if (this.selection.isFigure()) {
       this._appendBlockAfterFigure(callback);
     } else {
-      callback(this.defaultResponse());
+      callback({ content: this.content });
     }
   }
 
   up(callback) {
-    callback(this.defaultResponse());
+    callback({ content: this.content });
   }
 
   _appendBlockAfterFigure(callback) {
@@ -48,7 +49,10 @@ class DownKey extends BaseKey {
   }
 
   _complete(results, callback) {
-    this.saveHistory(results.content);
+    History.getInstance().push({
+      content: results.content,
+      position: this.selection.position()
+    });
 
     callback({
       content: results.content,

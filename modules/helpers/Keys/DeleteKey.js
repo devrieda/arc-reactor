@@ -1,4 +1,4 @@
-var BaseKey = require('./BaseKey');
+var History = require('../History');
 
 var CombineBlocks    = require('../Manipulation/CombineBlocks');
 var CombineBlockNext = require('../Manipulation/CombineBlockNext');
@@ -6,9 +6,10 @@ var DeleteFigure     = require('../Manipulation/DeleteFigure');
 
 var KEY_CODES = { 'delete': 46 };
 
-class DeleteKey extends BaseKey {
+class DeleteKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -37,10 +38,18 @@ class DeleteKey extends BaseKey {
     this._complete(results, callback);
   }
 
+  up(callback) {
+    callback({ content: this.content });
+  }
+
   _complete(results, callback) {
     var content = results ? results.content : this.content;
     var position = results ? results.position : null;
-    this.saveHistory(content);
+
+    History.getInstance().push({
+      content: content,
+      position: this.selection.position()
+    });
 
     callback({
       content: content,

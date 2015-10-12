@@ -1,10 +1,9 @@
-var BaseKey = require('./BaseKey');
-
 var KEY_CODES = { 'up': 38 };
 
-class UpKey extends BaseKey {
+class UpKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -16,11 +15,11 @@ class UpKey extends BaseKey {
   }
 
   down(callback) {
-    callback(this.defaultResponse());
+    callback({ content: this.content });
   }
 
   up(callback) {
-    callback(this.defaultResponse());
+    callback({ content: this.content });
   }
 }
 

@@ -1,4 +1,4 @@
-var BaseKey = require('./BaseKey');
+var History = require('../History');
 
 var AppendBlock   = require('../Manipulation/AppendBlock');
 var PrependBlock  = require('../Manipulation/PrependBlock');
@@ -9,9 +9,10 @@ var InsertNewline = require('../Manipulation/InsertNewline');
 
 var KEY_CODES = { 'return': 13, 'm': 77 };
 
-class ReturnKey extends BaseKey {
+class ReturnKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -67,10 +68,18 @@ class ReturnKey extends BaseKey {
     this._complete(results, callback, true);
   }
 
+  up(callback) {
+    callback({ content: this.content });
+  }
+
   _complete(results, callback, prevent) {
     var content = results ? results.content : this.content;
     var position = results ? results.position : null;
-    this.saveHistory(content);
+
+    History.getInstance().push({
+      content: content,
+      position: this.selection.position()
+    });
 
     callback({
       content: content,

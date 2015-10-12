@@ -1,11 +1,11 @@
 var History = require('../History');
-var BaseKey = require('./BaseKey');
 
 var KEY_CODES = { 'z': 90 };
 
-class UndoKey extends BaseKey {
+class UndoKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -30,6 +30,10 @@ class UndoKey extends BaseKey {
       preventDefault: true,
       emit: true
     });
+  }
+
+  up(callback) {
+    callback({ content: this.content });
   }
 }
 

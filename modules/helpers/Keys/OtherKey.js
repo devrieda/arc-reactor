@@ -1,4 +1,4 @@
-var BaseKey = require('./BaseKey');
+var History = require('../History');
 
 var ChangeText = require('../Manipulation/ChangeText');
 var CombineBlocks = require('../Manipulation/CombineBlocks');
@@ -8,9 +8,10 @@ var KEY_CODES = {
   'left': 37, 'up': 38, 'right': 39, 'down': 40
 };
 
-class OtherKey extends BaseKey {
+class OtherKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -55,7 +56,11 @@ class OtherKey extends BaseKey {
   _complete(results, callback) {
     var content = results ? results.content : this.content;
     var position = results ? results.position : null;
-    this.saveHistory(content);
+
+    History.getInstance().push({
+      content: content,
+      position: this.selection.position()
+    });
 
     callback({
       content: content,

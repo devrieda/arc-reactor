@@ -1,9 +1,9 @@
 var KEY_CODES = { 'u': 85 };
-var BaseKey = require('./BaseKey');
 
-class UnderlineKey extends BaseKey {
+class UnderlineKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -27,6 +27,10 @@ class UnderlineKey extends BaseKey {
       preventDefault: true,
       emit: true
     });
+  }
+
+  up(callback) {
+    callback({ content: this.content });
   }
 }
 

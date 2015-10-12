@@ -1,10 +1,9 @@
 var expect = require('expect');
 
 var KeyCommands = require('../KeyCommands');
-var BaseKey = require('../Keys/BaseKey');
 
 var specialStub = sinon.spy();
-class SpecialKey extends BaseKey {
+class SpecialKey {
   static getName() {
     return 'special-key';
   }
@@ -20,10 +19,14 @@ class SpecialKey extends BaseKey {
       content: {a: 1}, selection: "b", stopPropagation: true
     });
   }
+
+  up(callback) {
+    callback({ content: this.content });
+  }
 }
 
 var magicStub = sinon.spy();
-class MagicKey extends BaseKey {
+class MagicKey {
   static getName() {
     return 'magic-key';
   }
@@ -38,6 +41,10 @@ class MagicKey extends BaseKey {
     callback({
       content: {b: 2}, selection: "d", stopPropagation: true
     });
+  }
+
+  up(callback) {
+    callback({ content: this.content });
   }
 }
 

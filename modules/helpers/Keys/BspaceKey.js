@@ -1,4 +1,4 @@
-var BaseKey = require('./BaseKey');
+var History = require('../History');
 
 var CombineBlocks    = require('../Manipulation/CombineBlocks');
 var CombineBlockPrev = require('../Manipulation/CombineBlockPrev');
@@ -7,9 +7,10 @@ var DeleteFigure     = require('../Manipulation/DeleteFigure');
 
 var KEY_CODES = { 'bspace': 8 };
 
-class BspaceKey extends BaseKey {
+class BspaceKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -49,10 +50,18 @@ class BspaceKey extends BaseKey {
     this._complete(results, callback);
   }
 
+  up(callback) {
+    callback({ content: this.content });
+  }
+
   _complete(results, callback) {
     var content = results ? results.content : this.content;
     var position = results ? results.position : null;
-    this.saveHistory(content);
+
+    History.getInstance().push({
+      content: content,
+      position: this.selection.position()
+    });
 
     callback({
       content: content,

@@ -1,12 +1,13 @@
-var BaseKey = require('./BaseKey');
+var History = require('../History');
 
 var ToggleMarkup = require('../Manipulation/ToggleMarkup');
 
 var KEY_CODES = { 'i': 73 };
 
-class ItalicKey extends BaseKey {
+class ItalicKey {
   constructor(content, selection) {
-    super(content, selection);
+    this.content   = content;
+    this.selection = selection;
   }
 
   static getName() {
@@ -29,8 +30,15 @@ class ItalicKey extends BaseKey {
     this._complete(results, callback);
   }
 
+  up(callback) {
+    callback({ content: this.content });
+  }
+
   _complete(results, callback) {
-    this.saveHistory(results.content);
+    History.getInstance().push({
+      content: results.content,
+      position: this.selection.position()
+    });
 
     callback({
       content: results.content,

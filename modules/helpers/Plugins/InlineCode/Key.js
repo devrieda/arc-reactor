@@ -21,30 +21,27 @@ class Key {
   down(callback) {
     const guids   = this.selection.guids();
     const offsets = this.selection.offsets();
+    const results = this._toggleBlockType().execute(guids, offsets, { type: 'pre' });
 
-    const toggle  = ToggleBlockType(this.content);
-    const results = toggle.execute(guids, offsets, { type: 'pre' });
-
-    this._saveHistory(results.content, this.selection.position());
-    this._respond(callback, results.content, true, true, true);
+    this._complete(results, callback);
   }
 
   up(callback) {
-    this._respond(callback);
+    callback({ content: this.content });
   }
 
-  _saveHistory(content, position) {
-    History.getInstance().push({ content, position });
-  }
-
-  _respond(callback, content, selection, stop, prevent, emit) {
+  _complete(results, callback) {
     callback({
-      content: content || this.content,
-      selection: selection || this.selection,
-      stopPropagation: stop || false,
-      preventDefault: prevent || false,
-      emit: emit || false,
+      content: results.content,
+      position: null,
+      stopPropagation: true,
+      preventDefault: true,
+      emit: true
     });
+  }
+
+  _toggleBlockType() {
+    return new ToggleBlockType(this.content);
   }
 }
 

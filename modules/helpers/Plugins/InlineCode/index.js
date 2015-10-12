@@ -1,3 +1,5 @@
+const InlineCodeBlock = require("./Block");
+
 const InlineCode = {
   getBlocks() {
     return [];

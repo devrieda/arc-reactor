@@ -150,7 +150,6 @@ const Editor = React.createClass({
 
   // pasting needs to modify the content
   handlePaste(e) {
-    e.preventDefault();
     const { content, selection } = EditorStore.get();
 
     const cbHandler = new ClipboardHandler(content, selection);

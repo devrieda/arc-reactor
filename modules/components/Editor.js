@@ -15,6 +15,42 @@ var EditorStore = require('../stores/EditorStore');
 
 var { object, func } = React.PropTypes;
 
+/**
+ * LIFECYCLE
+ *   - default props
+ *     - get document selection
+ *
+ *   - will mount
+ *     - set store state
+ *     - set initial focus position
+ *     - push initial history
+ *
+ *   - did mount
+ *     - observe document for clicks
+ *     - start listening to store
+ *
+ *   - will unmount
+ *     - stop observing document for clicks
+ *     - stop listening to store
+ *
+ *   - did update
+ *     - reselect range, update selection bounds
+ *     - check selection
+ *
+ * EVENTS
+ *   - document click
+ *     - check the selection
+ *   - click
+ *     - check the selection
+ *   - keyDown
+ *     - run through key stack
+ *   - keyUp
+ *     - run through key stack
+ *     - check the selection
+ *   - paste
+ *   - menuChange
+ *
+ */
 var Editor = React.createClass({
   propTypes: {
     content: object,
@@ -22,6 +58,7 @@ var Editor = React.createClass({
     onChange: func
   },
 
+  // get initial document selection
   getDefaultProps() {
     return {
       content: { sections: [] },
@@ -30,68 +67,62 @@ var Editor = React.createClass({
     };
   },
 
-  statics: {
-    install() {
-      console.log('install');
-    }
-  },
-
-  getInitialState() {
-    // create immutable map from the content prop
-    var map = Immutable.fromJS(this.props.content);
-
-    // focus on first element
-    var selection = this.props.selection;
-    selection.focusOn(map.getIn(['sections', 0, 'blocks', 0, 'id']), 0);
-
-    return {
-      content: map,
-      selection: selection
-    };
-  },
+  // ------ LIFECYCLE METHODS ------ //
 
   componentWillMount() {
-    var { content, selection } = this.state;
+    var content = Immutable.fromJS(this.props.content);
+    var selection = this.props.selection;
 
-    // setup initial store from the state
+    // focus on first element
+    var guid = content.getIn(['sections', 0, 'blocks', 0, 'id']);
+    selection.focusOn(guid, 0);
+
+    // setup initial store state from props
     EditorStore.set({ content: content, selection: selection }, false);
 
     // initial step in history
     History.getInstance().push({
       content: content,
-      position: selection.position()
+      position: { guid: guid, offset: 0 },
     });
 
+    // setup key command stack
     this.keys = KeyCommands.getInstance();
   },
 
   // handle clicking outside the editor
   componentDidMount() {
     EditorStore.addChangeListener(this._onChange);
-    document.addEventListener("click", this.handleClick);
+    document.addEventListener("click", this.handleDocumentClick);
   },
+
   componentWillUnmount() {
     EditorStore.removeChangeListener(this._onChange);
-    document.removeEventListener("click", this.handleClick);
+    document.removeEventListener("click", this.handleDocumentClick);
   },
 
   // if content changed, selection may have changed
   componentDidUpdate() {
     var { selection } = EditorStore.get();
+
     if (selection.reselect() || selection.rebound()) {
       this._checkSelection();
     }
   },
 
+
+  // ------ EVENT HANDLERS ------ //
+
+  handleDocumentClick(e) {
+    if (!React.findDOMNode(this.refs.editor).contains(e.target)) {
+      setTimeout(this._checkSelection, 0);
+    }
+  },
+
+  // clicks triggers selection check
   handleClick(e) {
     this.target = e.target;
     setTimeout(this._checkSelection, 0);
-  },
-
-  handlePaste(e) {
-    var { content, selection } = EditorStore.get();
-    var cbHandler = new ClipboardHandler(content, selection);
-    cbHandler.paste(e);
   },
 
   // delegate all key commands to the command stack
@@ -101,7 +132,7 @@ var Editor = React.createClass({
 
     // execute commands that match key down
     var { content, selection } = EditorStore.get();
-    this.keys.execute(e, content, selection, this._updateResults);
+    this.keys.execute(e, content, selection, this._updateKeyResults);
   },
 
   // simulate meta key since it doesn't work in some browsers
@@ -110,53 +141,36 @@ var Editor = React.createClass({
 
     // execute commands that match key down
     var { content, selection } = EditorStore.get();
-    this.keys.execute(e, content, selection, this._updateResults);
+    this.keys.execute(e, content, selection, this._updateKeyResults);
 
+    // need to check the selection to see if anything changed
     this._checkSelection(true, e.keyCode);
-    this.callbackChange();
+    this._callbackChange();
   },
 
-  handleChangeMenu(sel) {
-    EditorStore.set({ selection: sel });
+  // pasting needs to modify the content
+  handlePaste(e) {
+    e.preventDefault();
+    var { content, selection } = EditorStore.get();
+
+    var cbHandler = new ClipboardHandler(content, selection);
+    cbHandler.paste(e);
   },
 
-  // option 'onlyChanges' only emits when
-  _checkSelection(onlyChanges, keyCode) {
-    var target = !keyCode ? this.target : null;
-    var newSelection = new Selection(document.getSelection(), target);
-    var emit = true;
-
-    // only emit if range type changes
-    if (onlyChanges) {
-      var oldRange = EditorStore.get().selection.isRange();
-      var newRange = newSelection.isRange();
-      var arrowKeys = [37, 38, 39, 40].indexOf(keyCode) !== -1;
-      emit = arrowKeys || oldRange !== newRange;
-    }
-
-    EditorStore.set({ selection: newSelection }, emit);
+  // reinstate the selection when they cancel adding a link value
+  handleChangeMenu(selection) {
+    EditorStore.set({ selection: selection });
   },
 
-  _updateResults(results) {
-    if (!results) { return; }
 
-    var newState = { content: results.content };
-
-    // update if selection changed
-    if (results.block) {
-      var { selection } = this.state;
-      selection.focusOn(results.block, results.offset);
-      newState.selection = selection;
-    }
-
-    EditorStore.set(newState, results.emit);
-  },
+  // ------ RENDER ------ //
 
   render() {
     var { content, selection, linkState } = EditorStore.get();
 
     return (
       <div className="arc-Editor"
+        ref="editor"
         onMouseUp={this.handleClick}
         onKeyUp={this.handleKeyUp}
         onKeyDown={this.handleKeyDown}
@@ -192,12 +206,65 @@ var Editor = React.createClass({
     );
   },
 
-  _onChange() {
-    this.setState(EditorStore.get());
-    this.callbackChange();
+  /**
+   * Update selection state based on the document selection
+   *
+   * onlyChanges - only emits if there are changes in range
+   * keyCode     - used to track when we're using arrow keys
+   */
+  _checkSelection(onlyChanges, keyCode) {
+    var target = !keyCode ? this.target : null;
+    var newSelection = new Selection(document.getSelection(), target);
+    var emit = true;
+
+    // only emit if range type changes or we're using arrow keys
+    if (onlyChanges) {
+      var oldRange = EditorStore.get().selection.isRange();
+      var newRange = newSelection.isRange();
+      var rangeTypeChanged = oldRange !== newRange;
+      var arrowKeys = [37, 38, 39, 40].indexOf(keyCode) !== -1;
+      emit = arrowKeys || rangeTypeChanged;
+    }
+
+    EditorStore.set({ selection: newSelection }, emit);
   },
 
-  callbackChange() {
+  /**
+   * Update state from results of a key(up|down) operation
+   *
+   * results:
+   *   content - the updated content data map
+   *   block   - the new block to focus on
+   *   offset  - the cursor position to focus on in the block
+   *   emit    - should we emit the change
+   */
+  _updateKeyResults(results) {
+    if (!results) { return; }
+
+    var newState = { content: results.content };
+
+    // update if selection changed
+    if (results.block) {
+      var { selection } = EditorStore.get();
+      selection.focusOn(results.block, results.offset)
+      newState.selection = selection;
+    }
+
+    EditorStore.set(newState, results.emit);
+  },
+
+  /**
+   * Handle when the store changes, update the component
+   */
+  _onChange() {
+    this.forceUpdate();
+    this._callbackChange();
+  },
+
+  /**
+   * Send content back to the onChange callback if it has changed
+   */
+  _callbackChange() {
     var { content } = EditorStore.get();
     if (this.sentContent === content) return;
 

@@ -1,8 +1,8 @@
-var CombineBlocks    = require('../Manipulation/CombineBlocks');
-var CombineBlockNext = require('../Manipulation/CombineBlockNext');
-var DeleteFigure     = require('../Manipulation/DeleteFigure');
+const CombineBlocks    = require('../Manipulation/CombineBlocks');
+const CombineBlockNext = require('../Manipulation/CombineBlockNext');
+const DeleteFigure     = require('../Manipulation/DeleteFigure');
 
-var KEY_CODES = { 'delete': 46 };
+const KEY_CODES = { 'delete': 46 };
 
 class DeleteKey {
   constructor(content, selection) {
@@ -19,9 +19,9 @@ class DeleteKey {
   }
 
   down(callback) {
-    var guids = this.selection.guids();
-    var offsets = this.selection.offsets();
-    var results;
+    const guids = this.selection.guids();
+    const offsets = this.selection.offsets();
+    let results;
 
     if (this.selection.isFigure() && !this.selection.isCaption()) {
       results = this._deleteFigure().execute(guids);
@@ -41,8 +41,8 @@ class DeleteKey {
   }
 
   _complete(results, callback) {
-    var content = results ? results.content : this.content;
-    var position = results ? results.position : null;
+    const content = results ? results.content : this.content;
+    const position = results ? results.position : null;
 
     callback({
       content: content,

@@ -1,4 +1,4 @@
-var SelectionNode = require('./SelectionNode');
+const SelectionNode = require('./SelectionNode');
 
 // Selection is an abstraction of the Dom selection object. It composes the 
 // Dom selection and caches additional info to make it simpler to interact
@@ -12,7 +12,7 @@ class Selection {
   }
 
   _initFromSelection() {
-    var { anchorNode, anchorOffset, focusNode, focusOffset } = this.selection;
+    const { anchorNode, anchorOffset, focusNode, focusOffset } = this.selection;
 
     this.anchor = new SelectionNode(anchorNode, anchorOffset, this.target);
     this.focus = new SelectionNode(focusNode, focusOffset, this.target);
@@ -29,13 +29,13 @@ class Selection {
   _flipReverseNodesSelection() {
     if (!this.anchor.node || !this.focus.node) { return; }
 
-    var relative = this.anchor.node.compareDocumentPosition(this.focus.node);
-    var preceeding = relative === Node.DOCUMENT_POSITION_PRECEDING;
-    var backwards = relative === 0 && this.anchor.blockOffset > this.focus.blockOffset;
+    const relative = this.anchor.node.compareDocumentPosition(this.focus.node);
+    const preceeding = relative === Node.DOCUMENT_POSITION_PRECEDING;
+    const backwards = relative === 0 && this.anchor.blockOffset > this.focus.blockOffset;
 
     if (preceeding || backwards) {
-      var anchor = this.anchor;
-      var focus  = this.focus;
+      const anchor = this.anchor;
+      const focus  = this.focus;
       this.anchor = focus;
       this.focus  = anchor;
     }
@@ -51,13 +51,13 @@ class Selection {
     if (!this.anchor || !this.focus) { return false; }
 
     // don't reselect ranges that are selected via the keyboard
-    var tempAnchor = this.selection.anchorNode;
-    var isText = tempAnchor && tempAnchor.nodeType === Node.TEXT_NODE;
+    const tempAnchor = this.selection.anchorNode;
+    const isText = tempAnchor && tempAnchor.nodeType === Node.TEXT_NODE;
     if (!this.selection.isCollapsed && isText) { return false; }
 
     // set the range based on selection node state
-    var start = this.anchor.textNodeOffset();
-    var end   = this.focus.textNodeOffset();
+    const start = this.anchor.textNodeOffset();
+    const end   = this.focus.textNodeOffset();
     if (!start.node || !end.node) { return false; }
 
     // ignore reselects if nothing has changed
@@ -112,7 +112,7 @@ class Selection {
 
   // selection bounds
   _initBounds() {
-    var old = this.bounds;
+    const old = this.bounds;
     this.bounds = this._bounds();
     if (!old) return true;
 
@@ -126,8 +126,8 @@ class Selection {
 
   _bounds() {
     if (!this.selection.anchorNode) { return {}; }
-    var range = this.selection.getRangeAt(0);
-    var rect  = range.getBoundingClientRect();
+    const range = this.selection.getRangeAt(0);
+    let rect  = range.getBoundingClientRect();
 
     // ie doubles these for some reason... i'm sure there is a better way
     // than sniffing to do this, but let's get ie just working first m'kay
@@ -149,7 +149,7 @@ class Selection {
   }
 
   _rangeHasChanged(start, end) {
-    var { anchorNode, focusNode, anchorOffset, focusOffset } = this.selection;
+    const { anchorNode, focusNode, anchorOffset, focusOffset } = this.selection;
     return anchorNode !== start.node ||
            focusNode !== end.node ||
            anchorOffset !== start.offset ||
@@ -158,7 +158,7 @@ class Selection {
 
   // reconstituting selection of node from guids & offsets
   _setRange(startNode, endNode, startOffset, endOffset) {
-    var range = document.createRange();
+    const range = document.createRange();
     range.setStart(startNode, startOffset);
     range.setEnd(endNode, endOffset);
     this.selection.removeAllRanges();

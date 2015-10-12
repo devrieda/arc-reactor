@@ -1,4 +1,4 @@
-var BlockNode = require('./BlockNode');
+const BlockNode = require('./BlockNode');
 
 class SelectionNode {
   constructor(node, offset, target) {
@@ -20,7 +20,7 @@ class SelectionNode {
       this.blockNode = this._blockNode();
       this.guid      = this.blockNode.getAttribute('name');
 
-      var bn = new BlockNode(this.blockNode);
+      const bn = new BlockNode(this.blockNode);
       this.blockOffset = bn.blockOffset(this.node, this.offset);
     }
   }
@@ -29,7 +29,7 @@ class SelectionNode {
   textNodeOffset() {
     if (!this.guid) { return {}; }
 
-    var block = this._blockNodeByGuid(this.guid);
+    const block = this._blockNodeByGuid(this.guid);
     // todo - this should only pass 'true' for anchor node
     return new BlockNode(block).nodeOffset(this.blockOffset, true);
   }
@@ -48,7 +48,7 @@ class SelectionNode {
   }
 
   isCaption() {
-    var node = this.target;
+    let node = this.target;
     if (!node) { return false; }
 
     while (node && node.getAttribute &&
@@ -61,7 +61,7 @@ class SelectionNode {
   }
 
   isFigure() {
-    var node = this.target;
+    let node = this.target;
     if (!node) { return false; }
 
     while (node && node.getAttribute &&
@@ -74,13 +74,13 @@ class SelectionNode {
   }
 
   _isValid() {
-    var node = this._contentNode();
+    const node = this._contentNode();
     return node && node !== document;
   }
 
   // find content node for selection
   _contentNode() {
-    var node = this.domNode;
+    let node = this.domNode;
     if (!node) { return false; }
 
     while (node && node.tagName && !node.getAttribute('data-top')) {
@@ -91,13 +91,13 @@ class SelectionNode {
 
   // closest non-text node
   _domNode() {
-    var node = this.node;
+    const node = this.node;
     return node && node.nodeType === 3 ? node.parentNode : node;
   }
 
   // find parent block nodes
   _blockNode() {
-    var node = this._domNode();
+    let node = this._domNode();
     while (!node.getAttribute('data-block') &&
            !node.getAttribute('data-top')) {
       node = node.parentNode;

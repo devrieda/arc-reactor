@@ -1,4 +1,4 @@
-var KEY_CODES = { 'u': 85 };
+const KEY_CODES = { 'u': 85 };
 
 class UnderlineKey {
   constructor(content, selection) {

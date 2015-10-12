@@ -1,10 +1,10 @@
-var BlockNode = require('./BlockNode');
-var RangeSet = require('./RangeSet');
+const BlockNode = require('./BlockNode');
+const RangeSet = require('./RangeSet');
 
-var { Map, List, fromJS } = require('immutable');
+const { Map, List, fromJS } = require('immutable');
 
-var CLASS_NAME_PREFIX = "arc-Editor-Block";
-var INLINE_TAGS = ['a', 'strong', 'em'];
+const CLASS_NAME_PREFIX = "arc-Editor-Block";
+const INLINE_TAGS = ['a', 'strong', 'em'];
 
 // Formats text with inline markup based on the markup begin/end indices. We
 // always next inline markups in the following order: a, strong, em. This
@@ -26,7 +26,7 @@ class BlockFormatter {
   applyMarkup(markups) {
     if (markups.size === 0) { return this.node.textContent; }
 
-    var denormalized = this.denormalizeRanges(markups);
+    const denormalized = this.denormalizeRanges(markups);
 
     INLINE_TAGS.forEach( (type) => {
       this._applyMarkup(denormalized.get(type), type);
@@ -56,15 +56,15 @@ class BlockFormatter {
    *   ]
    */
   denormalizeRanges(markups) {
-    var results = Map();
-    var fullSet = new RangeSet();
+    let results = Map();
+    const fullSet = new RangeSet();
 
     // build list of results per inline type (em/strong)
     INLINE_TAGS.forEach( (type) => {
-      var rangesList = markups.get(type);
+      const rangesList = markups.get(type);
       if (!rangesList) return;
 
-      var typeResults = results.get(type, List());
+      let typeResults = results.get(type, List());
       typeResults = this._denormalizeForType(typeResults, fullSet, rangesList);
       results = results.set(type, typeResults);
     });
@@ -75,8 +75,8 @@ class BlockFormatter {
   // TODO - move to a RangeSetDenormalizer object
   _denormalizeForType(typeResults, fullSet, rangesList) {
     rangesList.forEach( (rangeMap) => {
-      var range = rangeMap.toJS();
-      var itemSet = new RangeSet([range]);
+      const range = rangeMap.toJS();
+      const itemSet = new RangeSet([range]);
 
       // overlapping items need to find intersecting ranges
       if (fullSet.overlaps(range)) {
@@ -110,56 +110,56 @@ class BlockFormatter {
    */
   _applyMarkup(markups, type) {
     markups = markups || List();
-    var blockNode = new BlockNode(this.node);
+    const blockNode = new BlockNode(this.node);
 
     markups.forEach( ( markup) => {
-      var begin = blockNode.nodeOffset(markup.getIn(['range', 0]));
-      var end   = blockNode.nodeOffset(markup.getIn(['range', 1]), true);
-      var url   = markup.get('value');
+      const begin = blockNode.nodeOffset(markup.getIn(['range', 0]));
+      const end   = blockNode.nodeOffset(markup.getIn(['range', 1]), true);
+      const url   = markup.get('value');
 
       // split up text using selection
-      var newNodes = this._formatNode(type, url, begin, end);
+      const newNodes = this._formatNode(type, url, begin, end);
 
       // replace previous node with our new node
-      var parent = begin.node.parentNode;
+      const parent = begin.node.parentNode;
       parent.replaceChild(newNodes, begin.node);
     });
   }
 
   _formatNode(type, url, begin, end) {
-    var text = begin.node.textContent;
+    const text = begin.node.textContent;
 
-    var before = this._buildTextNodeBefore(text, begin.offset);
-    var within = this._buildTextNodeWithin(text, begin.offset, end.offset);
-    var after  = this._buildTextNodeAfter(text, end.offset);
+    const before = this._buildTextNodeBefore(text, begin.offset);
+    const within = this._buildTextNodeWithin(text, begin.offset, end.offset);
+    const after  = this._buildTextNodeAfter(text, end.offset);
 
     return this._buildDocFrag(type, url, before, within, after);
   }
 
   _buildTextNodeBefore(text, beginOffset) {
-    var beforeText = text.substring(0, beginOffset);
+    const beforeText = text.substring(0, beginOffset);
     return document.createTextNode(beforeText);
   }
 
   _buildTextNodeWithin(text, beginOffset, endOffset) {
-    var withinText = text.substring(beginOffset, endOffset);
+    const withinText = text.substring(beginOffset, endOffset);
     return document.createTextNode(withinText);
   }
 
   _buildTextNodeAfter(text, endOffset) {
-    var afterText = text.substring(endOffset);
+    const afterText = text.substring(endOffset);
     return document.createTextNode(afterText);
   }
 
   _buildDocFrag(type, url, before, within, after) {
-    var format = document.createElement(type);
+    const format = document.createElement(type);
     format.setAttribute('class', CLASS_NAME_PREFIX + "__" + type);
     if (url) {
       format.setAttribute('href', encodeURI(url.replace(/javascript:/, '')));
     }
     format.appendChild(within);
 
-    var docFrag = document.createDocumentFragment();
+    const docFrag = document.createDocumentFragment();
     docFrag.appendChild(before);
     docFrag.appendChild(format);
     docFrag.appendChild(after);

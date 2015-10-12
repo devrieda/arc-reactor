@@ -1,6 +1,6 @@
-var ToggleBlockType = require('../Manipulation/ToggleBlockType');
+const ToggleBlockType = require('../Manipulation/ToggleBlockType');
 
-var KEY_CODES = { '5': 53 };
+const KEY_CODES = { '5': 53 };
 
 class QuoteKey {
   constructor(content, selection) {
@@ -21,9 +21,9 @@ class QuoteKey {
   }
 
   down(callback) {
-    var guids   = this.selection.guids();
-    var offsets = this.selection.offsets();
-    var results = this._toggleBlockType().execute(guids, offsets, { type: 'blockquote' });
+    const guids   = this.selection.guids();
+    const offsets = this.selection.offsets();
+    const results = this._toggleBlockType().execute(guids, offsets, { type: 'blockquote' });
 
     this._complete(results, callback);
   }

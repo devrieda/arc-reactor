@@ -16,15 +16,15 @@ class ContentFinder {
    *   ['sections', 0, 'blocks', 2]
    *
    * which can then be used to target data in the structure using getIn()
-   *   var block = this.map.getIn(['sections', 0, 'blocks', 2]);
+   *   const block = this.map.getIn(['sections', 0, 'blocks', 2]);
    *   type = block.get("type");
    */
   findPath(guid) {
-    var path = ["sections"];
+    let path = ["sections"];
 
     this.map.getIn(path).forEach( (section, i) => {
-      var blocks = path.concat([i, "blocks"]);
-      var blockPath = this._findBlockPath(blocks, guid);
+      const blocks = path.concat([i, "blocks"]);
+      const blockPath = this._findBlockPath(blocks, guid);
       if (blockPath.length) { path = blocks.concat(blockPath); }
     });
 
@@ -33,16 +33,16 @@ class ContentFinder {
   }
 
   _findBlockPath(path, guid) {
-    var blocks = this.map.getIn(path, []);
+    const blocks = this.map.getIn(path, []);
     if (!blocks.size) { return []; }
 
-    for (var i = 0, j = blocks.size; i < j; i++) {
+    for (let i = 0, j = blocks.size; i < j; i++) {
       // current level
-      var block = blocks.get(i);
+      const block = blocks.get(i);
       if (block.get("id") === guid) { return [i]; }
 
       // child block
-      var sub = this._findBlockPath(path.concat([i, "blocks"]), guid);
+      const sub = this._findBlockPath(path.concat([i, "blocks"]), guid);
       if (sub.length > 0) { return [i, "blocks"].concat(sub); }
     }
     return [];
@@ -54,11 +54,11 @@ class ContentFinder {
    *   ['sections', 0, 'blocks']
    *
    * which can then be used to target data in the structure using getIn()
-   *   var blocks = this.map.getIn(['sections', 0, 'blocks']);
-   *   var neewBlocks = blocks.push(newBlock);
+   *   const blocks = this.map.getIn(['sections', 0, 'blocks']);
+   *   const neewBlocks = blocks.push(newBlock);
    */
   findBlocksPath(guid) {
-    var path = this.findPath(guid);
+    let path = this.findPath(guid);
     if (!path) { return null; }
     return path.slice(0, -1);
   }
@@ -67,9 +67,9 @@ class ContentFinder {
    * path to the block previous to the given guid in the immutable set
    */
   findPrevPath(guid) {
-    var path = this.findPath(guid);
-    var last = path[path.length - 1];
-    var blocks;
+    let path = this.findPath(guid);
+    const last = path[path.length - 1];
+    let blocks;
 
     // there are previous blocks in this section
     if (last > 0) {
@@ -87,7 +87,7 @@ class ContentFinder {
       path = ['sections', path[1]-1, 'blocks', blocks.size - 1];
 
       // get last sub-block if there is any
-      var block = this.map.getIn(path);
+      const block = this.map.getIn(path);
       if (block.get('blocks')) {
         path.push('blocks', block.get('blocks').size - 1);
       }
@@ -100,7 +100,7 @@ class ContentFinder {
 
     // if the previous has sub-blocks, find the last
     if (path) {
-      var subBlocks = this.map.getIn(path.concat('blocks'));
+      const subBlocks = this.map.getIn(path.concat('blocks'));
       if (subBlocks) {
         path.push('blocks', subBlocks.size - 1);
       }
@@ -112,7 +112,7 @@ class ContentFinder {
    * path to the next previous to the given guid in the immutable set
    */
   findNextPath(guid) {
-    var path = this.findPath(guid);
+    let path = this.findPath(guid);
     path[path.length - 1]++;
 
     // check for the first block in the next section
@@ -158,7 +158,7 @@ class ContentFinder {
    *
    */
   findRange(guids, offsets) {
-    var find = (block, guids, results, found) => {
+    const find = (block, guids, results, found) => {
       if (block.get('id') === guids.focus) {
         results.push(block.get('id'));
       } else if (block.get('id') === guids.anchor) {
@@ -169,10 +169,10 @@ class ContentFinder {
       }
       return found;
     };
-    var results = [];
-    var found = false;
+    let results = [];
+    let found = false;
 
-    var sections = this.map.get('sections');
+    const sections = this.map.get('sections');
     if (!sections) { return results; }
 
     sections.forEach( (sect) => {
@@ -185,13 +185,13 @@ class ContentFinder {
     });
 
     // focus offset doesn't actually have anything selected
-    var singleBlock = guids && guids.anchor === guids.focus;
+    const singleBlock = guids && guids.anchor === guids.focus;
     if (offsets && !singleBlock && offsets.focus === 0) { results.pop(); }
 
     // remove last element if it's an orphan UL
-    var last = results[results.length-1];
+    const last = results[results.length-1];
     if (last) {
-      var type = this.map.getIn(this.findPath(last).concat("type"));
+      const type = this.map.getIn(this.findPath(last).concat("type"));
       if (type === 'ul') { results.pop(); }
     }
     return results;
@@ -216,7 +216,7 @@ class ContentFinder {
    * => 1
    */
   findBlockPosition(guid) {
-    var path = this.findPath(guid);
+    const path = this.findPath(guid);
     return path[path.length-1];
   }
 }

@@ -15,8 +15,8 @@ class RangeSet {
    * Check if the given range is included in the set
    */
   includes(range) {
-    for (var i = 0, j = this.set.length; i < j; i++) {
-      var setRange = this.set[i];
+    for (let i = 0, j = this.set.length; i < j; i++) {
+      const setRange = this.set[i];
       if (range.value !== setRange.value) { continue; }
       if (setRange.range[0] <= range.range[0] &&
           setRange.range[1] >= range.range[1]) {
@@ -30,8 +30,8 @@ class RangeSet {
    * Check if the given range overlaps anything in the set
    */
   overlaps(range) {
-    for (var i = 0, j = this.set.length; i < j; i++) {
-      var setRange = this.set[i];
+    for (let i = 0, j = this.set.length; i < j; i++) {
+      const setRange = this.set[i];
       if (setRange.range[1] > range.range[0] &&
           setRange.range[0] < range.range[1]) {
         return true;
@@ -46,16 +46,16 @@ class RangeSet {
   intersect(range) {
     if (this.set.length === 0) { return []; }
 
-    var intersects = [];
+    let intersects = [];
     this.set.forEach( (setRange) => {
-      var intersect = [];
-      var list = this._setToArray([setRange]);
-      for (var i = range.range[0]; i < range.range[1]; i++) {
+      let intersect = [];
+      const list = this._setToArray([setRange]);
+      for (let i = range.range[0]; i < range.range[1]; i++) {
         if (list[i]) {
           intersect[i] = range.value || true;
         }
       }
-      var set = this._arrayToSet(intersect)[0];
+      const set = this._arrayToSet(intersect)[0];
       if (set) { intersects.push(set); }
     });
 
@@ -65,7 +65,7 @@ class RangeSet {
   /**
    * Add range to a set
    *
-   * var set = new RangeSet({range: 0,20});
+   * const set = new RangeSet({range: 0,20});
    * set.add({range: [0,2]});
    *
    * => [{range: [0,20]}]
@@ -76,8 +76,8 @@ class RangeSet {
       this.set.push(range);
       return this.set;
     }
-    var list = this._setToArray(this.set);
-    for (var i = range.range[0]; i < range.range[1]; i++) {
+    let list = this._setToArray(this.set);
+    for (let i = range.range[0]; i < range.range[1]; i++) {
       list[i] = range.value || true;
     }
     this.set = this._arrayToSet(list);
@@ -87,7 +87,7 @@ class RangeSet {
   /**
    * Remove range from a set
    *
-   * var set = new RangeSet({range: 0,20});
+   * const set = new RangeSet({range: 0,20});
    * set.remove({range: [0,2]});
    *
    * => [{range: 2,20}]
@@ -95,8 +95,8 @@ class RangeSet {
   remove(range) {
     if (this.set.length === 0) { return this.set; }
 
-    var list = this._setToArray(this.set);
-    for (var i = range.range[0]; i < range.range[1]; i++) {
+    let list = this._setToArray(this.set);
+    for (let i = range.range[0]; i < range.range[1]; i++) {
       list[i] = undefined;
     }
     this.set = this._arrayToSet(list);
@@ -111,11 +111,11 @@ class RangeSet {
   // [true, false, false, false, true]
   //
   _setToArray(set) {
-    var list = [];
+    let list = [];
     set.forEach( (setRange) => {
-      var range = setRange.range;
-      var value = setRange.value || true;
-      for (var i = range[0]; i < range[1]; i++) { list[i] = value; }
+      const range = setRange.range;
+      const value = setRange.value || true;
+      for (let i = range[0]; i < range[1]; i++) { list[i] = value; }
     });
     return list;
   }
@@ -128,11 +128,11 @@ class RangeSet {
   // [{"range": [0,1]}, {"range": [4,5]}]
   //
   _arrayToSet(list) {
-    var set = [];
+    let set = [];
+    let range = null;
 
-    var range = null;
-    for (var i = 0, j = list.length; i < j; i++) {
-      var value = list[i];
+    for (let i = 0, j = list.length; i < j; i++) {
+      const value = list[i];
 
       // start new range
       if (value && !range) {

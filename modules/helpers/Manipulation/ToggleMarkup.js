@@ -1,7 +1,7 @@
-var Immutable = require('immutable');
+const Immutable = require('immutable');
 
-var ContentFinder = require('../ContentFinder');
-var RangeSet = require('../RangeSet');
+const ContentFinder = require('../ContentFinder');
+const RangeSet = require('../RangeSet');
 
 class ToggleMarkup {
   constructor(content) {
@@ -9,11 +9,11 @@ class ToggleMarkup {
   }
 
   execute(guids, offsets, options) {
-    var type  = options.type;
-    var value = options.value;
+    const type  = options.type;
+    const value = options.value;
 
-    var range = this._finder().findRange(guids, offsets);
-    var paths = range.map( (guid) => {
+    const range = this._finder().findRange(guids, offsets);
+    const paths = range.map( (guid) => {
       return this._finder().findPath(guid);
     });
 
@@ -30,8 +30,8 @@ class ToggleMarkup {
    * Just toggle markup on/off
    */
   _toggleSingleBlockMarkup(paths, offsets, type, value) {
-    var hasMarkup = this._hasMarkup(paths[0], offsets, type, value);
-    var remove = hasMarkup || value === '';
+    const hasMarkup = this._hasMarkup(paths[0], offsets, type, value);
+    const remove = hasMarkup || value === '';
     this._toggleBlockMarkup(remove, paths[0], offsets, type, value);
   }
 
@@ -44,8 +44,8 @@ class ToggleMarkup {
    */
   _toggleMultiBlockMarkup(paths, offsets, type, value) {
     // check if everything is selected
-    var withMarkup = paths.filter( (path, i) => {
-      var block = this.content.getIn(path);
+    const withMarkup = paths.filter( (path, i) => {
+      const block = this.content.getIn(path);
 
       if (i === 0) {
         return this._hasMarkup(
@@ -63,11 +63,11 @@ class ToggleMarkup {
       }
     });
 
-    var remove = paths.length === withMarkup.length || value === '';
+    const remove = paths.length === withMarkup.length || value === '';
 
     // perform toggle
     paths.forEach( (path, i) => {
-      var block = this.content.getIn(path);
+      const block = this.content.getIn(path);
 
       if (i === 0) {
         this._toggleBlockMarkup(
@@ -88,20 +88,20 @@ class ToggleMarkup {
 
   // check if the path has the given markup offsets range
   _hasMarkup(path, offsets, type, value) {
-    var block = this.content.getIn(path);
+    const block = this.content.getIn(path);
 
-    var markup = this._newMarkupRange(offsets, value);
-    var set = this._getRangeSet(block, type);
+    const markup = this._newMarkupRange(offsets, value);
+    const set = this._getRangeSet(block, type);
     return set.includes(markup);
   }
 
   // add or remove markup for a block
   _toggleBlockMarkup(remove, path, offsets, type, value) {
-    var block = this.content.getIn(path);
-    var markups = this._getCurrentBlockMarkups(block, type);
+    const block = this.content.getIn(path);
+    let markups = this._getCurrentBlockMarkups(block, type);
 
-    var markup = this._newMarkupRange(offsets, value);
-    var set = this._getRangeSet(block, type);
+    const markup = this._newMarkupRange(offsets, value);
+    const set = this._getRangeSet(block, type);
 
     if (remove) {
       markups = markups.set(type, Immutable.fromJS(set.remove(markup)));
@@ -113,22 +113,22 @@ class ToggleMarkup {
   }
 
   _newMarkupRange(offsets, value) {
-    var markup = { 'range': [offsets.anchor, offsets.focus] };
+    const markup = { 'range': [offsets.anchor, offsets.focus] };
     if (value) { markup.value = value; } // links need values
     return markup;
   }
 
   // for now "RangeSet" only works with js objects, so convert to get working
   _getRangeSet(block, type) {
-    var markups = this._getCurrentBlockMarkups(block, type);
+    const markups = this._getCurrentBlockMarkups(block, type);
     return new RangeSet(markups.get(type).toJS());
   }
 
   // get the current markups for this block/markup-type
   _getCurrentBlockMarkups(block, type) {
-    var { List, Map } = Immutable;
+    const { List, Map } = Immutable;
 
-    var markups = block.get("markups", Map());
+    const markups = block.get("markups", Map());
     return markups.set(type, markups.get(type, List()));
   }
 

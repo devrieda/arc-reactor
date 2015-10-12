@@ -1,4 +1,4 @@
-var ContentFinder = require('../ContentFinder');
+const ContentFinder = require('../ContentFinder');
 
 class InsertImage {
   constructor(content) {
@@ -6,20 +6,20 @@ class InsertImage {
   }
 
   execute(guids, _offsets, options, callback) {
-    var src = options.src;
+    const src = options.src;
 
-    var guid = guids.anchor;
-    var path  = this._finder().findPath(guid);
-    var block = this.content.getIn(path);
-    block = block.set('text', 'inserting image...');
+    const guid = guids.anchor;
+    const path  = this._finder().findPath(guid);
+    const block = this.content.getIn(path);
+    const newBlock = block.set('text', 'inserting image...');
 
     this.loadImage(path, src, callback);
 
-    this.content = this.content.setIn(path, block);
+    this.content = this.content.setIn(path, newBlock);
     return {
       content: this.content,
       position: {
-        guid: block.get('id'),
+        guid: newBlock.get('id'),
         offset: 0
       }
     };
@@ -27,11 +27,11 @@ class InsertImage {
 
   // need to fetch the image to get the dimensions
   loadImage(path, src, callback) {
-    var block = this.content.getIn(path);
+    const block = this.content.getIn(path);
 
-    var img = new Image();
+    const img = new Image();
     img.onload = () => {
-      block = block.merge({
+      const newBlock = block.merge({
         type: 'image',
         text: '',
         meta: {
@@ -40,11 +40,11 @@ class InsertImage {
           height: img.height
         }
       });
-      var content = this.content.setIn(path, block);
+      const content = this.content.setIn(path, newBlock);
       callback({
         content: content,
         position: {
-          guid: block.get('id'),
+          guid: newBlock.get('id'),
           offset: 0
         }
       });

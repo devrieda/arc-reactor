@@ -1,4 +1,4 @@
-var ContentFinder = require('../ContentFinder');
+const ContentFinder = require('../ContentFinder');
 
 class CombineBlocks {
   constructor(content) {
@@ -6,22 +6,22 @@ class CombineBlocks {
   }
 
   execute(guids, offsets) {
-    var range = this._finder().findRange(guids, offsets);
-    var first = range.shift();
-    var last  = range.pop();
+    const range = this._finder().findRange(guids, offsets);
+    const first = range.shift();
+    const last  = range.pop();
 
-    var anchorPath = this._finder().findPath(first);
-    var anchor = this.content.getIn(anchorPath);
+    const anchorPath = this._finder().findPath(first);
+    const anchor = this.content.getIn(anchorPath);
 
-    var focusPath  = last ? this._finder().findPath(last) : anchorPath;
-    var focus  = this.content.getIn(focusPath);
+    const focusPath  = last ? this._finder().findPath(last) : anchorPath;
+    const focus  = this.content.getIn(focusPath);
 
     // delete the rest
     range.forEach( (guid) => { this._removeBlock(guid); });
 
-    var anchorText = anchor.get("text");
-    var focusText  = focus.get("text");
-    var combinedText = anchorText.substring(0, offsets.anchor) +
+    const anchorText = anchor.get("text");
+    const focusText  = focus.get("text");
+    const combinedText = anchorText.substring(0, offsets.anchor) +
                        focusText.substring(offsets.focus);
     this.content = this.content.setIn(anchorPath.concat("text"), combinedText);
 
@@ -45,19 +45,19 @@ class CombineBlocks {
   }
 
   _removeBlock(guid) {
-    var path = this._finder().findBlocksPath(guid);
+    const path = this._finder().findBlocksPath(guid);
     if (!path) { return; }
 
-    var blocks = this.content.getIn(path);
-    var index  = this._finder().findBlockPosition(guid);
+    const blocks = this.content.getIn(path);
+    const index  = this._finder().findBlockPosition(guid);
 
     this.content = this.content.setIn(path, blocks.delete(index));
   }
 
   _combineSections(anchorPath, focusPath) {
-    var blocks1 = this.content.getIn(anchorPath.slice(0, 3));
-    var blocks2 = this.content.getIn(focusPath.slice(0, 3));
-    var all = blocks1.concat(blocks2);
+    const blocks1 = this.content.getIn(anchorPath.slice(0, 3));
+    const blocks2 = this.content.getIn(focusPath.slice(0, 3));
+    const all = blocks1.concat(blocks2);
 
     // set new blocks
     this.content = this.content.setIn(anchorPath.slice(0, 3), all);
@@ -67,7 +67,7 @@ class CombineBlocks {
   }
 
   _removeEmptySections() {
-    var sections = this.content.get('sections').filter( (section) => {
+    const sections = this.content.get('sections').filter( (section) => {
       return section.get('blocks').size > 0;
     });
     this.content = this.content.set('sections', sections);

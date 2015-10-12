@@ -1,4 +1,4 @@
-var ContentFinder = require('../ContentFinder');
+const ContentFinder = require('../ContentFinder');
 
 class CombineBlockPrev {
   constructor(content) {
@@ -6,13 +6,13 @@ class CombineBlockPrev {
   }
 
   execute(guids) {
-    var guid  = guids.anchor;
+    const guid  = guids.anchor;
 
-    var path  = this._finder().findPath(guid);
-    var block = this.content.getIn(path);
+    const path  = this._finder().findPath(guid);
+    const block = this.content.getIn(path);
 
-    var prevPath = this._finder().findPrevPath(guid);
-    var prev;
+    const prevPath = this._finder().findPrevPath(guid);
+    let prev;
     if (prevPath) {
       prev = this.content.getIn(prevPath);
     }
@@ -30,9 +30,9 @@ class CombineBlockPrev {
 
     // combine sections
     if (prev && path[1] !== prevPath[1]) {
-      var blocks1 = this.content.getIn(prevPath.slice(0, 3));
-      var blocks2 = this.content.getIn(path.slice(0, 3));
-      var all = blocks1.concat(blocks2);
+      const blocks1 = this.content.getIn(prevPath.slice(0, 3));
+      const blocks2 = this.content.getIn(path.slice(0, 3));
+      const all = blocks1.concat(blocks2);
 
       // set new blocks
       this.content = this.content.setIn(prevPath.slice(0, 3), all);
@@ -50,11 +50,11 @@ class CombineBlockPrev {
 
     // there is a prev block in this section to combine with
     } else if (prev) {
-      var text = prev.get("text") || "";
-      var offset = text.length;
+      const text = prev.get("text") || "";
+      const offset = text.length;
 
       // set combined text
-      var newText = prev.get("text") + block.get("text");
+      const newText = prev.get("text") + block.get("text");
       this.content = this.content.setIn(prevPath.concat("text"), newText);
 
       this._removeBlock(block.get('id'));
@@ -72,9 +72,9 @@ class CombineBlockPrev {
   }
 
   _removeBlock(guid) {
-    var path = this._finder().findBlocksPath(guid);
-    var blocks = this.content.getIn(path);
-    var index  = this._finder().findBlockPosition(guid);
+    const path = this._finder().findBlocksPath(guid);
+    const blocks = this.content.getIn(path);
+    const index  = this._finder().findBlockPosition(guid);
 
     this.content = this.content.setIn(path, blocks.delete(index));
   }

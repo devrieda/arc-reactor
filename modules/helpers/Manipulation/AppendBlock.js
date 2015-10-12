@@ -1,7 +1,7 @@
-var Immutable = require('immutable');
+const Immutable = require('immutable');
 
-var ContentFinder = require('../ContentFinder');
-var Guid = require('../Guid');
+const ContentFinder = require('../ContentFinder');
+const Guid = require('../Guid');
 
 class AppendBlock {
   constructor(content) {
@@ -9,12 +9,12 @@ class AppendBlock {
   }
 
   execute(guids) {
-    var guid  = guids.anchor;
-    var path  = this._finder().findPath(guid);
-    var block = this.content.getIn(path);
-    var text  = block.get("text");
-    var starts = text.substring(0, 1);
-    var newBlock;
+    const guid  = guids.anchor;
+    const path  = this._finder().findPath(guid);
+    const block = this.content.getIn(path);
+    const text  = block.get("text");
+    const starts = text.substring(0, 1);
+    let newBlock;
 
     // finish list
     if (block.get("type") === 'li' && text === '') {
@@ -43,19 +43,19 @@ class AppendBlock {
   }
 
   _createList(guid, starts) {
-    var type = starts === '1' ? 'ol' : 'ul';
+    const type = starts === '1' ? 'ol' : 'ul';
 
-    var path  = this._finder().findPath(guid);
-    var block = this.content.getIn(path);
+    const path  = this._finder().findPath(guid);
+    const block = this.content.getIn(path);
 
     // remove text off ul node (we'll move it to the li)
-    var text = block.get("text");
+    const text = block.get("text");
     this.content = this.content.deleteIn(path.concat("text"));
 
     // update type to parent list
     this.content = this.content.setIn(path.concat("type"), type);
 
-    var items = Immutable.List([
+    const items = Immutable.List([
       this._newBlock('li', text.replace(/^[-*\d]\.?\s?/g, '')),
       this._newBlock('li', '')
     ]);
@@ -69,19 +69,19 @@ class AppendBlock {
   }
 
   _finishList(guid) {
-    var path = this._finder().findParentPath(guid);
-    var parentGuid = this.content.getIn(path).get("id");
+    const path = this._finder().findParentPath(guid);
+    const parentGuid = this.content.getIn(path).get("id");
 
     this._removeBlock(guid);
     return this._insertBlock('p', 'after', parentGuid);
   }
 
   _insertBlock(type, position, guid, text) {
-    var path   = this._finder().findBlocksPath(guid);
-    var blocks = this.content.getIn(path);
-    var index  = this._finder().findBlockPosition(guid);
+    const path   = this._finder().findBlocksPath(guid);
+    const blocks = this.content.getIn(path);
+    let index  = this._finder().findBlockPosition(guid);
 
-    var block = this._newBlock(type, text || "");
+    const block = this._newBlock(type, text || "");
     index = position === 'after' ? index + 1 : index;
 
     this.content = this.content.setIn(path, blocks.splice(index, 0, block));
@@ -89,9 +89,9 @@ class AppendBlock {
   }
 
   _removeBlock(guid) {
-    var path = this._finder().findBlocksPath(guid);
-    var blocks = this.content.getIn(path);
-    var index  = this._finder().findBlockPosition(guid);
+    const path = this._finder().findBlocksPath(guid);
+    const blocks = this.content.getIn(path);
+    const index  = this._finder().findBlockPosition(guid);
 
     this.content = this.content.setIn(path, blocks.delete(index));
   }

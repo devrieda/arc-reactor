@@ -1,6 +1,6 @@
-var ToggleMarkup = require('../Manipulation/ToggleMarkup');
+const ToggleMarkup = require('../Manipulation/ToggleMarkup');
 
-var KEY_CODES = { 'i': 73 };
+const KEY_CODES = { 'i': 73 };
 
 class ItalicKey {
   constructor(content, selection) {
@@ -21,9 +21,9 @@ class ItalicKey {
   }
 
   down(callback) {
-    var guids   = this.selection.guids();
-    var offsets = this.selection.offsets();
-    var results = this._toggleMarkup().execute(guids, offsets, { type: 'em' });
+    const guids   = this.selection.guids();
+    const offsets = this.selection.offsets();
+    const results = this._toggleMarkup().execute(guids, offsets, { type: 'em' });
 
     this._complete(results, callback);
   }

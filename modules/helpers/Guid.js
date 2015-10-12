@@ -1,10 +1,10 @@
-var Guid = {
+const Guid = {
   guids: {},
   generate() {
     return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
   },
   unique() {
-    var id = this.generate();
+    let id = this.generate();
     while (this.guids[id]) {
       id = this.generate();
     }

@@ -5,7 +5,7 @@ class ClipboardHandler {
   }
 
   paste(e) {
-    var text;
+    let text;
     if (e.clipboardData) {
       text = event.clipboardData.getData('text/plain');
 
@@ -25,7 +25,7 @@ class ClipboardHandler {
     // this.saved = this.elt.innerHTML;
 
     // // webkit
-    // var pasted;
+    // let pasted;
     // if (e && e.clipboardData && e.clipboardData.getData) {
     //   pasted = this._handleWebkitPaste(e);
 
@@ -45,7 +45,7 @@ class ClipboardHandler {
     e.preventDefault();
     e.stopPropagation();
 
-    var data;
+    let data;
     if (/text\/html/.test(e.clipboardData.types)) {
       data = e.clipboardData.getData('text/html');
     } else if (/text\/plain/.test(e.clipboardData.types)) {
@@ -58,7 +58,7 @@ class ClipboardHandler {
 
   _waitForPaste() {
     if (this.elt.childNodes && this.elt.childNodes.length > 0) {
-      var pasted = this.elt.innerHTML;
+      const pasted = this.elt.innerHTML;
       this.elt.innerHTML = this.saved;
       return pasted;
     } else {

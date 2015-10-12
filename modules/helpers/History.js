@@ -1,6 +1,6 @@
-var debounce = require('lodash.debounce');
+const debounce = require('lodash.debounce');
 
-var _instance;
+let _instance;
 
 class History {
   constructor() {

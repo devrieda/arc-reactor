@@ -1,11 +1,11 @@
-var AppendBlock   = require('../Manipulation/AppendBlock');
-var PrependBlock  = require('../Manipulation/PrependBlock');
-var SplitBlock    = require('../Manipulation/SplitBlock');
-var InsertImage   = require('../Manipulation/InsertImage');
-var InsertYoutube = require('../Manipulation/InsertYoutube');
-var InsertNewline = require('../Manipulation/InsertNewline');
+const AppendBlock   = require('../Manipulation/AppendBlock');
+const PrependBlock  = require('../Manipulation/PrependBlock');
+const SplitBlock    = require('../Manipulation/SplitBlock');
+const InsertImage   = require('../Manipulation/InsertImage');
+const InsertYoutube = require('../Manipulation/InsertYoutube');
+const InsertNewline = require('../Manipulation/InsertNewline');
 
-var KEY_CODES = { 'return': 13, 'm': 77 };
+const KEY_CODES = { 'return': 13, 'm': 77 };
 
 class ReturnKey {
   constructor(content, selection) {
@@ -24,14 +24,14 @@ class ReturnKey {
   }
 
   down(callback) {
-    var guids = this.selection.guids();
-    var offsets = this.selection.offsets();
-    var results;
+    const guids = this.selection.guids();
+    const offsets = this.selection.offsets();
+    let results;
 
     // is this a photo/video link
-    var node = document.getElementsByName(guids.anchor)[0];
-    var text = node && node.textContent;
-    var type = node.tagName.toLowerCase();
+    const node = document.getElementsByName(guids.anchor)[0];
+    const text = node && node.textContent;
+    const type = node.tagName.toLowerCase();
 
     // range
     if (this.selection.isRange()) {
@@ -39,7 +39,7 @@ class ReturnKey {
 
     // photo
     } else if (text.match(/^http.+(gif|png|jpe?g)$/)) {
-      var cb = (results) => { this._complete(results, callback, false); };
+      const cb = (results) => { this._complete(results, callback, false); };
       results = this._insertImage().execute(guids, offsets, { src: text }, cb);
 
     // video
@@ -71,8 +71,8 @@ class ReturnKey {
   }
 
   _complete(results, callback, prevent) {
-    var content = results ? results.content : this.content;
-    var position = results ? results.position : null;
+    const content = results ? results.content : this.content;
+    const position = results ? results.position : null;
 
     callback({
       content: content,

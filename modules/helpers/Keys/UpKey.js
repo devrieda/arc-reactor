@@ -1,4 +1,4 @@
-var KEY_CODES = { 'up': 38 };
+const KEY_CODES = { 'up': 38 };
 
 class UpKey {
   constructor(content, selection) {

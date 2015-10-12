@@ -1,4 +1,4 @@
-var ContentFinder = require('../ContentFinder');
+const ContentFinder = require('../ContentFinder');
 
 class InsertYoutube {
   constructor(content) {
@@ -6,13 +6,13 @@ class InsertYoutube {
   }
 
   execute(guids, _offsets, options) {
-    var src = options.src;
+    const src = options.src;
 
-    var guid  = guids.anchor;
-    var path  = this._finder().findPath(guid);
-    var block = this.content.getIn(path);
+    const guid  = guids.anchor;
+    const path  = this._finder().findPath(guid);
+    let block = this.content.getIn(path);
 
-    var youTubeId = this._parseYouTube(src);
+    const youTubeId = this._parseYouTube(src);
     if (youTubeId) {
       block = block.merge({
         type: 'youtube',
@@ -44,8 +44,8 @@ class InsertYoutube {
   // http://youtu.be/0zM3nApSvMg
   //
   _parseYouTube(url) {
-    var regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
-    var match = url.match(regExp);
+    const regExp = /.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
     if (match && match[1] && match[1].length === 11) {
       return match[1];
     } else {

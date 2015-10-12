@@ -1,6 +1,6 @@
-var History = require('../History');
+const History = require('../History');
 
-var KEY_CODES = { 'z': 90, 'y': 89  };
+const KEY_CODES = { 'z': 90, 'y': 89  };
 
 class RedoKey {
   constructor(content, selection) {
@@ -22,7 +22,7 @@ class RedoKey {
   }
 
   down(callback) {
-    var { content, position } = History.getInstance().redo();
+    const { content, position } = History.getInstance().redo();
 
     callback({
       content: content,

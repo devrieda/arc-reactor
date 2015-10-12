@@ -13,11 +13,11 @@ class BlockNode {
   // find the node and offset given the blockOffset
   nodeOffset(blockOffset, isFocusOffset) {
     isFocusOffset = isFocusOffset || false;
-    var nodes = this.textNodes();
+    const nodes = this.textNodes();
 
-    for (var i = 0, j = nodes.length; i < j; i++) {
-      var len = nodes[i].length;
-      var nodeOffset = isFocusOffset ? blockOffset-len-1 : blockOffset-len;
+    for (let i = 0, j = nodes.length; i < j; i++) {
+      const len = nodes[i].length;
+      const nodeOffset = isFocusOffset ? blockOffset-len-1 : blockOffset-len;
       if (nodeOffset < 0) {
         return {'node': nodes[i], 'offset': blockOffset };
       } else {
@@ -36,10 +36,10 @@ class BlockNode {
   blockOffset(node, offset) {
     if (node.nodeType === Node.ELEMENT_NODE && offset === 0) { return offset; }
 
-    var nodes = this.textNodes();
+    const nodes = this.textNodes();
 
-    var total = 0;
-    for (var i = 0, j = nodes.length; i < j; i++) {
+    let total = 0;
+    for (let i = 0, j = nodes.length; i < j; i++) {
       if (nodes[i] === node) {
         total += offset;
         break;
@@ -52,10 +52,10 @@ class BlockNode {
 
   _textNodes(node, textNodes) {
     textNodes = textNodes || [];
-    var children = node ? node.childNodes : [];
+    const children = node ? node.childNodes : [];
 
-    for (var i = 0, j = children.length; i < j; i++) {
-      var child = children[i];
+    for (let i = 0, j = children.length; i < j; i++) {
+      const child = children[i];
       if (child.nodeType === Node.TEXT_NODE) {
         textNodes.push(child);
       } else {

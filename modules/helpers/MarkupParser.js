@@ -5,26 +5,26 @@ class MarkupParser {
 
   // find the markups
   markups() {
-    var markups = {};
-    var textLen = 0;
+    let markups = {};
+    let textLen = 0;
     this._findNodeLengths(this.node, markups, textLen);
     return markups;
   }
 
   // recursively find node lengths
   _findNodeLengths(node, markups, textLen) {
-    var children = node.childNodes;
+    const children = node.childNodes;
 
-    for (var i = 0, j = children.length; i < j; i++) {
-      var child = children[i];
+    for (let i = 0, j = children.length; i < j; i++) {
+      const child = children[i];
 
       // add to list
       if (child.nodeType === Node.ELEMENT_NODE) {
-        var tag = child.tagName.toLowerCase();
-        var len = child.textContent.length;
+        const tag = child.tagName.toLowerCase();
+        const len = child.textContent.length;
 
         // build the selection range
-        var range = {'range': [textLen, textLen + len]};
+        let range = {'range': [textLen, textLen + len]};
         if (tag === 'a') { range.value = child.getAttribute('href'); }
 
         // add to the list

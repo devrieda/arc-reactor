@@ -1,22 +1,22 @@
-var History    = require('./History');
-var ReturnKey  = require('./Keys/ReturnKey');
-var DeleteKey  = require('./Keys/DeleteKey');
-var BspaceKey  = require('./Keys/BspaceKey');
-var DownKey    = require('./Keys/DownKey');
-var UpKey      = require('./Keys/UpKey');
-var BoldKey    = require('./Keys/BoldKey');
-var ItalicKey  = require('./Keys/ItalicKey');
-var CenterKey  = require('./Keys/CenterKey');
-var H1Key      = require('./Keys/H1Key');
-var H2Key      = require('./Keys/H2Key');
-var H3Key      = require('./Keys/H3Key');
-var QuoteKey   = require('./Keys/QuoteKey');
-var CodeKey    = require('./Keys/CodeKey');
-var UndoKey    = require('./Keys/UndoKey');
-var RedoKey    = require('./Keys/RedoKey');
-var OtherKey   = require('./Keys/OtherKey');
+const History    = require('./History');
+const ReturnKey  = require('./Keys/ReturnKey');
+const DeleteKey  = require('./Keys/DeleteKey');
+const BspaceKey  = require('./Keys/BspaceKey');
+const DownKey    = require('./Keys/DownKey');
+const UpKey      = require('./Keys/UpKey');
+const BoldKey    = require('./Keys/BoldKey');
+const ItalicKey  = require('./Keys/ItalicKey');
+const CenterKey  = require('./Keys/CenterKey');
+const H1Key      = require('./Keys/H1Key');
+const H2Key      = require('./Keys/H2Key');
+const H3Key      = require('./Keys/H3Key');
+const QuoteKey   = require('./Keys/QuoteKey');
+const CodeKey    = require('./Keys/CodeKey');
+const UndoKey    = require('./Keys/UndoKey');
+const RedoKey    = require('./Keys/RedoKey');
+const OtherKey   = require('./Keys/OtherKey');
 
-var _instance;
+let _instance;
 
 // key commands stack is fifo
 class KeyCommands {
@@ -35,11 +35,11 @@ class KeyCommands {
 
   // register a new key
   //
-  // var keys = new KeyCommands();
+  // const keys = new KeyCommands();
   // keys.use(UnderlineHotkey, { after: 'bold-hotkey' });
   //
   use(keyObj, options) {
-    var { before, after } = options || {};
+    const { before, after } = options || {};
 
     // insert the key in the stack
     if (before || after) {
@@ -56,18 +56,18 @@ class KeyCommands {
   // returns { content: "{}", selection: Selection, passThru: false }
   //
   execute(event, content, selection, callback) {
-    var keys = this.keys.slice(0); // copy keys
+    const keys = this.keys.slice(0); // copy keys
     this._executeKeys(keys, event, content, selection, callback);
   }
 
   // recursively execute each key after the previous finishes
   _executeKeys(keys, event, content, selection, callback) {
-    var klass = keys.shift();
-    var key = new klass(content, selection);
+    const klass = keys.shift();
+    const key = new klass(content, selection);
 
     // check if the event matches they key
     if (key.matches(event)) {
-      var type = event.type === 'keyup' ? 'up' : 'down';
+      const type = event.type === 'keyup' ? 'up' : 'down';
       key[type]( (results) => {
         content = results.content;
 
@@ -106,9 +106,9 @@ class KeyCommands {
   }
 
   _insertKey(keyObj, before, after) {
-    var newKeys = [];
+    let newKeys = [];
     this.keys.forEach( (key) => {
-      var name = key.getName();
+      const name = key.getName();
       if (name === before) { newKeys.push(keyObj); }
       newKeys.push(key);
       if (name === after) { newKeys.push(keyObj); }

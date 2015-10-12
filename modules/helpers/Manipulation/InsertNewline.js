@@ -1,4 +1,4 @@
-var ContentFinder = require('../ContentFinder');
+const ContentFinder = require('../ContentFinder');
 
 class InsertNewline {
   constructor(content) {
@@ -6,12 +6,12 @@ class InsertNewline {
   }
 
   execute(guids, offsets) {
-    var path = this._finder().findPath(guids.anchor);
-    var block = this.content.getIn(path);
-    var text = block.get('text');
+    const path = this._finder().findPath(guids.anchor);
+    const block = this.content.getIn(path);
+    const text = block.get('text');
 
-    var begin = text.substring(0, offsets.anchor);
-    var end   = text.substring(offsets.focus);
+    const begin = text.substring(0, offsets.anchor);
+    let end   = text.substring(offsets.focus);
 
     // need two newlines if there is no newline at the end yet
     end = end === '' ? "\n\n" : `\n${end}`;

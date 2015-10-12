@@ -1,6 +1,6 @@
-var History = require('../History');
+const History = require('../History');
 
-var KEY_CODES = { 'z': 90 };
+const KEY_CODES = { 'z': 90 };
 
 class UndoKey {
   constructor(content, selection) {
@@ -21,7 +21,7 @@ class UndoKey {
   }
 
   down(callback) {
-    var { content, position } = History.getInstance().undo();
+    const { content, position } = History.getInstance().undo();
 
     callback({
       content: content,

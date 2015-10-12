@@ -1,7 +1,7 @@
-const _blocks      = [];
-const _keys        = [];
-const _barButtons  = [];
-const _menuButtons = [];
+let _blocks      = [];
+let _keys        = [];
+let _barButtons  = [];
+let _menuButtons = [];
 
 const PluginManager = {
   install(plugin) {

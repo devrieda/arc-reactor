@@ -1,7 +1,7 @@
-var ContentFinder = require('../ContentFinder');
-var Guid = require('../Guid');
+const ContentFinder = require('../ContentFinder');
+const Guid = require('../Guid');
 
-var { Map } = require('immutable');
+const { Map } = require('immutable');
 
 class ToggleBlockType {
   constructor(content) {
@@ -9,16 +9,16 @@ class ToggleBlockType {
   }
 
   execute(guids, offsets, options) {
-    var tagName = options.type;
-    var range = this._finder().findRange(guids, offsets);
+    const tagName = options.type;
+    const range = this._finder().findRange(guids, offsets);
 
-    var paths = range.map( (guid) => {
+    const paths = range.map( (guid) => {
       return this._finder().findPath(guid);
     });
 
     // find list of blocks that don't match our type
-    var notOfType = paths.filter( (path) => {
-      var block = this.content.getIn(path);
+    const notOfType = paths.filter( (path) => {
+      const block = this.content.getIn(path);
       return block.get("type") !== tagName;
     });
 
@@ -39,8 +39,8 @@ class ToggleBlockType {
    */
   _changeBlockTypes(guids, type) {
     guids.forEach( (guid) => {
-      var path = this._finder().findPath(guid);
-      var oldType = this.content.getIn(path.concat("type"));
+      const path = this._finder().findPath(guid);
+      const oldType = this.content.getIn(path.concat("type"));
       if (oldType === 'li') {
         this._changeListType(path, type);
       } else {
@@ -59,36 +59,36 @@ class ToggleBlockType {
    *              li
    */
   _changeListType(path, type) {
-    var blocksPath = path.slice(0, -3);
-    var parentPath = path.slice(0, -2);
-    var position   = path[path.length-1];
-    var parentPos  = path[path.length-3];
-    var parent     = this.content.getIn(parentPath);
-    var listItems  = parent.get("blocks");
+    const blocksPath = path.slice(0, -3);
+    const parentPath = path.slice(0, -2);
+    const position   = path[path.length-1];
+    let parentPos    = path[path.length-3];
+    const parent     = this.content.getIn(parentPath);
+    const listItems  = parent.get("blocks");
 
-    var before = listItems.slice(0, position);
-    var item   = listItems.slice(position, position+1).get(0);
-    var after  = listItems.slice(position+1);
+    const before = listItems.slice(0, position);
+    const item   = listItems.slice(position, position+1).get(0);
+    const after  = listItems.slice(position+1);
 
     // reassign preceeding elements to list
     if (before.size > 0) {
       this.content = this.content.setIn(parentPath, parent.set("blocks", before));
       parentPos++;
     } else {
-      var beforeBlocks = this.content.getIn(blocksPath).delete(parentPos);
+      const beforeBlocks = this.content.getIn(blocksPath).delete(parentPos);
       this.content = this.content.setIn(blocksPath, beforeBlocks);
     }
 
     // create an element with new type
-    var typeBlock = item.set("type", type);
-    var typeBlocks = this.content.getIn(blocksPath).splice(parentPos, 0, typeBlock);
+    const typeBlock = item.set("type", type);
+    const typeBlocks = this.content.getIn(blocksPath).splice(parentPos, 0, typeBlock);
     parentPos++;
     this.content = this.content.setIn(blocksPath, typeBlocks);
 
     // append new list with remaining items
     if (after.size > 0) {
-      var afterBlock = Map({id: Guid.unique(), type: "ul", blocks: after});
-      var afterBlocks = this.content.getIn(blocksPath).splice(parentPos, 0, afterBlock);
+      const afterBlock = Map({id: Guid.unique(), type: "ul", blocks: after});
+      const afterBlocks = this.content.getIn(blocksPath).splice(parentPos, 0, afterBlock);
       this.content = this.content.setIn(blocksPath, afterBlocks);
     }
   }

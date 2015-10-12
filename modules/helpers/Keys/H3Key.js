@@ -1,6 +1,6 @@
-var ToggleBlockType = require('../Manipulation/ToggleBlockType');
+const ToggleBlockType = require('../Manipulation/ToggleBlockType');
 
-var KEY_CODES = { '3': 51 };
+const KEY_CODES = { '3': 51 };
 
 class H3Key {
   constructor(content, selection) {
@@ -21,9 +21,9 @@ class H3Key {
   }
 
   down(callback) {
-    var guids   = this.selection.guids();
-    var offsets = this.selection.offsets();
-    var results = this._toggleBlockType().execute(guids, offsets, { type: 'h4' });
+    const guids   = this.selection.guids();
+    const offsets = this.selection.offsets();
+    const results = this._toggleBlockType().execute(guids, offsets, { type: 'h4' });
 
     this._complete(results, callback);
   }

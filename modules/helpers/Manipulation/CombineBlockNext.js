@@ -1,4 +1,4 @@
-var ContentFinder = require('../ContentFinder');
+const ContentFinder = require('../ContentFinder');
 
 class CombineBlockNext {
   constructor(content) {
@@ -6,14 +6,14 @@ class CombineBlockNext {
   }
 
   execute(guids) {
-    var guid  = guids.anchor;
+    const guid  = guids.anchor;
 
-    var path  = this._finder().findPath(guid);
-    var block = this.content.getIn(path);
-    var offset;
+    const path  = this._finder().findPath(guid);
+    const block = this.content.getIn(path);
+    let offset;
 
-    var nextPath = this._finder().findNextPath(guid);
-    var next;
+    const nextPath = this._finder().findNextPath(guid);
+    let next;
     if (nextPath) {
       next = this.content.getIn(nextPath);
     }
@@ -31,9 +31,9 @@ class CombineBlockNext {
 
     // combine sections
     if (next && path[1] !== nextPath[1]) {
-      var blocks1 = this.content.getIn(path.slice(0, 3));
-      var blocks2 = this.content.getIn(nextPath.slice(0, 3));
-      var all = blocks1.concat(blocks2);
+      const blocks1 = this.content.getIn(path.slice(0, 3));
+      const blocks2 = this.content.getIn(nextPath.slice(0, 3));
+      const all = blocks1.concat(blocks2);
 
       // set new blocks
       this.content = this.content.setIn(path.slice(0, 3), all);
@@ -54,7 +54,7 @@ class CombineBlockNext {
       offset = block.get("text").length;
 
       // set combined text
-      var newText = block.get("text") + next.get("text");
+      const newText = block.get("text") + next.get("text");
       this.content = this.content.setIn(path.concat("text"), newText);
 
       this._removeBlock(next.get("id"));
@@ -76,9 +76,9 @@ class CombineBlockNext {
   }
 
   _removeBlock(guid) {
-    var path = this._finder().findBlocksPath(guid);
-    var blocks = this.content.getIn(path);
-    var index  = this._finder().findBlockPosition(guid);
+    const path = this._finder().findBlocksPath(guid);
+    const blocks = this.content.getIn(path);
+    const index  = this._finder().findBlockPosition(guid);
 
     this.content = this.content.setIn(path, blocks.delete(index));
   }

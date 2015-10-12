@@ -1,7 +1,7 @@
-var Immutable = require('immutable');
+const Immutable = require('immutable');
 
-var ContentFinder = require('../ContentFinder');
-var Guid = require('../Guid');
+const ContentFinder = require('../ContentFinder');
+const Guid = require('../Guid');
 
 class SplitBlock {
   constructor(content) {
@@ -9,31 +9,31 @@ class SplitBlock {
   }
 
   execute(guids, offsets) {
-    var range = this._finder().findRange(guids, offsets);
-    var first = range.shift();
-    var last  = range.pop();
+    const range = this._finder().findRange(guids, offsets);
+    const first = range.shift();
+    const last  = range.pop();
 
-    var anchorPath = this._finder().findPath(first);
-    var anchor = this.content.getIn(anchorPath);
+    const anchorPath = this._finder().findPath(first);
+    const anchor = this.content.getIn(anchorPath);
 
-    var focusPath  = last ? this._finder().findPath(last) : anchorPath;
-    var focus  = this.content.getIn(focusPath);
+    const focusPath  = last ? this._finder().findPath(last) : anchorPath;
+    const focus  = this.content.getIn(focusPath);
 
     // delete the rest
     range.forEach( (guid) => { this._removeBlock(guid); });
 
     // we'll be creating a new node from the end text
-    var end  = focus.get("text").substring(offsets.focus);
-    var type = focus.get("type");
+    const end  = focus.get("text").substring(offsets.focus);
+    const type = focus.get("type");
 
     // split and reset the anchor text
-    var newText = anchor.get("text").substring(0, offsets.anchor);
+    const newText = anchor.get("text").substring(0, offsets.anchor);
     this.content = this.content.setIn(anchorPath.concat("text"), newText);
 
     if (anchor.get('id') !== focus.get('id')) {
       this._removeBlock(focus.get('id'));
     }
-    var newBlock = this._insertBlock(type, 'after', guids.anchor, end);
+    const newBlock = this._insertBlock(type, 'after', guids.anchor, end);
 
     return {
       content: this.content,
@@ -45,19 +45,19 @@ class SplitBlock {
   }
 
   _removeBlock(guid) {
-    var path = this._finder().findBlocksPath(guid);
-    var blocks = this.content.getIn(path);
-    var index  = this._finder().findBlockPosition(guid);
+    const path = this._finder().findBlocksPath(guid);
+    const blocks = this.content.getIn(path);
+    const index  = this._finder().findBlockPosition(guid);
 
     this.content = this.content.setIn(path, blocks.delete(index));
   }
 
   _insertBlock(type, position, guid, text) {
-    var path   = this._finder().findBlocksPath(guid);
-    var blocks = this.content.getIn(path);
-    var index  = this._finder().findBlockPosition(guid);
+    const path   = this._finder().findBlocksPath(guid);
+    const blocks = this.content.getIn(path);
+    let index  = this._finder().findBlockPosition(guid);
 
-    var block = this._newBlock(type, text || "");
+    const block = this._newBlock(type, text || "");
     index = position === 'after' ? index + 1 : index;
 
     this.content = this.content.setIn(path, blocks.splice(index, 0, block));

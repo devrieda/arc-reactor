@@ -1,7 +1,7 @@
-var AppendBlock = require('../Manipulation/AppendBlock');
-var ContentFinder = require('../ContentFinder');
+const AppendBlock = require('../Manipulation/AppendBlock');
+const ContentFinder = require('../ContentFinder');
 
-var KEY_CODES = { 'down': 40 };
+const KEY_CODES = { 'down': 40 };
 
 class DownKey {
   constructor(content, selection) {
@@ -30,13 +30,13 @@ class DownKey {
   }
 
   _appendBlockAfterFigure(callback) {
-    var guids = this.selection.guids();
-    var finder = new ContentFinder(this.content);
-    var nextPath = finder.findNextPath(guids.anchor);
-    var nextBlk  = nextPath && this.content.getIn(nextPath);
+    const guids = this.selection.guids();
+    const finder = new ContentFinder(this.content);
+    const nextPath = finder.findNextPath(guids.anchor);
+    const nextBlk  = nextPath && this.content.getIn(nextPath);
 
     // only append if there isn't a next block
-    var results;
+    let results;
     if (nextBlk) {
       results = { content: this.content, block: nextBlk, offset: 0 };
     } else {

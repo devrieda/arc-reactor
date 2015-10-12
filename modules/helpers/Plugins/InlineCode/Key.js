@@ -1,6 +1,6 @@
-var ToggleBlockType = require('../../Manipulation/ToggleBlockType');
+const ToggleBlockType = require('../../Manipulation/ToggleBlockType');
 
-var KEY_CODES = { '6': 54 };
+const KEY_CODES = { '6': 54 };
 
 class Key {
   constructor(content, selection) {
@@ -19,11 +19,11 @@ class Key {
   }
 
   down(callback) {
-    var guids   = this.selection.guids();
-    var offsets = this.selection.offsets();
+    const guids   = this.selection.guids();
+    const offsets = this.selection.offsets();
 
-    var toggle  = ToggleBlockType(this.content);
-    var results = toggle.execute(guids, offsets, { type: 'pre' });
+    const toggle  = ToggleBlockType(this.content);
+    const results = toggle.execute(guids, offsets, { type: 'pre' });
 
     this._saveHistory(results.content, this.selection.position());
     this._respond(callback, results.content, true, true, true);

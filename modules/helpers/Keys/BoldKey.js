@@ -1,6 +1,6 @@
-var ToggleMarkup = require('../Manipulation/ToggleMarkup');
+const ToggleMarkup = require('../Manipulation/ToggleMarkup');
 
-var KEY_CODES = { 'b': 66 };
+const KEY_CODES = { 'b': 66 };
 
 class BoldKey {
   constructor(content, selection) {
@@ -21,9 +21,9 @@ class BoldKey {
   }
 
   down(callback) {
-    var guids   = this.selection.guids();
-    var offsets = this.selection.offsets();
-    var results = this._toggleMarkup().execute(guids, offsets, { type: 'strong' });
+    const guids   = this.selection.guids();
+    const offsets = this.selection.offsets();
+    const results = this._toggleMarkup().execute(guids, offsets, { type: 'strong' });
 
     this._complete(results, callback);
   }

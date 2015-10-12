@@ -1,6 +1,6 @@
-var { fromJS } = require('immutable');
-var ContentFinder = require('../ContentFinder');
-var MarkupParser = require('../MarkupParser');
+const { fromJS } = require('immutable');
+const ContentFinder = require('../ContentFinder');
+const MarkupParser = require('../MarkupParser');
 
 class ChangeText {
   constructor(content) {
@@ -8,16 +8,16 @@ class ChangeText {
   }
 
   execute(guids, _offsets, options) {
-    var path = this._finder().findPath(guids.anchor);
-    var block = this.content.getIn(path);
+    const path = this._finder().findPath(guids.anchor);
+    const block = this.content.getIn(path);
 
     // rebuild the markup for the block based on the text
-    var parser = new MarkupParser(options.node);
-    block = block.merge({
+    const parser = new MarkupParser(options.node);
+    const newBlock = block.merge({
       'text': options.text,
       'markups': fromJS(parser.markups())
     });
-    this.content = this.content.setIn(path, block);
+    this.content = this.content.setIn(path, newBlock);
 
     return {
       content: this.content,

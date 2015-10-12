@@ -1,9 +1,9 @@
-var CombineBlocks    = require('../Manipulation/CombineBlocks');
-var CombineBlockPrev = require('../Manipulation/CombineBlockPrev');
-var ToggleBlockType  = require('../Manipulation/ToggleBlockType');
-var DeleteFigure     = require('../Manipulation/DeleteFigure');
+const CombineBlocks    = require('../Manipulation/CombineBlocks');
+const CombineBlockPrev = require('../Manipulation/CombineBlockPrev');
+const ToggleBlockType  = require('../Manipulation/ToggleBlockType');
+const DeleteFigure     = require('../Manipulation/DeleteFigure');
 
-var KEY_CODES = { 'bspace': 8 };
+const KEY_CODES = { 'bspace': 8 };
 
 class BspaceKey {
   constructor(content, selection) {
@@ -21,13 +21,13 @@ class BspaceKey {
   }
 
   down(callback) {
-    var guids = this.selection.guids();
-    var offsets = this.selection.offsets();
-    var results;
+    const guids = this.selection.guids();
+    const offsets = this.selection.offsets();
+    let results;
 
     // is this a list item
-    var node = document.getElementsByName(guids.anchor)[0];
-    var type = node.tagName.toLowerCase();
+    const node = document.getElementsByName(guids.anchor)[0];
+    const type = node.tagName.toLowerCase();
 
     if (this.selection.isFigure() && !this.selection.isCaption()) {
       results = this._deleteFigure().execute(guids);
@@ -53,8 +53,8 @@ class BspaceKey {
   }
 
   _complete(results, callback) {
-    var content = results ? results.content : this.content;
-    var position = results ? results.position : null;
+    const content = results ? results.content : this.content;
+    const position = results ? results.position : null;
 
     callback({
       content: content,

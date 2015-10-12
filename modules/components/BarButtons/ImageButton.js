@@ -1,7 +1,6 @@
 const React = require('react/addons');
 const BarButton = require('../BarButton');
 
-const History = require('../../helpers/History');
 const InsertImage = require('../../helpers/Manipulation/InsertImage');
 
 const ImageButton = React.createClass({

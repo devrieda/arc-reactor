@@ -1,6 +1,6 @@
-var ToggleCenter = require('../Manipulation/ToggleCenter');
+const ToggleCenter = require('../Manipulation/ToggleCenter');
 
-var KEY_CODES = { 'e': 69 };
+const KEY_CODES = { 'e': 69 };
 
 class CenterKey {
   constructor(content, selection) {
@@ -21,9 +21,9 @@ class CenterKey {
   }
 
   down(callback) {
-    var guids   = this.selection.guids();
-    var offsets = this.selection.offsets();
-    var results = this._toggleCenter().execute(guids, offsets);
+    const guids   = this.selection.guids();
+    const offsets = this.selection.offsets();
+    const results = this._toggleCenter().execute(guids, offsets);
 
     this._complete(results, callback);
   }

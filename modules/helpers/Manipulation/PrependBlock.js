@@ -1,7 +1,7 @@
-var Immutable = require('immutable');
+const Immutable = require('immutable');
 
-var ContentFinder = require('../ContentFinder');
-var Guid = require('../Guid');
+const ContentFinder = require('../ContentFinder');
+const Guid = require('../Guid');
 
 class PrependBlock {
   constructor(content) {
@@ -9,10 +9,10 @@ class PrependBlock {
   }
 
   execute(guids) {
-    var guid = guids.anchor;
+    const guid = guids.anchor;
 
-    var path  = this._finder().findPath(guid);
-    var block = this.content.getIn(path);
+    const path  = this._finder().findPath(guid);
+    const block = this.content.getIn(path);
 
     this._insertBlock('p', 'before', guid);
     return {
@@ -25,11 +25,11 @@ class PrependBlock {
   }
 
   _insertBlock(type, position, guid, text) {
-    var path   = this._finder().findBlocksPath(guid);
-    var blocks = this.content.getIn(path);
-    var index  = this._finder().findBlockPosition(guid);
+    const path   = this._finder().findBlocksPath(guid);
+    const blocks = this.content.getIn(path);
+    let index  = this._finder().findBlockPosition(guid);
 
-    var block = this._newBlock(type, text || "");
+    const block = this._newBlock(type, text || "");
     index = position === 'after' ? index + 1 : index;
 
     this.content = this.content.setIn(path, blocks.splice(index, 0, block));

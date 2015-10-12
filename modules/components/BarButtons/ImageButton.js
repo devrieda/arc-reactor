@@ -22,10 +22,7 @@ var ImageButton = React.createClass({
     var options = { type: this.props.type, value: value };
     var result = this._insertFigure().execute(guids, offsets, options);
 
-    // track content state and where cursor is
-    History.getInstance().push({content: result.content, position: position});
-
-    return result.content;
+    return { content: result.content, position: position };
   },
 
   _insertFigure() {

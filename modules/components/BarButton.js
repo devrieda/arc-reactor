@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var Immutable = require('immutable');
 var cx = require("classnames");
+var History = require('../helpers/History');
 var EditorStore = require('../stores/EditorStore');
 
 var { string, bool, object, instanceOf } = React.PropTypes;
@@ -28,7 +29,11 @@ var BarButton = React.createClass({
       this.props.handleSetValue(this);
 
     } else {
-      var content = this.handlePress();
+      var { content, position } = this.props.onPress();
+
+      // track content state and where cursor is
+      History.getInstance().push({ content: content, position: position });
+
       EditorStore.set({content: content});
     }
   },

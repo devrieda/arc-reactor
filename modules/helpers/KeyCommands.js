@@ -1,20 +1,5 @@
-const History    = require('./History');
-const ReturnKey  = require('./Keys/ReturnKey');
-const DeleteKey  = require('./Keys/DeleteKey');
-const BspaceKey  = require('./Keys/BspaceKey');
-const DownKey    = require('./Keys/DownKey');
-const UpKey      = require('./Keys/UpKey');
-const BoldKey    = require('./Keys/BoldKey');
-const ItalicKey  = require('./Keys/ItalicKey');
-const CenterKey  = require('./Keys/CenterKey');
-const H1Key      = require('./Keys/H1Key');
-const H2Key      = require('./Keys/H2Key');
-const H3Key      = require('./Keys/H3Key');
-const QuoteKey   = require('./Keys/QuoteKey');
-const CodeKey    = require('./Keys/CodeKey');
-const UndoKey    = require('./Keys/UndoKey');
-const RedoKey    = require('./Keys/RedoKey');
-const OtherKey   = require('./Keys/OtherKey');
+const History = require('./History');
+const Keys = require("./Integration/Keys");
 
 let _instance;
 
@@ -118,22 +103,7 @@ class KeyCommands {
 
   // Default key 
   _installDefaultKeys() {
-    this.use(ReturnKey);
-    this.use(BspaceKey);
-    this.use(DownKey);
-    this.use(UpKey);
-    this.use(DeleteKey);
-    this.use(BoldKey);
-    this.use(ItalicKey);
-    this.use(CenterKey);
-    this.use(H1Key);
-    this.use(H2Key);
-    this.use(H3Key);
-    this.use(QuoteKey);
-    this.use(CodeKey);
-    this.use(RedoKey);
-    this.use(UndoKey);
-    this.use(OtherKey);
+    Keys.forEach( (key) => { this.use(key); });
   }
 }
 

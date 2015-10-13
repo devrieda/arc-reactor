@@ -41,4 +41,4 @@ const ItalicButton = React.createClass({
   }
 });
 
-module.exports = ItalicButton;
+export default ItalicButton;

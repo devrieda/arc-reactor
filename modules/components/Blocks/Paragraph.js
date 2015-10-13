@@ -15,4 +15,4 @@ const Paragraph = React.createClass({
   }
 });
 
-module.exports = Paragraph;
+export default Paragraph;

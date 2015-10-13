@@ -47,4 +47,4 @@ class H2Key {
   }
 }
 
-module.exports = H2Key;
+export default H2Key;

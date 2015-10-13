@@ -15,4 +15,4 @@ const Header3 = React.createClass({
   }
 });
 
-module.exports = Header3;
+export default Header3;

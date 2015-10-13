@@ -39,4 +39,4 @@ const H1Button = React.createClass({
   }
 });
 
-module.exports = H1Button;
+export default H1Button;

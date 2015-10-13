@@ -47,4 +47,4 @@ class BoldKey {
   }
 }
 
-module.exports = BoldKey;
+export default BoldKey;

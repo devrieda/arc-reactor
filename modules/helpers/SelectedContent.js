@@ -213,4 +213,4 @@ class SelectedContent {
   }
 }
 
-module.exports = SelectedContent;
+export default SelectedContent;

@@ -60,4 +60,4 @@ const BarButton = React.createClass({
   }
 });
 
-module.exports = BarButton;
+export default BarButton;

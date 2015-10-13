@@ -45,4 +45,4 @@ class PrependBlock {
   }
 }
 
-module.exports = PrependBlock;
+export default PrependBlock;

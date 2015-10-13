@@ -39,4 +39,4 @@ class RedoKey {
   }
 }
 
-module.exports = RedoKey;
+export default RedoKey;

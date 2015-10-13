@@ -43,4 +43,4 @@ const BoldButton = React.createClass({
   }
 });
 
-module.exports = BoldButton;
+export default BoldButton;

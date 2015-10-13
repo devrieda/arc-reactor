@@ -57,4 +57,4 @@ class InsertImage {
   }
 }
 
-module.exports = InsertImage;
+export default InsertImage;

@@ -30,4 +30,4 @@ class ChangeText {
   }
 }
 
-module.exports = ChangeText;
+export default ChangeText;

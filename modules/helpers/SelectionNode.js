@@ -111,4 +111,4 @@ class SelectionNode {
   }
 }
 
-module.exports = SelectionNode;
+export default SelectionNode;

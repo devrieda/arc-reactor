@@ -51,4 +51,4 @@ const Figure = React.createClass({
   }
 });
 
-module.exports = Figure;
+export default Figure;

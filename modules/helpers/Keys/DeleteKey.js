@@ -66,4 +66,4 @@ class DeleteKey {
   }
 }
 
-module.exports = DeleteKey;
+export default DeleteKey;

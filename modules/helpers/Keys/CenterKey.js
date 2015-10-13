@@ -47,4 +47,4 @@ class CenterKey {
   }
 }
 
-module.exports = CenterKey;
+export default CenterKey;

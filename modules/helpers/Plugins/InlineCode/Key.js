@@ -45,4 +45,4 @@ class Key {
   }
 }
 
-module.exports = Key;
+export default Key;

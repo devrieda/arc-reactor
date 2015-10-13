@@ -221,4 +221,4 @@ class ContentFinder {
   }
 }
 
-module.exports = ContentFinder;
+export default ContentFinder;

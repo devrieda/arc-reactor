@@ -58,4 +58,4 @@ class InsertYoutube {
   }
 }
 
-module.exports = InsertYoutube;
+export default InsertYoutube;

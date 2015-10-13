@@ -47,4 +47,4 @@ class QuoteKey {
   }
 }
 
-module.exports = QuoteKey;
+export default QuoteKey;

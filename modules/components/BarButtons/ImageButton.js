@@ -35,4 +35,4 @@ const ImageButton = React.createClass({
   }
 });
 
-module.exports = ImageButton;
+export default ImageButton;

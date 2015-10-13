@@ -81,4 +81,4 @@ const MenuButton = React.createClass({
   }
 });
 
-module.exports = MenuButton;
+export default MenuButton;

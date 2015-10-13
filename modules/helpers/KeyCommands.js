@@ -107,4 +107,4 @@ class KeyCommands {
   }
 }
 
-module.exports = KeyCommands;
+export default KeyCommands;

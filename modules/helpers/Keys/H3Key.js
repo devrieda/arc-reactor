@@ -47,4 +47,4 @@ class H3Key {
   }
 }
 
-module.exports = H3Key;
+export default H3Key;

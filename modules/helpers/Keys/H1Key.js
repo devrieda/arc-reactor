@@ -47,4 +47,4 @@ class H1Key {
   }
 }
 
-module.exports = H1Key;
+export default H1Key;

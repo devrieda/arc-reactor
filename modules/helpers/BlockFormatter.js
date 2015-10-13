@@ -168,4 +168,4 @@ class BlockFormatter {
   }
 }
 
-module.exports = BlockFormatter;
+export default BlockFormatter;

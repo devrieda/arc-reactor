@@ -17,4 +17,4 @@ const Keys = [
   require('../Keys/OtherKey'),
 ];
 
-module.exports = Keys;
+export default Keys;

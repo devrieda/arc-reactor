@@ -53,4 +53,4 @@ const LinkButton = React.createClass({
   }
 });
 
-module.exports = LinkButton;
+export default LinkButton;

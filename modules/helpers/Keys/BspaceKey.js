@@ -82,4 +82,4 @@ class BspaceKey {
   }
 }
 
-module.exports = BspaceKey;
+export default BspaceKey;

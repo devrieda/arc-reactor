@@ -9,4 +9,4 @@ const MenuButtons = [
   require('../../components/MenuButtons/LinkButton')
 ];
 
-module.exports = MenuButtons;
+export default MenuButtons;

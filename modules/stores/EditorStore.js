@@ -38,4 +38,4 @@ const EditorStore = {
   }
 };
 
-module.exports = EditorStore;
+export default EditorStore;

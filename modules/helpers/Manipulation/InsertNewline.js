@@ -31,4 +31,4 @@ class InsertNewline {
   }
 }
 
-module.exports = InsertNewline;
+export default InsertNewline;

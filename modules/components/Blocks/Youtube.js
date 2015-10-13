@@ -83,4 +83,4 @@ const Youtube = React.createClass({
   }
 });
 
-module.exports = Youtube;
+export default Youtube;

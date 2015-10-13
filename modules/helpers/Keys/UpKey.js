@@ -23,4 +23,4 @@ class UpKey {
   }
 }
 
-module.exports = UpKey;
+export default UpKey;

@@ -61,4 +61,4 @@ class DownKey {
   }
 }
 
-module.exports = DownKey;
+export default DownKey;

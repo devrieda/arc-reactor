@@ -39,4 +39,4 @@ const QuoteButton = React.createClass({
   }
 });
 
-module.exports = QuoteButton;
+export default QuoteButton;

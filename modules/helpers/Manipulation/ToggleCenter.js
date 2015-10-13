@@ -39,4 +39,4 @@ class ToggleCenter {
   }
 }
 
-module.exports = ToggleCenter;
+export default ToggleCenter;

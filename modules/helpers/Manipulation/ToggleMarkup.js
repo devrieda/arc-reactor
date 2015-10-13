@@ -137,4 +137,4 @@ class ToggleMarkup {
   }
 }
 
-module.exports = ToggleMarkup;
+export default ToggleMarkup;

@@ -14,6 +14,11 @@ var ContentStore = {
               "id": "667a",
               "type": "p",
               "text": "Build your page here"
+            },
+            {
+              "id": "667b",
+              "type": "p",
+              "text": ""
             }
           ]
         }
@@ -33,7 +38,12 @@ var ContentStore = {
               "text": "History of Photography"
             },
             {
-              "id": "667a",
+              "id": "666a",
+              "type": "p",
+              "text": ""
+            },
+            {
+              "id": "6673",
               "type": "p",
               "text": "Photography is a word derived from the Greek words photos (“light”) and graphein (“to draw”) The word was first used by the scientist Sir John F.W. Herschel in 1839."
             },
@@ -78,6 +88,11 @@ var ContentStore = {
               "id": "667a",
               "type": "p",
               "text": "Photography is a word derived from the Greek words photos (“light”) and graphein (“to draw”) The word was first used by the scientist Sir John F.W. Herschel in 1839."
+            },
+            {
+              "id": "aaaa",
+              "type": "p",
+              "text": ""
             },
             {
               "id": "7421",
@@ -309,4 +324,4 @@ var ContentStore = {
   }
 };
 
-module.exports = ContentStore;
+export default ContentStore;

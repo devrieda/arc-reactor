@@ -39,4 +39,4 @@ class MarkupParser {
   }
 }
 
-module.exports = MarkupParser;
+export default MarkupParser;

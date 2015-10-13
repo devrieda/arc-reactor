@@ -88,4 +88,4 @@ class CombineBlockNext {
   }
 }
 
-module.exports = CombineBlockNext;
+export default CombineBlockNext;

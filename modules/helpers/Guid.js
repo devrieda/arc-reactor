@@ -15,4 +15,4 @@ const Guid = {
     this.guids[id] = true;
   }
 };
-module.exports = Guid;
+export default Guid;

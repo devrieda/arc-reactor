@@ -47,4 +47,4 @@ class CodeKey {
   }
 }
 
-module.exports = CodeKey;
+export default CodeKey;

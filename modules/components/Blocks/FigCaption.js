@@ -131,4 +131,4 @@ const FigCaption = React.createClass({
   }
 });
 
-module.exports = FigCaption;
+export default FigCaption;

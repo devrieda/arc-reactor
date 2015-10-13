@@ -78,4 +78,4 @@ const Section = React.createClass({
   }
 });
 
-module.exports = Section;
+export default Section;

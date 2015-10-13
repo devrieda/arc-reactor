@@ -152,4 +152,4 @@ const BaseBlock = React.createClass({
   }
 });
 
-module.exports = BaseBlock;
+export default BaseBlock;

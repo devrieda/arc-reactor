@@ -15,4 +15,4 @@ const Code = React.createClass({
   }
 });
 
-module.exports = Code;
+export default Code;

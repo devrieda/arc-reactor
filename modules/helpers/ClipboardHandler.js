@@ -67,4 +67,4 @@ class ClipboardHandler {
   }
 } 
 
-module.exports = ClipboardHandler;
+export default ClipboardHandler;

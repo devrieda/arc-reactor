@@ -66,4 +66,4 @@ class BlockNode {
   }
 }
 
-module.exports = BlockNode;
+export default BlockNode;

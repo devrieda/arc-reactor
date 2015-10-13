@@ -73,4 +73,4 @@ class SplitBlock {
   }
 }
 
-module.exports = SplitBlock;
+export default SplitBlock;

@@ -47,4 +47,4 @@ class ItalicKey {
   }
 }
 
-module.exports = ItalicKey;
+export default ItalicKey;

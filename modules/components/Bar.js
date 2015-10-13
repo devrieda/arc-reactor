@@ -190,4 +190,4 @@ const Bar = React.createClass({
   }
 });
 
-module.exports = Bar;
+export default Bar;

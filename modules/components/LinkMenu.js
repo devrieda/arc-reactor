@@ -90,4 +90,4 @@ const LinkMenu = React.createClass({
   }
 });
 
-module.exports = LinkMenu;
+export default LinkMenu;

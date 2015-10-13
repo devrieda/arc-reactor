@@ -78,4 +78,4 @@ class CombineBlocks {
   }
 }
 
-module.exports = CombineBlocks;
+export default CombineBlocks;

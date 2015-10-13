@@ -15,4 +15,4 @@ const InlineCodeBlock = React.createClass({
   }
 });
 
-module.exports = InlineCodeBlock;
+export default InlineCodeBlock;

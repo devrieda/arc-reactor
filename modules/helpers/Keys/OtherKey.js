@@ -73,4 +73,4 @@ class OtherKey {
   }
 }
 
-module.exports = OtherKey;
+export default OtherKey;

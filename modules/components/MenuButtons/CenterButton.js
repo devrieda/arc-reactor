@@ -39,4 +39,4 @@ const CenterButton = React.createClass({
   }
 });
 
-module.exports = CenterButton;
+export default CenterButton;

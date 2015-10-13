@@ -15,4 +15,4 @@ const List = React.createClass({
   }
 });
 
-module.exports = List;
+export default List;

@@ -102,4 +102,4 @@ class ToggleBlockType {
   }
 }
 
-module.exports = ToggleBlockType;
+export default ToggleBlockType;

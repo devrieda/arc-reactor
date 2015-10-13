@@ -157,4 +157,4 @@ class RangeSet {
   }
 }
 
-module.exports = RangeSet;
+export default RangeSet;

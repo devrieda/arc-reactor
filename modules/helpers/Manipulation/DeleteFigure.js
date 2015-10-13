@@ -32,4 +32,4 @@ class DeleteFigure {
   }
 }
 
-module.exports = DeleteFigure;
+export default DeleteFigure;

@@ -39,4 +39,4 @@ const H2Button = React.createClass({
   }
 });
 
-module.exports = H2Button;
+export default H2Button;

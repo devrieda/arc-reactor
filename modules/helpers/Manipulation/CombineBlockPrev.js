@@ -84,4 +84,4 @@ class CombineBlockPrev {
   }
 }
 
-module.exports = CombineBlockPrev;
+export default CombineBlockPrev;

@@ -105,4 +105,4 @@ class AppendBlock {
   }
 }
 
-module.exports = AppendBlock;
+export default AppendBlock;

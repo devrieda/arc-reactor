@@ -267,4 +267,4 @@ const Editor = React.createClass({
   }
 });
 
-module.exports = Editor;
+export default Editor;

@@ -23,4 +23,4 @@ const InlineCode = {
   }
 };
 
-module.exports = InlineCode;
+export default InlineCode;

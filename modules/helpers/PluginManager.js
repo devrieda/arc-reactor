@@ -24,4 +24,4 @@ const PluginManager = {
   }
 };
 
-module.exports = PluginManager;
+export default PluginManager;

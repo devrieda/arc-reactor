@@ -9,4 +9,4 @@ const Blocks = [
   require('../../components/Blocks/Youtube'),
 ];
 
-module.exports = Blocks;
+export default Blocks;

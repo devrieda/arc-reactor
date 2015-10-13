@@ -15,4 +15,4 @@ const Blockquote = React.createClass({
   }
 });
 
-module.exports = Blockquote;
+export default Blockquote;

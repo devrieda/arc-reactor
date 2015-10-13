@@ -108,4 +108,4 @@ class ReturnKey {
   }
 }
 
-module.exports = ReturnKey;
+export default ReturnKey;

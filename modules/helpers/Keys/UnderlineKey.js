@@ -34,4 +34,4 @@ class UnderlineKey {
   }
 }
 
-module.exports = UnderlineKey;
+export default UnderlineKey;

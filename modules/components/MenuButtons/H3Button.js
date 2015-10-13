@@ -39,4 +39,4 @@ const H3Button = React.createClass({
   }
 });
 
-module.exports = H3Button;
+export default H3Button;

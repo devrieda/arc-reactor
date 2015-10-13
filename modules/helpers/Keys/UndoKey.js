@@ -38,4 +38,4 @@ class UndoKey {
   }
 }
 
-module.exports = UndoKey;
+export default UndoKey;

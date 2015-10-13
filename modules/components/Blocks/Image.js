@@ -75,4 +75,4 @@ const Image = React.createClass({
   }
 });
 
-module.exports = Image;
+export default Image;

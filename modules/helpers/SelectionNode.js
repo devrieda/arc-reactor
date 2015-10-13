@@ -1,4 +1,4 @@
-const BlockNode = require('./BlockNode');
+import BlockNode from './BlockNode';
 
 class SelectionNode {
   constructor(node, offset, target) {

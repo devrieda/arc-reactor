@@ -1,4 +1,4 @@
-const ToggleMarkup = require('../Manipulation/ToggleMarkup');
+import ToggleMarkup from '../Manipulation/ToggleMarkup';
 
 const KEY_CODES = { 'b': 66 };
 

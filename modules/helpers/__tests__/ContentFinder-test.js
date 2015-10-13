@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const ContentFinder = require('../ContentFinder');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import ContentFinder from '../ContentFinder';
 
 describe('ContentFinder', () => {
 

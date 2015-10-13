@@ -1,4 +1,4 @@
-const QuoteKey = require('../QuoteKey');
+import QuoteKey from '../QuoteKey';
 
 describe('QuoteKey', () => {
   let content, selection;

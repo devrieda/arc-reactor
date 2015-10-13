@@ -1,13 +1,12 @@
-const expect = require('expect');
-const assert = require('assert');
+import expect from 'expect';
+import assert from 'assert';
+import React from 'react/addons';
+import { fromJS } from 'immutable';
+import ItalicButton from '../ItalicButton';
 
-const React = require('react/addons');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-const { fromJS } = require('immutable');
-
-const ItalicButton = require('../ItalicButton');
 
 describe('ItalicButton', () => {
   it('should render', () => {

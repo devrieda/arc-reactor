@@ -1,8 +1,8 @@
-const React = require('react/addons');
-const Immutable = require('immutable');
-const ContentFinder = require('../helpers/ContentFinder');
-const cx = require("classnames");
-const BarButtons = require("../helpers/Integration/BarButtons");
+import React from 'react/addons';
+import Immutable from 'immutable';
+import ContentFinder from '../helpers/ContentFinder';
+import cx from 'classnames';
+import BarButtons from '../helpers/Integration/BarButtons';
 
 const { object, instanceOf, func } = React.PropTypes;
 

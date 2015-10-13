@@ -1,4 +1,4 @@
-const CodeKey = require('../CodeKey');
+import CodeKey from '../CodeKey';
 
 describe('CodeKey', () => {
   let content, selection;

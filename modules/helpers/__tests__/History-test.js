@@ -1,6 +1,5 @@
-const expect = require('expect');
-
-const History = require('../History');
+import expect from 'expect';
+import History from '../History';
 
 describe('History', () => {
   let state1, state2, state3;

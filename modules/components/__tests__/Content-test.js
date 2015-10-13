@@ -1,12 +1,11 @@
-const assert = require('assert');
+import assert from 'assert';
+import React from 'react/addons';
+import { fromJS } from 'immutable';
+import Content from '../Content.js';
 
-const React = require('react/addons');
-const { fromJS } = require('immutable');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-
-const Content = require('../Content.js');
 
 describe('Content', () => {
 

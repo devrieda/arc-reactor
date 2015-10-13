@@ -1,6 +1,5 @@
-const expect = require('expect');
-
-const MarkupParser = require('../MarkupParser');
+import expect from 'expect';
+import MarkupParser from '../MarkupParser';
 
 describe('MarkupParser', () => {
   function createNode(html) {

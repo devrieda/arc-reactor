@@ -1,9 +1,9 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const Immutable = require('immutable');
-const Figure = require('./Figure');
-const cx = require('classnames');
+import React from 'react/addons';
+import Immutable from 'immutable';
+import Figure from './Figure';
+import cx from 'classnames';
 
+const PureRenderMixin = React.addons.PureRenderMixin;
 const { string, object, instanceOf } = React.PropTypes;
 
 const Youtube = React.createClass({

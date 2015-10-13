@@ -1,5 +1,5 @@
-const History = require('./History');
-const Keys = require("./Integration/Keys");
+import History from './History';
+import Keys from "./Integration/Keys";
 
 let _instance;
 

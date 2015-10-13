@@ -1,7 +1,6 @@
-const React = require('react/addons');
-const MenuButton = require('../MenuButton');
-
-const ToggleCenter = require('../../helpers/Manipulation/ToggleCenter');
+import React from 'react/addons';
+import MenuButton from '../MenuButton';
+import ToggleCenter from '../../helpers/Manipulation/ToggleCenter';
 
 const CenterButton = React.createClass({
   statics: {

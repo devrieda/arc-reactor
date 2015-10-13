@@ -1,6 +1,5 @@
-const Immutable = require('immutable');
-
-const ContentFinder = require('../ContentFinder');
+import Immutable from 'immutable';
+import ContentFinder from '../ContentFinder';
 
 class ToggleCenter {
   constructor(content) {

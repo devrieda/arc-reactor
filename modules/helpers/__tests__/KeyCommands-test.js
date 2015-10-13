@@ -1,6 +1,5 @@
-const expect = require('expect');
-
-const KeyCommands = require('../KeyCommands');
+import expect from 'expect';
+import KeyCommands from '../KeyCommands';
 
 const specialStub = sinon.spy();
 class SpecialKey {

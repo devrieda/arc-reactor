@@ -1,4 +1,4 @@
-const UndoKey = require('../UndoKey');
+import UndoKey from '../UndoKey';
 
 describe('UndoKey', () => {
   let content, selection;

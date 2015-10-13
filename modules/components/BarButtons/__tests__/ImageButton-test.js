@@ -1,12 +1,11 @@
-const assert = require('assert');
+import assert from 'assert';
+import React from 'react/addons';
+import { fromJS } from 'immutable';
+import ImageButton from '../ImageButton';
 
-const React = require('react/addons');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-const { fromJS } = require('immutable');
-
-const ImageButton = require('../ImageButton');
 
 describe('ImageButton', () => {
   it('should render', () => {

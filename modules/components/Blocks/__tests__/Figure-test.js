@@ -1,13 +1,11 @@
-const assert = require('assert');
-
-const React = require('react/addons');
-const Immutable = require('immutable');
+import assert from 'assert';
+import React from 'react/addons';
+import Immutable from 'immutable';
+import Figure from '../Figure';
 
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-
-const Figure = require('../Figure');
 
 describe('Figure', () => {
 

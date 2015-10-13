@@ -1,4 +1,4 @@
-const RedoKey = require('../RedoKey');
+import RedoKey from '../RedoKey';
 
 describe('RedoKey', () => {
   let content, selection;

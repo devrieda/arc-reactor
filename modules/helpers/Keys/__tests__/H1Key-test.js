@@ -1,4 +1,4 @@
-const H1Key = require('../H1Key');
+import H1Key from '../H1Key';
 
 describe('H1Key', () => {
   let content, selection;

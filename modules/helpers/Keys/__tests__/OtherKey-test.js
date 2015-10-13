@@ -1,4 +1,4 @@
-const OtherKey = require('../OtherKey');
+import OtherKey from '../OtherKey';
 
 describe('OtherKey', () => {
   let content, selection;

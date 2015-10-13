@@ -1,13 +1,12 @@
-const expect = require('expect');
-const assert = require('assert');
+import expect from 'expect';
+import assert from 'assert';
+import React from 'react/addons';
+import { fromJS } from 'immutable';
+import H2Button from '../H2Button';
 
-const React = require('react/addons');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-const { fromJS } = require('immutable');
-
-const H2Button = require('../H2Button');
 
 describe('H2Button', () => {
   it('should render', () => {

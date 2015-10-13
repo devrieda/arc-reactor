@@ -1,7 +1,6 @@
-const assert = require('assert');
-
-const SelectedContent = require('../SelectedContent');
-const { fromJS } = require('immutable');
+import assert from 'assert';
+import SelectedContent from '../SelectedContent';
+import { fromJS } from 'immutable';
 
 describe('SelectedContent', () => {
 

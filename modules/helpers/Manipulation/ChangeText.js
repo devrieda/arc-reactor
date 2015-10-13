@@ -1,6 +1,6 @@
-const { fromJS } = require('immutable');
-const ContentFinder = require('../ContentFinder');
-const MarkupParser = require('../MarkupParser');
+import { fromJS } from 'immutable';
+import ContentFinder from '../ContentFinder';
+import MarkupParser from '../MarkupParser';
 
 class ChangeText {
   constructor(content) {

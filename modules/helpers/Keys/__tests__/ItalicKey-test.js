@@ -1,4 +1,4 @@
-const ItalicKey = require('../ItalicKey');
+import ItalicKey from '../ItalicKey';
 
 describe('ItalicKey', () => {
   let content, selection;

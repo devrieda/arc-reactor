@@ -1,6 +1,5 @@
-const expect = require('expect');
-
-const BlockNode = require('../BlockNode');
+import expect from 'expect';
+import BlockNode from '../BlockNode';
 
 describe('BlockNode', () => {
   let p, thisIs, strong, em, some, text;

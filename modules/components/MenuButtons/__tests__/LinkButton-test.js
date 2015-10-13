@@ -1,13 +1,12 @@
-const expect = require('expect');
-const assert = require('assert');
+import expect from 'expect';
+import assert from 'assert';
+import React from 'react/addons';
+import { fromJS } from 'immutable';
+import LinkButton from '../LinkButton';
 
-const React = require('react/addons');
-const { fromJS } = require('immutable');
 const TestUtils = React.addons.TestUtils;
 const render = TestUtils.renderIntoDocument;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
-
-const LinkButton = require('../LinkButton');
 
 describe('LinkButton', () => {
   it('renders', () => {

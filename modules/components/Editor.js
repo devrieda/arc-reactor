@@ -1,15 +1,15 @@
-const React = require('react');
-const Immutable = require('immutable');
-const Content = require('./Content');
-const Menu = require('./Menu');
-const LinkMenu = require('./LinkMenu');
-const Bar = require('./Bar');
+import React from 'react';
+import Immutable from 'immutable';
+import Content from './Content';
+import Menu from './Menu';
+import LinkMenu from './LinkMenu';
+import Bar from './Bar';
 
-const ClipboardHandler = require('../helpers/ClipboardHandler');
-const KeyCommands = require('../helpers/KeyCommands');
-const History     = require('../helpers/History');
-const Selection   = require('../helpers/Selection');
-const EditorStore = require('../stores/EditorStore');
+import ClipboardHandler from '../helpers/ClipboardHandler';
+import KeyCommands from '../helpers/KeyCommands';
+import History     from '../helpers/History';
+import Selection   from '../helpers/Selection';
+import EditorStore from '../stores/EditorStore';
 
 const { object, func } = React.PropTypes;
 

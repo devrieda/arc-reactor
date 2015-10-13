@@ -1,9 +1,9 @@
-const AppendBlock   = require('../Manipulation/AppendBlock');
-const PrependBlock  = require('../Manipulation/PrependBlock');
-const SplitBlock    = require('../Manipulation/SplitBlock');
-const InsertImage   = require('../Manipulation/InsertImage');
-const InsertYoutube = require('../Manipulation/InsertYoutube');
-const InsertNewline = require('../Manipulation/InsertNewline');
+import AppendBlock   from '../Manipulation/AppendBlock';
+import PrependBlock  from '../Manipulation/PrependBlock';
+import SplitBlock    from '../Manipulation/SplitBlock';
+import InsertImage   from '../Manipulation/InsertImage';
+import InsertYoutube from '../Manipulation/InsertYoutube';
+import InsertNewline from '../Manipulation/InsertNewline';
 
 const KEY_CODES = { 'return': 13, 'm': 77 };
 

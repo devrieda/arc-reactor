@@ -1,7 +1,6 @@
-const expect = require('expect');
-const assert = require('assert');
-
-const SelectionNode = require('../SelectionNode');
+import expect from 'expect';
+import assert from 'assert';
+import SelectionNode from '../SelectionNode';
 
 describe('SelectionNode', () => {
   let div, p1, p2, thisIs, strong, em, some, text, andMore;

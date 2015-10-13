@@ -1,10 +1,10 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const Immutable = require('immutable');
-const BlockFormatter = require('../../helpers/BlockFormatter');
-const EditorStore = require('../../stores/EditorStore');
-const cx = require('classnames');
+import React from 'react/addons';
+import Immutable from 'immutable';
+import BlockFormatter from '../../helpers/BlockFormatter';
+import EditorStore from '../../stores/EditorStore';
+import cx from 'classnames';
 
+const PureRenderMixin = React.addons.PureRenderMixin;
 const { string, instanceOf } = React.PropTypes;
 
 const BaseBlock = React.createClass({

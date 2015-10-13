@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const ChangeText = require('../ChangeText');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import ChangeText from '../ChangeText';
 
 describe('ChangeText', () => {
   let content;

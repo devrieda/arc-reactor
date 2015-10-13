@@ -1,5 +1,5 @@
-const expect = require('expect');
-const BarButtons = require("../BarButtons");
+import expect from 'expect';
+import BarButtons from "../BarButtons";
 
 describe('BarButtons', () => {
   it("has a list of buttons", () => {

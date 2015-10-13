@@ -1,5 +1,5 @@
-const AppendBlock = require('../Manipulation/AppendBlock');
-const ContentFinder = require('../ContentFinder');
+import AppendBlock from '../Manipulation/AppendBlock';
+import ContentFinder from '../ContentFinder';
 
 const KEY_CODES = { 'down': 40 };
 

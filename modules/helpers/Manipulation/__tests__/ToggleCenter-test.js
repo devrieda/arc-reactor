@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const ToggleCenter = require('../ToggleCenter');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import ToggleCenter from '../ToggleCenter';
 
 describe('ToggleCenter', () => {
   let content;

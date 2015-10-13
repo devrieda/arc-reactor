@@ -1,7 +1,6 @@
-const ContentFinder = require('../ContentFinder');
-const Guid = require('../Guid');
-
-const { Map } = require('immutable');
+import ContentFinder from '../ContentFinder';
+import Guid from '../Guid';
+import { Map } from 'immutable';
 
 class ToggleBlockType {
   constructor(content) {

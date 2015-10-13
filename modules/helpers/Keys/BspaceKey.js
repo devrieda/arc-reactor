@@ -1,7 +1,7 @@
-const CombineBlocks    = require('../Manipulation/CombineBlocks');
-const CombineBlockPrev = require('../Manipulation/CombineBlockPrev');
-const ToggleBlockType  = require('../Manipulation/ToggleBlockType');
-const DeleteFigure     = require('../Manipulation/DeleteFigure');
+import CombineBlocks    from '../Manipulation/CombineBlocks';
+import CombineBlockPrev from '../Manipulation/CombineBlockPrev';
+import ToggleBlockType  from '../Manipulation/ToggleBlockType';
+import DeleteFigure     from '../Manipulation/DeleteFigure';
 
 const KEY_CODES = { 'bspace': 8 };
 

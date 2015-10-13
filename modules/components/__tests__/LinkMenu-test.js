@@ -1,11 +1,10 @@
-const assert = require('assert');
+import assert from 'assert';
+import React from 'react/addons';
+import LinkMenu from '../LinkMenu';
 
-const React = require('react/addons');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-
-const LinkMenu = require('../LinkMenu');
 
 describe('LinkMenu', () => {
 

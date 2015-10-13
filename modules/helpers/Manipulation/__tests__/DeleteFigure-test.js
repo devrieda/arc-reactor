@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const DeleteFigure = require('../DeleteFigure');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import DeleteFigure from '../DeleteFigure';
 
 describe('DeleteFigure', () => {
   let content;

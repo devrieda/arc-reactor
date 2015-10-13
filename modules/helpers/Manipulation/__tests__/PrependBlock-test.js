@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const PrependBlock = require('../PrependBlock');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import PrependBlock from '../PrependBlock';
 
 describe('PrependBlock', () => {
   let content;

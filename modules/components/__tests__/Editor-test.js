@@ -1,15 +1,14 @@
-const expect = require('expect');
-const assert = require('assert');
+import expect from 'expect';
+import assert from 'assert';
+import React from 'react/addons';
+import { fromJS } from 'immutable';
+import EditorStore from '../../stores/EditorStore';
+import Editor from '../Editor.js';
 
-const React = require('react/addons');
-const { fromJS } = require('immutable');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 const { keyDown } = TestUtils.Simulate;
-
-const EditorStore = require('../../stores/EditorStore');
-const Editor = require('../Editor.js');
 
 describe('Editor', () => {
   // state

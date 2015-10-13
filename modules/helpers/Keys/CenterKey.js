@@ -1,4 +1,4 @@
-const ToggleCenter = require('../Manipulation/ToggleCenter');
+import ToggleCenter from '../Manipulation/ToggleCenter';
 
 const KEY_CODES = { 'e': 69 };
 

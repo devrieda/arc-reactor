@@ -1,4 +1,4 @@
-const ContentFinder = require('./ContentFinder');
+import ContentFinder from './ContentFinder';
 
 // Helps determine attributes of content contained in a selection
 //

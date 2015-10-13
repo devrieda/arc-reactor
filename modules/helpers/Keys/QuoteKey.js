@@ -1,4 +1,4 @@
-const ToggleBlockType = require('../Manipulation/ToggleBlockType');
+import ToggleBlockType from '../Manipulation/ToggleBlockType';
 
 const KEY_CODES = { '5': 53 };
 

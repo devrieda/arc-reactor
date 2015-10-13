@@ -1,7 +1,6 @@
-const Immutable = require('immutable');
-
-const ContentFinder = require('../ContentFinder');
-const Guid = require('../Guid');
+import Immutable from 'immutable';
+import ContentFinder from '../ContentFinder';
+import Guid from '../Guid';
 
 class PrependBlock {
   constructor(content) {

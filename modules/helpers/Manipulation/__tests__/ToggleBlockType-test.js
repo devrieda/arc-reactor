@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const ToggleBlockType = require('../ToggleBlockType');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import ToggleBlockType from '../ToggleBlockType';
 
 describe('ToggleBlockType', () => {
   let content;

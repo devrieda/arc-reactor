@@ -1,6 +1,6 @@
-const CombineBlocks    = require('../Manipulation/CombineBlocks');
-const CombineBlockNext = require('../Manipulation/CombineBlockNext');
-const DeleteFigure     = require('../Manipulation/DeleteFigure');
+import CombineBlocks    from '../Manipulation/CombineBlocks';
+import CombineBlockNext from '../Manipulation/CombineBlockNext';
+import DeleteFigure     from '../Manipulation/DeleteFigure';
 
 const KEY_CODES = { 'delete': 46 };
 

@@ -1,8 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-
-const BlockFormatter = require('../BlockFormatter');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import BlockFormatter from '../BlockFormatter';
 
 describe('BlockFormatter', () => {
   describe('#applyMarkups', () => {

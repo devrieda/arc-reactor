@@ -1,5 +1,7 @@
+import ImageButton from '../../components/BarButtons/ImageButton';
+
 const BarButtons = [
-  require('../../components/BarButtons/ImageButton'),
+  ImageButton,
 ];
 
 export default BarButtons;

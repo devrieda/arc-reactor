@@ -1,8 +1,7 @@
-const React = require('react/addons');
-const MenuButton = require('../MenuButton');
-
-const ToggleMarkup = require('../../helpers/Manipulation/ToggleMarkup');
-const EditorStore = require('../../stores/EditorStore');
+import React from 'react/addons';
+import MenuButton from '../MenuButton';
+import ToggleMarkup from '../../helpers/Manipulation/ToggleMarkup';
+import EditorStore from '../../stores/EditorStore';
 
 const LinkButton = React.createClass({
   statics: {

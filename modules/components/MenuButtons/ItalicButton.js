@@ -1,8 +1,7 @@
-const React = require('react/addons');
-const MenuButton = require('../MenuButton');
-
-const ToggleMarkup    = require('../../helpers/Manipulation/ToggleMarkup');
-const SelectedContent = require('../../helpers/SelectedContent');
+import React from 'react/addons';
+import MenuButton from '../MenuButton';
+import ToggleMarkup    from '../../helpers/Manipulation/ToggleMarkup';
+import SelectedContent from '../../helpers/SelectedContent';
 
 const ItalicButton = React.createClass({
   statics: {

@@ -1,8 +1,8 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const cx = require('classnames');
-const FigCaption = require('./FigCaption');
+import React from 'react/addons';
+import cx from 'classnames';
+import FigCaption from './FigCaption';
 
+const PureRenderMixin = React.addons.PureRenderMixin;
 const { bool, string } = React.PropTypes;
 
 const Figure = React.createClass({

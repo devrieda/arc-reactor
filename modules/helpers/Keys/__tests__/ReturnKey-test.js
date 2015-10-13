@@ -1,4 +1,4 @@
-const ReturnKey = require('../ReturnKey');
+import ReturnKey from '../ReturnKey';
 
 describe('ReturnKey', () => {
   let content, selection;

@@ -1,13 +1,12 @@
-const expect = require('expect');
-const assert = require('assert');
+import expect from 'expect';
+import assert from 'assert';
+import React from 'react/addons';
+import { fromJS } from 'immutable';
+import QuoteButton from '../QuoteButton';
 
-const React = require('react/addons');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-const { fromJS } = require('immutable');
-
-const QuoteButton = require('../QuoteButton');
 
 describe('QuoteButton', () => {
   it('should render', () => {

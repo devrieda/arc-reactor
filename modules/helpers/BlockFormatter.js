@@ -1,7 +1,6 @@
-const BlockNode = require('./BlockNode');
-const RangeSet = require('./RangeSet');
-
-const { Map, List, fromJS } = require('immutable');
+import BlockNode from './BlockNode';
+import RangeSet from './RangeSet';
+import { Map, List, fromJS } from 'immutable';
 
 const CLASS_NAME_PREFIX = "arc-Editor-Block";
 const INLINE_TAGS = ['a', 'strong', 'em'];

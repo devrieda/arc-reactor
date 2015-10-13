@@ -1,5 +1,5 @@
-const ChangeText = require('../Manipulation/ChangeText');
-const CombineBlocks = require('../Manipulation/CombineBlocks');
+import ChangeText from '../Manipulation/ChangeText';
+import CombineBlocks from '../Manipulation/CombineBlocks';
 
 const KEY_CODES = {
   'shift': 16, 'ctrl': 17, 'alt': 18, 'meta': 91,

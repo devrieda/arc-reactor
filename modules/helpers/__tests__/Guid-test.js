@@ -1,6 +1,5 @@
-const expect = require('expect');
-
-const Guid = require('../Guid');
+import expect from 'expect';
+import Guid from '../Guid';
 
 describe('Guid', function() {
 

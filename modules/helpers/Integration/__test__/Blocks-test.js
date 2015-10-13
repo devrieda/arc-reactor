@@ -1,5 +1,5 @@
-const expect = require('expect');
-const Blocks = require("../Blocks");
+import expect from 'expect';
+import Blocks from "../Blocks";
 
 describe('Blocks', () => {
   it("has a list of buttons", () => {

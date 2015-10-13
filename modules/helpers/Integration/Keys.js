@@ -1,20 +1,37 @@
+import ReturnKey from '../Keys/ReturnKey';
+import DeleteKey from '../Keys/DeleteKey';
+import BspaceKey from '../Keys/BspaceKey';
+import DownKey from '../Keys/DownKey';
+import UpKey from '../Keys/UpKey';
+import BoldKey from '../Keys/BoldKey';
+import ItalicKey from '../Keys/ItalicKey';
+import CenterKey from '../Keys/CenterKey';
+import H1Key from '../Keys/H1Key';
+import H2Key from '../Keys/H2Key';
+import H3Key from '../Keys/H3Key';
+import QuoteKey from '../Keys/QuoteKey';
+import CodeKey from '../Keys/CodeKey';
+import UndoKey from '../Keys/UndoKey';
+import RedoKey from '../Keys/RedoKey';
+import OtherKey from '../Keys/OtherKey';
+
 const Keys = [
-  require('../Keys/ReturnKey'),
-  require('../Keys/DeleteKey'),
-  require('../Keys/BspaceKey'),
-  require('../Keys/DownKey'),
-  require('../Keys/UpKey'),
-  require('../Keys/BoldKey'),
-  require('../Keys/ItalicKey'),
-  require('../Keys/CenterKey'),
-  require('../Keys/H1Key'),
-  require('../Keys/H2Key'),
-  require('../Keys/H3Key'),
-  require('../Keys/QuoteKey'),
-  require('../Keys/CodeKey'),
-  require('../Keys/UndoKey'),
-  require('../Keys/RedoKey'),
-  require('../Keys/OtherKey'),
+  ReturnKey,
+  DeleteKey,
+  BspaceKey,
+  DownKey,
+  UpKey,
+  BoldKey,
+  ItalicKey,
+  CenterKey,
+  H1Key,
+  H2Key,
+  H3Key,
+  QuoteKey,
+  CodeKey,
+  UndoKey,
+  RedoKey,
+  OtherKey,
 ];
 
 export default Keys;

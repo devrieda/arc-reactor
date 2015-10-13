@@ -1,7 +1,6 @@
-const React = require('react/addons');
-const BarButton = require('../BarButton');
-
-const InsertImage = require('../../helpers/Manipulation/InsertImage');
+import React from 'react/addons';
+import BarButton from '../BarButton';
+import InsertImage from '../../helpers/Manipulation/InsertImage';
 
 const ImageButton = React.createClass({
   getDefaultProps() {

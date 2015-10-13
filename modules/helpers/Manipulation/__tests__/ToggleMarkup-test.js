@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const ToggleMarkup = require('../ToggleMarkup');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import ToggleMarkup from '../ToggleMarkup';
 
 describe('ToggleMarkup', () => {
   let content;

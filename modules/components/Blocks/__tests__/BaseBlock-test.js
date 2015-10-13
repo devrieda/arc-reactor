@@ -1,13 +1,12 @@
-const expect = require('expect');
-const assert = require('assert');
+import expect from 'expect';
+import assert from 'assert';
+import React from 'react/addons';
+import Immutable from 'immutable';
+import Block from '../BaseBlock.js';
 
-const React = require('react/addons');
-const Immutable = require('immutable');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-
-const Block = require('../BaseBlock.js');
 
 describe('BaseBlock', () => {
   it('adds data align for centered text', () => {

@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const EditorStore = require('../stores/EditorStore');
+import React from 'react/addons';
+import EditorStore from '../stores/EditorStore';
 
 const { bool, string, shape, number } = React.PropTypes;
 

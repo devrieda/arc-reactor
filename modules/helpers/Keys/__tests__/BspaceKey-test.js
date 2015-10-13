@@ -1,4 +1,4 @@
-const BspaceKey = require('../BspaceKey');
+import BspaceKey from '../BspaceKey';
 
 describe('BspaceKey', () => {
   let content, selection;

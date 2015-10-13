@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const CombineBlockPrev = require('../CombineBlockPrev');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import CombineBlockPrev from '../CombineBlockPrev';
 
 describe('CombineBlockPrev', () => {
   let content;

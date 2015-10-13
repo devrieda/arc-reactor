@@ -1,7 +1,6 @@
-const React = require('react/addons');
-const MenuButton = require('../MenuButton');
-
-const ToggleBlockType = require('../../helpers/Manipulation/ToggleBlockType');
+import React from 'react/addons';
+import MenuButton from '../MenuButton';
+import ToggleBlockType from '../../helpers/Manipulation/ToggleBlockType';
 
 const H3Button = React.createClass({
   statics: {

@@ -1,5 +1,5 @@
-const expect = require('expect');
-const Keys = require("../Keys");
+import expect from 'expect';
+import Keys from "../Keys";
 
 describe('Keys', () => {
   it("has a list of buttons", () => {

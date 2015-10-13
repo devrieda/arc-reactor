@@ -1,7 +1,6 @@
-const Immutable = require('immutable');
-
-const ContentFinder = require('../ContentFinder');
-const RangeSet = require('../RangeSet');
+import Immutable from 'immutable';
+import ContentFinder from '../ContentFinder';
+import RangeSet from '../RangeSet';
 
 class ToggleMarkup {
   constructor(content) {

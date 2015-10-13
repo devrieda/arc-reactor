@@ -1,7 +1,6 @@
-const expect = require('expect');
-const assert = require('assert');
-
-const RangeSet = require('../RangeSet');
+import expect from 'expect';
+import assert from 'assert';
+import RangeSet from '../RangeSet';
 
 describe('RangeSet', () => {
 

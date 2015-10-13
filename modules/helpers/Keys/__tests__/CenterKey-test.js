@@ -1,4 +1,4 @@
-const CenterKey = require('../CenterKey');
+import CenterKey from '../CenterKey';
 
 describe('CenterKey', () => {
   let content, selection;

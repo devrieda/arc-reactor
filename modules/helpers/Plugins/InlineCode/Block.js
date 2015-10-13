@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const BaseBlock = require('../../../components/Blocks/BaseBlock');
+import React from 'react/addons';
+import BaseBlock from '../../../components/Blocks/BaseBlock';
 
 const InlineCodeBlock = React.createClass({
   propTypes: BaseBlock.propTypes,

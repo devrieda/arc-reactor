@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const InsertYoutube = require('../InsertYoutube');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import InsertYoutube from '../InsertYoutube';
 
 describe('InsertYoutube', () => {
   let content;

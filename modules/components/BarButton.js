@@ -1,8 +1,8 @@
-const React = require('react/addons');
-const Immutable = require('immutable');
-const cx = require("classnames");
-const History = require('../helpers/History');
-const EditorStore = require('../stores/EditorStore');
+import React from 'react/addons';
+import Immutable from 'immutable';
+import cx from 'classnames';
+import History from '../helpers/History';
+import EditorStore from '../stores/EditorStore';
 
 const { string, bool, object, instanceOf } = React.PropTypes;
 

@@ -1,8 +1,8 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const Immutable = require('immutable');
-const Section = require('./Section');
+import React from 'react/addons';
+import Immutable from 'immutable';
+import Section from './Section';
 
+const PureRenderMixin = React.addons.PureRenderMixin;
 const { object, instanceOf } = React.PropTypes;
 
 const Content = React.createClass({

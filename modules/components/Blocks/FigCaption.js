@@ -1,6 +1,5 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const cx = require('classnames');
+import React from 'react/addons';
+import cx from 'classnames';
 
 const KEY_CODES = {
   'return': 13,
@@ -11,6 +10,7 @@ const KEY_CODES = {
 };
 const PLACEHOLDER = 'Type caption for image';
 
+const PureRenderMixin = React.addons.PureRenderMixin;
 const { string } = React.PropTypes;
 
 const FigCaption = React.createClass({

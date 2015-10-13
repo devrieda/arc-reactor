@@ -1,4 +1,4 @@
-const BoldKey = require('../BoldKey');
+import BoldKey from '../BoldKey';
 
 describe('BoldKey', () => {
   let content, selection;

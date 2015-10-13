@@ -1,4 +1,4 @@
-const DeleteKey = require('../DeleteKey');
+import DeleteKey from '../DeleteKey';
 
 describe('DeleteKey', () => {
   let content, selection;

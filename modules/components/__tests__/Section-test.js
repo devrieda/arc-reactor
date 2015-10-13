@@ -1,12 +1,11 @@
-const assert = require('assert');
+import assert from 'assert';
+import React from 'react/addons';
+import Immutable from 'immutable';
+import Section from '../Section.js';
 
-const React = require('react/addons');
-const Immutable = require('immutable');
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
-
-const Section = require('../Section.js');
 
 describe('Section', () => {
   // class names

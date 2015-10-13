@@ -1,4 +1,4 @@
-const H3Key = require('../H3Key');
+import H3Key from '../H3Key';
 
 describe('H3Key', () => {
   let content, selection;

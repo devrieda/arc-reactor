@@ -1,7 +1,7 @@
-const React = require('react/addons');
-const Immutable = require('immutable');
-const cx = require("classnames");
-const MenuButtons = require("../helpers/Integration/MenuButtons");
+import React from 'react/addons';
+import Immutable from 'immutable';
+import cx from 'classnames';
+import MenuButtons from '../helpers/Integration/MenuButtons';
 
 const { object, func, instanceOf } = React.PropTypes;
 

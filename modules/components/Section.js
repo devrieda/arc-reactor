@@ -1,9 +1,9 @@
-const React = require('react/addons');
-const PureRenderMixin = React.addons.PureRenderMixin;
-const Immutable = require('immutable');
-const cx = require("classnames");
-const Blocks = require("../helpers/Integration/Blocks");
+import React from 'react/addons';
+import Immutable from 'immutable';
+import cx from 'classnames';
+import Blocks from '../helpers/Integration/Blocks';
 
+const PureRenderMixin = React.addons.PureRenderMixin;
 const { object, string, instanceOf } = React.PropTypes;
 
 const Section = React.createClass({

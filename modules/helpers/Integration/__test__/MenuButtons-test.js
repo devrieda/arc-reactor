@@ -1,5 +1,5 @@
-const expect = require('expect');
-const MenuButtons = require("../MenuButtons");
+import expect from 'expect';
+import MenuButtons from "../MenuButtons";
 
 describe('MenuButtons', () => {
   it("has a list of buttons", () => {

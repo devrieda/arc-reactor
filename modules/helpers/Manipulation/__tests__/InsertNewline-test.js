@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const InsertNewline = require('../InsertNewline');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import InsertNewline from '../InsertNewline';
 
 describe('InsertNewline', () => {
   let content;

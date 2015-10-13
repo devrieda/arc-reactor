@@ -1,4 +1,4 @@
-const History = require('../History');
+import History from '../History';
 
 const KEY_CODES = { 'z': 90 };
 

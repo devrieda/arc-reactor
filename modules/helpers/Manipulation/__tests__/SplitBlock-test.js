@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const SplitBlock = require('../SplitBlock');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import SplitBlock from '../SplitBlock';
 
 describe('SplitBlock', () => {
   let content;

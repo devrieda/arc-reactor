@@ -1,5 +1,5 @@
-const Block = require("./Block");
-const Key   = require("./Key");
+import Block from "./Block";
+import Key   from "./Key";
 
 const InlineCode = {
   getBlocks() {

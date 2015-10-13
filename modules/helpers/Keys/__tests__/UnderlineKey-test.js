@@ -1,4 +1,4 @@
-const UnderlineKey = require('../UnderlineKey');
+import UnderlineKey from '../UnderlineKey';
 
 describe('UnderlineKey', () => {
   let content, selection;

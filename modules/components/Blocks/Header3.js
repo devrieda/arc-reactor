@@ -1,5 +1,5 @@
-const React = require('react/addons');
-const BaseBlock = require('./BaseBlock');
+import React from 'react/addons';
+import BaseBlock from './BaseBlock';
 
 const Header3 = React.createClass({
   propTypes: BaseBlock.propTypes,

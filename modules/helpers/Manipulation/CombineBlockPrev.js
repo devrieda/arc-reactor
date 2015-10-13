@@ -1,4 +1,4 @@
-const ContentFinder = require('../ContentFinder');
+import ContentFinder from '../ContentFinder';
 
 class CombineBlockPrev {
   constructor(content) {

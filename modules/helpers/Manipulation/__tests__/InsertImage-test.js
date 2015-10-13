@@ -1,7 +1,6 @@
-const expect = require('expect');
-
-const { fromJS } = require('immutable');
-const InsertImage = require('../InsertImage');
+import expect from 'expect';
+import { fromJS } from 'immutable';
+import InsertImage from '../InsertImage';
 
 describe('InsertImage', () => {
   let content;

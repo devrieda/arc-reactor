@@ -1,0 +1,13 @@
+.arc-Editor-Block--pre {
+  font-family: Menlo, Monaco, "Courier New", Courier, monospace;
+  font-size: 16px;
+  background: rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  padding: 20px;
+  white-space: pre-wrap;
+}
+@media (max-width: 767px) {
+  .arc-Editor-Block--pre {
+    font-size: 14px;
+  }
+}

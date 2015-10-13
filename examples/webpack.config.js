@@ -36,7 +36,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      'arc-reactor': '../../modules/index'
+      'arc-reactor': path.join(__dirname, '..', 'modules')
     }
   },
 

@@ -2,10 +2,8 @@ const React = require('react');
 const Immutable = require('immutable');
 const Content = require('./Content');
 const Menu = require('./Menu');
-const MenuButtons = require('./MenuButtons');
 const LinkMenu = require('./LinkMenu');
 const Bar = require('./Bar');
-const BarButtons = require('./BarButtons');
 
 const ClipboardHandler = require('../helpers/ClipboardHandler');
 const KeyCommands = require('../helpers/KeyCommands');
@@ -185,20 +183,13 @@ const Editor = React.createClass({
           content={content}
           selection={selection}
           onChange={this.handleChangeMenu}
-        >
-          <MenuButtons.Bold />
-          <MenuButtons.Italic />
-          <MenuButtons.H1 />
-          <MenuButtons.H2 />
-          <MenuButtons.H3 />
-          <MenuButtons.Center />
-          <MenuButtons.Quote />
-          <MenuButtons.Link />
-        </Menu>
+        />
 
-        <Bar content={content} selection={selection}>
-          <BarButtons.Image />
-        </Bar>
+        <Bar
+          content={content}
+          selection={selection}
+          onChange={this.handleChangeMenu}
+        />
 
         <LinkMenu {...linkState} />
       </div>

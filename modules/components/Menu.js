@@ -1,6 +1,7 @@
 const React = require('react/addons');
 const Immutable = require('immutable');
 const cx = require("classnames");
+const MenuButtons = require("../helpers/Integration/MenuButtons");
 
 const { object, func, instanceOf } = React.PropTypes;
 
@@ -33,7 +34,7 @@ const Menu = React.createClass({
 
   // switch to allow input if button needs a value
   // create a snapshot of the selection so we can restore it if they close
-  handleSetValue(obj, ref) {
+  handleSetValue(ref) {
     this.selSnapshot = this.props.selection;
     this.valueButton = this.refs[ref];
     this.setState({inputMode: true});
@@ -101,24 +102,20 @@ const Menu = React.createClass({
     };
   },
 
-  // build buttons from children
+  // build buttons from integration point
   renderButtons() {
     let buttons = [];
-    React.Children.forEach(this.props.children, (child, i) => {
-      const refName = `button_${child.props.type}`;
-
-      const cloned = React.cloneElement(child, {
-        content: this.props.content,
-        selection: this.props.selection,
-        onSetValue: this.handleSetValue.bind(this, child, refName),
-        ref: refName
-      });
-
-      // some buttons may not be visible based on the selection
-      if (cloned.type.isVisible(this.props.content, this.props.selection)) {
+    MenuButtons.forEach( (Button, i) => {
+      if (Button.isVisible(this.props.content, this.props.selection)) {
+        const refName = `button_${i}`;
         buttons.push(
           <li className="arc-Editor-Menu__item" key={`button_${i}`}>
-            {cloned}
+           <Button
+             content={this.props.content}
+             selection={this.props.selection}
+             onSetValue={this.handleSetValue.bind(this, refName)}
+             ref={refName}
+           />
           </li>
         );
       }

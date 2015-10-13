@@ -21,7 +21,7 @@ const LinkButton = React.createClass({
   },
 
   setValue(value) {
-    const { content, position } = this.handlePress(value || "");
+    const { content } = this.handlePress(value || "");
     EditorStore.set({content: content});
   },
 

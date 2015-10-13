@@ -2,14 +2,21 @@ const React = require('react/addons');
 const Immutable = require('immutable');
 const ContentFinder = require('../helpers/ContentFinder');
 const cx = require("classnames");
+const BarButtons = require("../helpers/Integration/BarButtons");
 
-const cloneWithProps = React.addons.cloneWithProps;
-const { object, instanceOf } = React.PropTypes;
+const { object, instanceOf, func } = React.PropTypes;
 
 const Bar = React.createClass({
   propTypes: {
     content: instanceOf(Immutable.Map),
     selection: object.isRequired,
+    onChange: func
+  },
+
+  getDefaultProps() {
+    return {
+      onChange: Function.prototype
+    };
   },
 
   getInitialState() {
@@ -143,20 +150,19 @@ const Bar = React.createClass({
     });
   },
 
+  // build buttons from integration point
   renderButtons() {
     let buttons = [];
-    React.Children.forEach(this.props.children, (child, i) => {
-      const refName = `button_${child.props.type}`;
-      const cloned = cloneWithProps(child, {
-        content: this.props.content,
-        selection: this.props.selection,
-        handleSetValue: this.handleSetValue.bind(this, child, refName),
-        ref: refName
-      });
-
+    BarButtons.forEach( (Button, i) => {
+      const refName = `button_${i}`;
       buttons.push(
         <li className="arc-Editor-Bar__menu-item" key={`button_${i}`}>
-          {cloned}
+         <Button
+           content={this.props.content}
+           selection={this.props.selection}
+           onSetValue={this.handleSetValue.bind(this, refName)}
+           ref={refName}
+         />
         </li>
       );
     });

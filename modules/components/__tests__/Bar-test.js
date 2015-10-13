@@ -7,7 +7,6 @@ const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 
 const Bar = require('../Bar');
-const BarButtons = require('../BarButtons.js');
 
 describe('Bar', () => {
   it('should render', () => {
@@ -21,9 +20,7 @@ describe('Bar', () => {
     };
 
     const bar = render(
-      <Bar content={fromJS(content)} selection={selection}>
-        <BarButtons.Image />
-      </Bar>
+      <Bar content={fromJS(content)} selection={selection} />
     );
 
     const barComponent = findByClass(bar, 'arc-Editor-Bar');

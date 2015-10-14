@@ -5,6 +5,7 @@ import EditorStore from '../../stores/EditorStore';
 
 const LinkButton = React.createClass({
   statics: {
+    getName: () => "link",
     isVisible: () => true,
   },
 

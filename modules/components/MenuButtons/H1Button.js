@@ -4,6 +4,7 @@ import ToggleBlockType from '../../helpers/Manipulation/ToggleBlockType';
 
 const H1Button = React.createClass({
   statics: {
+    getName: () => "h1",
     isVisible: () => true
   },
 

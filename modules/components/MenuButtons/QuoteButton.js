@@ -4,6 +4,7 @@ import ToggleBlockType from '../../helpers/Manipulation/ToggleBlockType';
 
 const QuoteButton = React.createClass({
   statics: {
+    getName: () => "quote",
     isVisible: () => true
   },
 

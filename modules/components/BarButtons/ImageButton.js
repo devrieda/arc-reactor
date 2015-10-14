@@ -3,6 +3,10 @@ import BarButton from '../BarButton';
 import InsertImage from '../../helpers/Manipulation/InsertImage';
 
 const ImageButton = React.createClass({
+  statics: {
+    getName: () => "image",
+  },
+
   propTypes: BarButton.propTypes,
 
   getDefaultProps() {

@@ -4,6 +4,7 @@ import ToggleCenter from '../../helpers/Manipulation/ToggleCenter';
 
 const CenterButton = React.createClass({
   statics: {
+    getName: () => "center",
     isVisible: () => true
   },
 

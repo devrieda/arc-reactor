@@ -5,6 +5,7 @@ import SelectedContent from '../../helpers/SelectedContent';
 
 const BoldButton = React.createClass({
   statics: {
+    getName: () => "bold",
     isVisible: (content, selection) => {
       const selContent = new SelectedContent(selection, content);
       return !selContent.isHeader();

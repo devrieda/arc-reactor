@@ -3,6 +3,10 @@ import BarButton from '../BarButton';
 import InsertSection from '../../helpers/Manipulation/InsertSection';
 
 const SectionButton = React.createClass({
+  statics: {
+    getName: () => "section",
+  },
+
   propTypes: BarButton.propTypes,
 
   getDefaultProps() {

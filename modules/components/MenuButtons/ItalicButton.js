@@ -5,6 +5,7 @@ import SelectedContent from '../../helpers/SelectedContent';
 
 const ItalicButton = React.createClass({
   statics: {
+    getName: () => "italic",
     isVisible: (content, selection) => {
       const selContent = new SelectedContent(selection, content);
       return !selContent.isHeader();

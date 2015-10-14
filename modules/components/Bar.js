@@ -92,9 +92,13 @@ const Bar = React.createClass({
   },
 
   // switch to allow input if button needs a value
-  handleSetValue(obj, ref) {
+  handleSetValue(ref) {
     this.valueButton = this.refs[ref];
     this.setState({inputMode: true});
+  },
+
+  handleActivate(ref) {
+    this.setState({open: false});
   },
 
   // toggle menu open/closed
@@ -160,6 +164,7 @@ const Bar = React.createClass({
          <Button
            content={this.props.content}
            selection={this.props.selection}
+           onActivate={this.handleActivate.bind(this, refName)}
            onSetValue={this.handleSetValue.bind(this, refName)}
            ref={refName}
          />

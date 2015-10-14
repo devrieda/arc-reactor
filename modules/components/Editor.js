@@ -7,8 +7,8 @@ import Bar from './Bar';
 
 import ClipboardHandler from '../helpers/ClipboardHandler';
 import KeyCommands from '../helpers/KeyCommands';
-import History     from '../helpers/History';
-import Selection   from '../helpers/Selection';
+import History from '../helpers/History';
+import Selection from '../helpers/Selection';
 import EditorStore from '../stores/EditorStore';
 
 const { object, func } = React.PropTypes;

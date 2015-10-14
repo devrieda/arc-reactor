@@ -4,7 +4,7 @@ import cx from 'classnames';
 import History from '../helpers/History';
 import EditorStore from '../stores/EditorStore';
 
-const { string, bool, object, instanceOf } = React.PropTypes;
+const { string, bool, object, instanceOf, func } = React.PropTypes;
 
 const BarButton = React.createClass({
   propTypes: {
@@ -14,12 +14,14 @@ const BarButton = React.createClass({
     hasValue: bool,
     content: instanceOf(Immutable.Map),
     selection: object,
+    onActivate: func,
   },
 
   getDefaultProps() {
     return {
       content: Immutable.Map(),
       selection: {},
+      onActivate: Function.prototype,
     };
   },
 
@@ -30,6 +32,9 @@ const BarButton = React.createClass({
 
     } else {
       const { content, position } = this.props.onPress();
+
+      // let the Bar know we did something (to close the menu)
+      this.props.onActivate();
 
       // track content state and where cursor is
       History.getInstance().push({ content: content, position: position });

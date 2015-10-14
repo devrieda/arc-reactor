@@ -7,15 +7,19 @@ import CenterButton from '../../components/MenuButtons/CenterButton';
 import QuoteButton from '../../components/MenuButtons/QuoteButton';
 import LinkButton from '../../components/MenuButtons/LinkButton';
 
-const MenuButtons = [
-  BoldButton,
-  ItalicButton,
-  H1Button,
-  H2Button,
-  H3Button,
-  CenterButton,
-  QuoteButton,
-  LinkButton,
-];
+const MenuButtons = {
+  getItems() {
+    return [
+      BoldButton,
+      ItalicButton,
+      H1Button,
+      H2Button,
+      H3Button,
+      CenterButton,
+      QuoteButton,
+      LinkButton,
+    ];
+  }
+};
 
 export default MenuButtons;

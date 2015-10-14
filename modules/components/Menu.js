@@ -105,7 +105,7 @@ const Menu = React.createClass({
   // build buttons from button config
   renderButtons() {
     let buttons = [];
-    MenuButtons.forEach( (Button, i) => {
+    MenuButtons.getItems().forEach( (Button, i) => {
       if (Button.isVisible(this.props.content, this.props.selection)) {
         const refName = `button_${i}`;
         buttons.push(

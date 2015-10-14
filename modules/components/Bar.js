@@ -157,7 +157,7 @@ const Bar = React.createClass({
   // build buttons from button config
   renderButtons() {
     let buttons = [];
-    BarButtons.forEach( (Button, i) => {
+    BarButtons.getItems().forEach( (Button, i) => {
       const refName = `button_${i}`;
       buttons.push(
         <li className="arc-Editor-Bar__menu-item" key={`button_${i}`}>

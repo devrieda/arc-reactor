@@ -103,7 +103,7 @@ class KeyCommands {
 
   // Default key 
   _installDefaultKeys() {
-    Keys.forEach( (key) => { this.use(key); });
+    Keys.getItems().forEach( (key) => { this.use(key); });
   }
 }
 

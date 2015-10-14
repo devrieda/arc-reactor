@@ -15,23 +15,27 @@ import UndoKey from '../Keys/UndoKey';
 import RedoKey from '../Keys/RedoKey';
 import OtherKey from '../Keys/OtherKey';
 
-const Keys = [
-  ReturnKey,
-  DeleteKey,
-  BspaceKey,
-  DownKey,
-  UpKey,
-  BoldKey,
-  ItalicKey,
-  CenterKey,
-  H1Key,
-  H2Key,
-  H3Key,
-  QuoteKey,
-  CodeKey,
-  UndoKey,
-  RedoKey,
-  OtherKey,
-];
+const Keys = {
+  getItems() {
+    return [
+      ReturnKey,
+      DeleteKey,
+      BspaceKey,
+      DownKey,
+      UpKey,
+      BoldKey,
+      ItalicKey,
+      CenterKey,
+      H1Key,
+      H2Key,
+      H3Key,
+      QuoteKey,
+      CodeKey,
+      UndoKey,
+      RedoKey,
+      OtherKey,
+    ];
+  }
+};
 
 export default Keys;

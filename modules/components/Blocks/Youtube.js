@@ -10,6 +10,7 @@ const Youtube = React.createClass({
   mixins: [PureRenderMixin],
 
   statics: {
+    getName: () => "youtube",
     matches: (block) => {
       return block.get('type') === 'youtube';
     }

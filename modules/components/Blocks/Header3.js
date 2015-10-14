@@ -5,6 +5,7 @@ const Header3 = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {
+    getName: () => "header3",
     matches: (block) => {
       return block.get('type') === 'h3';
     }

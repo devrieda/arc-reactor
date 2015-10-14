@@ -10,6 +10,7 @@ const Image = React.createClass({
   mixins: [PureRenderMixin],
 
   statics: {
+    getName: () => "image",
     matches: (block) => {
       return block.get('type') === 'image';
     }

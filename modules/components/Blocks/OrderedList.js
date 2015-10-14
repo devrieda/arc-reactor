@@ -1,12 +1,13 @@
 import React from 'react/addons';
 import BaseBlock from './BaseBlock';
 
-const List = React.createClass({
+const OrderedList = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {
+    getName: () => "ol",
     matches: (block) => {
-      return block.get('type') === 'ul';
+      return block.get('type') === 'ol';
     }
   },
 
@@ -15,4 +16,4 @@ const List = React.createClass({
   }
 });
 
-export default List;
+export default OrderedList;

@@ -1,13 +1,13 @@
 import React from 'react/addons';
 import BaseBlock from './BaseBlock';
 
-const Paragraph = React.createClass({
+const UnorderedList = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {
-    getName: () => "p",
+    getName: () => "ul",
     matches: (block) => {
-      return block.get('type') === 'p';
+      return block.get('type') === 'ul';
     }
   },
 
@@ -16,4 +16,4 @@ const Paragraph = React.createClass({
   }
 });
 
-export default Paragraph;
+export default UnorderedList;

@@ -5,6 +5,7 @@ const Blockquote = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {
+    getName: () => "blockquote",
     matches: (block) => {
       return block.get('type') === 'blockquote';
     }

@@ -5,6 +5,7 @@ const Code = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {
+    getName: () => "code",
     matches: (block) => {
       return block.get('type') === 'pre';
     }

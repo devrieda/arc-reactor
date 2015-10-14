@@ -97,7 +97,7 @@ const Bar = React.createClass({
     this.setState({inputMode: true});
   },
 
-  handleActivate(ref) {
+  handleActivate() {
     this.setState({open: false});
   },
 

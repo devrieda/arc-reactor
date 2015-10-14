@@ -1,8 +1,8 @@
-require('./stylesheets/application.scss');
+// base css
+import './stylesheets/application.scss';
 
-// plugins
-import PluginManager from './helpers/PluginManager';
-PluginManager.install(require('./helpers/Plugins/InlineCode'));
+// modules
+import ConfigManager from './helpers/ConfigManager';
+import Editor from './components/Editor';
 
-export { PluginManager };
-export Editor from './components/Editor';
+export { ConfigManager, Editor };

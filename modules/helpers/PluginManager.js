@@ -1,8 +1,3 @@
-let _blocks      = [];
-let _keys        = [];
-let _barButtons  = [];
-let _menuButtons = [];
-
 const PluginManager = {
   install(plugin) {
     this._installBlocks(plugin.getBlocks());

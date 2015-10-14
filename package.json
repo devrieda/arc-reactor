@@ -13,7 +13,7 @@
     "build": "babel ./modules -d lib --ignore '__tests__'",
     "build-umd": "NODE_ENV=production webpack modules/index.js umd/ArcReactor.js",
     "build-min": "NODE_ENV=production webpack -p modules/index.js umd/ArcReactor.min.js",
-    "lint": "eslint modules examples",
+    "lint": "eslint modules",
     "examples": "webpack-dev-server --config examples/webpack.config.js --no-info --content-base examples --inline --host 0.0.0.0",
     "test": "npm run lint && karma start"
   },

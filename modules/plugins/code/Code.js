@@ -1,7 +1,8 @@
 import React from 'react/addons';
-import BaseBlock from '../../../components/Blocks/BaseBlock';
+import BaseBlock from '../../components/Blocks/BaseBlock';
+import 'Code.scss';
 
-const InlineCodeBlock = React.createClass({
+const Code = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {
@@ -15,4 +16,4 @@ const InlineCodeBlock = React.createClass({
   }
 });
 
-export default InlineCodeBlock;
+export default Code;

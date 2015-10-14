@@ -1,4 +1,4 @@
-import Block from "./Block";
+import Block from "./Code";
 import Key   from "./Key";
 
 const InlineCode = {

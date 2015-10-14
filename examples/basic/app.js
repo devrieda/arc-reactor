@@ -1,7 +1,9 @@
-var React = require('react');
-var ArcReactor = require('arc-reactor');
-var { Editor } = ArcReactor;
-var Store = require('./ContentStore.js');
+import React from 'react';
+import { Editor, ConfigManager } from 'arc-reactor';
+import Config from './Config';
+import Store from './ContentStore';
+
+ConfigManager.install(Config);
 
 var App = React.createClass({
   contentChanged: function(json) {

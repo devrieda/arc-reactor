@@ -7,7 +7,7 @@ class InsertSection {
     this.content = content;
   }
 
-  execute(guids, _offsets, options) {
+  execute(guids) {
     const guid = guids.anchor;
 
     // full path and base block

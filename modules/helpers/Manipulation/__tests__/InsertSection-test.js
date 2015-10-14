@@ -64,12 +64,10 @@ describe('InsertSection', () => {
       expect(sections.length).toBe(2);
 
       // first section
-      const section1 = {};
       expect(sections[0].blocks.length).toEqual(1);
       expect(sections[0].blocks[0].id).toEqual('1000');
 
       // second section
-      const section2 = {};
       expect(sections[1].blocks.length).toEqual(1);
       expect(sections[1].blocks[0].id).toEqual('1001');
     });

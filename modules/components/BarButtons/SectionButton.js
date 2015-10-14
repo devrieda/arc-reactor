@@ -13,7 +13,7 @@ const SectionButton = React.createClass({
     };
   },
 
-  handlePress(value) {
+  handlePress() {
     const guids   = this.props.selection.guids();
     const offsets = this.props.selection.offsets();
     const position = this.props.selection.position();

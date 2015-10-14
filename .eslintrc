@@ -1,6 +1,7 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "es6": true
   },
   "plugins": [
     "mocha",
@@ -16,6 +17,7 @@
     "spread": true,
     "restParams": true,
     "jsx": true,
+    "modules": true
   },
   "rules": {
     "no-trailing-spaces": 0,

@@ -83,9 +83,6 @@ const Editor = React.createClass({
       content: content,
       position: { guid: guid, offset: 0 },
     });
-
-    // setup key command stack
-    this.keys = new KeyCommands();
   },
 
   // handle clicking outside the editor
@@ -130,7 +127,7 @@ const Editor = React.createClass({
 
     // execute commands that match key down
     const { content, selection } = EditorStore.get();
-    this.keys.execute(e, content, selection, this._updateKeyResults);
+    KeyCommands.execute(e, content, selection, this._updateKeyResults);
   },
 
   // simulate meta key since it doesn't work in some browsers
@@ -139,7 +136,7 @@ const Editor = React.createClass({
 
     // execute commands that match key down
     const { content, selection } = EditorStore.get();
-    this.keys.execute(e, content, selection, this._updateKeyResults);
+    KeyCommands.execute(e, content, selection, this._updateKeyResults);
 
     // need to check the selection to see if anything changed
     this._checkSelection(true, e.keyCode);

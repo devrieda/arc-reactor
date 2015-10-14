@@ -2,16 +2,16 @@ import History from './History';
 import KeyConfig from "./Config/KeyConfig";
 
 // key commands stack is fifo
-class KeyCommands {
+const KeyCommands = {
   // execute only the first key that matches
   //
   // returns { content: "{}", selection: Selection, passThru: false }
   //
   execute(event, content, selection, callback) {
     // find keys from config
-    const keys = KeyConfig.getItems();
+    const keys = KeyConfig.getItems().slice(0);
     this._executeKeys(keys, event, content, selection, callback);
-  }
+  },
 
   // recursively execute each key after the previous finishes
   _executeKeys(keys, event, content, selection, callback) {
@@ -42,6 +42,16 @@ class KeyCommands {
     } else if (keys.length > 0) {
       this._executeKeys(keys, event, content, selection, callback);
     }
+  },
+
+  // save history for everything except undo/redo
+  _saveHistory(results, selection) {
+    if (results.skipHistory) { return; }
+
+    History.getInstance().push({
+      content: results.content,
+      position: selection.position()
+    });
   }
 }
 

@@ -7,7 +7,7 @@ const Header2 = React.createClass({
   statics: {
     getName: () => "h2",
     matches: (block) => {
-      return block.get('type') === 'h2';
+      return block.get('type') === 'h3';
     }
   },
 

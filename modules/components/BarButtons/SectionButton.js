@@ -1,16 +1,15 @@
 import React from 'react/addons';
 import BarButton from '../BarButton';
-import InsertImage from '../../helpers/Manipulation/InsertImage';
+import InsertSection from '../../helpers/Manipulation/InsertSection';
 
-const ImageButton = React.createClass({
+const SectionButton = React.createClass({
   propTypes: BarButton.propTypes,
 
   getDefaultProps() {
     return {
-      type: "image",
-      text: "Image",
-      icon: "fa-picture-o",
-      hasValue: true
+      type: "section",
+      text: "Section",
+      icon: "fa-ellipsis-h"
     };
   },
 
@@ -19,14 +18,13 @@ const ImageButton = React.createClass({
     const offsets = this.props.selection.offsets();
     const position = this.props.selection.position();
 
-    const options = { type: this.props.type, value: value };
-    const result = this._insertFigure().execute(guids, offsets, options);
+    const result = this._insertSection().execute(guids, offsets);
 
     return { content: result.content, position: position };
   },
 
-  _insertFigure() {
-    return new InsertImage(this.props.content);
+  _insertSection() {
+    return new InsertSection(this.props.content);
   },
 
   render() {
@@ -36,4 +34,4 @@ const ImageButton = React.createClass({
   }
 });
 
-export default ImageButton;
+export default SectionButton;

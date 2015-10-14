@@ -34,7 +34,7 @@ const BarButton = React.createClass({
       // track content state and where cursor is
       History.getInstance().push({ content: content, position: position });
 
-      EditorStore.set({content: content});
+      EditorStore.set({content: content})
     }
   },
 

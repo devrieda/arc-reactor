@@ -1,5 +1,5 @@
 import History from './History';
-import Keys from "./Integration/Keys";
+import Keys from "./Config/Keys";
 
 let _instance;
 

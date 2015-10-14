@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import Immutable from 'immutable';
 import cx from 'classnames';
-import Blocks from '../helpers/Integration/Blocks';
+import Blocks from '../helpers/Config/Blocks';
 
 const PureRenderMixin = React.addons.PureRenderMixin;
 const { object, string, instanceOf } = React.PropTypes;

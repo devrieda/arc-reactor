@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import Immutable from 'immutable';
 import cx from 'classnames';
-import MenuButtons from '../helpers/Integration/MenuButtons';
+import MenuButtons from '../helpers/Config/MenuButtons';
 
 const { object, func, instanceOf } = React.PropTypes;
 
@@ -102,7 +102,7 @@ const Menu = React.createClass({
     };
   },
 
-  // build buttons from integration point
+  // build buttons from button config
   renderButtons() {
     let buttons = [];
     MenuButtons.forEach( (Button, i) => {

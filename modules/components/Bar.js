@@ -2,7 +2,7 @@ import React from 'react/addons';
 import Immutable from 'immutable';
 import ContentFinder from '../helpers/ContentFinder';
 import cx from 'classnames';
-import BarButtons from '../helpers/Integration/BarButtons';
+import BarButtons from '../helpers/Config/BarButtons';
 
 const { object, instanceOf, func } = React.PropTypes;
 
@@ -154,7 +154,7 @@ const Bar = React.createClass({
     });
   },
 
-  // build buttons from integration point
+  // build buttons from button config
   renderButtons() {
     let buttons = [];
     BarButtons.forEach( (Button, i) => {

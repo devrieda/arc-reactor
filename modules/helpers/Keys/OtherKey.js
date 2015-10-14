@@ -13,7 +13,7 @@ class OtherKey {
   }
 
   static getName() {
-    return 'other-key';
+    return 'other';
   }
 
   // catch-all for all content keys

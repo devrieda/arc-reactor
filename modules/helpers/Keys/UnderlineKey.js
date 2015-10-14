@@ -7,7 +7,7 @@ class UnderlineKey {
   }
 
   static getName() {
-    return 'underline-key';
+    return 'underline';
   }
 
   // meta+b

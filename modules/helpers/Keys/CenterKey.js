@@ -9,7 +9,7 @@ class CenterKey {
   }
 
   static getName() {
-    return 'center-key';
+    return 'center';
   }
 
   // meta+e

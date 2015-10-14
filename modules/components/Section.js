@@ -1,8 +1,7 @@
 import React from 'react/addons';
 import Immutable from 'immutable';
 import cx from 'classnames';
-import Blocks from '../helpers/Config/Blocks';
-console.log(Blocks);
+import BlockConfig from '../helpers/Config/BlockConfig';
 
 const PureRenderMixin = React.addons.PureRenderMixin;
 const { object, string, instanceOf } = React.PropTypes;
@@ -30,7 +29,7 @@ const Section = React.createClass({
 
   // find which type of block matches
   _renderBlock(block) {
-    const matching = Blocks.getItems().filter( (BlockClass) => {
+    const matching = BlockConfig.getItems().filter( (BlockClass) => {
       return BlockClass.matches(block);
     });
 

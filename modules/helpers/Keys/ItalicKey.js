@@ -9,7 +9,7 @@ class ItalicKey {
   }
 
   static getName() {
-    return 'italic-key';
+    return 'italic';
   }
 
   // meta+i

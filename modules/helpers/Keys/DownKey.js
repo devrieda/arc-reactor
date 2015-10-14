@@ -10,7 +10,7 @@ class DownKey {
   }
 
   static getName() {
-    return 'down-key';
+    return 'down';
   }
 
   matches(event) {

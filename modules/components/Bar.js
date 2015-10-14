@@ -2,7 +2,7 @@ import React from 'react/addons';
 import Immutable from 'immutable';
 import ContentFinder from '../helpers/ContentFinder';
 import cx from 'classnames';
-import BarButtons from '../helpers/Config/BarButtons';
+import BarButtonConfig from '../helpers/Config/BarButtonConfig';
 
 const { object, instanceOf, func } = React.PropTypes;
 
@@ -157,7 +157,7 @@ const Bar = React.createClass({
   // build buttons from button config
   renderButtons() {
     let buttons = [];
-    BarButtons.getItems().forEach( (Button, i) => {
+    BarButtonConfig.getItems().forEach( (Button, i) => {
       const refName = `button_${i}`;
       buttons.push(
         <li className="arc-Editor-Bar__menu-item" key={`button_${i}`}>

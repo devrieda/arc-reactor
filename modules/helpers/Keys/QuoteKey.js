@@ -9,7 +9,7 @@ class QuoteKey {
   }
 
   static getName() {
-    return 'quote-key';
+    return 'quote';
   }
 
   // meta+alt+5

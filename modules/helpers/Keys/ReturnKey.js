@@ -14,7 +14,7 @@ class ReturnKey {
   }
 
   static getName() {
-    return 'return-key';
+    return 'return';
   }
 
   // return or ctrl+m

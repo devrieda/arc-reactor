@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import Immutable from 'immutable';
 import cx from 'classnames';
-import MenuButtons from '../helpers/Config/MenuButtons';
+import MenuButtonConfig from '../helpers/Config/MenuButtonConfig';
 
 const { object, func, instanceOf } = React.PropTypes;
 
@@ -105,7 +105,7 @@ const Menu = React.createClass({
   // build buttons from button config
   renderButtons() {
     let buttons = [];
-    MenuButtons.getItems().forEach( (Button, i) => {
+    MenuButtonConfig.getItems().forEach( (Button, i) => {
       if (Button.isVisible(this.props.content, this.props.selection)) {
         const refName = `button_${i}`;
         buttons.push(

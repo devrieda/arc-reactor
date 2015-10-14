@@ -1,3 +1,6 @@
+import Config from './Config';
+
+// default keys
 import ReturnKey from '../Keys/ReturnKey';
 import DeleteKey from '../Keys/DeleteKey';
 import BspaceKey from '../Keys/BspaceKey';
@@ -15,27 +18,29 @@ import UndoKey from '../Keys/UndoKey';
 import RedoKey from '../Keys/RedoKey';
 import OtherKey from '../Keys/OtherKey';
 
-const Keys = {
-  getItems() {
-    return [
-      ReturnKey,
-      DeleteKey,
-      BspaceKey,
-      DownKey,
-      UpKey,
-      BoldKey,
-      ItalicKey,
-      CenterKey,
-      H1Key,
-      H2Key,
-      H3Key,
-      QuoteKey,
-      CodeKey,
-      UndoKey,
-      RedoKey,
-      OtherKey,
-    ];
-  }
-};
+const defaults = [
+  ReturnKey,
+  DeleteKey,
+  BspaceKey,
+  DownKey,
+  UpKey,
+  BoldKey,
+  ItalicKey,
+  CenterKey,
+  H1Key,
+  H2Key,
+  H3Key,
+  QuoteKey,
+  CodeKey,
+  UndoKey,
+  RedoKey,
+  OtherKey,
+];
 
-export default Keys;
+const KeyConfig = Config({
+  getInitialItems() {
+    return defaults.slice(0);
+  }
+});
+
+export default KeyConfig;

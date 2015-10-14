@@ -12,7 +12,7 @@ class BspaceKey {
   }
 
   static getName() {
-    return 'bspace-key';
+    return 'bspace';
   }
 
   // return or ctrl+m

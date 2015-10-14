@@ -1,3 +1,6 @@
+import Config from './Config';
+
+// default buttons
 import BoldButton from '../../components/MenuButtons/BoldButton';
 import ItalicButton from '../../components/MenuButtons/ItalicButton';
 import H1Button from '../../components/MenuButtons/H1Button';
@@ -7,19 +10,21 @@ import CenterButton from '../../components/MenuButtons/CenterButton';
 import QuoteButton from '../../components/MenuButtons/QuoteButton';
 import LinkButton from '../../components/MenuButtons/LinkButton';
 
-const MenuButtons = {
-  getItems() {
-    return [
-      BoldButton,
-      ItalicButton,
-      H1Button,
-      H2Button,
-      H3Button,
-      CenterButton,
-      QuoteButton,
-      LinkButton,
-    ];
-  }
-};
+const defaults = [
+  BoldButton,
+  ItalicButton,
+  H1Button,
+  H2Button,
+  H3Button,
+  CenterButton,
+  QuoteButton,
+  LinkButton,
+];
 
-export default MenuButtons;
+const MenuButtonConfig = Config({
+  getInitialItems() {
+    return defaults.slice(0);
+  }
+});
+
+export default MenuButtonConfig;

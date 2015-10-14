@@ -11,7 +11,7 @@ class DeleteKey {
   }
 
   static getName() {
-    return 'delete-key';
+    return 'delete';
   }
 
   matches(event) {

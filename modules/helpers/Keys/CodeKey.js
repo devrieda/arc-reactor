@@ -9,7 +9,7 @@ class CodeKey {
   }
 
   static getName() {
-    return 'code-key';
+    return 'code';
   }
 
   // meta+alt+6

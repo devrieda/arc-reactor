@@ -7,7 +7,7 @@ class UpKey {
   }
 
   static getName() {
-    return 'up-key';
+    return 'up';
   }
 
   matches(event) {

@@ -9,7 +9,7 @@ class UndoKey {
   }
 
   static getName() {
-    return 'undo-key';
+    return 'undo';
   }
 
   // meta+z

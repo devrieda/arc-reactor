@@ -9,7 +9,7 @@ class H3Key {
   }
 
   static getName() {
-    return 'h3-key';
+    return 'h3';
   }
 
   // meta+alt+3

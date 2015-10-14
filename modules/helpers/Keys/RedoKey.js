@@ -9,7 +9,7 @@ class RedoKey {
   }
 
   static getName() {
-    return 'undo-key';
+    return 'redo';
   }
 
   // meta+shift+z

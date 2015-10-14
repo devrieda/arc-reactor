@@ -1,47 +1,15 @@
 import History from './History';
-import Keys from "./Config/Keys";
-
-let _instance;
+import KeyConfig from "./Config/KeyConfig";
 
 // key commands stack is fifo
 class KeyCommands {
-  constructor() {
-    this.keys = [];
-    this._installDefaultKeys();
-  }
-
-  // instance for getting access to singleton of commands
-  static getInstance() {
-    if (!_instance) {
-      _instance = new KeyCommands();
-    }
-    return _instance;
-  }
-
-  // register a new key
-  //
-  // const keys = new KeyCommands();
-  // keys.use(UnderlineHotkey, { after: 'bold-hotkey' });
-  //
-  use(keyObj, options) {
-    const { before, after } = options || {};
-
-    // insert the key in the stack
-    if (before || after) {
-      this._insertKey(keyObj, before, after);
-
-    // add to the end of the stack
-    } else {
-      this.keys.push(keyObj);
-    }
-  }
-
   // execute only the first key that matches
   //
   // returns { content: "{}", selection: Selection, passThru: false }
   //
   execute(event, content, selection, callback) {
-    const keys = this.keys.slice(0); // copy keys
+    // find keys from config
+    const keys = KeyConfig.getItems();
     this._executeKeys(keys, event, content, selection, callback);
   }
 
@@ -74,36 +42,6 @@ class KeyCommands {
     } else if (keys.length > 0) {
       this._executeKeys(keys, event, content, selection, callback);
     }
-  }
-
-  getKeys() {
-    return this.keys;
-  }
-
-  // save history for everything except undo/redo
-  _saveHistory(results, selection) {
-    if (results.skipHistory) { return; }
-
-    History.getInstance().push({
-      content: results.content,
-      position: selection.position()
-    });
-  }
-
-  _insertKey(keyObj, before, after) {
-    let newKeys = [];
-    this.keys.forEach( (key) => {
-      const name = key.getName();
-      if (name === before) { newKeys.push(keyObj); }
-      newKeys.push(key);
-      if (name === after) { newKeys.push(keyObj); }
-    });
-    this.keys = newKeys;
-  }
-
-  // Default key 
-  _installDefaultKeys() {
-    Keys.getItems().forEach( (key) => { this.use(key); });
   }
 }
 

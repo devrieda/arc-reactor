@@ -9,7 +9,7 @@ class H2Key {
   }
 
   static getName() {
-    return 'h2-key';
+    return 'h2';
   }
 
   // meta+alt+2

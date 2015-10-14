@@ -85,7 +85,7 @@ const Editor = React.createClass({
     });
 
     // setup key command stack
-    this.keys = KeyCommands.getInstance();
+    this.keys = new KeyCommands();
   },
 
   // handle clicking outside the editor

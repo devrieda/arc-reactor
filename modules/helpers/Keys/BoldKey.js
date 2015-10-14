@@ -9,7 +9,7 @@ class BoldKey {
   }
 
   static getName() {
-    return 'bold-key';
+    return 'bold';
   }
 
   // meta+b

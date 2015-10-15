@@ -1,14 +1,16 @@
 import expect from 'expect';
-import MenuButtonConfig from "../MenuButtonConfig";
+import MenuButtonConfig from '../MenuButtonConfig';
+import BoldKey from '../../../plugins/bold/BoldKey';
 
 describe('MenuButtonConfig', () => {
   beforeEach(function() {
     MenuButtonConfig.reset();
+    MenuButtonConfig.use(BoldKey, { before: 'italic' })
   });
 
   describe("#getItems", () => {
     it("retrieves list of default items", () => {
-      expect(MenuButtonConfig.getItems().length).toEqual(4);
+      expect(MenuButtonConfig.getItems().length).toEqual(3);
     });
   });
 

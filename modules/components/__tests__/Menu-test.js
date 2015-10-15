@@ -9,6 +9,7 @@ const render = TestUtils.renderIntoDocument;
 const { click, input, keyUp } = TestUtils.Simulate;
 
 describe('Menu', () => {
+  // TODO - include default menu buttons so that we render strong/italic/a
 
   it('should render', () => {
     const content = { sections: [] };

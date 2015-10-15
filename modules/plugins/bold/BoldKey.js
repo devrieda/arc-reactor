@@ -1,4 +1,4 @@
-import ToggleMarkup from '../Manipulation/ToggleMarkup';
+import ToggleMarkup from '../../helpers/Manipulation/ToggleMarkup';
 
 const KEY_CODES = { 'b': 66 };
 

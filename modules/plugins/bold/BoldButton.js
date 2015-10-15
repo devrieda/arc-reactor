@@ -1,5 +1,5 @@
-import React from 'react/addons';
-import MenuButton from '../MenuButton';
+import React from 'react';
+import MenuButton from '../../components/MenuButton';
 import ToggleMarkup from '../../helpers/Manipulation/ToggleMarkup';
 import SelectedContent from '../../helpers/SelectedContent';
 

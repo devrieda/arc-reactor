@@ -6,7 +6,6 @@ import DeleteKey from '../Keys/DeleteKey';
 import BspaceKey from '../Keys/BspaceKey';
 import DownKey from '../Keys/DownKey';
 import UpKey from '../Keys/UpKey';
-import BoldKey from '../Keys/BoldKey';
 import ItalicKey from '../Keys/ItalicKey';
 import UndoKey from '../Keys/UndoKey';
 import RedoKey from '../Keys/RedoKey';
@@ -18,7 +17,6 @@ const defaults = [
   BspaceKey,
   DownKey,
   UpKey,
-  BoldKey,
   ItalicKey,
   UndoKey,
   RedoKey,

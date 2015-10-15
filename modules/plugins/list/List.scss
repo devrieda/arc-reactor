@@ -1,0 +1,45 @@
+// lists
+.arc-Editor-Block--list {
+  margin: 0;
+  margin-bottom: 30px;
+  padding: 0;
+  counter-reset: post;
+  list-style: none;
+  list-style-image: none;
+  font-weight: 200;
+  font-size: 20px;
+}
+@media (max-width: 767px) {
+  .arc-Editor-Block--list {
+    font-size: 18px;
+  }
+}
+.arc-Editor-Block--header +.arc-Editor-Block--list {
+  margin-top: 10px;
+}
+
+.arc-Editor-Block--li {
+  margin-left: 30px;
+  margin-bottom: 12px;
+  padding-top: 2px;
+}
+.arc-Editor-Block--li:before {
+  position: absolute;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 58px;
+  margin-left: -58px;
+  text-align: right;
+}
+
+.arc-Editor-Block--ul>.arc-Editor-Block--li:before {
+  padding-top: 6px;
+  padding-right: 15px;
+  font-size: 14.3px;
+  content: '•';
+}
+.arc-Editor-Block--ol>.arc-Editor-Block--li:before {
+  padding-right: 12px;
+  counter-increment: post;
+  content: counter(post) ".";
+}

@@ -1,4 +1,4 @@
-import ToggleBlockType from '../Manipulation/ToggleBlockType';
+import ToggleBlockType from '../../helpers/Manipulation/ToggleBlockType';
 
 const KEY_CODES = { '5': 53 };
 

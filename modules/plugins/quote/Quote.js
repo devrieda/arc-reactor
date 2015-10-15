@@ -1,14 +1,14 @@
 import React from 'react';
 import BaseBlock from '../../components/Blocks/BaseBlock';
-import './Code.scss';
+import './Quote.scss';
 
-const Code = React.createClass({
+const Quote = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {
-    getName: () => "code",
+    getName: () => "blockquote",
     matches: (block) => {
-      return block.get('type') === 'pre';
+      return block.get('type') === 'blockquote';
     }
   },
 
@@ -17,4 +17,4 @@ const Code = React.createClass({
   }
 });
 
-export default Code;
+export default Quote;

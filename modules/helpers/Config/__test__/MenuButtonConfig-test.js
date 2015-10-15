@@ -8,7 +8,7 @@ describe('MenuButtonConfig', () => {
 
   describe("#getItems", () => {
     it("retrieves list of default items", () => {
-      expect(MenuButtonConfig.getItems().length).toEqual(8);
+      expect(MenuButtonConfig.getItems().length).toEqual(7);
     });
   });
 

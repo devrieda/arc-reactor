@@ -6,9 +6,11 @@ import KeyConfig from './Config/KeyConfig';
 
 // arc internal plugins
 import CodePlugin from '../plugins/code';
+import QuotePlugin from '../plugins/quote';
 
 const DEFAULT_PLUGINS = [
   { name: 'code', src: CodePlugin },
+  { name: 'quote', src: QuotePlugin },
 ];
 
 const DEFAULT_MENU = [

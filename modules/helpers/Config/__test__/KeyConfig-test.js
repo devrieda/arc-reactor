@@ -8,7 +8,7 @@ describe('KeyConfig', () => {
 
   describe("#getItems", () => {
     it("retrieves list of default items", () => {
-      expect(KeyConfig.getItems().length).toEqual(15);
+      expect(KeyConfig.getItems().length).toEqual(14);
     });
   });
 

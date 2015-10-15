@@ -1,7 +1,7 @@
 import Block from "./Code";
 import Key   from "./CodeKey";
 
-const Code = {
+const Plugin = {
   installBlocks(config) {
     config.use(Block);
   },
@@ -11,4 +11,4 @@ const Code = {
   },
 };
 
-export default Code;
+export default Plugin;

@@ -1,4 +1,4 @@
-import Code from '../Code.js';
+import Code from '../Code';
 
 describe('Code', () => {
   it('renders', () => {

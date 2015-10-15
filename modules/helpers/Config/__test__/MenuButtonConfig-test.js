@@ -1,10 +1,12 @@
 import expect from 'expect';
 import MenuButtonConfig from '../MenuButtonConfig';
 import BoldKey from '../../../plugins/bold/BoldKey';
+import ItalicKey from '../../../plugins/italic/ItalicKey';
 
 describe('MenuButtonConfig', () => {
   beforeEach(function() {
     MenuButtonConfig.reset();
+    MenuButtonConfig.use(ItalicKey, { before: 'link' })
     MenuButtonConfig.use(BoldKey, { before: 'italic' })
   });
 

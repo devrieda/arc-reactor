@@ -1,11 +1,20 @@
+import TweetPlugin from "./twitter";
+
 const Config = {
   // default plugins provided by ARC are:
   // code:
   //   - allow for simple inline code formatting
   plugins() {
     return [
+      { name: "bold" },
+      { name: "italic" },
+      { name: "h1" },
+      { name: "h2" },
+      { name: "h3" },
+      { name: "center" },
+      { name: "quote" },
       { name: "code" },
-      // { name: "syntax", src: SyntaxPlugin }
+      // { name: "tweet", src: TweetPlugin }
     ];
   },
 

@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
-import ContentFinder from '../ContentFinder';
-import Guid from '../Guid';
+import ContentFinder from '../../../helpers/ContentFinder';
+import Guid from '../../../helpers/Guid';
 
 class DeleteFigure {
   constructor(content) {

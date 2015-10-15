@@ -39,7 +39,7 @@ class OtherKey {
 
     const node = document.getElementsByName(guids.anchor)[0];
     let text;
-    if (node && node.getAttribute('data-figure')) {
+    if (false && node && node.getAttribute('data-figure')) {
       const caption = node.getElementsByTagName("figcaption")[0];
       text = caption.textContent;
     } else {

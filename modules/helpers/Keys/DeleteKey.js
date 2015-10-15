@@ -1,6 +1,5 @@
 import CombineBlocks    from '../Manipulation/CombineBlocks';
 import CombineBlockNext from '../Manipulation/CombineBlockNext';
-import DeleteFigure     from '../Manipulation/DeleteFigure';
 
 const KEY_CODES = { 'delete': 46 };
 
@@ -23,10 +22,7 @@ class DeleteKey {
     const offsets = this.selection.offsets();
     let results;
 
-    if (this.selection.isFigure() && !this.selection.isCaption()) {
-      results = this._deleteFigure().execute(guids);
-
-    } else if (this.selection.crossBlock()) {
+    if (this.selection.crossBlock()) {
       results = this._combineBlocks().execute(guids, offsets);
 
     } else if (this.selection.endOfBlock()) {
@@ -51,10 +47,6 @@ class DeleteKey {
       preventDefault: !!position,
       emit: true
     });
-  }
-
-  _deleteFigure() {
-    return new DeleteFigure(this.content);
   }
 
   _combineBlocks() {

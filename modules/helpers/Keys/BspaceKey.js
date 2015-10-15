@@ -1,7 +1,6 @@
 import CombineBlocks    from '../Manipulation/CombineBlocks';
 import CombineBlockPrev from '../Manipulation/CombineBlockPrev';
 import ToggleBlockType  from '../Manipulation/ToggleBlockType';
-import DeleteFigure     from '../Manipulation/DeleteFigure';
 
 const KEY_CODES = { 'bspace': 8 };
 
@@ -29,11 +28,8 @@ class BspaceKey {
     const node = document.getElementsByName(guids.anchor)[0];
     const type = node.tagName.toLowerCase();
 
-    if (this.selection.isFigure() && !this.selection.isCaption()) {
-      results = this._deleteFigure().execute(guids);
-
     // combine the blocks selected
-    } else if (this.selection.crossBlock()) {
+    if (this.selection.crossBlock()) {
       results = this._combineBlocks().execute(guids, offsets);
 
     // beginning of a list item converts to a paragraph
@@ -63,10 +59,6 @@ class BspaceKey {
       preventDefault: !!results,
       emit: true
     });
-  }
-
-  _deleteFigure() {
-    return new DeleteFigure(this.content);
   }
 
   _toggleBlockType() {

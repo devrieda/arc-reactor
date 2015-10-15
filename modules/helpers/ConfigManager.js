@@ -15,7 +15,7 @@ import QuotePlugin from '../plugins/quote';
 import LinkPlugin from '../plugins/link';
 import CodePlugin from '../plugins/code';
 
-const DEFAULT_PLUGINS = [
+const ARC_PLUGINS = [
   { name: 'bold', src: BoldPlugin },
   { name: 'italic', src: ItalicPlugin },
   { name: 'h1', src: H1Plugin },
@@ -25,6 +25,10 @@ const DEFAULT_PLUGINS = [
   { name: 'quote', src: QuotePlugin },
   { name: 'link', src: LinkPlugin },
   { name: 'code', src: CodePlugin },
+];
+
+const DEFAULT_PLUGINS = [
+  "bold", "italic", "h1", "h2", "h3", "center", "quote", "link", "code"
 ];
 
 const DEFAULT_MENU = [
@@ -40,6 +44,7 @@ class ConfigManager {
    * Install a new config
    *
    * config:
+   *   - arcPlugins
    *   - plugins
    *   - menuButtons
    *   - barButtons
@@ -49,39 +54,43 @@ class ConfigManager {
   }
 
   constructor(config) {
+    this._installArcPlugins(config);
     this._installPlugins(config);
 
     this._configureMenuButtons(config);
     this._configureBarButtons(config);
   }
 
-  // plugins
+  // install arc plugins
+  _installArcPlugins(config) {
+    let plugins = config.arcPlugins && config.arcPlugins();
+    if (!plugins) { plugins = DEFAULT_PLUGINS; }
+
+    // register blocks, buttons, and keys
+    plugins.forEach( (name) => {
+      const found = ARC_PLUGINS.filter((plugin) => plugin.name === name)[0];
+      invariant(found, `No ARC plugin exists by the name ${name}`);
+      this._installPlugin(found.src);
+    });
+  }
+
+  // install custom plugins
   _installPlugins(config) {
     let plugins = config.plugins && config.plugins();
-    if (!plugins) { plugins = DEFAULT_PLUGINS; }
+    if (!plugins) { return; }
 
     // register blocks, buttons, and keys
     plugins.forEach( (spec) => {
       const name = spec.name;
-      const src  = spec.src;
-      let plugin;
-
-      // assume an arc plugin
-      if (!src) {
-        const found = DEFAULT_PLUGINS.filter(
-          (plugin) => plugin.name === name
-        )[0];
-        invariant(found, `No ARC plugin exists by the name ${name}`);
-        plugin = found.src;
-      } else {
-        plugin = src;
-      }
-
-      plugin.installBlocks && plugin.installBlocks(BlockConfig);
-      plugin.installMenuButtons && plugin.installMenuButtons(MenuButtonConfig);
-      plugin.installBarButtons && plugin.installBarButtons(BarButtonConfig);
-      plugin.installKeys && plugin.installKeys(KeyConfig);
+      this._installPlugin(spec.src);
     });
+  }
+
+  _installPlugin(plugin) {
+    plugin.installBlocks && plugin.installBlocks(BlockConfig);
+    plugin.installMenuButtons && plugin.installMenuButtons(MenuButtonConfig);
+    plugin.installBarButtons && plugin.installBarButtons(BarButtonConfig);
+    plugin.installKeys && plugin.installKeys(KeyConfig);
   }
 
   // config menu buttons

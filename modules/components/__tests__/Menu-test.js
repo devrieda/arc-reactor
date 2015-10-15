@@ -2,15 +2,16 @@ import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import Menu from '../Menu.js';
+import ConfigManager from '../../helpers/ConfigManager';
 
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 const { click, input, keyUp } = TestUtils.Simulate;
 
-describe('Menu', () => {
-  // TODO - include default menu buttons so that we render strong/italic/a
+ConfigManager.install({});
 
+describe('Menu', () => {
   it('should render', () => {
     const content = { sections: [] };
     const selection = {

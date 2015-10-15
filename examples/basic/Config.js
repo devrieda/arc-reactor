@@ -1,21 +1,21 @@
-import TweetPlugin from "./twitter";
+// import TweetPlugin from "./twitter";
+// import ImageUploadPlugin from "./image_upload";
 
 const Config = {
-  // default plugins provided by ARC are:
-  // code:
-  //   - allow for simple inline code formatting
+
+  /**
+   * Plugins provided by ARC. If left empty, it will install all defaults
+   */
+  arcPlugins() {
+    return [
+      "bold", "italic", "h1", "h2", "h3", "center", "quote", "link", "code"
+    ];
+  },
+
   plugins() {
     return [
-      { name: "bold" },
-      { name: "italic" },
-      { name: "h1" },
-      { name: "h2" },
-      { name: "h3" },
-      { name: "center" },
-      { name: "quote" },
-      { name: "code" },
-      { name: "link" },
       // { name: "tweet", src: TweetPlugin }
+      // { name: "image_upload", src: ImageUploadPlugin }
     ];
   },
 
@@ -27,7 +27,7 @@ const Config = {
 
   barButtons() {
     return [
-      "image", "section"
+      "section"
     ];
   }
 };

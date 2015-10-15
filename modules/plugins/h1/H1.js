@@ -1,7 +1,8 @@
-import React from 'react/addons';
-import BaseBlock from './BaseBlock';
+import React from 'react';
+import BaseBlock from '../../components/Blocks/BaseBlock';
+ import './H1.scss';
 
-const Header1 = React.createClass({
+const H1 = React.createClass({
   propTypes: BaseBlock.propTypes,
 
   statics: {
@@ -16,4 +17,4 @@ const Header1 = React.createClass({
   }
 });
 
-export default Header1;
+export default H1;

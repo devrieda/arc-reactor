@@ -9,7 +9,6 @@ import UpKey from '../Keys/UpKey';
 import BoldKey from '../Keys/BoldKey';
 import ItalicKey from '../Keys/ItalicKey';
 import CenterKey from '../Keys/CenterKey';
-import H1Key from '../Keys/H1Key';
 import H2Key from '../Keys/H2Key';
 import H3Key from '../Keys/H3Key';
 import UndoKey from '../Keys/UndoKey';
@@ -25,7 +24,6 @@ const defaults = [
   BoldKey,
   ItalicKey,
   CenterKey,
-  H1Key,
   H2Key,
   H3Key,
   UndoKey,

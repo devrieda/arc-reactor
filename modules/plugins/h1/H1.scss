@@ -1,0 +1,13 @@
+.arc-Editor-Block--h2 {
+  margin-left: -3px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1;
+}
+
+@media (max-width: 767px) {
+  .arc-Editor-Block--h2 {
+    font-size: 36px;
+  }
+}

@@ -5,12 +5,14 @@ import BarButtonConfig from './Config/BarButtonConfig';
 import KeyConfig from './Config/KeyConfig';
 
 // arc internal plugins
-import CodePlugin from '../plugins/code';
+import H1Plugin from '../plugins/h1';
 import QuotePlugin from '../plugins/quote';
+import CodePlugin from '../plugins/code';
 
 const DEFAULT_PLUGINS = [
-  { name: 'code', src: CodePlugin },
+  { name: 'h1', src: H1Plugin },
   { name: 'quote', src: QuotePlugin },
+  { name: 'code', src: CodePlugin },
 ];
 
 const DEFAULT_MENU = [

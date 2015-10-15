@@ -2,7 +2,6 @@ import Config from './Config';
 
 // default blocks
 import Paragraph from '../../components/Blocks/Paragraph';
-import Header1 from '../../components/Blocks/Header1';
 import Header2 from '../../components/Blocks/Header2';
 import Header3 from '../../components/Blocks/Header3';
 import UnorderedList from '../../components/Blocks/UnorderedList';
@@ -12,7 +11,6 @@ import Youtube from '../../components/Blocks/Youtube';
 
 const defaults = [
   Paragraph,
-  Header1,
   Header2,
   Header3,
   UnorderedList,

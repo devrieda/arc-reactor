@@ -1,5 +1,5 @@
-import React from 'react/addons';
-import MenuButton from '../MenuButton';
+import React from 'react';
+import MenuButton from '../../components/MenuButton';
 import ToggleBlockType from '../../helpers/Manipulation/ToggleBlockType';
 
 const H1Button = React.createClass({

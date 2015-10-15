@@ -5,11 +5,7 @@ import BarButtonConfig from './Config/BarButtonConfig';
 import KeyConfig from './Config/KeyConfig';
 
 import ArcPlugins from '../plugins';
-
-const DEFAULT_PLUGINS = [
-  "bold", "italic", "h1", "h2", "h3", "center", "quote", "link",
-  "code", "image", "youtube"
-];
+const DEFAULT_PLUGINS = ArcPlugins.map((plugin) => plugin.name);
 
 const DEFAULT_MENU = [
   "bold", "italic", "h1", "h2", "h3", "center", "quote", "link"

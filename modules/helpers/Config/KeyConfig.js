@@ -13,7 +13,6 @@ import H1Key from '../Keys/H1Key';
 import H2Key from '../Keys/H2Key';
 import H3Key from '../Keys/H3Key';
 import QuoteKey from '../Keys/QuoteKey';
-import CodeKey from '../Keys/CodeKey';
 import UndoKey from '../Keys/UndoKey';
 import RedoKey from '../Keys/RedoKey';
 import OtherKey from '../Keys/OtherKey';
@@ -31,7 +30,6 @@ const defaults = [
   H2Key,
   H3Key,
   QuoteKey,
-  CodeKey,
   UndoKey,
   RedoKey,
   OtherKey,

@@ -49,14 +49,16 @@ class MagicKey {
 }
 
 describe('KeyCommands', () => {
+  beforeEach(function() {
+    KeyConfig.reset();
+  });
+
   describe('#execute', () => {
     it('should execute first command that matches', (done) => {
-      KeyConfig.reset();
       KeyConfig.use(SpecialKey, { before: 'return' });
       KeyConfig.use(MagicKey,   { after:  'special' });
 
-      const keys = new KeyCommands();
-      keys.execute({type: 'down'}, {}, {}, function() {
+      KeyCommands.execute({type: 'down'}, {}, {}, function() {
         expect(specialStub.called).toBe(true);
         expect(magicStub.called).toBe(false);
         done();
@@ -64,11 +66,9 @@ describe('KeyCommands', () => {
     });
 
     it('should return changed content and selection', (done) => {
-      KeyConfig.reset();
       KeyConfig.use(SpecialKey, { before: 'return' });
 
-      const keys = new KeyCommands();
-      keys.execute({type: 'down'}, {}, {}, function(results) {
+      KeyCommands.execute({type: 'down'}, {}, {}, function(results) {
         expect(results.content).toEqual({a: 1});
         expect(results.selection).toEqual('b');
         done();

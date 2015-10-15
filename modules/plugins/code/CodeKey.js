@@ -1,8 +1,8 @@
-import ToggleBlockType from '../../Manipulation/ToggleBlockType';
+import ToggleBlockType from '../../helpers/Manipulation/ToggleBlockType';
 
 const KEY_CODES = { '6': 54 };
 
-class Key {
+class CodeKey {
   constructor(content, selection) {
     this.content   = content;
     this.selection = selection;
@@ -45,4 +45,4 @@ class Key {
   }
 }
 
-export default Key;
+export default CodeKey;

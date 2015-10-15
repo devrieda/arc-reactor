@@ -1,6 +1,6 @@
 import React from 'react/addons';
 import BaseBlock from '../../components/Blocks/BaseBlock';
-import 'Code.scss';
+import './Code.scss';
 
 const Code = React.createClass({
   propTypes: BaseBlock.propTypes,

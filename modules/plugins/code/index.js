@@ -1,26 +1,14 @@
 import Block from "./Code";
-import Key   from "./Key";
+import Key   from "./CodeKey";
 
-const InlineCode = {
-  getBlocks() {
-    return [
-      Block
-    ];
+const Code = {
+  installBlocks(config) {
+    config.use(Block);
   },
 
-  getKeys() {
-    return [
-      Key
-    ];
+  installKeys(config) {
+    config.use(Key);
   },
-
-  getBarButtons() {
-    return [];
-  },
-
-  getMenuButtons() {
-    return [];
-  }
 };
 
-export default InlineCode;
+export default Code;

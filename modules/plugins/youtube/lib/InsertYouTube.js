@@ -1,6 +1,6 @@
-import ContentFinder from '../ContentFinder';
+import ContentFinder from '../../../helpers/ContentFinder';
 
-class InsertYoutube {
+class InsertYouTube {
   constructor(content) {
     this.content = content;
   }
@@ -58,4 +58,4 @@ class InsertYoutube {
   }
 }
 
-export default InsertYoutube;
+export default InsertYouTube;

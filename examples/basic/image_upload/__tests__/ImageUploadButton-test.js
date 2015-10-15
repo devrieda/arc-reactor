@@ -1,13 +1,13 @@
 import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
-import ImageButton from '../ImageButton';
+import ImageButton from '../ImageUploadButton';
 
 const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 
-describe('ImageButton', () => {
+describe('ImageUploadButton', () => {
   it('should render', () => {
     const content = { sections: [] };
     const selection = {

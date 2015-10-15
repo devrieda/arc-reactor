@@ -1,6 +1,6 @@
 import React from 'react/addons';
 import Immutable from 'immutable';
-import Figure from './Figure';
+import Figure from '../shared/Figure';
 import cx from 'classnames';
 
 const PureRenderMixin = React.addons.PureRenderMixin;

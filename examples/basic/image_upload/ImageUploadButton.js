@@ -2,7 +2,7 @@ import React from 'react/addons';
 import BarButton from '../BarButton';
 import InsertImage from '../../helpers/Manipulation/InsertImage';
 
-const ImageButton = React.createClass({
+const ImageUploadButton = React.createClass({
   statics: {
     getName: () => "image",
   },
@@ -40,4 +40,4 @@ const ImageButton = React.createClass({
   }
 });
 
-export default ImageButton;
+export default ImageUploadButton;

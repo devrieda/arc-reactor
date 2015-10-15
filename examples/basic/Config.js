@@ -8,7 +8,8 @@ const Config = {
    */
   arcPlugins() {
     return [
-      "bold", "italic", "h1", "h2", "h3", "center", "quote", "link", "code"
+      "bold", "italic", "h1", "h2", "h3", "center", "quote", "link",
+      "code", "image", "youtube"
     ];
   },
 

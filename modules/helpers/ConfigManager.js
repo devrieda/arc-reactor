@@ -4,31 +4,11 @@ import MenuButtonConfig from './Config/MenuButtonConfig';
 import BarButtonConfig from './Config/BarButtonConfig';
 import KeyConfig from './Config/KeyConfig';
 
-// arc internal plugins
-import BoldPlugin from '../plugins/bold';
-import ItalicPlugin from '../plugins/italic';
-import H1Plugin from '../plugins/h1';
-import H2Plugin from '../plugins/h2';
-import H3Plugin from '../plugins/h3';
-import CenterPlugin from '../plugins/center';
-import QuotePlugin from '../plugins/quote';
-import LinkPlugin from '../plugins/link';
-import CodePlugin from '../plugins/code';
-
-const ARC_PLUGINS = [
-  { name: 'bold', src: BoldPlugin },
-  { name: 'italic', src: ItalicPlugin },
-  { name: 'h1', src: H1Plugin },
-  { name: 'h2', src: H2Plugin },
-  { name: 'h3', src: H3Plugin },
-  { name: 'center', src: CenterPlugin },
-  { name: 'quote', src: QuotePlugin },
-  { name: 'link', src: LinkPlugin },
-  { name: 'code', src: CodePlugin },
-];
+import ArcPlugins from '../plugins';
 
 const DEFAULT_PLUGINS = [
-  "bold", "italic", "h1", "h2", "h3", "center", "quote", "link", "code"
+  "bold", "italic", "h1", "h2", "h3", "center", "quote", "link",
+  "code", "image", "youtube"
 ];
 
 const DEFAULT_MENU = [
@@ -36,7 +16,7 @@ const DEFAULT_MENU = [
 ];
 
 const DEFAULT_BAR = [
-  "image", "section"
+  "section"
 ];
 
 class ConfigManager {
@@ -68,7 +48,7 @@ class ConfigManager {
 
     // register blocks, buttons, and keys
     plugins.forEach( (name) => {
-      const found = ARC_PLUGINS.filter((plugin) => plugin.name === name)[0];
+      const found = ArcPlugins.filter((plugin) => plugin.name === name)[0];
       invariant(found, `No ARC plugin exists by the name ${name}`);
       this._installPlugin(found.src);
     });

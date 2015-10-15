@@ -1,8 +1,6 @@
 import AppendBlock   from '../Manipulation/AppendBlock';
 import PrependBlock  from '../Manipulation/PrependBlock';
 import SplitBlock    from '../Manipulation/SplitBlock';
-import InsertImage   from '../Manipulation/InsertImage';
-import InsertYoutube from '../Manipulation/InsertYoutube';
 
 const KEY_CODES = { 'return': 13, 'm': 77 };
 
@@ -27,23 +25,9 @@ class ReturnKey {
     const offsets = this.selection.offsets();
     let results;
 
-    // is this a photo/video link
-    const node = document.getElementsByName(guids.anchor)[0];
-    const text = node && node.textContent;
-    const type = node.tagName.toLowerCase();
-
     // range
     if (this.selection.isRange()) {
       results = this._splitBlock().execute(guids, offsets);
-
-    // photo
-    } else if (text.match(/^http.+(gif|png|jpe?g)$/)) {
-      const cb = (results) => { this._complete(results, callback, false); };
-      results = this._insertImage().execute(guids, offsets, { src: text }, cb);
-
-    // video
-    } else if (text.match(/^http.+youtu.+$/)) {
-      results = this._insertYoutube().execute(guids, offsets, { src: text });
 
     // caret
     } else if (this.selection.endOfBlock()) {
@@ -88,18 +72,6 @@ class ReturnKey {
 
   _prependBlock() {
     return new PrependBlock(this.content);
-  }
-
-  _insertImage() {
-    return new InsertImage(this.content);
-  }
-
-  _insertYoutube() {
-    return new InsertYoutube(this.content);
-  }
-
-  _insertNewline() {
-    return new InsertNewline(this.content);
   }
 }
 

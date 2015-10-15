@@ -1,11 +1,9 @@
 import Config from './Config';
 
 // default buttons
-import ImageButton from '../../components/BarButtons/ImageButton';
 import SectionButton from '../../components/BarButtons/SectionButton';
 
 const defaults = [
-  ImageButton,
   SectionButton,
 ];
 

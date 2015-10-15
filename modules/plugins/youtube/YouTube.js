@@ -1,12 +1,12 @@
 import React from 'react/addons';
 import Immutable from 'immutable';
-import Figure from './Figure';
+import Figure from '../shared/Figure';
 import cx from 'classnames';
 
 const PureRenderMixin = React.addons.PureRenderMixin;
 const { string, object, instanceOf } = React.PropTypes;
 
-const Youtube = React.createClass({
+const YouTube = React.createClass({
   mixins: [PureRenderMixin],
 
   statics: {
@@ -84,4 +84,4 @@ const Youtube = React.createClass({
   }
 });
 
-export default Youtube;
+export default YouTube;

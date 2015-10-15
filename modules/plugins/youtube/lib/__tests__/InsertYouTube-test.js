@@ -1,8 +1,8 @@
 import expect from 'expect';
 import { fromJS } from 'immutable';
-import InsertYoutube from '../InsertYoutube';
+import InsertYouTube from '../InsertYouTube';
 
-describe('InsertYoutube', () => {
+describe('InsertYouTube', () => {
   let content;
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe('InsertYoutube', () => {
 
   describe('#execute', () => {
     it('should parse youtube url from the given src', () => {
-      const manager = new InsertYoutube(fromJS(content));
+      const manager = new InsertYouTube(fromJS(content));
 
       const guids = { anchor: 'c6a8', focus: 'c6a8' };
       const offsets = { anchor: 0, focus: 0 };

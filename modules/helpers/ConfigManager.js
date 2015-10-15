@@ -12,6 +12,7 @@ import H2Plugin from '../plugins/h2';
 import H3Plugin from '../plugins/h3';
 import CenterPlugin from '../plugins/center';
 import QuotePlugin from '../plugins/quote';
+import LinkPlugin from '../plugins/link';
 import CodePlugin from '../plugins/code';
 
 const DEFAULT_PLUGINS = [
@@ -22,6 +23,7 @@ const DEFAULT_PLUGINS = [
   { name: 'h3', src: H3Plugin },
   { name: 'center', src: CenterPlugin },
   { name: 'quote', src: QuotePlugin },
+  { name: 'link', src: LinkPlugin },
   { name: 'code', src: CodePlugin },
 ];
 

@@ -14,6 +14,7 @@ const Config = {
       { name: "center" },
       { name: "quote" },
       { name: "code" },
+      { name: "link" },
       // { name: "tweet", src: TweetPlugin }
     ];
   },

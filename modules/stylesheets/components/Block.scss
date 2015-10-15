@@ -65,12 +65,3 @@
   counter-increment: post;
   content: counter(post) ".";
 }
-
-// inline
-.arc-Editor-Block__em {
-  font-style: italic;
-}
-.arc-Editor-Block__a,
-.arc-Editor-Block__a:visited {
-  color: $link-color;
-}

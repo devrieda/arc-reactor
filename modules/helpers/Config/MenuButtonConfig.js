@@ -1,11 +1,6 @@
 import Config from './Config';
 
-// default buttons
-import LinkButton from '../../components/MenuButtons/LinkButton';
-
-const defaults = [
-  LinkButton,
-];
+const defaults = [];
 
 const MenuButtonConfig = Config({
   getInitialItems() {

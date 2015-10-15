@@ -6,13 +6,13 @@ import ItalicKey from '../../../plugins/italic/ItalicKey';
 describe('MenuButtonConfig', () => {
   beforeEach(function() {
     MenuButtonConfig.reset();
-    MenuButtonConfig.use(ItalicKey, { before: 'link' })
+    MenuButtonConfig.use(ItalicKey)
     MenuButtonConfig.use(BoldKey, { before: 'italic' })
   });
 
   describe("#getItems", () => {
     it("retrieves list of default items", () => {
-      expect(MenuButtonConfig.getItems().length).toEqual(3);
+      expect(MenuButtonConfig.getItems().length).toEqual(2);
     });
   });
 

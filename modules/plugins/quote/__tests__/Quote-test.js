@@ -1,4 +1,4 @@
-import Code from '../Quote';
+import Quote from '../Quote';
 
 describe('Quote', () => {
   it('renders', () => {

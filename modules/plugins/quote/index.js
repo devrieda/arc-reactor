@@ -1,6 +1,6 @@
 import Block from "./Quote";
 import Key from "./QuoteKey";
-import QuoteButton from "./QuoteButton";
+import Button from "./QuoteButton";
 
 const Plugin = {
   installBlocks(config) {
@@ -12,7 +12,7 @@ const Plugin = {
   },
 
   installMenuButtons(config) {
-    config.use(QuoteButton);
+    config.use(Button);
   }
 };
 

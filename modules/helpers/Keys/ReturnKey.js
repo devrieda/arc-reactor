@@ -3,7 +3,6 @@ import PrependBlock  from '../Manipulation/PrependBlock';
 import SplitBlock    from '../Manipulation/SplitBlock';
 import InsertImage   from '../Manipulation/InsertImage';
 import InsertYoutube from '../Manipulation/InsertYoutube';
-import InsertNewline from '../Manipulation/InsertNewline';
 
 const KEY_CODES = { 'return': 13, 'm': 77 };
 
@@ -45,10 +44,6 @@ class ReturnKey {
     // video
     } else if (text.match(/^http.+youtu.+$/)) {
       results = this._insertYoutube().execute(guids, offsets, { src: text });
-
-    // code
-    } else if (type === 'pre') {
-      results = this._insertNewline().execute(guids, offsets);
 
     // caret
     } else if (this.selection.endOfBlock()) {

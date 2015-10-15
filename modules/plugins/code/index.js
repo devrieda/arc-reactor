@@ -1,5 +1,6 @@
 import Block from "./Code";
 import Key from "./CodeKey";
+import CodeReturnKey from "./CodeReturnKey";
 import './Code.scss';
 
 const Plugin = {
@@ -9,6 +10,7 @@ const Plugin = {
 
   installKeys(config) {
     config.use(Key);
+    config.use(CodeReturnKey, { before: 'return' });
   },
 };
 

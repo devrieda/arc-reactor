@@ -1,4 +1,4 @@
-import ContentFinder from '../ContentFinder';
+import ContentFinder from '../../../helpers/ContentFinder';
 
 class InsertNewline {
   constructor(content) {

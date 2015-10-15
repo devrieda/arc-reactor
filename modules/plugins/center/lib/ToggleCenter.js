@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import ContentFinder from '../ContentFinder';
+import ContentFinder from '../../../helpers/ContentFinder';
 
 class ToggleCenter {
   constructor(content) {

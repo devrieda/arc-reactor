@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuButton from '../../components/MenuButton';
-import ToggleCenter from '../../helpers/Manipulation/ToggleCenter';
+import ToggleCenter from './lib/ToggleCenter';
 
 const CenterButton = React.createClass({
   statics: {

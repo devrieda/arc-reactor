@@ -1,6 +1,6 @@
-import H2 from '../H2';
+import H3 from '../H3';
 
-describe('H2', () => {
+describe('H3', () => {
   it('renders', () => {
     assert(true);
   });

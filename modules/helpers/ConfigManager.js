@@ -7,12 +7,14 @@ import KeyConfig from './Config/KeyConfig';
 // arc internal plugins
 import H1Plugin from '../plugins/h1';
 import H2Plugin from '../plugins/h2';
+import H3Plugin from '../plugins/h3';
 import QuotePlugin from '../plugins/quote';
 import CodePlugin from '../plugins/code';
 
 const DEFAULT_PLUGINS = [
   { name: 'h1', src: H1Plugin },
   { name: 'h2', src: H2Plugin },
+  { name: 'h3', src: H2Plugin },
   { name: 'quote', src: QuotePlugin },
   { name: 'code', src: CodePlugin },
 ];

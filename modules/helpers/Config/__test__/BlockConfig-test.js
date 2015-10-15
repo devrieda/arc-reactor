@@ -8,7 +8,7 @@ describe('BlockConfig', () => {
 
   describe("#getItems", () => {
     it("retrieves list of default items", () => {
-      expect(BlockConfig.getItems().length).toEqual(6);
+      expect(BlockConfig.getItems().length).toEqual(5);
     });
   });
 

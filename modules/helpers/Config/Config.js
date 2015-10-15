@@ -25,6 +25,9 @@ const Config = function(spec) {
      * config.use(Code, { after: 'p' });
      */
     use(item, options) {
+      // can't have the same one twice, so remove first
+      this.remove(item.getName());
+
       const { before, after } = options || {};
 
       // insert the item in the stack

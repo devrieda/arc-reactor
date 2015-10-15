@@ -1,11 +1,6 @@
 import Config from './Config';
 
-// default buttons
-import SectionButton from '../../components/BarButtons/SectionButton';
-
-const defaults = [
-  SectionButton,
-];
+const defaults = [];
 
 const BarButtonConfig = Config({
   getInitialItems() {

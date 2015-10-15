@@ -1,6 +1,6 @@
 import React from 'react/addons';
-import BarButton from '../BarButton';
-import InsertSection from '../../helpers/Manipulation/InsertSection';
+import BarButton from '../../components/BarButton';
+import InsertSection from './lib/InsertSection';
 
 const SectionButton = React.createClass({
   statics: {
@@ -22,13 +22,10 @@ const SectionButton = React.createClass({
     const offsets = this.props.selection.offsets();
     const position = this.props.selection.position();
 
-    const result = this._insertSection().execute(guids, offsets);
+    const command = new InsertSection(this.props.content);
+    const result = command.execute(guids, offsets);
 
     return { content: result.content, position: position };
-  },
-
-  _insertSection() {
-    return new InsertSection(this.props.content);
   },
 
   render() {

@@ -18,7 +18,7 @@ class UnderlineKey {
     return event.keyCode === KEY_CODES.u;
   }
 
-  // no-op for underlines
+  // no-op for underlines (prevent default behavior of contenteditable)
   down(callback) {
     callback({
       content: this.content,

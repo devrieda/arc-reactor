@@ -1,5 +1,6 @@
 import Block from "./Code";
-import Key   from "./CodeKey";
+import Key from "./CodeKey";
+import './Code.scss';
 
 const Plugin = {
   installBlocks(config) {

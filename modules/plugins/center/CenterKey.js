@@ -1,4 +1,4 @@
-import ToggleCenter from '../Manipulation/ToggleCenter';
+import ToggleCenter from '../../helpers/Manipulation/ToggleCenter';
 
 const KEY_CODES = { 'e': 69 };
 

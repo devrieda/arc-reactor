@@ -1,6 +1,7 @@
 import Block from "./Quote";
 import Key from "./QuoteKey";
 import Button from "./QuoteButton";
+import './Quote.scss';
 
 const Plugin = {
   installBlocks(config) {

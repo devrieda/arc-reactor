@@ -1,6 +1,5 @@
 import React from 'react';
 import BaseBlock from '../../components/Blocks/BaseBlock';
-import './H3.scss';
 
 const Header3 = React.createClass({
   propTypes: BaseBlock.propTypes,

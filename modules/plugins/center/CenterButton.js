@@ -1,5 +1,5 @@
-import React from 'react/addons';
-import MenuButton from '../MenuButton';
+import React from 'react';
+import MenuButton from '../../components/MenuButton';
 import ToggleCenter from '../../helpers/Manipulation/ToggleCenter';
 
 const CenterButton = React.createClass({

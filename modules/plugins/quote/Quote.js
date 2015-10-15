@@ -1,6 +1,5 @@
 import React from 'react';
 import BaseBlock from '../../components/Blocks/BaseBlock';
-import './Quote.scss';
 
 const Quote = React.createClass({
   propTypes: BaseBlock.propTypes,

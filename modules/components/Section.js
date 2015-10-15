@@ -29,12 +29,13 @@ const Section = React.createClass({
 
   // find which type of block matches
   _renderBlock(block) {
-    const matching = BlockConfig.getItems().filter( (BlockClass) => {
+    const blocks = BlockConfig.getItems();
+    const matching = blocks.filter( (BlockClass) => {
       return BlockClass.matches(block);
     });
 
     // default to Paragraph (first block)
-    const BlockType = matching[0] || Blocks[0];
+    const BlockType = matching[0] || blocks[0];
 
     return (
       <BlockType

@@ -18,7 +18,6 @@ class FigureDeleteKey {
 
   down(callback) {
     const guids = this.selection.guids();
-    const offsets = this.selection.offsets();
 
     if (this.selection.isFigure() && !this.selection.isCaption()) {
       const command = new DeleteFigure(this.content);

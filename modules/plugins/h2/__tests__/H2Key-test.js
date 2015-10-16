@@ -1,15 +1,6 @@
 import H2Key from '../H2Key';
 
 describe('H2Key', () => {
-  let content, selection;
-
-  beforeEach( () => {
-    content = {
-    };
-    selection = {
-    };
-  });
-
   describe('#matches', () => {
     it('matches event for meta, alt, + 2', () => {
       const event = { metaKey: true, altKey: true, keyCode: 50 };

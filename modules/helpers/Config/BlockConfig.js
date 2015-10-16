@@ -2,14 +2,8 @@ import Config from './Config';
 
 // default blocks
 import Paragraph from '../../components/Blocks/Paragraph';
-import UnorderedList from '../../components/Blocks/UnorderedList';
-import OrderedList from '../../components/Blocks/OrderedList';
 
-const defaults = [
-  Paragraph,
-  UnorderedList,
-  OrderedList,
-];
+const defaults = [ Paragraph ];
 
 const BlockConfig = Config({
   getInitialItems() {

@@ -7,6 +7,7 @@ import H3Plugin from './h3';
 import CenterPlugin from './center';
 import QuotePlugin from './quote';
 import LinkPlugin from './link';
+import ListPlugin from './list';
 import SectionPlugin from './section';
 import CodePlugin from './code';
 import ImagePlugin from './image';
@@ -21,6 +22,7 @@ export default [
   { name: 'center', src: CenterPlugin },
   { name: 'quote', src: QuotePlugin },
   { name: 'link', src: LinkPlugin },
+  { name: 'list', src: ListPlugin },
   { name: 'section', src: SectionPlugin },
   { name: 'code', src: CodePlugin },
   { name: 'image', src: ImagePlugin },

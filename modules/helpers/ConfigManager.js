@@ -46,7 +46,7 @@ class ConfigManager {
     plugins.forEach( (name) => {
       const found = ArcPlugins.filter((plugin) => plugin.name === name)[0];
       invariant(found, `No ARC plugin exists by the name ${name}`);
-      this._installPlugin(found.src);
+      if (found) { this._installPlugin(found.src); }
     });
   }
 

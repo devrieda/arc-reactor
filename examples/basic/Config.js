@@ -1,4 +1,4 @@
-// import TweetPlugin from "./twitter";
+// import TweetPlugin from "./tweet";
 // import ImageUploadPlugin from "./image_upload";
 
 const Config = {
@@ -9,7 +9,7 @@ const Config = {
   arcPlugins() {
     return [
       "bold", "italic", "h1", "h2", "h3", "center", "quote", "link",
-      "section", "code", "image", "youtube"
+      "list", "section", "code", "image", "youtube"
     ];
   },
 

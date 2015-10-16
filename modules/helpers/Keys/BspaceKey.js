@@ -1,6 +1,5 @@
 import CombineBlocks    from '../Manipulation/CombineBlocks';
 import CombineBlockPrev from '../Manipulation/CombineBlockPrev';
-import ToggleBlockType  from '../Manipulation/ToggleBlockType';
 
 const KEY_CODES = { 'bspace': 8 };
 
@@ -24,17 +23,9 @@ class BspaceKey {
     const offsets = this.selection.offsets();
     let results;
 
-    // is this a list item
-    const node = document.getElementsByName(guids.anchor)[0];
-    const type = node.tagName.toLowerCase();
-
     // combine the blocks selected
     if (this.selection.crossBlock()) {
       results = this._combineBlocks().execute(guids, offsets);
-
-    // beginning of a list item converts to a paragraph
-    } else if (this.selection.begOfBlock() && type === 'li') {
-      results = this._toggleBlockType().execute(guids, offsets, { type: 'li' });
 
     // at beginning of block - combine with previous
     } else if (this.selection.begOfBlock() && !this.selection.isRange()) {
@@ -59,10 +50,6 @@ class BspaceKey {
       preventDefault: !!results,
       emit: true
     });
-  }
-
-  _toggleBlockType() {
-    return new ToggleBlockType(this.content);
   }
 
   _combineBlocks() {

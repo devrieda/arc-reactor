@@ -20,7 +20,6 @@ class BspaceKey {
   down(callback) {
     const guids = this.selection.guids();
     const offsets = this.selection.offsets();
-    let results;
 
     // is this a list item
     const node = document.getElementsByName(guids.anchor)[0];
@@ -37,7 +36,6 @@ class BspaceKey {
         preventDefault: true,
         emit: true
       });
-
     } else {
       callback({ content: this.content });
     }

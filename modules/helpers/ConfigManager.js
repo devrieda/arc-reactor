@@ -57,7 +57,6 @@ class ConfigManager {
 
     // register blocks, buttons, and keys
     plugins.forEach( (spec) => {
-      const name = spec.name;
       this._installPlugin(spec.src);
     });
   }
@@ -69,26 +68,26 @@ class ConfigManager {
     plugin.installKeys && plugin.installKeys(KeyConfig);
   }
 
-  // config menu buttons
+  /**
+   * Restrict and reorder menu buttons by name
+   */
   _configureMenuButtons(config) {
     let buttons = config.menuButtons && config.menuButtons();
     if (!buttons) { buttons = DEFAULT_MENU; }
 
-    // add each button the stack
-    buttons.forEach( (button) => {
-      // console.log('install menu: ', button);
-    });
+    // reorder/remove buttons from the config
+    MenuButtonConfig.reorder(buttons);
   }
 
-  // config bar buttons
+  /**
+   * Restrict and reorder bar buttons by name
+   */
   _configureBarButtons(config) {
     let buttons = config.barButtons && config.barButtons();
     if (!buttons) { buttons = DEFAULT_BAR; }
 
-    // add each button the stack
-    buttons.forEach( (button) => {
-      // console.log('install bar: ', button);
-    });
+    // reorder/remove buttons from the config
+    BarButtonConfig.reorder(buttons);
   }
 }
 

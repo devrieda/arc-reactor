@@ -41,10 +41,27 @@ const Config = function(spec) {
     },
 
     /**
+     * Get an item in the config list by name
+     *
+     * BlockConfig.get('h1');
+     */
+    get(name) {
+      return this.items.filter((item) => item.getName() === name)[0];
+    },
+
+    /**
+     * Reorder all the items by name, and ignore those not in the list
+     *
+     * MenuButtonConfig.reorder(['h1', 'h2']);
+     */
+    reorder(names) {
+      this.items = names.map((name) => this.get(name));
+    },
+
+    /**
      * remove an item from the stack by name
      *
-     * const config = new BlockConfig();
-     * config.remove('code');
+     * BlockConfig.remove('code');
      */
     remove(name) {
       let newItems = [];

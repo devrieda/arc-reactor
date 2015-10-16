@@ -13,7 +13,7 @@ class DownKey {
     return 'down';
   }
 
-  matches(event) {
+  static matches(event) {
     return event.keyCode === KEY_CODES.down;
   }
 

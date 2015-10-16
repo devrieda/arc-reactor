@@ -15,7 +15,7 @@ class ReturnKey {
   }
 
   // return or ctrl+m
-  matches(event) {
+  static matches(event) {
     return event.keyCode === KEY_CODES.return ||
       (event.keyCode === KEY_CODES.m && event.ctrlKey);
   }

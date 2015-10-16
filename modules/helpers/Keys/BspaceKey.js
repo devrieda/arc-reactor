@@ -15,7 +15,7 @@ class BspaceKey {
   }
 
   // return or ctrl+m
-  matches(event) {
+  static matches(event) {
     return event.keyCode === KEY_CODES.bspace;
   }
 

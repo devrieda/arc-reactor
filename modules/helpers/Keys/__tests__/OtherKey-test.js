@@ -1,19 +1,10 @@
 import OtherKey from '../OtherKey';
 
 describe('OtherKey', () => {
-  let content, selection;
-
-  beforeEach( () => {
-    content = {
-    };
-    selection = {
-    };
-  });
 
   describe('#matches', () => {
     it('always matches event', () => {
-      const key = new OtherKey(content, selection);
-      assert(key.matches({}));
+      assert(OtherKey.matches({}));
     });
   });
 

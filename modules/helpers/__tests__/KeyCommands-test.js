@@ -8,7 +8,7 @@ class SpecialKey {
     return 'special';
   }
 
-  matches() {
+  static matches() {
     return true;
   }
 
@@ -31,7 +31,7 @@ class MagicKey {
     return 'magic';
   }
 
-  matches() {
+  static matches() {
     return true;
   }
 

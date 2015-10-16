@@ -17,7 +17,7 @@ class OtherKey {
   }
 
   // catch-all for all content keys
-  matches(event) {
+  static matches(event) {
     const ignores = Object.keys(KEY_CODES).map(key => KEY_CODES[key]);
     return ignores.indexOf(event.keyCode) === -1;
   }

@@ -13,7 +13,7 @@ class CodeKey {
   }
 
   // alt+meta+6
-  matches(event) {
+  static matches(event) {
     if (!event.metaKey && !event.ctrlKey) { return false; }
     return event.altKey && event.keyCode === KEY_CODES['6'];
   }

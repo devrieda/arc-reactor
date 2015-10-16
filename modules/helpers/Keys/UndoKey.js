@@ -13,7 +13,7 @@ class UndoKey {
   }
 
   // meta+z
-  matches(event) {
+  static matches(event) {
     if (!event.metaKey && !event.ctrlKey) { return false; }
     if (event.altKey || event.shiftKey) { return false; }
 

@@ -10,7 +10,7 @@ class UpKey {
     return 'up';
   }
 
-  matches(event) {
+  static matches(event) {
     return event.keyCode === KEY_CODES.up;
   }
 

@@ -13,7 +13,7 @@ class RedoKey {
   }
 
   // meta+shift+z
-  matches(event) {
+  static matches(event) {
     if (!event.metaKey && !event.ctrlKey) { return false; }
     if (event.altKey) { return false; }
 

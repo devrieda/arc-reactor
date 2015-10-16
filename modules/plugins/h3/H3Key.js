@@ -13,7 +13,7 @@ class H3Key {
   }
 
   // meta+alt+3
-  matches(event) {
+  static matches(event) {
     if (!event.metaKey && !event.ctrlKey) { return false; }
     if (!event.altKey) { return false; }
 

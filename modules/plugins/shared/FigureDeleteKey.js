@@ -12,7 +12,7 @@ class FigureDeleteKey {
     return 'figure-delete';
   }
 
-  matches(event) {
+  static matches(event) {
     return event.keyCode === KEY_CODES.delete;
   }
 

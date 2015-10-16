@@ -10,38 +10,33 @@ const KeyCommands = {
   execute(event, content, selection, callback) {
     // find keys from config
     const keys = KeyConfig.getItems().slice(0);
-    this._executeKeys(keys, event, content, selection, callback);
+    const matching = keys.filter((k) => k.matches(event));
+    if (matching.length) {
+      this._executeKeys(matching, event, content, selection, callback);
+    }
   },
 
   // recursively execute each key after the previous finishes
   _executeKeys(keys, event, content, selection, callback) {
     const klass = keys.shift();
     const key = new klass(content, selection);
+    const type = event.type === 'keyup' ? 'up' : 'down';
+    key[type]( (results) => {
+      content = results.content;
 
-    // check if the event matches they key
-    if (key.matches(event)) {
-      const type = event.type === 'keyup' ? 'up' : 'down';
-      key[type]( (results) => {
-        content = results.content;
+      // prevent event
+      if (results.preventDefault) { event.preventDefault(); }
 
-        // prevent event
-        if (results.preventDefault) { event.preventDefault(); }
+      // stop stack here
+      if (results.stopPropagation || keys.length === 0) {
+        callback(results);
+        this._saveHistory(results, selection);
 
-        // stop stack here
-        if (results.stopPropagation || keys.length === 0) {
-          callback(results);
-          this._saveHistory(results, selection);
-
-        // next in the stack
-        } else {
-          this._executeKeys(keys, event, content, selection, callback);
-        }
-      });
-
-    // check next key in the stack
-    } else if (keys.length > 0) {
-      this._executeKeys(keys, event, content, selection, callback);
-    }
+      // next in the stack
+      } else {
+        this._executeKeys(keys, event, content, selection, callback);
+      }
+    });
   },
 
   // save history for everything except undo/redo

@@ -94,10 +94,10 @@ class Selection {
     return this.anchor.guid !== this.focus.guid;
   }
   begOfBlock() {
-    return this.anchor.begOfBlock();
+    return !this.isRange() && this.anchor.begOfBlock();
   }
   endOfBlock() {
-    return this.focus.endOfBlock();
+    return !this.isRange() && this.focus.endOfBlock();
   }
 
   showMenuButtons() {

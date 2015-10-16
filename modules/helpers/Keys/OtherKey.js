@@ -18,6 +18,7 @@ class OtherKey {
 
   // catch-all for all content keys
   static matches(event) {
+    if (event.ctrlKey || event.metaKey || event.altKey) return false;
     const ignores = Object.keys(KEY_CODES).map(key => KEY_CODES[key]);
     return ignores.indexOf(event.keyCode) === -1;
   }

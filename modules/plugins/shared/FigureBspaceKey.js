@@ -9,7 +9,7 @@ class FigureBspaceKey {
   }
 
   static getName() {
-    return 'bspace';
+    return 'figure-bspace';
   }
 
   // return or ctrl+m

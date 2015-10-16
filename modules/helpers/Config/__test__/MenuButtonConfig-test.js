@@ -20,34 +20,37 @@ describe('MenuButtonConfig', () => {
     it('should add item to stack', () => {
       const before = MenuButtonConfig.getItems().length;
 
-      MenuButtonConfig.use('foo');
+      const obj = { getName: () => 'foo' };
+      MenuButtonConfig.use(obj);
 
       const list = MenuButtonConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[list.length - 1]).toBe('foo');
+      expect(list[list.length - 1]).toBe(obj);
     });
 
     it('should insert item before another in stack', () => {
       const before = MenuButtonConfig.getItems().length;
 
-      MenuButtonConfig.use('foo', { before: 'bold' });
+      const obj = { getName: () => 'foo' };
+      MenuButtonConfig.use(obj, { before: 'bold' });
 
       const list = MenuButtonConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[0]).toBe('foo');
+      expect(list[0]).toBe(obj);
     });
 
     it('should insert item after another in stack', () => {
       const before = MenuButtonConfig.getItems().length;
 
-      MenuButtonConfig.use('foo', { after: 'bold' });
+      const obj = { getName: () => 'foo' };
+      MenuButtonConfig.use(obj, { after: 'bold' });
 
       const list = MenuButtonConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[1]).toBe('foo');
+      expect(list[1]).toBe(obj);
     });
   });
 

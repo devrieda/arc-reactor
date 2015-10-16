@@ -1,9 +1,11 @@
 import expect from 'expect';
 import BarButtonConfig from "../BarButtonConfig";
+import SectionButton from '../../../plugins/section/SectionButton';
 
 describe('BarButtonConfig', () => {
   beforeEach(function() {
     BarButtonConfig.reset();
+    BarButtonConfig.use(SectionButton)
   });
 
   describe("#getItems", () => {
@@ -16,34 +18,37 @@ describe('BarButtonConfig', () => {
     it('should add item to stack', () => {
       const before = BarButtonConfig.getItems().length;
 
-      BarButtonConfig.use('foo');
+      const obj = { getName: () => 'foo' };
+      BarButtonConfig.use(obj);
 
       const list = BarButtonConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[list.length - 1]).toBe('foo');
+      expect(list[list.length - 1]).toBe(obj);
     });
 
     it('should insert item before another in stack', () => {
       const before = BarButtonConfig.getItems().length;
 
-      BarButtonConfig.use('foo', { before: 'section' });
+      const obj = { getName: () => 'foo' };
+      BarButtonConfig.use(obj, { before: 'section' });
 
       const list = BarButtonConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[0]).toBe('foo');
+      expect(list[0]).toBe(obj);
     });
 
     it('should insert item after another in stack', () => {
       const before = BarButtonConfig.getItems().length;
 
-      BarButtonConfig.use('foo', { after: 'section' });
+      const obj = { getName: () => 'foo' };
+      BarButtonConfig.use(obj, { after: 'section' });
 
       const list = BarButtonConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[1]).toBe('foo');
+      expect(list[1]).toBe(obj);
     });
   });
 

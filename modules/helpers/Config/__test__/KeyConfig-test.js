@@ -16,34 +16,37 @@ describe('KeyConfig', () => {
     it('should add item to stack', () => {
       const before = KeyConfig.getItems().length;
 
-      KeyConfig.use('foo');
+      const obj = { getName: () => 'foo' };
+      KeyConfig.use(obj);
 
       const list = KeyConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[list.length - 1]).toBe('foo');
+      expect(list[list.length - 1]).toBe(obj);
     });
 
     it('should insert item before another in stack', () => {
       const before = KeyConfig.getItems().length;
 
-      KeyConfig.use('foo', { before: 'return' });
+      const obj = { getName: () => 'foo' };
+      KeyConfig.use(obj, { before: 'return' });
 
       const list = KeyConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[0]).toBe('foo');
+      expect(list[0]).toBe(obj);
     });
 
     it('should insert item after another in stack', () => {
       const before = KeyConfig.getItems().length;
 
-      KeyConfig.use('foo', { after: 'return' });
+      const obj = { getName: () => 'foo' };
+      KeyConfig.use(obj, { after: 'return' });
 
       const list = KeyConfig.getItems();
 
       expect(list.length - before).toEqual(1);
-      expect(list[1]).toBe('foo');
+      expect(list[1]).toBe(obj);
     });
   });
 

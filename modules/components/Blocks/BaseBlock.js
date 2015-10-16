@@ -24,7 +24,6 @@ const BaseBlock = React.createClass({
     return {
       id: '',
       type: 'p',
-      tag: 'p',
       text: '',
       meta: Immutable.Map(),
       data: Immutable.Map(),

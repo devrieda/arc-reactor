@@ -5,5 +5,7 @@
   margin: 0 auto 30px auto;
 }
 @media (max-width: 767px) {
-  width: auto;
+  .arc-Editor-Content {
+    width: auto;
+  }
 }

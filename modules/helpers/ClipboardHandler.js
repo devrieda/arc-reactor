@@ -1,69 +1,81 @@
-class ClipboardHandler {
-  constructor(content, selection) {
-    this.content   = content;
-    this.selection = selection;
-  }
+import ClipboardParser from './ClipboardParser';
+import History from './History';
 
-  paste(e) {
-    let text;
-    if (e.clipboardData) {
-      text = event.clipboardData.getData('text/plain');
+const ClipboardHandler = {
 
-    // ie
-    } else if (window.clipboardData) {
-      text = window.clipboardData.getData("Text");
-    }
+  // create hidden div to capture the paste in IE
+  beforePaste(selection) {
+    this.position = selection.position();
 
-    if (text.match("\n")) {
+    this.bin = document.createElement('div');
+    this.bin.setAttribute('contenteditable', true);
+    document.body.appendChild(this.bin);
+    this.bin.focus();
+  },
+
+  paste(e, content, selection, callback) {
+    if (e.clipboardData && e.clipboardData.types) {
+      const pasted = this._handlePaste(e);
       e.preventDefault();
-      console.log('pasting with newlines totes breaks things...');
+      e.stopPropagation();
+      this._parseResult(pasted, content, selection.position(), callback);
+
+    // Wait for the paste to happen (next loop?)
+    } else if (this.bin) {
+      setTimeout(() => {
+        const pasted = this.bin.innerHTML;
+        this.bin.parentNode.removeChild(this.bin);
+        this._parseResult(pasted, content, this.position, callback);
+      }, 1);
     }
-    return;
+  },
 
-    // TODO - hook up multiline paste
-    // this.elt   = e.target;
-    // this.saved = this.elt.innerHTML;
+  _parseResult(pasted, content, position, callback) {
+    const parser = new ClipboardParser(content, position);
+    const results = parser.parse(pasted);
 
-    // // webkit
-    // let pasted;
-    // if (e && e.clipboardData && e.clipboardData.getData) {
-    //   pasted = this._handleWebkitPaste(e);
+    // save history
+    History.getInstance().push({
+      content: results.content,
+      position: results.position
+    });
 
-    // // others
-    // } else {
-    //   this.elt.innerHTML = '';
-    //   pasted = this._waitForPaste(e);
-    // }
+    // callback
+    callback({
+      content: results.content,
+      position: results.position,
+      emit: true
+    });
+  },
 
-    // // TODO - format content with pasted data
-    // console.log('paste', pasted);
-    // e.preventDefault();
-    // e.stopPropagation();
-  }
-
-  _handleWebkitPaste(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    let data;
-    if (/text\/html/.test(e.clipboardData.types)) {
-      data = e.clipboardData.getData('text/html');
-    } else if (/text\/plain/.test(e.clipboardData.types)) {
-      data = e.clipboardData.getData('text/plain');
+  _handlePaste(e) {
+    let pasted;
+    if (e.clipboardData.types.contains) {
+      pasted = this._handleFirefoxPaste(e);
     } else {
-      data = "";
+      pasted = this._handleWebkitPaste(e);
+    }
+    return pasted;
+  },
+
+  _handleFirefoxPaste(e) {
+    let data = "";
+    if (e.clipboardData.types.contains('text/html')) {
+      data = e.clipboardData.getData('text/html');
+    } else {
+      data = e.clipboardData.getData('text/plain');
     }
     return data;
-  }
+  },
 
-  _waitForPaste() {
-    if (this.elt.childNodes && this.elt.childNodes.length > 0) {
-      const pasted = this.elt.innerHTML;
-      this.elt.innerHTML = this.saved;
-      return pasted;
+  _handleWebkitPaste(e) {
+    let data = "";
+    if (/text\/html/.test(e.clipboardData.types)) {
+      data = e.clipboardData.getData('text/html');
     } else {
-      setTimeout(this._waitForPaste.bind(this), 20);
+      data = e.clipboardData.getData('text/plain');
     }
+    return data;
   }
 } 
 

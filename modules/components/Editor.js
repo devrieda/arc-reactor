@@ -89,11 +89,15 @@ const Editor = React.createClass({
   componentDidMount() {
     EditorStore.addChangeListener(this._onChange);
     document.addEventListener("click", this.handleDocumentClick);
+    document.addEventListener("beforepaste", this.handleBeforePaste); // ie
+    document.addEventListener("paste", this.handlePaste);
   },
 
   componentWillUnmount() {
     EditorStore.removeChangeListener(this._onChange);
     document.removeEventListener("click", this.handleDocumentClick);
+    document.removeEventListener("beforepaste", this.handleBeforePaste); // ie
+    document.removeEventListener("paste", this.handlePaste);
   },
 
   // if content changed, selection may have changed
@@ -143,12 +147,15 @@ const Editor = React.createClass({
     this._callbackChange();
   },
 
+  handleBeforePaste(e) {
+    const { selection } = EditorStore.get();
+    ClipboardHandler.beforePaste(selection);
+  },
+
   // pasting needs to modify the content
   handlePaste(e) {
     const { content, selection } = EditorStore.get();
-
-    const cbHandler = new ClipboardHandler(content, selection);
-    cbHandler.paste(e);
+    ClipboardHandler.paste(e, content, selection, this._updateKeyResults);
   },
 
   // reinstate the selection when they cancel adding a link value
@@ -168,7 +175,6 @@ const Editor = React.createClass({
         onMouseUp={this.handleClick}
         onKeyUp={this.handleKeyUp}
         onKeyDown={this.handleKeyDown}
-        onPaste={this.handlePaste}
       >
         <Content
           content={content}

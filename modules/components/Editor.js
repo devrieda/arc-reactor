@@ -147,7 +147,7 @@ const Editor = React.createClass({
     this._callbackChange();
   },
 
-  handleBeforePaste(e) {
+  handleBeforePaste() {
     const { selection } = EditorStore.get();
     ClipboardHandler.beforePaste(selection);
   },

@@ -1,5 +1,6 @@
-import ClipboardParser from './ClipboardParser';
+import BaseParser from './Parsers/BaseParser';
 import History from './History';
+import InsertBlocks from './Manipulation/InsertBlocks';
 
 const ClipboardHandler = {
 
@@ -8,6 +9,7 @@ const ClipboardHandler = {
     this.position = selection.position();
 
     this.bin = document.createElement('div');
+    this.bin.className = "pasted-content";
     this.bin.setAttribute('contenteditable', true);
     document.body.appendChild(this.bin);
     this.bin.focus();
@@ -18,33 +20,42 @@ const ClipboardHandler = {
       const pasted = this._handlePaste(e);
       e.preventDefault();
       e.stopPropagation();
-      this._parseResult(pasted, content, selection.position(), callback);
+      this._parseResult(pasted, content, selection, callback);
 
     // Wait for the paste to happen (next loop?)
     } else if (this.bin) {
       setTimeout(() => {
         const pasted = this.bin.innerHTML;
         this.bin.parentNode.removeChild(this.bin);
-        this._parseResult(pasted, content, this.position, callback);
+        this._parseResult(pasted, content, selection, callback);
       }, 1);
     }
   },
 
-  _parseResult(pasted, content, position, callback) {
-    const parser = new ClipboardParser(content, position);
-    const results = parser.parse(pasted);
+  getBin() {
+    return this.bin;
+  },
 
-    // save history
-    History.getInstance().push({
-      content: results.content,
-      position: results.position
-    });
+  _parseResult(pasted, content, selection, callback) {
+    // clipboard parser works async
+    BaseParser.parse(pasted, (blocks) => {
+      const guids = selection.guids();
+      const offsets = selection.offsets();
 
-    // callback
-    callback({
-      content: results.content,
-      position: results.position,
-      emit: true
+      const command = new InsertBlocks(content);
+      const results = command.execute(guids, offsets, { blocks: blocks });
+
+      // save history
+      History.getInstance().push({
+        content: results.content,
+        position: results.position
+      });
+
+      callback({
+        content: results.content,
+        position: results.position,
+        emit: true
+      });
     });
   },
 

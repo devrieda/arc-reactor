@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import PrependBlock from '../PrependBlock';
 
@@ -28,8 +27,8 @@ describe('PrependBlock', () => {
       const result = manager.execute({ anchor: 'c6a7' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(2);
-      expect(blocks[0].type).toBe('p');
+      expect(blocks.length).to.equal(2);
+      expect(blocks[0].type).to.equal('p');
     });
   });
 });

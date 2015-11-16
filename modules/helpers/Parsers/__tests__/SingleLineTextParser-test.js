@@ -1,12 +1,11 @@
-import expect from 'expect';
 import SingleLineTextParser from '../SingleLineTextParser';
 
 describe('SingleLineTextParser', () => {
   describe('#parse', () => {
     it('parses single lines', function(done) {
       const callback = function(results) {
-        expect(results[0].type).toEqual('p');
-        expect(results[0].text).toEqual('pasted results');
+        expect(results[0].type).to.equal('p');
+        expect(results[0].text).to.equal('pasted results');
         done();
       };
 

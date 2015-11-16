@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import ChangeText from '../ChangeText';
 
@@ -38,7 +37,7 @@ describe('ChangeText', () => {
       );
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].text).toBe('cable!!!');
+      expect(blocks[0].text).to.equal('cable!!!');
     });
 
     it('should parse markup from a given node', () => {

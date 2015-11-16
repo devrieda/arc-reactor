@@ -1,5 +1,3 @@
-import expect from 'expect';
-import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import EditorStore from '../../stores/EditorStore';
@@ -20,7 +18,7 @@ describe('Editor', () => {
       <Editor onChange={changed} content={content} />
     );
 
-    expect(EditorStore.get().content.toJS()).toEqual(content);
+    expect(EditorStore.get().content.toJS()).to.eql(content);
   });
 
   it('should reselect selection when updated', () => {
@@ -46,7 +44,7 @@ describe('Editor', () => {
 
     editor.setProps({ content: content });
 
-    assert(callback.called);
+    expect(callback.called).to.be.true;
   });
 
   // actions
@@ -61,7 +59,7 @@ describe('Editor', () => {
 
     // simulate change to store
     EditorStore.set({ content: fromJS(content) });
-    expect(called).toBe(true);
+    expect(called).to.be.true;
   });
 
   // TODO - need to figure out a better way to stub this out
@@ -78,7 +76,7 @@ describe('Editor', () => {
   //   editor.keys = { execute: callback };
   //   keyDown(component, {key: "b"});
 
-  //   assert(callback.called);
+  //   expect(callback.called).to.be.true;
   // });
 
   it('should set meta key on key down', () => {
@@ -89,10 +87,10 @@ describe('Editor', () => {
       <Editor onChange={changed} content={content} />
     );
 
-    assert(!editor.metaKey);
+    expect(editor.metaKey).to.not.be;
     const component = findByClass(editor, 'arc-Editor');
     keyDown(component, {keyCode: 91});
-    assert(editor.metaKey);
+    expect(editor.metaKey).to.be.true;
   });
 
 
@@ -106,7 +104,7 @@ describe('Editor', () => {
     );
 
     const component = findByClass(editor, 'arc-Editor-Content');
-    assert(component);
+    expect(component).to.exist;
   });
 
   it('should render menu', () => {
@@ -118,6 +116,6 @@ describe('Editor', () => {
     );
 
     const menu = findByClass(editor, 'arc-Editor-Menu');
-    assert(menu);
+    expect(menu).to.exist;
   });
 });

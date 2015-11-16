@@ -1,5 +1,3 @@
-import expect from 'expect';
-import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import QuoteButton from '../QuoteButton';
@@ -22,7 +20,7 @@ describe('QuoteButton', () => {
     );
 
     const button = findByClass(component, 'arc-Editor-MenuButton--blockquote');
-    assert(button);
+    expect(button).to.exist;
   });
 
   it('should be visible', () => {
@@ -33,7 +31,7 @@ describe('QuoteButton', () => {
       position: () => {}
     };
 
-    assert(QuoteButton.isVisible(content, selection));
+    expect(QuoteButton.isVisible(content, selection)).to.exist;
   });
 
   it("should modify content with handlePress", () => {
@@ -56,6 +54,6 @@ describe('QuoteButton', () => {
     );
 
     const result = component.handlePress().content.toJS();
-    expect(result.sections[0].blocks[0].type).toEqual('blockquote');
+    expect(result.sections[0].blocks[0].type).to.equal('blockquote');
   });
 });

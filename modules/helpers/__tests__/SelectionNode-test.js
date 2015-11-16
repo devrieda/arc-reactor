@@ -1,5 +1,3 @@
-import expect from 'expect';
-import assert from 'assert';
 import SelectionNode from '../SelectionNode';
 
 describe('SelectionNode', () => {
@@ -54,42 +52,42 @@ describe('SelectionNode', () => {
       createNode();
       const sn = new SelectionNode(em, 0);
 
-      expect(sn.node).toBe(em);
+      expect(sn.node).to.equal(em);
     });
 
     it('sets the offset', () => {
       createNode();
       const sn = new SelectionNode(em, 1);
 
-      expect(sn.offset).toBe(1);
+      expect(sn.offset).to.equal(1);
     });
 
     it('sets the domNode', () => {
       createNode();
       const sn = new SelectionNode(thisIs, 1);
 
-      expect(sn.domNode).toBe(p1);
+      expect(sn.domNode).to.equal(p1);
     });
 
     it('sets the block node', () => {
       createNode();
       const sn = new SelectionNode(some, 1);
 
-      expect(sn.blockNode).toBe(p1);
+      expect(sn.blockNode).to.equal(p1);
     });
 
     it('sets the guid', () => {
       createNode();
       const sn = new SelectionNode(text, 1);
 
-      expect(sn.guid).toBe('0101');
+      expect(sn.guid).to.equal('0101');
     });
 
     it('sets the block offset', () => {
       createNode();
       const sn = new SelectionNode(some, 1);
 
-      expect(sn.blockOffset).toBe(9);
+      expect(sn.blockOffset).to.equal(9);
     });
   });
 
@@ -101,8 +99,8 @@ describe('SelectionNode', () => {
       const sn = new SelectionNode(some, 1);
       const nodeOffset = sn.textNodeOffset();
 
-      expect(nodeOffset.node.text).toBe(some.text);
-      expect(nodeOffset.offset).toBe(1);
+      expect(nodeOffset.node.text).to.equal(some.text);
+      expect(nodeOffset.offset).to.equal(1);
     });
   });
 
@@ -114,9 +112,9 @@ describe('SelectionNode', () => {
   //     const sn = new SelectionNode(some, 1);
 
   //     const types = sn.types();
-  //     expect(types[0]).toBe('em');
-  //     expect(types[1]).toBe('strong');
-  //     expect(types[2]).toBe('p');
+  //     expect(types[0]).to.equal('em');
+  //     expect(types[1]).to.equal('strong');
+  //     expect(types[2]).to.equal('p');
   //   });
   // });
 
@@ -128,11 +126,11 @@ describe('SelectionNode', () => {
 
   //     // no align=center
   //     const sn = new SelectionNode(p2, 0);
-  //     assert(!sn.isCenter(sn));
+  //     expect(sn.isCenter(sn)).to.be.false;
 
   //     // has align=center
   //     const sn = new SelectionNode(p1, 0);
-  //     assert(sn.isCenter(sn));
+  //     expect(sn.isCenter(sn)).to.be.true;
   //   })
 
   //   it('finds if the node is centered until another node', () => {
@@ -141,11 +139,11 @@ describe('SelectionNode', () => {
   //     // only one is centered
   //     const sn1 = new SelectionNode(p1, 0);
   //     const sn2 = new SelectionNode(p2, 0);
-  //     assert(!sn1.isCenter(sn2));
+  //     expect(sn1.isCenter(sn2)).to.be.false;
 
   //     // both are centered
   //     p2.setAttribute('data-align', 'center');
-  //     assert(sn1.isCenter(sn2));
+  //     expect(sn1.isCenter(sn2)).to.be.true;
   //   });
   // });
 
@@ -165,10 +163,10 @@ describe('SelectionNode', () => {
       div.appendChild(p);
 
       const sn = new SelectionNode(p1, 0);
-      expect(sn.guid).toBe('0101');
+      expect(sn.guid).to.equal('0101');
 
       sn.focusOn('0102', 0);
-      expect(sn.guid).toBe('0102');
+      expect(sn.guid).to.equal('0102');
     });
   });
 
@@ -180,13 +178,13 @@ describe('SelectionNode', () => {
       createNode();
       const sn = new SelectionNode(thisIs, 0);
 
-      assert(sn.begOfBlock());
+      expect(sn.begOfBlock()).to.be.true;
     });
     it('finds if cursor is not at the beginning of a block', () => {
       createNode();
       const sn = new SelectionNode(thisIs, 1);
 
-      assert(!sn.begOfBlock());
+      expect(sn.begOfBlock()).to.be.false;
     });
   });
 
@@ -196,13 +194,13 @@ describe('SelectionNode', () => {
       createNode();
       const sn = new SelectionNode(text, 5);
 
-      assert(sn.endOfBlock());
+      expect(sn.endOfBlock()).to.be.true;
     });
     it('finds if cursor is not at the end of a block', () => {
       createNode();
       const sn = new SelectionNode(text, 0);
 
-      assert(!sn.endOfBlock());
+      expect(sn.endOfBlock()).to.be.false;
     });
   });
 });

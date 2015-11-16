@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import CombineBlockNext from '../CombineBlockNext';
 
@@ -36,8 +35,8 @@ describe('CombineBlockNext', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(1);
-      expect(blocks[0].text).toBe('cable? Don\'t be fatuous');
+      expect(blocks.length).to.equal(1);
+      expect(blocks[0].text).to.equal('cable? Don\'t be fatuous');
     });
 
     it('should combine sections if next is a new section', () => {
@@ -76,7 +75,7 @@ describe('CombineBlockNext', () => {
         ]
       };
 
-      expect(result.content.toJS()).toEqual(expected);
+      expect(result.content.toJS()).to.eql(expected);
     });
 
     it('should noop if no next sibling', () => {
@@ -93,8 +92,8 @@ describe('CombineBlockNext', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(1);
-      expect(blocks[0].text).toBe('cable?');
+      expect(blocks.length).to.equal(1);
+      expect(blocks[0].text).to.equal('cable?');
     });
   });
 });

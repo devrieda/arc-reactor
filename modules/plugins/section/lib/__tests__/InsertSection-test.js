@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import InsertSection from '../InsertSection';
 
@@ -61,15 +60,15 @@ describe('InsertSection', () => {
       // we should be able to parse all these formats
       const result = manager.execute(guids, offsets);
       const sections = result.content.toJS().sections;
-      expect(sections.length).toBe(2);
+      expect(sections.length).to.equal(2);
 
       // first section
-      expect(sections[0].blocks.length).toEqual(1);
-      expect(sections[0].blocks[0].id).toEqual('1000');
+      expect(sections[0].blocks.length).to.equal(1);
+      expect(sections[0].blocks[0].id).to.equal('1000');
 
       // second section
-      expect(sections[1].blocks.length).toEqual(1);
-      expect(sections[1].blocks[0].id).toEqual('1001');
+      expect(sections[1].blocks.length).to.equal(1);
+      expect(sections[1].blocks[0].id).to.equal('1001');
     });
 
     it('makes sure that the section has at least one block', () => {
@@ -81,15 +80,15 @@ describe('InsertSection', () => {
       // we should be able to parse all these formats
       const result = manager.execute(guids, offsets);
       const sections = result.content.toJS().sections;
-      expect(sections.length).toBe(2);
+      expect(sections.length).to.equal(2);
 
       // first section
-      expect(sections[0].blocks.length).toEqual(1);
+      expect(sections[0].blocks.length).to.equal(1);
 
       // second section
-      expect(sections[1].blocks.length).toEqual(2);
-      expect(sections[1].blocks[0].id).toEqual("1000");
-      expect(sections[1].blocks[1].id).toEqual("1001");
+      expect(sections[1].blocks.length).to.equal(2);
+      expect(sections[1].blocks[0].id).to.equal("1000");
+      expect(sections[1].blocks[1].id).to.equal("1001");
     });
 
 
@@ -137,20 +136,20 @@ describe('InsertSection', () => {
       // we should be able to parse all these formats
       const result = manager.execute(guids, offsets);
       const sections = result.content.toJS().sections;
-      expect(sections.length).toBe(3);
+      expect(sections.length).to.equal(3);
 
       // first section
-      expect(sections[0].blocks.length).toEqual(1);
-      expect(sections[0].blocks[0].id).toEqual("56ef");
+      expect(sections[0].blocks.length).to.equal(1);
+      expect(sections[0].blocks[0].id).to.equal("56ef");
 
       // second section
-      expect(sections[1].blocks.length).toEqual(2);
-      expect(sections[1].blocks[0].id).toEqual("666a");
-      expect(sections[1].blocks[1].id).toEqual("6673");
+      expect(sections[1].blocks.length).to.equal(2);
+      expect(sections[1].blocks[0].id).to.equal("666a");
+      expect(sections[1].blocks[1].id).to.equal("6673");
 
       // third section
-      expect(sections[2].blocks.length).toEqual(1);
-      expect(sections[2].blocks[0].id).toEqual("666a");
+      expect(sections[2].blocks.length).to.equal(1);
+      expect(sections[2].blocks[0].id).to.equal("666a");
     });
   });
 });

@@ -1,5 +1,3 @@
-import expect from 'expect';
-import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import H1Button from '../H1Button';
@@ -22,7 +20,7 @@ describe('H1Button', () => {
     );
 
     const button = findByClass(component, 'arc-Editor-MenuButton--h2');
-    assert(button);
+    expect(button).to.exist;
   });
 
   it('should be visible', () => {
@@ -33,7 +31,7 @@ describe('H1Button', () => {
       position: () => {}
     };
 
-    assert(H1Button.isVisible(content, selection));
+    expect(H1Button.isVisible(content, selection)).to.be.true;
   });
 
   it("should modify content with handlePress", () => {
@@ -56,6 +54,6 @@ describe('H1Button', () => {
     );
 
     const result = component.handlePress().content.toJS();
-    expect(result.sections[0].blocks[0].type).toEqual('h2');
+    expect(result.sections[0].blocks[0].type).to.equal('h2');
   });
 });

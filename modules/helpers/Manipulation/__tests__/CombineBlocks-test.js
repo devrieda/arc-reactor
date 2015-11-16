@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import CombineBlocks from '../CombineBlocks';
 
@@ -35,8 +34,8 @@ describe('CombineBlocks', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(1);
-      expect(blocks[0].text).toBe('You can be fatuous, Jeffrey.');
+      expect(blocks.length).to.equal(1);
+      expect(blocks[0].text).to.equal('You can be fatuous, Jeffrey.');
     });
 
     it('should combine multiple blocks across sections and delete empty sects', () => {
@@ -56,7 +55,7 @@ describe('CombineBlocks', () => {
         ]
       };
 
-      expect(result.content.toJS()).toEqual(expected);
+      expect(result.content.toJS()).to.eql(expected);
     });
 
     it('should combine multiple blocks across sections and keep sects with blocks', () => {
@@ -77,7 +76,7 @@ describe('CombineBlocks', () => {
         ]
       };
 
-      expect(result.content.toJS()).toEqual(expected);
+      expect(result.content.toJS()).to.eql(expected);
     });
 
   });

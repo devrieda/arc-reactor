@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import ToggleMarkup from '../ToggleMarkup';
 
@@ -31,7 +30,7 @@ describe('ToggleMarkup', () => {
       const result = manager.execute(guids, offsets, { type: 'strong' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].markups).toEqual({"strong":[{"range": [0,4]}]});
+      expect(blocks[0].markups).to.eql({"strong":[{"range": [0,4]}]});
     });
 
     it('should add markup across multiple blocks', () => {
@@ -59,9 +58,9 @@ describe('ToggleMarkup', () => {
       const result = manager.execute(guids, offsets, { type: 'strong' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].markups).toEqual({"strong":[{"range": [2,40]}]});
-      expect(blocks[1].markups).toEqual({"strong":[{"range": [0,19]}]});
-      expect(blocks[2].markups).toEqual({"strong":[{"range": [0,4]}]});
+      expect(blocks[0].markups).to.eql({"strong":[{"range": [2,40]}]});
+      expect(blocks[1].markups).to.eql({"strong":[{"range": [0,19]}]});
+      expect(blocks[2].markups).to.eql({"strong":[{"range": [0,4]}]});
     });
 
     it('should remove markup for a single block', () => {
@@ -83,7 +82,7 @@ describe('ToggleMarkup', () => {
       const result = manager.execute(guids, offsets, { type: 'strong' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].markups).toEqual({"strong":[]});
+      expect(blocks[0].markups).to.eql({"strong":[]});
     });
 
     it('should remove markup across multiple blocks', () => {
@@ -126,9 +125,9 @@ describe('ToggleMarkup', () => {
       const result = manager.execute(guids, offsets, { type: 'strong' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].markups).toEqual({"strong":[]});
-      expect(blocks[1].markups).toEqual({"strong":[]});
-      expect(blocks[2].markups).toEqual({"strong":[]});
+      expect(blocks[0].markups).to.eql({"strong":[]});
+      expect(blocks[1].markups).to.eql({"strong":[]});
+      expect(blocks[2].markups).to.eql({"strong":[]});
     });
   });
 });

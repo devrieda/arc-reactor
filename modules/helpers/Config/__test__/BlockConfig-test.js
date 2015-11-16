@@ -1,4 +1,3 @@
-import expect from 'expect';
 import BlockConfig from "../BlockConfig";
 
 describe('BlockConfig', () => {
@@ -8,7 +7,7 @@ describe('BlockConfig', () => {
 
   describe("#getItems", () => {
     it("retrieves list of default items", () => {
-      expect(BlockConfig.getItems().length).toEqual(1);
+      expect(BlockConfig.getItems().length).to.equal(1);
     });
   });
 
@@ -21,8 +20,8 @@ describe('BlockConfig', () => {
 
       const list = BlockConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[list.length - 1]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[list.length - 1]).to.equal(obj);
     });
 
     it('should insert item before another in stack', () => {
@@ -33,8 +32,8 @@ describe('BlockConfig', () => {
 
       const list = BlockConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[0]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[0]).to.equal(obj);
     });
 
     it('should insert item after another in stack', () => {
@@ -45,8 +44,8 @@ describe('BlockConfig', () => {
 
       const list = BlockConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[1]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[1]).to.equal(obj);
     });
   });
 
@@ -57,7 +56,7 @@ describe('BlockConfig', () => {
       BlockConfig.remove('p');
 
       const list = BlockConfig.getItems();
-      expect(before - list.length).toEqual(1);
+      expect(before - list.length).to.equal(1);
     });
   });
 });

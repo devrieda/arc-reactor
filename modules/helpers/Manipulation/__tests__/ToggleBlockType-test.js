@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import ToggleBlockType from '../ToggleBlockType';
 
@@ -31,7 +30,7 @@ describe('ToggleBlockType', () => {
       const result = manager.execute(guids, offsets, { type: 'h1' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].type).toBe('h1');
+      expect(blocks[0].type).to.equal('h1');
     });
 
     it('removes a block type', () => {
@@ -48,7 +47,7 @@ describe('ToggleBlockType', () => {
       const result = manager.execute(guids, offsets, { type: 'h1' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].type).toBe('p');
+      expect(blocks[0].type).to.equal('p');
     });
 
     /**
@@ -108,15 +107,15 @@ describe('ToggleBlockType', () => {
       const result = manager.execute(guids, offsets, { type: 'h3' });
       const resultBlocks = result.content.toJS().sections[0].blocks;
 
-      expect(resultBlocks.length).toEqual(5);
-      expect(resultBlocks[0].type).toBe('p');
-      expect(resultBlocks[1].type).toBe('ul');
-      expect(resultBlocks[1].blocks[0].type).toBe('li');
-      expect(resultBlocks[1].blocks[1].type).toBe('li');
-      expect(resultBlocks[2].type).toBe('h3');
-      expect(resultBlocks[3].type).toBe('ul');
-      expect(resultBlocks[3].blocks[0].type).toBe('li');
-      expect(resultBlocks[4].type).toBe('p');
+      expect(resultBlocks.length).to.equal(5);
+      expect(resultBlocks[0].type).to.equal('p');
+      expect(resultBlocks[1].type).to.equal('ul');
+      expect(resultBlocks[1].blocks[0].type).to.equal('li');
+      expect(resultBlocks[1].blocks[1].type).to.equal('li');
+      expect(resultBlocks[2].type).to.equal('h3');
+      expect(resultBlocks[3].type).to.equal('ul');
+      expect(resultBlocks[3].blocks[0].type).to.equal('li');
+      expect(resultBlocks[4].type).to.equal('p');
     });
   });
 
@@ -141,8 +140,8 @@ describe('ToggleBlockType', () => {
       const result = manager.execute(guids, offsets, { type: 'h1' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].type).toBe('h1');
-      expect(blocks[1].type).toBe('h1');
+      expect(blocks[0].type).to.equal('h1');
+      expect(blocks[1].type).to.equal('h1');
     });
 
     it('removes block type across multiple blocks', () => {
@@ -164,8 +163,8 @@ describe('ToggleBlockType', () => {
       const result = manager.execute(guids, offsets, { type: 'h1' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].type).toBe('p');
-      expect(blocks[1].type).toBe('p');
+      expect(blocks[0].type).to.equal('p');
+      expect(blocks[1].type).to.equal('p');
     });
 
     it('adds block type to all blocks if a single one isnt formatted', () => {
@@ -187,8 +186,8 @@ describe('ToggleBlockType', () => {
       const result = manager.execute(guids, offsets, { type: 'h1' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].type).toBe('p');
-      expect(blocks[1].type).toBe('p');
+      expect(blocks[0].type).to.equal('p');
+      expect(blocks[1].type).to.equal('p');
     });
 
     /**
@@ -248,15 +247,15 @@ describe('ToggleBlockType', () => {
       const result = manager.execute(guids, offsets, { type: 'h3' });
       const resultBlocks = result.content.toJS().sections[0].blocks;
 
-      expect(resultBlocks.length).toEqual(6);
-      expect(resultBlocks[0].type).toBe('p');
-      expect(resultBlocks[1].type).toBe('ul');
-      expect(resultBlocks[1].blocks[0].type).toBe('li');
-      expect(resultBlocks[2].type).toBe('h3');
-      expect(resultBlocks[3].type).toBe('h3');
-      expect(resultBlocks[4].type).toBe('ul');
-      expect(resultBlocks[4].blocks[0].type).toBe('li');
-      expect(resultBlocks[5].type).toBe('p');
+      expect(resultBlocks.length).to.equal(6);
+      expect(resultBlocks[0].type).to.equal('p');
+      expect(resultBlocks[1].type).to.equal('ul');
+      expect(resultBlocks[1].blocks[0].type).to.equal('li');
+      expect(resultBlocks[2].type).to.equal('h3');
+      expect(resultBlocks[3].type).to.equal('h3');
+      expect(resultBlocks[4].type).to.equal('ul');
+      expect(resultBlocks[4].blocks[0].type).to.equal('li');
+      expect(resultBlocks[5].type).to.equal('p');
     });
 
   });

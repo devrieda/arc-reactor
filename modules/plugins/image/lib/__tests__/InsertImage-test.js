@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import InsertImage from '../InsertImage';
 
@@ -35,8 +34,8 @@ describe('InsertImage', () => {
       const result = manager.execute(guids, offsets, options, callback);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(1);
-      expect(blocks[0].text).toBe('inserting image...');
+      expect(blocks.length).to.equal(1);
+      expect(blocks[0].text).to.equal('inserting image...');
     });
 
     it('should request to load image', () => {
@@ -50,7 +49,7 @@ describe('InsertImage', () => {
       const callback = Function.prototype;
       manager.execute(guids, offsets, options, callback);
 
-      expect(manager.loadImage.called).toBe(true);
+      expect(manager.loadImage.called).to.equal(true);
     });
   });
 });

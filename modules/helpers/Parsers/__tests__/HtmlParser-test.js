@@ -23,7 +23,7 @@ describe('HtmlParser', () => {
             { type: 'li', text: 'this is item 2' },
           ]}
         ];
-        expect(results).toEqual(expected);
+        expect(results).to.eql(expected);
         done();
       };
 
@@ -33,7 +33,7 @@ describe('HtmlParser', () => {
 
     it('parses markup', function(done) {
       const callback = function(results) {
-        expect(results).toEqual({});
+        expect(results).to.eql({});
         done();
       };
       const html = "";
@@ -42,7 +42,7 @@ describe('HtmlParser', () => {
 
     it('parses nested blocks', function(done) {
       const callback = function(results) {
-        expect(results).toEqual({});
+        expect(results).to.eql({});
         done();
       };
       const html = "";
@@ -51,7 +51,7 @@ describe('HtmlParser', () => {
 
     it('parses nested markup', function(done) {
       const callback = function(results) {
-        expect(results).toEqual({});
+        expect(results).to.eql({});
         done();
       };
       const html = "";

@@ -5,12 +5,12 @@ describe('DeleteKey', () => {
   describe('#matches', () => {
     it('matches event for delete key', () => {
       const event = { keyCode: 46 };
-      assert(DeleteKey.matches(event));
+      expect(DeleteKey.matches(event)).to.be.true;
     });
 
     it("doesn't match event if not delete", () => {
       const event = {};
-      assert(!DeleteKey.matches(event));
+      expect(DeleteKey.matches(event)).to.be.false;
     });
   });
 

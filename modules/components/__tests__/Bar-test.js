@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import Bar from '../Bar';
@@ -23,6 +22,6 @@ describe('Bar', () => {
     );
 
     const barComponent = findByClass(bar, 'arc-Editor-Bar');
-    assert(barComponent);
+    expect(barComponent).to.exist;
   });
 });

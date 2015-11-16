@@ -1,5 +1,3 @@
-import expect from 'expect';
-import assert from 'assert';
 import Selection from '../Selection';
 
 describe('Selection', () => {
@@ -65,7 +63,7 @@ describe('Selection', () => {
       const sel = createSelection(some, some, 0, 4);
 
       const selection = new Selection(sel);
-      expect(selection.text).toBe('some');
+      expect(selection.text).to.equal('some');
     });
   });
 
@@ -77,7 +75,7 @@ describe('Selection', () => {
       const selection = new Selection(sel);
 
       selection.anchor = false;
-      assert(!selection.reselect());
+      expect(selection.reselect()).to.be.false;
     });
 
     it('doesnt reselect if there is a selection range', () => {
@@ -85,7 +83,7 @@ describe('Selection', () => {
       const sel = createSelection(some, some, 0, 4);
       const selection = new Selection(sel);
 
-      assert(!selection.reselect());
+      expect(selection.reselect()).to.equal.false;
     });
 
     it('doesnt reselect if no start or end is found', () => {
@@ -94,7 +92,7 @@ describe('Selection', () => {
       const selection = new Selection(sel);
       selection.anchor.guid = 'foo';
 
-      assert(!selection.reselect());
+      expect(selection.reselect()).to.equal.false;
     });
 
     it('doesnt reselect range for collapsed text nodes', () => {
@@ -105,7 +103,7 @@ describe('Selection', () => {
 
       selection.anchor.focusOn('0101', 9);
       selection.focus.focusOn('0101', 9);
-      assert(!selection.reselect());
+      expect(selection.reselect()).to.equal.false;
     });
 
     it('doesnt reselect range if range hasnt changed', () => {
@@ -116,7 +114,7 @@ describe('Selection', () => {
 
       selection.anchor.focusOn('0101', 0);
       selection.focus.focusOn('0101', 4);
-      assert(!selection.reselect());
+      expect(selection.reselect()).to.equal.false;
     });
 
     it('reselects range for range text nodes', () => {
@@ -127,7 +125,7 @@ describe('Selection', () => {
 
       selection.anchor.focusOn('0101', 4);
       selection.focus.focusOn('0101', 9);
-      assert(selection.reselect());
+      expect(selection.reselect()).to.be.true;
     });
 
     it('reinitializes bounds after selection', () => {
@@ -144,10 +142,10 @@ describe('Selection', () => {
 
       const boundsAfter = selection.bounds;
 
-      expect(boundsBefore.height).toNotBe(boundsAfter.height);
-      expect(boundsBefore.width).toNotBe(boundsAfter.width);
-      expect(boundsBefore.left).toNotBe(boundsAfter.left);
-      expect(boundsBefore.right).toNotBe(boundsAfter.right);
+      expect(boundsBefore.height).to.not.eql(boundsAfter.height);
+      expect(boundsBefore.width).to.not.eql(boundsAfter.width);
+      expect(boundsBefore.left).to.not.eql(boundsAfter.left);
+      expect(boundsBefore.right).to.not.eql(boundsAfter.right);
     });
   });
 
@@ -166,8 +164,8 @@ describe('Selection', () => {
 
       selection.focusOn('0101', 0);
 
-      assert(anchorCallback.called);
-      assert(focusCallback.called);
+      expect(anchorCallback.called).to.be.true;
+      expect(focusCallback.called).to.be.true;
     });
   });
 
@@ -179,8 +177,8 @@ describe('Selection', () => {
       const selection = new Selection(sel);
 
       const guids = selection.guids();
-      expect(guids.anchor).toBe('0101');
-      expect(guids.focus).toBe('0102');
+      expect(guids.anchor).to.equal('0101');
+      expect(guids.focus).to.equal('0102');
     });
   });
 
@@ -192,8 +190,8 @@ describe('Selection', () => {
       const selection = new Selection(sel);
 
       const offsets = selection.offsets();
-      expect(offsets.anchor).toBe(1);
-      expect(offsets.focus).toBe(2);
+      expect(offsets.anchor).to.equal(1);
+      expect(offsets.focus).to.equal(2);
     });
   });
 
@@ -204,8 +202,8 @@ describe('Selection', () => {
       const selection = new Selection(sel);
 
       const position = selection.position();
-      expect(position.guid).toBe('0101');
-      expect(position.offset).toBe(0);
+      expect(position.guid).to.equal('0101');
+      expect(position.offset).to.equal(0);
     });
   });
 
@@ -218,7 +216,7 @@ describe('Selection', () => {
       const sel = createSelection(thisIs, thisIs, 0, 8);
       const selection = new Selection(sel);
 
-      assert(selection.isRange());
+      expect(selection.isRange()).to.be.true;
     });
 
     it('finds if the doc selection was not a range', () => {
@@ -227,7 +225,7 @@ describe('Selection', () => {
       const sel = createSelection(thisIs, thisIs, 0, 0);
       const selection = new Selection(sel);
 
-      assert(!selection.isRange());
+      expect(selection.isRange()).to.equal.false;
     });
   });
 
@@ -239,7 +237,7 @@ describe('Selection', () => {
       const sel = createSelection(thisIs, andMore, 0, 0);
       const selection = new Selection(sel);
 
-      assert(selection.crossBlock());
+      expect(selection.crossBlock()).to.be.true;
     });
 
     it('finds if the selection doesnt cross multiple blocks', () => {
@@ -247,7 +245,7 @@ describe('Selection', () => {
       const sel = createSelection(thisIs, thisIs, 0, 0);
       const selection = new Selection(sel);
 
-      assert(!selection.crossBlock());
+      expect(selection.crossBlock()).to.equal.false;
     });
   });
 
@@ -263,7 +261,7 @@ describe('Selection', () => {
 
       selection.begOfBlock();
 
-      assert(anchorCallback.called);
+      expect(anchorCallback.called).to.be.true;
     });
   });
 
@@ -279,7 +277,7 @@ describe('Selection', () => {
 
       selection.endOfBlock();
 
-      assert(focusCallback.called);
+      expect(focusCallback.called).to.be.true;
     });
   });
 });

@@ -1,4 +1,3 @@
-import expect from 'expect';
 import BlockNode from '../BlockNode';
 
 describe('BlockNode', () => {
@@ -32,9 +31,9 @@ describe('BlockNode', () => {
 
       const textNodes = blockNode.textNodes();
 
-      expect(textNodes[0]).toBe(thisIs);
-      expect(textNodes[1]).toBe(some);
-      expect(textNodes[2]).toBe(text);
+      expect(textNodes[0]).to.equal(thisIs);
+      expect(textNodes[1]).to.equal(some);
+      expect(textNodes[2]).to.equal(text);
     });
   });
 
@@ -47,8 +46,8 @@ describe('BlockNode', () => {
 
       const nodeOffset = blockNode.nodeOffset(9);
 
-      expect(nodeOffset.node).toBe(some);
-      expect(nodeOffset.offset).toBe(1);
+      expect(nodeOffset.node).to.equal(some);
+      expect(nodeOffset.offset).to.equal(1);
     });
 
     it('finds node offset from block offset for focus', () => {
@@ -57,8 +56,8 @@ describe('BlockNode', () => {
 
       const nodeOffset = blockNode.nodeOffset(12, true);
 
-      expect(nodeOffset.node).toBe(some);
-      expect(nodeOffset.offset).toBe(4);
+      expect(nodeOffset.node).to.equal(some);
+      expect(nodeOffset.offset).to.equal(4);
     });
 
     it('finds first child of block if no text node was found', () => {
@@ -69,8 +68,8 @@ describe('BlockNode', () => {
       const blockNode = new BlockNode(node);
       const nodeOffset = blockNode.nodeOffset(0);
 
-      expect(nodeOffset.node).toBe(br);
-      expect(nodeOffset.offset).toBe(0);
+      expect(nodeOffset.node).to.equal(br);
+      expect(nodeOffset.offset).to.equal(0);
     });
 
     it('returns empty object if there is no nodes in this block', () => {
@@ -79,8 +78,8 @@ describe('BlockNode', () => {
       const blockNode = new BlockNode(node);
       const nodeOffset = blockNode.nodeOffset(0);
 
-      expect(nodeOffset.node).toBe(undefined);
-      expect(nodeOffset.offset).toBe(undefined);
+      expect(nodeOffset.node).to.equal(undefined);
+      expect(nodeOffset.offset).to.equal(undefined);
     });
   });
 
@@ -91,7 +90,7 @@ describe('BlockNode', () => {
       const blockNode = new BlockNode(node);
 
       const blockOffset = blockNode.blockOffset(some, 2);
-      expect(blockOffset).toBe(10);
+      expect(blockOffset).to.equal(10);
     });
 
     it('finds block offset for focus on block element', () => {
@@ -99,7 +98,7 @@ describe('BlockNode', () => {
       const blockNode = new BlockNode(node);
 
       const blockOffset = blockNode.blockOffset(p, 0);
-      expect(blockOffset).toBe(0);
+      expect(blockOffset).to.equal(0);
     });
   });
 

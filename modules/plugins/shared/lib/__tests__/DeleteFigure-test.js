@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import DeleteFigure from '../DeleteFigure';
 
@@ -32,9 +31,9 @@ describe('DeleteFigure', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(1);
-      expect(blocks[0].text).toBe('');
-      expect(blocks[0].type).toBe('p');
+      expect(blocks.length).to.equal(1);
+      expect(blocks[0].text).to.equal('');
+      expect(blocks[0].type).to.equal('p');
     });
   });
 });

@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import InsertYouTube from '../InsertYouTube';
 
@@ -45,10 +44,10 @@ describe('InsertYouTube', () => {
         const result = manager.execute(guids, offsets, options);
 
         const blocks = result.content.toJS().sections[0].blocks;
-        expect(blocks.length).toBe(1);
-        expect(blocks[0].type).toBe('youtube');
-        expect(blocks[0].text).toBe('');
-        expect(blocks[0].meta.src).toBe('https://www.youtube.com/embed/0zM3nApSvMg');
+        expect(blocks.length).to.equal(1);
+        expect(blocks[0].type).to.equal('youtube');
+        expect(blocks[0].text).to.equal('');
+        expect(blocks[0].meta.src).to.equal('https://www.youtube.com/embed/0zM3nApSvMg');
       });
     });
   });

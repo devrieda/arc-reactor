@@ -1,5 +1,4 @@
 import React from 'react';
-import expect from 'expect';
 import ConfigManager from '../ConfigManager';
 import BlockConfig from '../Config/BlockConfig';
 import KeyConfig from '../Config/KeyConfig';
@@ -27,7 +26,7 @@ describe('ConfigManager', () => {
         }
       };
       ConfigManager.install(config);
-      expect(BlockConfig.get('h1')).toExist();
+      expect(BlockConfig.get('h1')).to.exist;
     });
 
     it('installs custom plugins', () => {
@@ -52,7 +51,7 @@ describe('ConfigManager', () => {
       };
 
       ConfigManager.install(config);
-      expect(BlockConfig.get('foo')).toExist();
+      expect(BlockConfig.get('foo')).to.exist;
     });
 
     it('configures menu buttons', () => {
@@ -65,7 +64,7 @@ describe('ConfigManager', () => {
 
       const items = MenuButtonConfig.getItems();
       const names = items.map((i) => i.getName());
-      expect(names).toEqual(["italic", "bold"]);
+      expect(names).to.eql(["italic", "bold"]);
     });
 
     it('configures bar buttons', () => {
@@ -78,7 +77,7 @@ describe('ConfigManager', () => {
 
       const items = BarButtonConfig.getItems();
       const names = items.map((i) => i.getName());
-      expect(names).toEqual([]);
+      expect(names).to.eql([]);
     });
   });
 });

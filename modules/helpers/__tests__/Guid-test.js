@@ -1,4 +1,3 @@
-import expect from 'expect';
 import Guid from '../Guid';
 
 describe('Guid', function() {
@@ -8,7 +7,7 @@ describe('Guid', function() {
     it('generates a unique guid', function() {
       const id1 = Guid.unique();
       const id2 = Guid.unique();
-      expect(id1).toNotBe(id2);
+      expect(id1).to.not.equal(id2);
     });
   });
 

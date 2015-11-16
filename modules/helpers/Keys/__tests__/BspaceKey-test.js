@@ -5,12 +5,12 @@ describe('BspaceKey', () => {
   describe('#matches', () => {
     it('matches event for bspace key', () => {
       const event = { keyCode: 8 };
-      assert(BspaceKey.matches(event));
+      expect(BspaceKey.matches(event)).to.be.true;
     });
 
     it("doesn't match event if not bspace", () => {
       const event = {};
-      assert(!BspaceKey.matches(event));
+      expect(BspaceKey.matches(event)).to.be.false;
     });
   });
 

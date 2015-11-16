@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import BlockFormatter from '../BlockFormatter';
 
@@ -10,7 +9,7 @@ describe('BlockFormatter', () => {
 
       const expected = 'a string of some text';
       const markups  = fromJS({});
-      expect(format.applyMarkup(markups)).toBe(expected);
+      expect(format.applyMarkup(markups)).to.equal(expected);
     });
 
     it('formats text with single strong tag', () => {
@@ -18,7 +17,7 @@ describe('BlockFormatter', () => {
 
       const expected = 'a <strong class="arc-Editor-Block__strong">string</strong> of text';
       const markups  = fromJS({"strong": [{"range": [2,8]}]});
-      expect(format.applyMarkup(markups)).toBe(expected);
+      expect(format.applyMarkup(markups)).to.equal(expected);
     });
 
     it('formats text with single em tag', () => {
@@ -26,7 +25,7 @@ describe('BlockFormatter', () => {
 
       const expected = 'a <em class="arc-Editor-Block__em">string</em> of text';
       const markups  = fromJS({"em": [{"range": [2,8]}]});
-      expect(format.applyMarkup(markups)).toBe(expected);
+      expect(format.applyMarkup(markups)).to.equal(expected);
     });
 
     it('formats text with single link tag', () => {
@@ -35,7 +34,7 @@ describe('BlockFormatter', () => {
       const expected = 'a <a class=\"arc-Editor-Block__a\" href=\"http://example.com\">string</a> of text';
       const markups  = fromJS({"a": [{"range": [2,8], "value": "http://example.com"}]});
 
-      expect(format.applyMarkup(markups)).toBe(expected);
+      expect(format.applyMarkup(markups)).to.equal(expected);
     });
 
     it('formats text with strong, em, and tag', () => {
@@ -60,7 +59,7 @@ describe('BlockFormatter', () => {
           {"range": [2,8], "value": "http://example.com"}
         ]
       });
-      expect(format.applyMarkup(markups)).toBe(expected);
+      expect(format.applyMarkup(markups)).to.equal(expected);
     });
   });
 
@@ -91,7 +90,7 @@ describe('BlockFormatter', () => {
       const format = new BlockFormatter("This is a bold link embedded");
       const result = format.denormalizeRanges(markups);
 
-      expect(result.toJS()).toEqual(expected);
+      expect(result.toJS()).to.eql(expected);
     });
 
     it("denormalizes two overlapping ranges", () => {
@@ -117,7 +116,7 @@ describe('BlockFormatter', () => {
       const format = new BlockFormatter("This is a bold link embedded");
       const result = format.denormalizeRanges(markups);
 
-      expect(result.toJS()).toEqual(expected);
+      expect(result.toJS()).to.eql(expected);
     });
 
     it("denormalizes many overlapping ranges", () => {
@@ -152,7 +151,7 @@ describe('BlockFormatter', () => {
       const format = new BlockFormatter("This is a bold link embedded");
       const result = format.denormalizeRanges(markups);
 
-      expect(result.toJS()).toEqual(expected);
+      expect(result.toJS()).to.eql(expected);
     });
   });
 });

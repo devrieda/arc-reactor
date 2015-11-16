@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import LinkMenu from '../LinkMenu';
 
@@ -14,7 +13,7 @@ describe('LinkMenu', () => {
     );
 
     const menu = findByClass(linkMenu, 'arc-Editor-LinkMenu');
-    assert(menu);
+    expect(menu).to.exist;
   });
 });
 

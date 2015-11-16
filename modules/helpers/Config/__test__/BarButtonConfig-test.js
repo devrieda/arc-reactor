@@ -1,4 +1,3 @@
-import expect from 'expect';
 import BarButtonConfig from "../BarButtonConfig";
 import SectionButton from '../../../plugins/section/SectionButton';
 
@@ -10,7 +9,7 @@ describe('BarButtonConfig', () => {
 
   describe("#getItems", () => {
     it("retrieves list of default items", () => {
-      expect(BarButtonConfig.getItems().length).toEqual(1);
+      expect(BarButtonConfig.getItems().length).to.equal(1);
     });
   });
 
@@ -23,8 +22,8 @@ describe('BarButtonConfig', () => {
 
       const list = BarButtonConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[list.length - 1]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[list.length - 1]).to.equal(obj);
     });
 
     it('should insert item before another in stack', () => {
@@ -35,8 +34,8 @@ describe('BarButtonConfig', () => {
 
       const list = BarButtonConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[0]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[0]).to.equal(obj);
     });
 
     it('should insert item after another in stack', () => {
@@ -47,8 +46,8 @@ describe('BarButtonConfig', () => {
 
       const list = BarButtonConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[1]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[1]).to.equal(obj);
     });
   });
 
@@ -59,7 +58,7 @@ describe('BarButtonConfig', () => {
       BarButtonConfig.remove('section');
 
       const list = BarButtonConfig.getItems();
-      expect(before - list.length).toEqual(1);
+      expect(before - list.length).to.equal(1);
     });
   });
 });

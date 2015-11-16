@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import AppendBlock from '../AppendBlock';
 
@@ -28,9 +27,9 @@ describe('AppendBlock', () => {
       const result = manager.execute({ anchor: 'c6a7' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].type).toBe('ol');
-      expect(blocks[0].blocks[0].type).toBe('li');
-      expect(blocks[0].blocks[0].text).toBe('starting a list');
+      expect(blocks[0].type).to.equal('ol');
+      expect(blocks[0].blocks[0].type).to.equal('li');
+      expect(blocks[0].blocks[0].text).to.equal('starting a list');
     });
 
     it('should start an unordered list if text starts with *', () => {
@@ -44,9 +43,9 @@ describe('AppendBlock', () => {
       const result = manager.execute({ anchor: 'c6a7' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].type).toBe('ul');
-      expect(blocks[0].blocks[0].type).toBe('li');
-      expect(blocks[0].blocks[0].text).toBe('starting a list');
+      expect(blocks[0].type).to.equal('ul');
+      expect(blocks[0].blocks[0].type).to.equal('li');
+      expect(blocks[0].blocks[0].text).to.equal('starting a list');
     });
 
     it('should start an unordered list if text starts with -', () => {
@@ -60,9 +59,9 @@ describe('AppendBlock', () => {
       const result = manager.execute({ anchor: 'c6a7' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].type).toBe('ul');
-      expect(blocks[0].blocks[0].type).toBe('li');
-      expect(blocks[0].blocks[0].text).toBe('starting a list');
+      expect(blocks[0].type).to.equal('ul');
+      expect(blocks[0].blocks[0].type).to.equal('li');
+      expect(blocks[0].blocks[0].text).to.equal('starting a list');
     });
 
     it('should add item to a list', () => {
@@ -83,8 +82,8 @@ describe('AppendBlock', () => {
       const result = manager.execute({ anchor: '56ed' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].blocks.length).toBe(2);
-      expect(blocks[0].blocks[1].type).toBe('li');
+      expect(blocks[0].blocks.length).to.equal(2);
+      expect(blocks[0].blocks[1].type).to.equal('li');
     });
 
     it('should finish a list', () => {
@@ -110,11 +109,11 @@ describe('AppendBlock', () => {
       const result = manager.execute({ anchor: '1212' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].blocks.length).toBe(1);
+      expect(blocks[0].blocks.length).to.equal(1);
 
       // added it to the top level as a new paragraph instead
-      expect(blocks.length).toBe(2);
-      expect(blocks[1].type).toBe('p');
+      expect(blocks.length).to.equal(2);
+      expect(blocks[1].type).to.equal('p');
     });
 
     it('should create a new paragraph', () => {
@@ -129,8 +128,8 @@ describe('AppendBlock', () => {
       const result = manager.execute({ anchor: 'c6a7' });
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(2);
-      expect(blocks[1].type).toBe('p');
+      expect(blocks.length).to.equal(2);
+      expect(blocks[1].type).to.equal('p');
     });
   });
 });

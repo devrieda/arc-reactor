@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import InsertNewline from '../InsertNewline';
 
@@ -31,8 +30,8 @@ describe('InsertNewline', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(1);
-      expect(blocks[0].text).toBe("<div>\n</div>");
+      expect(blocks.length).to.equal(1);
+      expect(blocks[0].text).to.equal("<div>\n</div>");
     });
 
     it('insert two newlines if at the end of a block', () => {
@@ -43,8 +42,8 @@ describe('InsertNewline', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(1);
-      expect(blocks[0].text).toBe("<div></div>\n\n");
+      expect(blocks.length).to.equal(1);
+      expect(blocks[0].text).to.equal("<div></div>\n\n");
     });
   });
 });

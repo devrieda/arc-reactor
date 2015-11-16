@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import Code from '../Code';
 
@@ -13,6 +12,6 @@ describe('Code', () => {
     );
 
     const component = findByClass(block, 'arc-Editor-Block--pre');
-    assert(component);
+    expect(component).to.exist;
   });
 });

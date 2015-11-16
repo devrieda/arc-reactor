@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import SplitBlock from '../SplitBlock';
 
@@ -31,9 +30,9 @@ describe('SplitBlock', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(2);
-      expect(blocks[0].text).toBe('this');
-      expect(blocks[1].text).toBe(' is some text to split');
+      expect(blocks.length).to.equal(2);
+      expect(blocks[0].text).to.equal('this');
+      expect(blocks[1].text).to.equal(' is some text to split');
     });
 
     it('should split a single block with range', () => {
@@ -50,9 +49,9 @@ describe('SplitBlock', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(2);
-      expect(blocks[0].text).toBe('this ');
-      expect(blocks[1].text).toBe(' some text to split');
+      expect(blocks.length).to.equal(2);
+      expect(blocks[0].text).to.equal('this ');
+      expect(blocks[1].text).to.equal(' some text to split');
     });
 
     it('should split across multiple blocks', () => {
@@ -79,9 +78,9 @@ describe('SplitBlock', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks.length).toBe(2);
-      expect(blocks[0].text).toBe('You can ');
-      expect(blocks[1].text).toBe('be fatuous, Jeffrey.');
+      expect(blocks.length).to.equal(2);
+      expect(blocks[0].text).to.equal('You can ');
+      expect(blocks[1].text).to.equal('be fatuous, Jeffrey.');
     });
   });
 });

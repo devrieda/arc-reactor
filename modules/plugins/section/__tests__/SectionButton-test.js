@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import SectionButton from '../SectionButton';
@@ -21,6 +20,6 @@ describe('SectionButton', () => {
     );
 
     const button = findByClass(component, 'arc-Editor-BarButton--section');
-    assert(button);
+    expect(button).to.exist;
   });
 });

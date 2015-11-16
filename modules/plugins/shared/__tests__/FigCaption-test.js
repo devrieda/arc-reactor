@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import FigCaption from '../FigCaption';
 
@@ -17,6 +16,6 @@ describe('FigCaption', () => {
     );
 
     const captionComponent = findByClass(caption, 'arc-Editor-FigCaption');
-    assert(captionComponent);
+    expect(captionComponent).to.exist;
   });
 });

@@ -1,4 +1,3 @@
-import expect from 'expect';
 import MenuButtonConfig from '../MenuButtonConfig';
 import BoldKey from '../../../plugins/bold/BoldKey';
 import ItalicKey from '../../../plugins/italic/ItalicKey';
@@ -12,7 +11,7 @@ describe('MenuButtonConfig', () => {
 
   describe("#getItems", () => {
     it("retrieves list of default items", () => {
-      expect(MenuButtonConfig.getItems().length).toEqual(2);
+      expect(MenuButtonConfig.getItems().length).to.equal(2);
     });
   });
 
@@ -25,8 +24,8 @@ describe('MenuButtonConfig', () => {
 
       const list = MenuButtonConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[list.length - 1]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[list.length - 1]).to.equal(obj);
     });
 
     it('should insert item before another in stack', () => {
@@ -37,8 +36,8 @@ describe('MenuButtonConfig', () => {
 
       const list = MenuButtonConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[0]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[0]).to.equal(obj);
     });
 
     it('should insert item after another in stack', () => {
@@ -49,8 +48,8 @@ describe('MenuButtonConfig', () => {
 
       const list = MenuButtonConfig.getItems();
 
-      expect(list.length - before).toEqual(1);
-      expect(list[1]).toBe(obj);
+      expect(list.length - before).to.equal(1);
+      expect(list[1]).to.equal(obj);
     });
   });
 
@@ -61,7 +60,7 @@ describe('MenuButtonConfig', () => {
       MenuButtonConfig.remove('bold');
 
       const list = MenuButtonConfig.getItems();
-      expect(before - list.length).toEqual(1);
+      expect(before - list.length).to.equal(1);
     });
   });
 });

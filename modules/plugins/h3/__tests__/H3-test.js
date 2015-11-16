@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import H3 from '../H3';
 
@@ -13,6 +12,6 @@ describe('H3', () => {
     );
 
     const component = findByClass(block, 'arc-Editor-Block--h3');
-    assert(component);
+    expect(component).to.exist;
   });
 });

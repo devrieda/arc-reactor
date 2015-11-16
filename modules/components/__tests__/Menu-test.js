@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import Menu from '../Menu.js';
@@ -25,7 +24,7 @@ describe('Menu', () => {
     );
 
     const menuComponent = findByClass(menu, 'arc-Editor-Menu');
-    assert(menuComponent);
+    expect(menuComponent).to.exist;
   });
 
   it('should render buttons', () => {
@@ -41,7 +40,7 @@ describe('Menu', () => {
     );
 
     const button = findByClass(menu, 'arc-Editor-MenuButton--strong');
-    assert(button);
+    expect(button).to.exist;
   });
 
   // events
@@ -61,7 +60,7 @@ describe('Menu', () => {
     click(button);
 
     const component = findByClass(menu, 'arc-Editor-Menu__linkinput--active');
-    assert(component);
+    expect(component).to.exist;
   });
 
   it('should switch back to button mode when entering input value', () => {
@@ -82,7 +81,7 @@ describe('Menu', () => {
     keyUp(button, {keyCode: 13});
 
     const component = findByClass(menu, 'arc-Editor-Menu--active');
-    assert(component);
+    expect(component).to.exist;
   });
 
   // TODO - can test this once we have full plugins working
@@ -102,7 +101,7 @@ describe('Menu', () => {
   //     <Menu content={fromJS(content)} selection={selection} />
   //   );
 
-  //   assert(bold.type.isVisible.called);
+  //   expect(bold.type.isVisible.called).to.be.true;
 
   //   bold.type.isVisible.restore();
   // });
@@ -124,7 +123,7 @@ describe('Menu', () => {
       <Menu content={fromJS(content)} selection={selection} />
     );
 
-    assert(React.findDOMNode(menu).classList.contains('arc-Editor-Menu--active'));
+    expect(React.findDOMNode(menu).classList.contains('arc-Editor-Menu--active')).to.be.true;
   });
 
   it('should build styles based off bounds', () => {
@@ -145,7 +144,7 @@ describe('Menu', () => {
     );
 
     const styles = menu.menuStyles();
-    assert(styles.top);
-    assert(styles.left);
+    expect(styles.top).to.be;
+    expect(styles.left).to.be;
   });
 });

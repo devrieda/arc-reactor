@@ -1,4 +1,3 @@
-import expect from 'expect';
 import MarkupParser from '../MarkupParser';
 
 describe('MarkupParser', () => {
@@ -15,7 +14,7 @@ describe('MarkupParser', () => {
         const node = createNode(html);
         const parser = new MarkupParser(node);
         const results = parser.markups();
-        expect(results).toEqual([]);
+        expect(results).to.eql({});
       });
     });
 
@@ -26,7 +25,7 @@ describe('MarkupParser', () => {
         const markups  = {"strong": [{"range": [2,8]}]};
         const parser = new MarkupParser(node);
         const results = parser.markups();
-        expect(results).toEqual(markups);
+        expect(results).to.eql(markups);
       });
 
       it('should parse out em', () => {
@@ -35,7 +34,7 @@ describe('MarkupParser', () => {
         const markups  = {"em": [{"range": [2,8]}]};
         const parser = new MarkupParser(node);
         const results = parser.markups();
-        expect(results).toEqual(markups);
+        expect(results).to.eql(markups);
       });
 
       it('should parse out link', () => {
@@ -44,7 +43,7 @@ describe('MarkupParser', () => {
         const markups  = {"a": [{"range": [2,8], "value": "http://example.com"}]};
         const parser = new MarkupParser(node);
         const results = parser.markups();
-        expect(results).toEqual(markups);
+        expect(results).to.eql(markups);
       });
     });
 
@@ -55,7 +54,7 @@ describe('MarkupParser', () => {
         const markups  = {"em": [{"range":[2,8]}, {"range":[12,16]}]};
         const parser = new MarkupParser(node);
         const results = parser.markups();
-        expect(results).toEqual(markups);
+        expect(results).to.eql(markups);
       });
     });
 
@@ -82,7 +81,7 @@ describe('MarkupParser', () => {
         };
         const parser = new MarkupParser(node);
         const results = parser.markups();
-        expect(results).toEqual(markups);
+        expect(results).to.eql(markups);
       });
     });
   });

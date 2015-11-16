@@ -1,4 +1,3 @@
-import expect from 'expect';
 import MultiLineTextParser from '../MultiLineTextParser';
 import Guid from '../../Guid';
 
@@ -19,7 +18,7 @@ describe('MultiLineTextParser', () => {
           { id: 'x', type: 'p', text: "a curve formed by passing" },
           { id: 'x', type: 'p', text: "a plane through a right circular cone" },
         ];
-        expect(results.length).toEqual(3);
+        expect(results.length).to.eql(3);
 
         done();
       };
@@ -46,7 +45,7 @@ describe('MultiLineTextParser', () => {
           },
           { id: 'x', type: 'p', text: "and more" }
         ];
-        expect(results).toEqual(expected);
+        expect(results).to.eql(expected);
         done();
       };
 
@@ -71,7 +70,7 @@ describe('MultiLineTextParser', () => {
           },
           { id: 'x', type: 'p', text: "and more" }
         ];
-        expect(results).toEqual(expected);
+        expect(results).to.eql(expected);
         done();
       };
 
@@ -96,7 +95,7 @@ describe('MultiLineTextParser', () => {
           },
           { id: 'x', type: 'p', text: "and more" }
         ];
-        expect(results).toEqual(expected);
+        expect(results).to.eql(expected);
         done();
       };
 
@@ -124,7 +123,7 @@ describe('MultiLineTextParser', () => {
             }
           }
         ];
-        expect(results).toEqual(expected);
+        expect(results).to.eql(expected);
         done();
       };
 
@@ -148,7 +147,7 @@ describe('MultiLineTextParser', () => {
             }
           }
         ];
-        expect(results).toEqual(expected);
+        expect(results).to.eql(expected);
         done();
       };
 

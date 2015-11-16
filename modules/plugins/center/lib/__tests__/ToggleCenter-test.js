@@ -1,4 +1,3 @@
-import expect from 'expect';
 import { fromJS } from 'immutable';
 import ToggleCenter from '../ToggleCenter';
 
@@ -31,7 +30,7 @@ describe('ToggleCenter', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].data).toEqual({align: 'center'});
+      expect(blocks[0].data).to.eql({align: 'center'});
     });
 
     it('should add center data across multiple blocks', () => {
@@ -53,8 +52,8 @@ describe('ToggleCenter', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].data).toEqual({align: 'center'});
-      expect(blocks[1].data).toEqual({align: 'center'});
+      expect(blocks[0].data).to.eql({align: 'center'});
+      expect(blocks[1].data).to.eql({align: 'center'});
     });
 
     it('should remove center data for a single block', () => {
@@ -72,7 +71,7 @@ describe('ToggleCenter', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].data).toEqual({});
+      expect(blocks[0].data).to.eql({});
     });
 
     it('should remove center data across multiple blocks', () => {
@@ -96,8 +95,8 @@ describe('ToggleCenter', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].data).toEqual({});
-      expect(blocks[1].data).toEqual({});
+      expect(blocks[0].data).to.eql({});
+      expect(blocks[1].data).to.eql({});
     });
 
     it('should center all blocks if a single one isnt centered', () => {
@@ -120,8 +119,8 @@ describe('ToggleCenter', () => {
       const result = manager.execute(guids, offsets);
 
       const blocks = result.content.toJS().sections[0].blocks;
-      expect(blocks[0].data).toEqual({align: 'center'});
-      expect(blocks[1].data).toEqual({align: 'center'});
+      expect(blocks[0].data).to.eql({align: 'center'});
+      expect(blocks[1].data).to.eql({align: 'center'});
     });
   });
 });

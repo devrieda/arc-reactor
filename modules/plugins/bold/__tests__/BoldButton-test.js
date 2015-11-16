@@ -1,5 +1,3 @@
-import expect from 'expect';
-import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import BoldButton from '../BoldButton';
@@ -22,7 +20,7 @@ describe('BoldButton', () => {
     );
 
     const button = findByClass(component, 'arc-Editor-MenuButton--strong');
-    assert(button);
+    expect(button).to.exist;
   });
 
   it('should not be visible if header is selected', () => {
@@ -41,7 +39,7 @@ describe('BoldButton', () => {
       position: () => {}
     };
 
-    assert(!BoldButton.isVisible(fromJS(content), selection));
+    expect(BoldButton.isVisible(fromJS(content), selection)).to.be.false;
   });
 
   it('should be visible if header is not selected', () => {
@@ -52,7 +50,7 @@ describe('BoldButton', () => {
       position: () => {}
     };
 
-    assert(BoldButton.isVisible(fromJS(content), selection));
+    expect(BoldButton.isVisible(fromJS(content), selection)).to.be.true;
   });
 
   it("should modify content with handlePress", () => {
@@ -75,6 +73,6 @@ describe('BoldButton', () => {
     );
 
     const result = component.handlePress().content.toJS();
-    expect(result.sections[0].blocks[0].markups.strong).toEqual([{"range":[0,1]}]);
+    expect(result.sections[0].blocks[0].markups.strong).to.eql([{"range":[0,1]}]);
   });
 });

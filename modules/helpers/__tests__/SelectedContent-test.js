@@ -1,4 +1,3 @@
-import assert from 'assert';
 import SelectedContent from '../SelectedContent';
 import { fromJS } from 'immutable';
 
@@ -36,14 +35,14 @@ describe('SelectedContent', () => {
 
       it('is false if single block is not centered', () => {
         const selContent = new SelectedContent(selection, fromJS(content));
-        assert(!selContent.isCentered());
+        expect(selContent.isCentered()).to.be.false;
       });
 
       it('is true if single block is centered', () => {
         content.sections[0].blocks[0].data = { align: "center" };
 
         const selContent = new SelectedContent(selection, fromJS(content));
-        assert(selContent.isCentered());
+        expect(selContent.isCentered()).to.be.true;
       });
     });
 
@@ -71,7 +70,7 @@ describe('SelectedContent', () => {
         };
 
         const selContent = new SelectedContent(selection, fromJS(content));
-        assert(!selContent.isCentered());
+        expect(selContent.isCentered()).to.be.false;
       });
 
       it('is false if one block is not centered', () => {
@@ -82,7 +81,7 @@ describe('SelectedContent', () => {
         content.sections[0].blocks[0].data = { align: "center" };
 
         const selContent = new SelectedContent(selection, fromJS(content));
-        assert(!selContent.isCentered());
+        expect(selContent.isCentered()).to.be.false;
       });
 
       it('is true if both blocks are centered', () => {
@@ -94,7 +93,7 @@ describe('SelectedContent', () => {
         content.sections[0].blocks[1].data = { align: "center" };
 
         const selContent = new SelectedContent(selection, fromJS(content));
-        assert(selContent.isCentered());
+        expect(selContent.isCentered()).to.be.true;
       });
     });
   });
@@ -121,14 +120,14 @@ describe('SelectedContent', () => {
         it('is false if single block type doesnt match', () => {
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('h2'));
+          expect(selContent.hasType('h2')).to.be.false;
         });
 
         it('is true if single block type matches', () => {
           content.sections[0].blocks[0].type = 'h2';
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(selContent.hasType('h2'));
+          expect(selContent.hasType('h2')).to.be.true;
         });
       });
 
@@ -156,7 +155,7 @@ describe('SelectedContent', () => {
           };
 
           const selContent = new SelectedContent(selection, fromJS(content));
-          assert(!selContent.hasType('h2'));
+          expect(selContent.hasType('h2')).to.be.false;
         });
 
         it('is false if one block is not a header', () => {
@@ -167,7 +166,7 @@ describe('SelectedContent', () => {
           content.sections[0].blocks[0].type = 'h2';
 
           const selContent = new SelectedContent(selection, fromJS(content));
-          assert(!selContent.hasType('h2'));
+          expect(selContent.hasType('h2')).to.be.false;
         });
 
         it('is true if both blocks are headers', () => {
@@ -179,7 +178,7 @@ describe('SelectedContent', () => {
           content.sections[0].blocks[1].type = 'h2';
 
           const selContent = new SelectedContent(selection, fromJS(content));
-          assert(selContent.hasType('h2'));
+          expect(selContent.hasType('h2')).to.be.true;
         });
       });
     });
@@ -205,14 +204,14 @@ describe('SelectedContent', () => {
           content.sections[0].blocks[0].markups = { 'strong': [{range: [0,2]}] };
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.false;
         });
 
         it('is true if the selection falls within a range', () => {
           content.sections[0].blocks[0].markups = { 'strong': [{range: [0,4]}] };
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.true;
         });
       });
 
@@ -236,21 +235,21 @@ describe('SelectedContent', () => {
           content.sections[0].blocks[0].markups = { 'a': [{range: [11,15], value: "foo"}] };
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('a', true));
+          expect(selContent.hasType('a', true)).to.be.false;
         });
 
         it('is true if the selection overlaps the range', () => {
           content.sections[0].blocks[0].markups = { 'a': [{range: [0,2], value: "foo"}] };
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(selContent.hasType('a', true));
+          expect(selContent.hasType('a', true)).to.be.true;
         });
 
         it('is true if the selection selects the range', () => {
           content.sections[0].blocks[0].markups = { 'a': [{range: [0,4], value: "foo"}] };
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(selContent.hasType('a', true));
+          expect(selContent.hasType('a', true)).to.be.true;
         });
       });
 
@@ -293,47 +292,47 @@ describe('SelectedContent', () => {
           delete content.sections[0].blocks[0].markups;
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.false;
         });
 
         it('is false if the anchor offset isnt within a range', () => {
           content.sections[0].blocks[0].markups.strong = [{range: [12,18]}];
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.false;
         });
 
         it('is false if the anchor selection doesnt go to end of block', () => {
           content.sections[0].blocks[0].markups.strong = [{range: [11,13]}];
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.false;
         });
 
         it('is false if the focus offset isnt within a range', () => {
           content.sections[0].blocks[2].markups.strong = [{range: [0,2]}];
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.false;
         });
 
         it('is false if the focus offset doesnt start at beginning of block', () => {
           content.sections[0].blocks[2].markups.strong = [{range: [1,3]}];
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.false;
         });
 
         it('is false if all in-between blocks arent a full range', () => {
           content.sections[0].blocks[1].markups.strong = [{range: [0,2]}];
           const selContent = new SelectedContent(selection, fromJS(content));
 
-          assert(!selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.false;
         });
 
         it('is true if all selection is within a range', () => {
           const selContent = new SelectedContent(selection, fromJS(content));
-          assert(selContent.hasType('strong'));
+          expect(selContent.hasType('strong')).to.be.true;
         });
       });
 
@@ -362,14 +361,14 @@ describe('SelectedContent', () => {
 
     it('is false if single block type isnt a header', () => {
       const selContent = new SelectedContent(selection, fromJS(content));
-      assert(!selContent.isHeader());
+      expect(selContent.isHeader()).to.be.false;
     });
 
     it('is true if single block type is a header', () => {
       content.sections[0].blocks[0].type = 'h2';
       const selContent = new SelectedContent(selection, fromJS(content));
 
-      assert(selContent.isHeader());
+      expect(selContent.isHeader()).to.be.true;
     });
   });
 });

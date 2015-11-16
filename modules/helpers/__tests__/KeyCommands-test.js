@@ -1,4 +1,3 @@
-import expect from 'expect';
 import KeyConfig from '../Config/KeyConfig';
 import KeyCommands from '../KeyCommands';
 
@@ -59,8 +58,8 @@ describe('KeyCommands', () => {
       KeyConfig.use(MagicKey,   { after:  'special' });
 
       KeyCommands.execute({type: 'down'}, {}, {}, function() {
-        expect(specialStub.called).toBe(true);
-        expect(magicStub.called).toBe(false);
+        expect(specialStub.called).to.be.true;
+        expect(magicStub.called).to.be.false;
         done();
       });
     });
@@ -69,8 +68,8 @@ describe('KeyCommands', () => {
       KeyConfig.use(SpecialKey, { before: 'return' });
 
       KeyCommands.execute({type: 'down'}, {}, {}, function(results) {
-        expect(results.content).toEqual({a: 1});
-        expect(results.selection).toEqual('b');
+        expect(results.content).to.eql({a: 1});
+        expect(results.selection).to.eql('b');
         done();
       });
     });

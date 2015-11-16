@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import Quote from '../Quote';
 
@@ -13,6 +12,6 @@ describe('Quote', () => {
     );
 
     const component = findByClass(block, 'arc-Editor-Block--blockquote');
-    assert(component);
+    expect(component).to.exist;
   });
 });

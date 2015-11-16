@@ -1,4 +1,3 @@
-import expect from 'expect';
 import History from '../History';
 
 describe('History', () => {
@@ -16,7 +15,7 @@ describe('History', () => {
       history.push(state1, true);
       history.push(state2, true);
 
-      expect(history.current()).toEqual(state2);
+      expect(history.current()).to.equal(state2);
     });
 
     it('overwrites previous history if we did an undo', () => {
@@ -27,11 +26,11 @@ describe('History', () => {
 
       // state3 overwrites state 2
       history.push(state3, true);
-      expect(history.current()).toEqual(state3);
+      expect(history.current()).to.equal(state3);
 
       // if we undo again, 2 is gone. goes back to 1
       history.undo();
-      expect(history.current()).toEqual(state1);
+      expect(history.current()).to.equal(state1);
     });
   });
 
@@ -42,7 +41,7 @@ describe('History', () => {
       history.push(state2, true);
       history.undo();
 
-      expect(history.current()).toEqual(state1);
+      expect(history.current()).to.equal(state1);
     });
   });
 
@@ -54,7 +53,7 @@ describe('History', () => {
       history.undo();
       history.redo();
 
-      expect(history.current()).toEqual(state2);
+      expect(history.current()).to.equal(state2);
     });
   });
 });

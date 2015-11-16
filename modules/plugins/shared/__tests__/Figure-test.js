@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import Immutable from 'immutable';
 import Figure from '../Figure';
@@ -19,6 +18,6 @@ describe('Figure', () => {
     );
 
     const figureComponent = findByClass(figure, 'arc-Editor-Figure');
-    assert(figureComponent);
+    expect(figureComponent).to.exist;
   });
 });

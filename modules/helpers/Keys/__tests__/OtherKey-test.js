@@ -4,7 +4,7 @@ describe('OtherKey', () => {
 
   describe('#matches', () => {
     it('always matches event', () => {
-      assert(OtherKey.matches({}));
+      expect(OtherKey.matches({})).to.be.true;
     });
   });
 

@@ -1,5 +1,3 @@
-import expect from 'expect';
-import assert from 'assert';
 import React from 'react/addons';
 import { fromJS } from 'immutable';
 import LinkButton from '../LinkButton';
@@ -22,7 +20,7 @@ describe('LinkButton', () => {
     );
 
     const button = findByClass(component, 'arc-Editor-MenuButton--a');
-    assert(button);
+    expect(button).to.exist;
   });
 
   it('is visible', () => {
@@ -33,7 +31,7 @@ describe('LinkButton', () => {
       position: () => {}
     };
 
-    assert(LinkButton.isVisible(content, selection));
+    expect(LinkButton.isVisible(content, selection)).to.be.true;
   });
 
   it("modifies content with handlePress", () => {
@@ -57,7 +55,7 @@ describe('LinkButton', () => {
 
     const result = component.handlePress('http://google.com').content.toJS();
     const expected = [{"range":[0,1], "value": "http://google.com"}];
-    expect(result.sections[0].blocks[0].markups.a).toEqual(expected);
+    expect(result.sections[0].blocks[0].markups.a).to.eql(expected);
   });
 
   it("prefixes the value with http if missing", () => {
@@ -81,6 +79,6 @@ describe('LinkButton', () => {
 
     const result = component.handlePress('google.com').content.toJS();
     const expected = [{"range":[0,1], "value": "http://google.com"}];
-    expect(result.sections[0].blocks[0].markups.a).toEqual(expected);
+    expect(result.sections[0].blocks[0].markups.a).to.eql(expected);
   });
 });

@@ -1,4 +1,3 @@
-import assert from 'assert';
 import React from 'react/addons';
 import Immutable from 'immutable';
 import Section from '../Section.js';
@@ -14,7 +13,7 @@ describe('Section', () => {
       <Section id={'0000'} blocks={Immutable.List()} meta={Immutable.Map({first: true})} />
     );
     const dom = React.findDOMNode(section);
-    assert(dom.classList.contains('arc-Editor-Section--first'));
+    expect(dom.classList.contains('arc-Editor-Section--first')).to.be.true;
   });
 
   it('should not set class name if not first section', () => {
@@ -22,7 +21,7 @@ describe('Section', () => {
       <Section id={'0000'} blocks={Immutable.List()} />
     );
     const dom = React.findDOMNode(section);
-    assert(!dom.classList.contains('arc-Editor-Section--first'));
+    expect(dom.classList.contains('arc-Editor-Section--first')).to.be.false;
   });
 
   // rendering
@@ -36,6 +35,6 @@ describe('Section', () => {
     );
 
     const component = findByClass(section, 'arc-Editor-Block--p');
-    assert(component);
+    expect(component).to.exi;
   });
 });

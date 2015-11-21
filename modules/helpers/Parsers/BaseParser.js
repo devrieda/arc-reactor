@@ -3,7 +3,7 @@ import MultiLineTextParser from './MultiLineTextParser';
 import HtmlParser from './HtmlParser';
 
 const parsers = [
-  SingleLineTextParser, SingleLineTextParser, HtmlParser
+  SingleLineTextParser, MultiLineTextParser, HtmlParser
 ];
 const BaseParser = {
   parse(pasted, callback) {

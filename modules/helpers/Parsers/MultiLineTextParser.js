@@ -1,7 +1,7 @@
 import Guid from '../Guid';
 
 const MultiLineTextParser = {
-  matches(pasted) {
+  matches(text) {
     return text.toLowerCase().indexOf("<meta") === -1 &&
            text.indexOf("\n") !== -1;
   },

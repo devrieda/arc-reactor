@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseBlock from '../../components/Blocks/BaseBlock';
+import BaseBlock from '../../components/BaseBlock';
 
 const H1 = React.createClass({
   propTypes: BaseBlock.propTypes,

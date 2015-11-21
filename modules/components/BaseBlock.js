@@ -1,7 +1,7 @@
 import React from 'react/addons';
 import Immutable from 'immutable';
-import BlockFormatter from '../../helpers/BlockFormatter';
-import EditorStore from '../../stores/EditorStore';
+import BlockFormatter from '../helpers/BlockFormatter';
+import EditorStore from '../stores/EditorStore';
 import cx from 'classnames';
 
 const PureRenderMixin = React.addons.PureRenderMixin;

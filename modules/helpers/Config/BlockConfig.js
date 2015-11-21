@@ -1,7 +1,7 @@
 import Config from './Config';
 
 // default blocks
-import Paragraph from '../../components/Blocks/Paragraph';
+import Paragraph from '../../components/Paragraph';
 
 const defaults = [ Paragraph ];
 

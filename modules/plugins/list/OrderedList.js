@@ -1,5 +1,5 @@
 import React from 'react/addons';
-import BaseBlock from '../../components/Blocks/BaseBlock';
+import BaseBlock from '../../components/BaseBlock';
 
 const OrderedList = React.createClass({
   propTypes: BaseBlock.propTypes,

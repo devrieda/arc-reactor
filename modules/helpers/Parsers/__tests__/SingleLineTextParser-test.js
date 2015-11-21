@@ -1,11 +1,22 @@
 import SingleLineTextParser from '../SingleLineTextParser';
+import Guid from '../../Guid';
 
 describe('SingleLineTextParser', () => {
+  beforeEach(function() {
+    sinon.stub(Guid, 'unique', () => 'x');
+  });
+
+  afterEach(function() {
+    sinon.restore(Guid, 'unique');
+  });
+
   describe('#parse', () => {
     it('parses single lines', function(done) {
       const callback = function(results) {
-        expect(results[0].type).to.equal('p');
-        expect(results[0].text).to.equal('pasted results');
+        const expected = [{
+          id: 'x', type: 'p', text: 'pasted results'
+        }];
+        expect(results).to.eql(expected);
         done();
       };
 

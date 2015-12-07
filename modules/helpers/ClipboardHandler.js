@@ -1,62 +1,34 @@
-import BaseParser from './Parsers/BaseParser';
-import History from './History';
-import InsertBlocks from './Manipulation/InsertBlocks';
-
 const ClipboardHandler = {
 
   // create hidden div to capture the paste in IE
-  beforePaste(selection) {
-    this.position = selection.position();
-
-    this.bin = document.createElement('div');
-    this.bin.className = "pasted-content";
-    this.bin.setAttribute('contenteditable', true);
-    document.body.appendChild(this.bin);
-    this.bin.focus();
+  beforePaste() {
+    this.div = document.createElement('div');
+    this.div.className = "pasted-content";
+    this.div.setAttribute('contenteditable', true);
+    document.body.appendChild(this.div);
+    this.div.focus();
   },
 
-  paste(e, content, selection, callback) {
+  paste(e, callback) {
+    // firefox / webkit
     if (e.clipboardData && e.clipboardData.types) {
       const pasted = this._handlePaste(e);
       e.preventDefault();
       e.stopPropagation();
-      this._parseResult(pasted, content, selection, callback);
+      callback(pasted);
 
-    // Wait for the paste to happen (next loop?)
-    } else if (this.bin) {
+    // ie: Wait for the paste to happen (next loop?)
+    } else if (this.div) {
       setTimeout(() => {
-        const pasted = this.bin.innerHTML;
-        this.bin.parentNode.removeChild(this.bin);
-        this._parseResult(pasted, content, selection, callback);
+        const pasted = this.div.innerHTML;
+        this.div.parentNode.removeChild(this.div);
+        callback(pasted);
       }, 1);
     }
   },
 
-  getBin() {
-    return this.bin;
-  },
-
-  _parseResult(pasted, content, selection, callback) {
-    // clipboard parser works async
-    BaseParser.parse(pasted, (blocks) => {
-      const guids = selection.guids();
-      const offsets = selection.offsets();
-
-      const command = new InsertBlocks(content);
-      const results = command.execute(guids, offsets, { blocks: blocks });
-
-      // save history
-      History.getInstance().push({
-        content: results.content,
-        position: results.position
-      });
-
-      callback({
-        content: results.content,
-        position: results.position,
-        emit: true
-      });
-    });
+  getDiv() {
+    return this.div;
   },
 
   _handlePaste(e) {

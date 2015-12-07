@@ -6,6 +6,7 @@ import LinkMenu from './LinkMenu';
 import Bar from './Bar';
 
 import ClipboardHandler from '../helpers/ClipboardHandler';
+import ClipboardParser from '../helpers/ClipboardParser';
 import KeyCommands from '../helpers/KeyCommands';
 import History from '../helpers/History';
 import Selection from '../helpers/Selection';
@@ -155,7 +156,12 @@ const Editor = React.createClass({
   // pasting needs to modify the content
   handlePaste(e) {
     const { content, selection } = EditorStore.get();
-    ClipboardHandler.paste(e, content, selection, this._updateKeyResults);
+
+    ClipboardHandler.paste(e, (pasted) => {
+      ClipboardParser.parse(
+        pasted, content, selection, this._updateKeyResults
+      );
+    });
   },
 
   // reinstate the selection when they cancel adding a link value

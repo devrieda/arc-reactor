@@ -28,7 +28,7 @@ describe('HtmlParser', () => {
       };
 
       const html = '<meta charset=\'utf-8\'><h2>History of Photography</h2><p><br></p><p>Photography is a word<span class="Apple-converted-space"> </span><strong>derived</strong><span class="Apple-converted-space"> </span>from the<span class="Apple-converted-space"> </span><a href="http://google.com/"><strong><em>Greek</em></strong></a><span class="Apple-converted-space"> </span>words photos</p><h3>This is the subhead</h3><ul><li>this is item 1</li><li>this is item 2</li></ul>';
-      ClipboardParser.parse(html, callback);
+      HtmlParser.parse(html, callback);
     });
 
     it('parses markup', function(done) {
@@ -37,7 +37,7 @@ describe('HtmlParser', () => {
         done();
       };
       const html = "";
-      ClipboardParser.parse(html, callback);
+      HtmlParser.parse(html, callback);
     });
 
     it('parses nested blocks', function(done) {
@@ -46,7 +46,7 @@ describe('HtmlParser', () => {
         done();
       };
       const html = "";
-      ClipboardParser.parse(html, callback);
+      HtmlParser.parse(html, callback);
     });
 
     it('parses nested markup', function(done) {
@@ -55,7 +55,7 @@ describe('HtmlParser', () => {
         done();
       };
       const html = "";
-      ClipboardParser.parse(html, callback);
+      HtmlParser.parse(html, callback);
     });
   });
 });

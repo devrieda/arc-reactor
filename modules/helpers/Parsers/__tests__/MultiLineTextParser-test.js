@@ -18,8 +18,7 @@ describe('MultiLineTextParser', () => {
           { id: 'x', type: 'p', text: "a curve formed by passing" },
           { id: 'x', type: 'p', text: "a plane through a right circular cone" },
         ];
-        expect(results.length).to.eql(3);
-
+        expect(results).to.eql(expected);
         done();
       };
 

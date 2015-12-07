@@ -1,5 +1,3 @@
-import Guid from '../Guid';
-
 const INTERNAL_CLASS = 'arc-Editor';
 
 const INLINE_TAGS = [

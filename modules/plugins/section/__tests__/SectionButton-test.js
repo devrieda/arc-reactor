@@ -1,8 +1,8 @@
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import { fromJS } from 'immutable';
 import SectionButton from '../SectionButton';
 
-const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 

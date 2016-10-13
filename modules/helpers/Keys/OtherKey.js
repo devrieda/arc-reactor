@@ -40,12 +40,13 @@ class OtherKey {
 
     const node = document.getElementsByName(guids.anchor)[0];
     let text;
-    if (false && node && node.getAttribute('data-figure')) {
-      const caption = node.getElementsByTagName("figcaption")[0];
-      text = caption.textContent;
-    } else {
-      text = node && node.textContent;
-    }
+    // DIABLE CAPTIONS FOR NOW
+    // if (node && node.getAttribute('data-figure')) {
+    //   const caption = node.getElementsByTagName("figcaption")[0];
+    //   text = caption.textContent;
+    // } else {
+    text = node && node.textContent;
+    // }
 
     const results = this._changeText().execute(guids, offsets, { node: node, text: text });
 

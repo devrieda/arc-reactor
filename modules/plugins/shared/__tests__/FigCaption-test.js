@@ -1,7 +1,7 @@
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import FigCaption from '../FigCaption';
 
-const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 

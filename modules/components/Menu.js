@@ -1,4 +1,5 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
 import cx from 'classnames';
 import MenuButtonConfig from '../helpers/Config/MenuButtonConfig';
@@ -28,7 +29,7 @@ const Menu = React.createClass({
     if (!this.state.inputMode) { return; }
 
     setTimeout( () => {
-      React.findDOMNode(this.refs.linkInput).focus();
+      ReactDOM.findDOMNode(this.refs.linkInput).focus();
     }, 1);
   },
 
@@ -58,7 +59,7 @@ const Menu = React.createClass({
 
     const value = e.target.value;
     this.valueButton.setValue(value);
-    React.findDOMNode(this.refs.linkInput).value = "";
+    ReactDOM.findDOMNode(this.refs.linkInput).value = "";
     this.setState({inputMode: false});
   },
 

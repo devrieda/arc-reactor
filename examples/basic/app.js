@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Editor, ConfigManager } from 'arc-reactor';
 import Config from './Config';
 import Store from './ContentStore';
@@ -19,4 +20,4 @@ var App = React.createClass({
   }
 });
 
-React.render(<App/>, document.getElementById("example"));
+ReactDOM.render(<App/>, document.getElementById("example"));

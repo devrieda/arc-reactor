@@ -26,7 +26,7 @@ var ContentStore = {
     );
   },
 
-  find() {
+  findxxx() {
     return (
       {"sections": [
         {
@@ -73,7 +73,7 @@ var ContentStore = {
     );
   },
 
-  findxxx() {
+  find() {
     return (
       {"sections": [
         {

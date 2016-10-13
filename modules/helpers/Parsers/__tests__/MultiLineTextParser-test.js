@@ -22,8 +22,8 @@ describe('MultiLineTextParser', () => {
         done();
       };
 
-      const text = "Conic Sections\n" + 
-                   "a curve formed by passing\n" + 
+      const text = "Conic Sections\n" +
+                   "a curve formed by passing\n" +
                    "a plane through a right circular cone";
       MultiLineTextParser.parse(text, callback);
     });
@@ -48,9 +48,9 @@ describe('MultiLineTextParser', () => {
         done();
       };
 
-      const text = "My List\n" + 
-                   "- item 1\n" + 
-                   "- item 2\n" + 
+      const text = "My List\n" +
+                   "- item 1\n" +
+                   "- item 2\n" +
                    "and more";
       MultiLineTextParser.parse(text, callback);
     });
@@ -73,9 +73,9 @@ describe('MultiLineTextParser', () => {
         done();
       };
 
-      const text = "My List\n" + 
-                   "* item 1\n" + 
-                   "* item 2\n" + 
+      const text = "My List\n" +
+                   "* item 1\n" +
+                   "* item 2\n" +
                    "and more";
       MultiLineTextParser.parse(text, callback);
     });
@@ -98,9 +98,9 @@ describe('MultiLineTextParser', () => {
         done();
       };
 
-      const text = "My List\n" + 
-                   "1. item 1\n" + 
-                   "2. item 2\n" + 
+      const text = "My List\n" +
+                   "1. item 1\n" +
+                   "2. item 2\n" +
                    "and more";
       MultiLineTextParser.parse(text, callback);
     });
@@ -111,7 +111,7 @@ describe('MultiLineTextParser', () => {
       const callback = function(results) {
         const expected = [
           { id: 'x', type: 'p', text: "Camping" },
-          { 
+          {
             id: 'x',
             type: 'image',
             text: '',
@@ -126,7 +126,7 @@ describe('MultiLineTextParser', () => {
         done();
       };
 
-      const text = "Camping\n" + 
+      const text = "Camping\n" +
                    "http://tmp.derekdevries.com/stars.jpg"
       MultiLineTextParser.parse(text, callback);
     });
@@ -150,7 +150,7 @@ describe('MultiLineTextParser', () => {
         done();
       };
 
-      const text = "Camping\n" + 
+      const text = "Camping\n" +
                    "https://www.youtube.com/watch?v=zPEnKH8D73c"
       MultiLineTextParser.parse(text, callback);
     });

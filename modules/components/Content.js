@@ -1,8 +1,8 @@
-import React from 'react/addons';
+import React from 'react';
 import Immutable from 'immutable';
 import Section from './Section';
 
-const PureRenderMixin = React.addons.PureRenderMixin;
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const { object, instanceOf } = React.PropTypes;
 
 const Content = React.createClass({
@@ -40,6 +40,7 @@ const Content = React.createClass({
     return (
       <div className="arc-Editor-Content"
         contentEditable="true"
+        suppressContentEditableWarning={true}
         role="textbox"
         data-top="true"
         aria-multiline="true"

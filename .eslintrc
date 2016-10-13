@@ -1,67 +1,31 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
   "env": {
     "browser": true,
     "es6": true
   },
   "plugins": [
-    "mocha",
-    "react"
+    "react",
+    "mocha"
   ],
-  "ecmaFeatures": {
-    "blockBindings": true,
-    "arrowFunctions": true,
-    "classes": true,
-    "templateStrings": true,
-    "destructuring": true,
-    "objectLiteralShorthandMethods": true,
-    "spread": true,
-    "restParams": true,
-    "jsx": true,
-    "modules": true
-  },
+  "extends": [
+    "eslint:recommended", "plugin:react/recommended"
+  ],
   "rules": {
-    "no-trailing-spaces": 0,
+    "no-trailing-spaces": 2,
     "indent": [2, 2],
-    "curly": 0,
     "eqeqeq": 2,
     "no-eq-null": 2,
-    "quotes": 0,
-    "strict": 0,
 
-    "consistent-this": 0,
-    "no-undef": 2,
-    "dot-notation": 0,
-    "space-infix-ops": 0,
-    "space-unary-ops": 0,
-    "no-underscore-dangle": 0,
-    "no-unused-vars": 2,
-    "comma-dangle": 0,
-    "comma-spacing": 0,
-    "key-spacing": 0,
-    "semi-spacing": 0,
-    "consistent-return": 0,
-    "new-cap": 0,
-    "camelcase": 0,
-    "eol-last": 0,
-    "no-multi-spaces": 0,
-    "no-extra-boolean-cast": 0,
-    "no-use-before-define": 0,
-    "no-extra-bind": 0,
-    "no-eq-null": 0,
-    "no-shadow": 0,
-    "no-new": 0,
-    "no-shadow-restricted-names": 0,
-    "no-alert": 0,
-    "no-empty": 0,
-    "no-unused-expressions": 0,
-    "no-extra-semi": 0,
-    "no-console": 0,
-    "space-return-throw-case": 0,
-
+    "react/no-find-dom-node": 0,
     "react/jsx-uses-react": 2,
     "react/jsx-no-undef": 2,
     "react/react-in-jsx-scope": 2
   },
+
   "globals": {
     "exports": true,
     "require": true,

@@ -66,6 +66,6 @@ class History {
   _stepExists(pos) {
     return !!this._history[pos];
   }
-} 
+}
 
 export default History;

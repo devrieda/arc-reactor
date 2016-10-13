@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
 import Content from './Content';
 import Menu from './Menu';
@@ -114,7 +115,7 @@ const Editor = React.createClass({
   // ------ EVENT HANDLERS ------ //
 
   handleDocumentClick(e) {
-    if (!React.findDOMNode(this.refs.editor).contains(e.target)) {
+    if (!ReactDOM.findDOMNode(this.refs.editor).contains(e.target)) {
       setTimeout(this._checkSelection, 0);
     }
   },

@@ -10,12 +10,12 @@ describe('HtmlParser', () => {
           { type: 'p', text: '' },
           {
             type: 'p',
-            text: 'Photography is a word derived from the Greek words photos.', 
+            text: 'Photography is a word derived from the Greek words photos.',
             markups: {
               'strong': [],
               'em': [],
               'a': [],
-            } 
+            }
           },
           { type: 'h3', text: 'This is the subhead' },
           { type: 'ul', text: '', blocks: [

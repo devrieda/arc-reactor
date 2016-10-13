@@ -1,11 +1,11 @@
-import React from 'react/addons';
+import React from 'react';
 import Immutable from 'immutable';
 import cx from 'classnames';
 import History from '../helpers/History';
 import SelectedContent from '../helpers/SelectedContent';
 import EditorStore from '../stores/EditorStore';
 
-const { string, bool, object, instanceOf } = React.PropTypes;
+const { string, bool, object, instanceOf, func } = React.PropTypes;
 
 const MenuButton = React.createClass({
   propTypes: {
@@ -15,6 +15,8 @@ const MenuButton = React.createClass({
     hasValue: bool,
     content: instanceOf(Immutable.Map),
     selection: object,
+    onSetValue: func,
+    onPress: func,
   },
 
   getDefaultProps() {

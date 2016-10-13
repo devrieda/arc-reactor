@@ -22,7 +22,7 @@ const HtmlParser = {
     return callback([]);
 
     // TODO - implement html parse
-    this._parseHtml(pasted, callback);
+    // this._parseHtml(pasted, callback);
   },
 
   // html
@@ -54,7 +54,9 @@ const HtmlParser = {
 
       // if child is block, add to children
       if (BLOCK_TAGS.indexOf(tag) !== -1) {
+        // TODO
       } else {
+        // TODO
       }
 
       results.push(block);

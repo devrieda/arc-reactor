@@ -1,9 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 import { fromJS } from 'immutable';
 import EditorStore from '../../stores/EditorStore';
 import Editor from '../Editor.js';
 
-const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 const { keyDown } = TestUtils.Simulate;
@@ -38,12 +39,15 @@ describe('Editor', () => {
       showMenuButtons: () => { return true; }
     };
 
-    const editor = render(
-      <Editor onChange={changed} selection={selection} content={content} />
+    const node = document.createElement('div');
+    ReactDOM.render(
+      <Editor onChange={changed} selection={selection} content={content} />, node
     );
 
-    editor.setProps({ content: content });
-
+    // trigger componentDidUpdate
+    ReactDOM.render(
+      <Editor onChange={changed} selection={selection} content={content} />, node
+    );
     expect(callback.called).to.be.true;
   });
 
@@ -94,7 +98,7 @@ describe('Editor', () => {
   });
 
 
-  // rendering 
+  // rendering
   it('should render content', () => {
     const changed = () => { };
     const content = { sections: [] };

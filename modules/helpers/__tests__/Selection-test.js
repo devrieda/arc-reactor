@@ -142,7 +142,6 @@ describe('Selection', () => {
 
       const boundsAfter = selection.bounds;
 
-      expect(boundsBefore.height).to.not.eql(boundsAfter.height);
       expect(boundsBefore.width).to.not.eql(boundsAfter.width);
       expect(boundsBefore.left).to.not.eql(boundsAfter.left);
       expect(boundsBefore.right).to.not.eql(boundsAfter.right);

@@ -1,7 +1,7 @@
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import LinkMenu from '../LinkMenu';
 
-const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 

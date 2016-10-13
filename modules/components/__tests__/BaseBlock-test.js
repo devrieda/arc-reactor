@@ -1,8 +1,9 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 import Immutable from 'immutable';
 import Block from '../BaseBlock.js';
 
-const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 
@@ -11,7 +12,7 @@ describe('BaseBlock', () => {
     const block = render(
       <Block type={'p'} text={''} data={Immutable.Map({ align: 'center'})} />
     );
-    const dom = React.findDOMNode(block);
+    const dom = ReactDOM.findDOMNode(block);
 
     expect(dom.dataset.align).to.equal('center');
   });
@@ -22,7 +23,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'p'} text={''} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--empty')).to.equal.true;
     });
 
@@ -30,7 +31,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'p'} text={'hey'} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--empty')).to.equal.false;
     });
 
@@ -42,7 +43,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'p'} text={''} blocks={Immutable.fromJS(blocks)} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--empty')).to.equal.false;
     });
 
@@ -50,7 +51,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'h2'} text={'hey'} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--header')).to.equal.true;
     });
 
@@ -58,7 +59,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'ol'} text={'hey'} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--header')).to.equal.false;
     });
 
@@ -66,7 +67,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'ol'} text={'hey'} blocks={Immutable.List()} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--list')).to.equal.true;
     });
 
@@ -74,7 +75,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'h2'} text={'hey'} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--list')).to.equal.false;
     });
 
@@ -82,7 +83,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'p'} text={'hey'} meta={Immutable.Map({first: true})}/>
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--first')).to.equal.true;
     });
 
@@ -90,7 +91,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'p'} text={'hey'} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--first')).to.equal.false;
     });
 
@@ -98,7 +99,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block id={'0000'} type={'p'} text={'hey'} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--0000')).to.equal.true;
     });
 
@@ -106,7 +107,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'h2'} text={'hey'} />
       );
-      const dom = React.findDOMNode(block);
+      const dom = ReactDOM.findDOMNode(block);
       expect(dom.classList.contains('arc-Editor-Block--h2')).to.equal.true;
     });
   });
@@ -129,7 +130,7 @@ describe('BaseBlock', () => {
       const block = render(
         <Block type={'p'} text={''} />
       );
-      expect(React.findDOMNode(block).innerHTML).to.equal('<br>');
+      expect(ReactDOM.findDOMNode(block).innerHTML).to.equal('<br>');
     });
   });
 
@@ -144,7 +145,7 @@ describe('BaseBlock', () => {
         <Block type={'p'} text={'hey there'} markups={Immutable.fromJS(markups)} />
       );
       const formatted = 'hey <em class="arc-Editor-Block__em">there</em>';
-      expect(React.findDOMNode(block).innerHTML).to.equal(formatted);
+      expect(ReactDOM.findDOMNode(block).innerHTML).to.equal(formatted);
     });
   });
 });

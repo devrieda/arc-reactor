@@ -1,9 +1,9 @@
-import React from 'react/addons';
+import React from 'react';
 import cx from 'classnames';
 import FigCaption from './FigCaption';
 
-const PureRenderMixin = React.addons.PureRenderMixin;
-const { bool, string } = React.PropTypes;
+const PureRenderMixin = require('react-addons-pure-render-mixin');
+const { bool, string, any } = React.PropTypes;
 
 const Figure = React.createClass({
   mixins: [PureRenderMixin],
@@ -11,7 +11,8 @@ const Figure = React.createClass({
   propTypes: {
     id: string,
     text: string,
-    selected: bool
+    selected: bool,
+    children: any,
   },
 
   getDefaultProps() {
@@ -37,6 +38,7 @@ const Figure = React.createClass({
         data-figure="true"
         data-block="true"
         contentEditable="false"
+        suppressContentEditableWarning={true}
         onDragStart={this.preventDrag}
         className={classNames}
       >

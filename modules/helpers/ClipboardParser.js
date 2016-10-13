@@ -56,6 +56,6 @@ const ClipboardParser = {
     // first match parses
     matching.length && matching[0].parse(pasted, callback);
   }
-} 
+}
 
 export default ClipboardParser;

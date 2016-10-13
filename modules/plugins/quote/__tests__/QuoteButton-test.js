@@ -1,8 +1,8 @@
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import { fromJS } from 'immutable';
 import QuoteButton from '../QuoteButton';
 
-const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 

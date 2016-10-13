@@ -1,9 +1,9 @@
-import React from 'react/addons';
+import React from 'react';
 import Immutable from 'immutable';
 import Figure from '../shared/Figure';
 import cx from 'classnames';
 
-const PureRenderMixin = React.addons.PureRenderMixin;
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const { string, object, instanceOf } = React.PropTypes;
 
 const Image = React.createClass({

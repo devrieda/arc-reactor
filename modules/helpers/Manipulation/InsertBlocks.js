@@ -1,6 +1,5 @@
 import Immutable from 'immutable';
 import ContentFinder from '../ContentFinder';
-import Guid from '../Guid';
 
 class InsertBlocks {
   constructor(content) {

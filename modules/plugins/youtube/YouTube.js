@@ -1,9 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
 import Figure from '../shared/Figure';
 import cx from 'classnames';
 
-const PureRenderMixin = React.addons.PureRenderMixin;
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const { string, object, instanceOf } = React.PropTypes;
 
 const YouTube = React.createClass({
@@ -57,10 +58,8 @@ const YouTube = React.createClass({
   },
 
   resizeVideo() {
-    if (this.isMounted()) {
-      const width = React.findDOMNode(this.refs.figure).clientWidth;
-      this.setState({ width });
-    }
+    const width = ReactDOM.findDOMNode(this.refs.figure).clientWidth;
+    this.setState({ width });
   },
 
   render() {

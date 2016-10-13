@@ -1,4 +1,4 @@
-const assign = require("react/lib/Object.assign");
+const assign = require("lodash.assign");
 const pick   = require("lodash.pick");
 
 let _listeners = [];

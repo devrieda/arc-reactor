@@ -1,4 +1,5 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
 import ContentFinder from '../helpers/ContentFinder';
 import cx from 'classnames';
@@ -58,7 +59,7 @@ const Bar = React.createClass({
     const rect = anchorNode.getBoundingClientRect();
     const scrollTop =  window.pageYOffset || document.documentElement.scrollTop;
 
-    let node = React.findDOMNode(this);
+    let node = ReactDOM.findDOMNode(this);
     node.style.top  = rect.top + scrollTop - 5 + "px";
     node.style.left = rect.left - 70 + "px";
   },
@@ -109,7 +110,7 @@ const Bar = React.createClass({
     // focus on the button
     if (!open) {
       setTimeout( () => {
-        React.findDOMNode(this.refs.trigger).focus();
+        ReactDOM.findDOMNode(this.refs.trigger).focus();
       }, 50);
     }
   },
@@ -121,7 +122,7 @@ const Bar = React.createClass({
 
     const value = e.target.value;
     this.valueButton.handleClick(e, null, value);
-    React.findDOMNode(this.refs.linkInput).value = "";
+    ReactDOM.findDOMNode(this.refs.linkInput).value = "";
     this.setState({inputMode: false});
   },
 

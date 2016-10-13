@@ -1,4 +1,5 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import EditorStore from '../stores/EditorStore';
 
 const { bool, string, shape, number } = React.PropTypes;
@@ -48,7 +49,7 @@ const LinkMenu = React.createClass({
   componentDidUpdate() {
     if (!this.props.active) return;
 
-    let node = React.findDOMNode(this.refs.content);
+    let node = ReactDOM.findDOMNode(this.refs.content);
     const button = node.getBoundingClientRect();
     const bounds = this.props.bounds;
     const arrow  = 5;

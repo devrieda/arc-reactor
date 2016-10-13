@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import BaseBlock from '../../components/BaseBlock';
 
 const UnorderedList = React.createClass({

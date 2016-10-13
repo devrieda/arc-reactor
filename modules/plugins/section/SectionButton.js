@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import BarButton from '../../components/BarButton';
 import InsertSection from './lib/InsertSection';
 

@@ -28,7 +28,7 @@ describe('CombineBlocks', () => {
 
   describe('#execute', () => {
     it('should combine multiple blocks', () => {
-      const manager = new CombineBlocks(fromJS(content)); 
+      const manager = new CombineBlocks(fromJS(content));
       const guids = { anchor: 'c6a7', focus: 'c6a9' };
       const offsets = { anchor: 8, focus: 6 };
       const result = manager.execute(guids, offsets);
@@ -39,7 +39,7 @@ describe('CombineBlocks', () => {
     });
 
     it('should combine multiple blocks across sections and delete empty sects', () => {
-      const manager = new CombineBlocks(fromJS(content)); 
+      const manager = new CombineBlocks(fromJS(content));
       const guids = { anchor: 'c6a7', focus: '0101' };
       const offsets = { anchor: 8, focus: 10 };
       const result = manager.execute(guids, offsets);
@@ -59,7 +59,7 @@ describe('CombineBlocks', () => {
     });
 
     it('should combine multiple blocks across sections and keep sects with blocks', () => {
-      const manager = new CombineBlocks(fromJS(content)); 
+      const manager = new CombineBlocks(fromJS(content));
       const guids = { anchor: 'c6a7', focus: '0011' };
       const offsets = { anchor: 8, focus: 10 };
       const result = manager.execute(guids, offsets);

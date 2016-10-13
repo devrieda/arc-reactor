@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import Immutable from 'immutable';
 import cx from 'classnames';
 import History from '../helpers/History';
@@ -15,6 +15,8 @@ const BarButton = React.createClass({
     content: instanceOf(Immutable.Map),
     selection: object,
     onActivate: func,
+    onPress: func,
+    handleSetValue: func,
   },
 
   getDefaultProps() {
@@ -22,6 +24,7 @@ const BarButton = React.createClass({
       content: Immutable.Map(),
       selection: {},
       onActivate: Function.prototype,
+      handleSetValue: Function.prototype,
     };
   },
 

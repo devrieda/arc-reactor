@@ -1,6 +1,6 @@
 import SelectionNode from './SelectionNode';
 
-// Selection is an abstraction of the Dom selection object. It composes the 
+// Selection is an abstraction of the Dom selection object. It composes the
 // Dom selection and caches additional info to make it simpler to interact
 // with the data in respect to the block and inline markup.
 class Selection {

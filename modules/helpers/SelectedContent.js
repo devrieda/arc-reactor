@@ -96,7 +96,7 @@ class SelectedContent {
   }
 
   /**
-   * 
+   *
    */
   _hasInlineType(type, hasValue)  {
     const guidRange = this._getGuidRange();

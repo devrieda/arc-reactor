@@ -1,8 +1,8 @@
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
 import { fromJS } from 'immutable';
 import LinkButton from '../LinkButton';
 
-const TestUtils = React.addons.TestUtils;
 const render = TestUtils.renderIntoDocument;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 

@@ -1,8 +1,9 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 import Immutable from 'immutable';
 import Section from '../Section.js';
 
-const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 
@@ -12,7 +13,7 @@ describe('Section', () => {
     const section = render(
       <Section id={'0000'} blocks={Immutable.List()} meta={Immutable.Map({first: true})} />
     );
-    const dom = React.findDOMNode(section);
+    const dom = ReactDOM.findDOMNode(section);
     expect(dom.classList.contains('arc-Editor-Section--first')).to.be.true;
   });
 
@@ -20,7 +21,7 @@ describe('Section', () => {
     const section = render(
       <Section id={'0000'} blocks={Immutable.List()} />
     );
-    const dom = React.findDOMNode(section);
+    const dom = ReactDOM.findDOMNode(section);
     expect(dom.classList.contains('arc-Editor-Section--first')).to.be.false;
   });
 

@@ -1,9 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 import { fromJS } from 'immutable';
 import Menu from '../Menu.js';
 import ConfigManager from '../../helpers/ConfigManager';
 
-const TestUtils = React.addons.TestUtils;
 const findByClass = TestUtils.findRenderedDOMComponentWithClass;
 const render = TestUtils.renderIntoDocument;
 const { click, input, keyUp } = TestUtils.Simulate;
@@ -123,14 +124,14 @@ describe('Menu', () => {
       <Menu content={fromJS(content)} selection={selection} />
     );
 
-    expect(React.findDOMNode(menu).classList.contains('arc-Editor-Menu--active')).to.be.true;
+    expect(ReactDOM.findDOMNode(menu).classList.contains('arc-Editor-Menu--active')).to.be.true;
   });
 
   it('should build styles based off bounds', () => {
     const content = { sections: [] };
     const selection = {
       text: 'hey',
-      types: ['p'], 
+      types: ['p'],
       guids: () => { return { anchor: '', focus: '' }; },
       offsets: () => { return { anchor: 0, focus: 0 }; },
       reselect: () => {},

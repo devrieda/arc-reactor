@@ -12,6 +12,8 @@ const ItalicButton = React.createClass({
     }
   },
 
+  propTypes: MenuButton.propTypes,
+
   getDefaultProps() {
     return {
       type: "em",

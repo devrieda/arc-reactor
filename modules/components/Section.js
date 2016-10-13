@@ -1,9 +1,9 @@
-import React from 'react/addons';
+import React from 'react';
 import Immutable from 'immutable';
 import cx from 'classnames';
 import BlockConfig from '../helpers/Config/BlockConfig';
 
-const PureRenderMixin = React.addons.PureRenderMixin;
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const { object, string, instanceOf } = React.PropTypes;
 
 const Section = React.createClass({
@@ -65,7 +65,11 @@ const Section = React.createClass({
 
     return (
       <section className={classNames} name={this.props.id}>
-        <div contentEditable="false" className="arc-Editor-Section__divider">
+        <div
+          suppressContentEditableWarning={true}
+          contentEditable="false"
+          className="arc-Editor-Section__divider"
+        >
           <hr className="arc-Editor-Section__hr" />
         </div>
 

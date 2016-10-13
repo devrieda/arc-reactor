@@ -60,6 +60,6 @@ const ClipboardHandler = {
     }
     return data;
   }
-} 
+}
 
 export default ClipboardHandler;

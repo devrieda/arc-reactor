@@ -1,4 +1,5 @@
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import cx from 'classnames';
 
 const KEY_CODES = {
@@ -10,14 +11,15 @@ const KEY_CODES = {
 };
 const PLACEHOLDER = 'Type caption for image';
 
-const PureRenderMixin = React.addons.PureRenderMixin;
+const PureRenderMixin = require('react-addons-pure-render-mixin');
 const { string } = React.PropTypes;
 
 const FigCaption = React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
-    text: string
+    text: string,
+    figureId: string,
   },
 
   getDefaultProps() {
@@ -54,7 +56,7 @@ const FigCaption = React.createClass({
 
   // set our selection at the beginning of the node
   _selectTextNode() {
-    const textNode = React.findDOMNode(this.refs.caption);
+    const textNode = ReactDOM.findDOMNode(this.refs.caption);
     const selection = document.getSelection();
     const range = document.createRange();
     range.setStart(textNode.firstChild, 0);
@@ -95,7 +97,7 @@ const FigCaption = React.createClass({
   },
 
   _showPlaceholderWhenEmpty() {
-    const node = React.findDOMNode(this.refs.caption);
+    const node = ReactDOM.findDOMNode(this.refs.caption);
     if (node.textContent.trim() === "") {
       this.setState({empty: true}, this._selectTextNode);
     }
@@ -109,6 +111,7 @@ const FigCaption = React.createClass({
     let attr = {
       'ref': "caption",
       'contentEditable': "true",
+      'suppressContentEditableWarning': true,
       'className': capClass,
       'onKeyDown': this.handleKeyDown,
       'onKeyUp': this.handleKeyUp,

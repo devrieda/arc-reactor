@@ -1,4 +1,4 @@
-import invariant from "react/lib/warning";
+import invariant from "invariant";
 import BlockConfig from './Config/BlockConfig';
 import MenuButtonConfig from './Config/MenuButtonConfig';
 import BarButtonConfig from './Config/BarButtonConfig';
